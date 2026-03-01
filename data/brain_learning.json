@@ -1,47 +1,5 @@
 [
   {
-    "model": "gemini-general",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 1,
-    "timestamp": 1771719993.007146
-  },
-  {
-    "model": "openai-architect",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 212,
-    "timestamp": 1771719993.262972
-  },
-  {
-    "model": "openai-reasoning",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 603,
-    "timestamp": 1771719993.9130974
-  },
-  {
-    "model": "openai-coding",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 117,
-    "timestamp": 1771719994.0781562
-  },
-  {
-    "model": "openai-fast",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 712,
-    "timestamp": 1771719994.8321285
-  },
-  {
-    "model": "openai-long_context",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 1829,
-    "timestamp": 1771719996.704703
-  },
-  {
     "model": "gemini-primary",
     "task_type": "general",
     "success": true,
@@ -3498,5 +3456,47 @@
     "success": true,
     "latency_ms": 16389,
     "timestamp": 1772364818.5830708
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 1099,
+    "timestamp": 1772364837.464805
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 1225,
+    "timestamp": 1772364840.9615855
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 712,
+    "timestamp": 1772364843.8857682
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "code_edit",
+    "success": true,
+    "latency_ms": 4221,
+    "timestamp": 1772364850.239647
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "code_edit",
+    "success": true,
+    "latency_ms": 4266,
+    "timestamp": 1772364854.7222326
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "code_edit",
+    "success": true,
+    "latency_ms": 3796,
+    "timestamp": 1772364858.7172017
   }
 ]

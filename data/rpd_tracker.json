@@ -3,7 +3,7 @@
   "usage": {
     "openai-architect": 6,
     "openai-reasoning": 3,
-    "openai-vision": 2
+    "openai-vision": 8
   },
   "exhausted": []
 }
