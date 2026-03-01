@@ -1970,10 +1970,10 @@
   },
   "model_stats": {
     "openai:gpt-4o": {
-      "calls": 387,
+      "calls": 388,
       "task_types": {
         "conversation": {
-          "count": 292,
+          "count": 293,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -2023,7 +2023,7 @@
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 13222,
+      "avg_response_ms": 13192,
       "tier": 1
     },
     "gemini:gemini-3-flash-preview": {
