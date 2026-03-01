@@ -175,11 +175,11 @@
     "avg_ms": 638
   },
   "openai-vision": {
-    "calls": 20,
-    "successes": 8,
+    "calls": 21,
+    "successes": 9,
     "failures": 12,
-    "total_ms": 26822,
-    "avg_ms": 1341
+    "total_ms": 29392,
+    "avg_ms": 1399
   },
   "openai-vision_fast": {
     "calls": 12,
