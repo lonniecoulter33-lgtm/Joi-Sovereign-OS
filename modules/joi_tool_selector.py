@@ -20,20 +20,23 @@ TOOL_GROUPS: Dict[str, Dict] = {
         "tools": {
             # Memory
             "remember", "recall",
-            # File reading (always available — users constantly upload/ask about files)
-            "read_upload", "list_uploads", "fs_read", "fs_list", "fs_search",
-            # App launching & media (most common action requests)
+            # File basics (always needed — users constantly ask about files)
+            # NOTE: these are owned here; do NOT duplicate in filesystem group
+            "read_upload", "list_uploads", "fs_read", "fs_list",
+            # App launching & media (most common single-turn actions)
+            # NOTE: owned here; do NOT duplicate in desktop group
             "launch_app", "play_media", "open_url",
             # Web
             "web_search", "web_fetch",
-            # Screenshot & screen reading
+            # Perception — always available so Joi can narrate screen
+            # NOTE: owned here; do NOT duplicate in vision group
             "screenshot", "analyze_screen",
             # Self-awareness
             "get_capability_report",
             # Conversation
             "internal_monologue", "set_mode", "toggle_commentary",
-            # Environmental Agency
-            "analyze_screen", "get_memory_viz",
+            # Memory visualization
+            "get_memory_viz",
         },
         "keywords": [],  # always included, no keywords needed
     },
@@ -49,11 +52,10 @@ TOOL_GROUPS: Dict[str, Dict] = {
     "filesystem": {
         "priority": 2,
         "tools": {
-            "fs_list", "fs_read", "fs_search", "search_files",
+            # fs_read, fs_list, read_upload, list_uploads owned by core_chat — not duplicated here
+            "fs_search", "search_files",
             "generate_file", "save_code_file", "save_text_file",
-            "save_research_findings", "list_files", "get_file_content",
-            "save_binary_file", "project_tree",
-            "read_upload", "list_uploads",
+            "save_research_findings", "save_binary_file", "project_tree",
         },
         "keywords": ["file", "folder", "directory", "read", "write", "save", "document",
                       "pdf", "txt", "download", "find file", "open file",
@@ -85,24 +87,16 @@ TOOL_GROUPS: Dict[str, Dict] = {
     "desktop": {
         "priority": 2,
         "tools": {
+            # launch_app, play_media, screenshot owned by core_chat — not duplicated here
             "move_mouse", "click_mouse", "type_text", "press_key",
-            "screenshot", "get_mouse_position", "smart_click", "find_file_smart",
+            "get_mouse_position", "smart_click", "find_file_smart",
             "list_windows", "find_window", "focus_window", "close_window",
-            "launch_app", "play_media",
         },
-        "keywords": ["click", "mouse", "type", "keyboard", "screenshot", "window",
-                      "desktop", "launch", "open app", "focus", "minimize", "play",
-                      "media", "music", "video", "spotify", "chrome", "firefox",
-                      "open chrome", "open firefox", "open edge", "open browser",
+        "keywords": ["click", "mouse", "type", "keyboard", "window",
+                      "desktop", "focus", "minimize",
                       "start", "run", "app", "application", "program", "notepad",
-                      "calculator", "explorer", "vlc", "winamp", "itunes", "netflix",
-                      "open spotify", "open netflix", "open vlc", "open notepad",
-                      "open calculator", "play song", "play music", "play video"],
-    },
-    "vision": {
-        "priority": 2,
-        "tools": {"analyze_screen"},
-        "keywords": ["screen", "see", "look at", "what's on", "vision", "monitor"],
+                      "calculator", "explorer", "vlc", "winamp", "itunes",
+                      "open notepad", "open calculator"],
     },
     "camera": {
         "priority": 2,
@@ -115,7 +109,7 @@ TOOL_GROUPS: Dict[str, Dict] = {
     },
     "voice_tts": {
         "priority": 2,
-        "tools": {"generate_avatar_image"},
+        "tools": {"generate_avatar_image", "generate_image"},
         "keywords": ["avatar", "image", "picture", "generate image", "dalle"],
     },
     "voice_id": {
@@ -206,6 +200,19 @@ TOOL_GROUPS: Dict[str, Dict] = {
         "tools": {"brain_route", "brain_stats", "get_brain_state"},
         "keywords": ["brain", "model", "route", "routing"],
     },
+    "git_agency": {
+        "priority": 2,
+        "tools": {"git_manager"},
+        "keywords": [
+            "git", "commit", "push", "pull", "merge", "branch", "repo",
+            "repository", "version control", "stage", "staging", "diff",
+            "checkout", "clone", "stash", "status", "auto commit",
+            "save changes", "save my work", "push to github", "push to git",
+            "commit my code", "what changed", "git history", "git log",
+            "did you commit", "commit the changes", "save this to git",
+        ],
+    },
+
     "diagnostics": {
         "priority": 3,
         "tools": {
@@ -280,15 +287,6 @@ TOOL_GROUPS: Dict[str, Dict] = {
         },
         "keywords": ["watchdog", "checkpoint", "revert", "diff", "override", "rollback git",
                       "undo change", "restore checkpoint"],
-    },
-    "claude_code": {
-        "priority": 3,
-        "tools": {
-            "delegate_to_claude_code", "check_claude_code_status",
-            "process_claude_code_queue",
-        },
-        "keywords": ["claude code", "delegate to claude", "claude cli",
-                      "run claude", "code delegate"],
     },
 }
 

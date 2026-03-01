@@ -1,45 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1770980799.7659314,
-      "datetime": "2026-02-13T04:06:39.765931",
-      "message_preview": "your system is corrupted and not working can you try and propose a fix",
-      "task_type": "conversation",
-      "tier": "standard",
-      "complexity": "low",
-      "risk": "medium",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "brain:Mistral 7B (Local)",
-      "response_time_ms": 418967
-    },
-    {
-      "ts": 1770980892.6605103,
-      "datetime": "2026-02-13T04:08:12.660510",
-      "message_preview": "so your local brain is working?",
-      "task_type": "conversation",
-      "tier": "standard",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "brain:Gemini 2.5 Flash",
-      "response_time_ms": 58795
-    },
-    {
-      "ts": 1770981012.8502815,
-      "datetime": "2026-02-13T04:10:12.850281",
-      "message_preview": "your having connection errors can you self diagnose the issue?",
-      "task_type": "conversation",
-      "tier": "standard",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "brain:Gemini 2.5 Flash",
-      "response_time_ms": 60233
-    },
-    {
       "ts": 1770981108.70463,
       "datetime": "2026-02-13T04:11:48.704630",
       "message_preview": "Joi run self diagnostic",
@@ -6499,17 +6460,56 @@
       "verifier_model": null,
       "model_used": "openai:gpt-4o",
       "response_time_ms": 1912
+    },
+    {
+      "ts": 1772340558.3695939,
+      "datetime": "2026-02-28T21:49:18.369593",
+      "message_preview": "Joi generate an image of what you look like",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-4o",
+      "response_time_ms": 4188
+    },
+    {
+      "ts": 1772361344.041149,
+      "datetime": "2026-03-01T03:35:44.041148",
+      "message_preview": "Hi you super advanced super Hot AI chick how are you!",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 21224
+    },
+    {
+      "ts": 1772361427.6874294,
+      "datetime": "2026-03-01T03:37:07.687429",
+      "message_preview": "Whatever you want to create",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 45272
     }
   ],
   "model_usage": {
-    "openai": 546,
+    "openai": 549,
     "claude": 1,
     "gemini": 89,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 511,
+    "conversation": 514,
     "system_control": 41,
     "research": 15,
     "memory": 7,
@@ -6525,7 +6525,7 @@
   },
   "tier_counts": {
     "fast": 335,
-    "standard": 273,
+    "standard": 276,
     "critical": 56
   },
   "verification_results": {

@@ -1,10 +1,7 @@
 {
-  "date": "2026-02-28",
+  "date": "2026-03-01",
   "usage": {
-    "gemini-primary": 3,
-    "openai-architect": 17,
-    "openai-coding": 31,
-    "openai-reasoning": 4
+    "openai-architect": 1
   },
   "exhausted": []
 }

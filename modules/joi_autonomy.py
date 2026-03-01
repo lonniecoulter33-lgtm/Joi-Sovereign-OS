@@ -218,25 +218,54 @@ def run_cycle() -> Dict[str, Any]:
         cycle_result["steps"]["test"] = {"ok": False, "error": str(e)}
         print(f"  [4/6] TEST: FAILED -- {e}")
 
-    # ── Step 5: AUTO-APPLY ───────────────────────────────────────────
+    # ── Step 5: AUTO-APPLY (Kernel Lock enforced) ───────────────────
     applied = []
+    blocked_by_kernel = []
+    pending_approval = []
     try:
-        from modules.joi_evolution import apply_upgrade as _apply_fn
+        # ── v4.0: Load Kernel Lock guard ─────────────────────────────────
+        try:
+            from modules.joi_kernel_lock import get_kernel_lock
+            _klock = get_kernel_lock()
+            _kernel_lock_available = True
+        except Exception as _kl_err:
+            _klock = None
+            _kernel_lock_available = False
+            print(f"  [5/6] KERNEL LOCK unavailable: {_kl_err}")
 
         for result in tested:
             if result.get("confidence", 0) >= AUTO_APPLY_THRESHOLD:
                 pid = result["proposal_id"]
                 print(f"    Auto-applying {pid} (confidence={result['confidence']})")
                 try:
-                    # apply_upgrade needs require_user -- we skip it by calling internal logic
                     from modules.joi_evolution import PROPOSALS_DIR as _pd
                     meta_path = _pd / f"{pid}_metadata.json"
                     if meta_path.exists():
                         meta = json.loads(meta_path.read_text())
                         code_path = Path(meta.get("proposal_path", ""))
                         if code_path.exists():
-                            from modules.joi_evolution import _create_backup
                             target = Path("modules") / meta.get("target_file", "")
+
+                            # ── KERNEL LOCK CHECK ─────────────────────────
+                            if _kernel_lock_available and _klock is not None:
+                                allowed, reason = _klock.check_edit_allowed(str(target))
+                                if not allowed:
+                                    # Layer 1 or 2 — hard block
+                                    _klock.log_violation(str(target), reason, action="autonomy_auto_apply")
+                                    blocked_by_kernel.append({"pid": pid, "target": str(target), "reason": reason[:200]})
+                                    meta["status"] = "blocked_kernel_lock"
+                                    meta_path.write_text(json.dumps(meta, indent=2))
+                                    print(f"    [KERNEL LOCK] BLOCKED {pid} ({target})")
+                                    continue
+                                elif reason:  # Layer 3 — requires human approval
+                                    pending_approval.append({"pid": pid, "target": str(target), "warning": reason[:200]})
+                                    meta["status"] = "pending_human_approval_layer3"
+                                    meta_path.write_text(json.dumps(meta, indent=2))
+                                    print(f"    [KERNEL LOCK] Layer 3 approval required for {pid} ({target})")
+                                    continue
+                            # ─────────────────────────────────────────────
+
+                            from modules.joi_evolution import _create_backup
                             backup = _create_backup(target) if target.exists() else None
                             target.parent.mkdir(parents=True, exist_ok=True)
                             target.write_text(code_path.read_text())
@@ -252,8 +281,15 @@ def run_cycle() -> Dict[str, Any]:
                 except Exception as ae:
                     print(f"    Auto-apply failed for {pid}: {ae}")
 
-        cycle_result["steps"]["auto_apply"] = {"ok": True, "applied": applied}
-        print(f"  [5/6] AUTO-APPLY: {len(applied)} proposals applied")
+        cycle_result["steps"]["auto_apply"] = {
+            "ok": True,
+            "applied": applied,
+            "blocked_by_kernel": blocked_by_kernel,
+            "pending_human_approval": pending_approval,
+        }
+        print(f"  [5/6] AUTO-APPLY: {len(applied)} applied, "
+              f"{len(blocked_by_kernel)} kernel-blocked, "
+              f"{len(pending_approval)} awaiting human approval")
     except Exception as e:
         cycle_result["steps"]["auto_apply"] = {"ok": False, "error": str(e)}
         print(f"  [5/6] AUTO-APPLY: FAILED -- {e}")

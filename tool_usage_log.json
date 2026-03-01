@@ -1759,6 +1759,66 @@
         "source": "chat_loop",
         "task_type": "conversation"
       }
+    },
+    {
+      "ts": 1772361344.242316,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772361344.4717278,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772361427.9155633,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772361427.9952164,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772361428.04592,
+      "tool": "create_orchestration_proposal",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772361428.083401,
+      "tool": "create_orchestration_proposal",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
     }
   ],
   "tool_stats": {
@@ -1808,8 +1868,8 @@
       "failures": 1
     },
     "internal_monologue": {
-      "calls": 21,
-      "successes": 21,
+      "calls": 25,
+      "successes": 25,
       "failures": 0
     },
     "monitor_ai_research": {
@@ -1966,14 +2026,19 @@
       "calls": 2,
       "successes": 0,
       "failures": 2
+    },
+    "create_orchestration_proposal": {
+      "calls": 2,
+      "successes": 2,
+      "failures": 0
     }
   },
   "model_stats": {
     "openai:gpt-4o": {
-      "calls": 388,
+      "calls": 389,
       "task_types": {
         "conversation": {
-          "count": 293,
+          "count": 294,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -2023,7 +2088,7 @@
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 13192,
+      "avg_response_ms": 13168,
       "tier": 1
     },
     "gemini:gemini-3-flash-preview": {
@@ -2301,15 +2366,20 @@
       "tier": 2
     },
     "openai:gpt-5-mini": {
-      "calls": 1,
+      "calls": 3,
       "task_types": {
         "capability_query": {
           "count": 1,
           "verified_ok": 0,
           "verified_fail": 0
+        },
+        "conversation": {
+          "count": 2,
+          "verified_ok": 0,
+          "verified_fail": 0
         }
       },
-      "avg_response_ms": 19609
+      "avg_response_ms": 28701
     },
     "brain:OpenAI gpt-5": {
       "calls": 6,

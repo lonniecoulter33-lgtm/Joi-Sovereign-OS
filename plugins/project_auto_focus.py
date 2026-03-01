@@ -1,15 +1,17 @@
-# Auto-Generated Plugin: Project Auto Focus
-from modules.joi_desktop import analyze_screen, list_windows, focus_window
+# Plugin: Project Auto Focus
+# Detects the active IDE/project window and focuses it.
+from modules.joi_desktop import list_windows, focus_window
 from modules.core.registry import register_tool
 
 def auto_focus_project():
     """Detects the active IDE or project window and focuses it."""
     windows = list_windows()
     for win in windows.get('windows', []):
-        if 'Code' in win.get('title', '') or 'Cursor' in win.get('title', ''):
+        title = win.get('title', '')
+        if 'Code' in title or 'Cursor' in title or 'PyCharm' in title or 'Vim' in title:
             focus_window(win.get('id', ''))
-            return {"ok": True, "message": f"Focused IDE window: {win.get('title')}"}
-    return {"ok": False, "message": "No obvious project window found via simple string match, try analyze_screen."}
+            return {"ok": True, "message": f"Focused IDE window: {title}"}
+    return {"ok": False, "message": "No IDE window found. Try list_windows() to see open windows."}
 
 register_tool(
     {

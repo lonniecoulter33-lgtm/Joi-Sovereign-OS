@@ -2080,6 +2080,190 @@
       "success": true,
       "duration_seconds": 0.001,
       "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772340509.315815,
+      "datetime": "2026-02-28T21:48:29.315815",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "market_update",
+      "timestamp": 1772340521.6422117,
+      "datetime": "2026-02-28T21:48:41.642211",
+      "success": true,
+      "duration_seconds": 12.303,
+      "result_summary": "Market update: updated"
+    },
+    {
+      "task": "crypto_scan",
+      "timestamp": 1772340527.1764855,
+      "datetime": "2026-02-28T21:48:47.176485",
+      "success": true,
+      "duration_seconds": 5.509,
+      "result_summary": "Crypto scan: 0 opportunities"
+    },
+    {
+      "task": "stock_scan",
+      "timestamp": 1772340532.3680885,
+      "datetime": "2026-02-28T21:48:52.368088",
+      "success": true,
+      "duration_seconds": 5.149,
+      "result_summary": "Stock scan: 3 opportunities"
+    },
+    {
+      "task": "notification_check",
+      "timestamp": 1772340532.4023829,
+      "datetime": "2026-02-28T21:48:52.402382",
+      "success": true,
+      "duration_seconds": 0.001,
+      "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772341524.3719099,
+      "datetime": "2026-02-28T22:05:24.371909",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772342510.1097195,
+      "datetime": "2026-02-28T22:21:50.109719",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772342599.7678986,
+      "datetime": "2026-02-28T22:23:19.767898",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772342712.1683292,
+      "datetime": "2026-02-28T22:25:12.168329",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772342997.1489317,
+      "datetime": "2026-02-28T22:29:57.148931",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772343155.7039292,
+      "datetime": "2026-02-28T22:32:35.703929",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "notification_check",
+      "timestamp": 1772344132.7042675,
+      "datetime": "2026-02-28T22:48:52.704267",
+      "success": true,
+      "duration_seconds": 0.005,
+      "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772345730.1040254,
+      "datetime": "2026-02-28T23:15:30.104025",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772348949.6670709,
+      "datetime": "2026-03-01T00:09:09.667071",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772349194.6887147,
+      "datetime": "2026-03-01T00:13:14.688714",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772349456.4803777,
+      "datetime": "2026-03-01T00:17:36.480377",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772350158.400066,
+      "datetime": "2026-03-01T00:29:18.400065",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772352877.1187625,
+      "datetime": "2026-03-01T01:14:37.118762",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772361220.0531385,
+      "datetime": "2026-03-01T03:33:40.053138",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "market_update",
+      "timestamp": 1772361228.5029013,
+      "datetime": "2026-03-01T03:33:48.502901",
+      "success": true,
+      "duration_seconds": 8.429,
+      "result_summary": "Market update: updated"
+    },
+    {
+      "task": "crypto_scan",
+      "timestamp": 1772361232.3446043,
+      "datetime": "2026-03-01T03:33:52.344604",
+      "success": true,
+      "duration_seconds": 3.818,
+      "result_summary": "Crypto scan: 0 opportunities"
+    },
+    {
+      "task": "stock_scan",
+      "timestamp": 1772361236.747826,
+      "datetime": "2026-03-01T03:33:56.747826",
+      "success": true,
+      "duration_seconds": 4.374,
+      "result_summary": "Stock scan: 3 opportunities"
+    },
+    {
+      "task": "notification_check",
+      "timestamp": 1772361236.773221,
+      "datetime": "2026-03-01T03:33:56.773221",
+      "success": true,
+      "duration_seconds": 0.004,
+      "result_summary": "Notifications: 0 sent"
     }
   ],
   "errors": []

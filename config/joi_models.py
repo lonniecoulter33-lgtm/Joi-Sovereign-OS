@@ -1,45 +1,50 @@
 """
-JOI CENTRAL MODEL CONFIGURATION
+JOI CENTRAL MODEL CONFIGURATION — Paid Tier Update (March 2026)
 Single source of truth for all LLM usage.
 
 Do not hardcode models anywhere else.
 All routing must reference this file.
 
-Model Tiers (updated Feb 21, 2026):
-  PRIMARY BRAIN  -- Gemini 2.5 Flash    : Best available on free tier, 1M context
-  EMERGENCY      -- Gemini 2.5 Flash Lite: Rate-limit emergency only (~1000 RPD free tier)
-  SPECIALIST     -- OpenAI models        : Tool calling, vision, code editing, reasoning chains
-  LOCAL          -- Ollama               : Offline / private/sensitive use only (not cloud)
+Model Tiers (updated March 1, 2026 — PAID TIERS ACTIVE):
+  PRIMARY BRAIN  -- GPT-5               : Complex logic, architecture, planning
+  LARGE CONTEXT  -- Gemini 2.5 Pro      : 2M context — entire codebases, large files
+  FAST TOOLS     -- o4-mini / Gemini 2.5 Flash : Tool routing, quick tasks
+  DEBUGGING      -- Gemini 2.0 Flash Thinking : Structured reasoning for failure analysis
+  FALLBACK       -- GPT-5-mini / Gemini 2.5 Flash : Always-on fallback
 
-NOTE: gemini-2.5-pro requires a paid API tier (limit: 0 on free tier).
-      Do NOT add it back until billing is enabled in Google AI Studio.
+Paid Tier Status:
+  OpenAI: Tier 2 — 1,000,000 TPM flagship / 10,000,000 TPM mini
+  Gemini: Paid Tier 1 — 150-300 RPM, data NOT used for training
 """
 
 # -----------------------------
 # ALLOWED MODELS (enforced everywhere)
 # -----------------------------
 ALLOWED_GEMINI = (
-    "gemini-2.5-flash",       # T1: Primary brain — best available on free tier, 1M context
-    "gemini-2.5-flash-lite",  # T2: Emergency only — ~1000 RPD free tier hard cap
+    "gemini-2.5-pro",              # T1: PRIMARY — 2M context, paid tier, best quality
+    "gemini-2.5-flash",            # T2: Fast, high quality — 1M context
+    "gemini-2.0-flash-thinking",   # T3: Structured reasoning / debugging (Flash family)
+    "gemini-2.5-flash-lite",       # T4: Emergency rate-limit fallback
 )
 
 ALLOWED_OPENAI = (
     "gpt-5", "gpt-5-mini", "gpt-5-nano",
+    "gpt-4.1",                     # 1M context — full file/codebase ingestion
+    "gpt-4.1-mini",                # 1M context — cheaper variant
     "o3-mini", "o4-mini",
-    "gpt-4.1-mini", "gpt-4o", "gpt-4o-mini",
-    # "gpt-5-codex-mini",  # Returns 404 — removed until OpenAI makes it available
+    "gpt-4o", "gpt-4o-mini",
 )
 
 # Legacy model names -> modern replacement
-# NOTE: all pro/old names route to gemini-2.5-flash (Pro requires paid tier — limit: 0 on free)
 GEMINI_MODEL_ALIASES = {
-    "gemini-2.5-flash":         "gemini-2.5-flash",     # canonical
-    "gemini-2.5-flash-lite":    "gemini-2.5-flash-lite",# canonical
-    # Pro aliases -> Flash (Pro is inaccessible on free tier)
-    "gemini-2.5-pro":           "gemini-2.5-flash",
-    "gemini-2.5-pro-preview":   "gemini-2.5-flash",
-    "gemini-3-pro-preview":     "gemini-2.5-flash",
-    "gemini-1.5-pro":           "gemini-2.5-flash",
+    "gemini-2.5-pro":           "gemini-2.5-pro",           # canonical
+    "gemini-2.5-pro-preview":   "gemini-2.5-pro",
+    "gemini-2.5-flash":         "gemini-2.5-flash",         # canonical
+    "gemini-2.5-flash-lite":    "gemini-2.5-flash-lite",    # canonical
+    "gemini-2.0-flash-thinking":"gemini-2.0-flash-thinking",# canonical
+    # Legacy pro aliases -> paid Pro now
+    "gemini-3-pro-preview":     "gemini-2.5-pro",
+    "gemini-1.5-pro":           "gemini-2.5-pro",
     # Legacy flash names
     "gemini-1.5-flash":         "gemini-2.5-flash",
     "gemini-2-flash":           "gemini-2.5-flash",
@@ -48,6 +53,8 @@ GEMINI_MODEL_ALIASES = {
     "gemini-3-flash":           "gemini-2.5-flash",
     "gemini-3-flash-preview":   "gemini-2.5-flash",
     "gemini-2.5-flash-preview": "gemini-2.5-flash",
+    # Thinking aliases
+    "gemini-2.0-flash-thinking-exp": "gemini-2.0-flash-thinking",
     # Old lite aliases
     "gemini-2.5-flash-lite-preview": "gemini-2.5-flash-lite",
 }
@@ -60,15 +67,41 @@ OPENAI_MODEL_ALIASES = {
     "gpt-4-turbo":       "gpt-5-mini",
 }
 
-# Thinking level tokens per model (Gemini 2.5 thinking models)
+# Thinking level tokens per model (Gemini thinking models)
 GEMINI_THINKING_BUDGETS = {
-    "gemini-2.5-flash":       {"low": 256, "medium": 1024, "high": 4000},
-    "gemini-2.5-flash-lite":  {"low": 0,   "medium": 0,    "high": 512},
-    # Pro is inaccessible on free tier — alias to Flash budgets just in case
-    "gemini-2.5-pro":         {"low": 256, "medium": 1024, "high": 4000},
+    "gemini-2.5-pro":             {"low": 512, "medium": 2048, "high": 8000},
+    "gemini-2.5-flash":           {"low": 256, "medium": 1024, "high": 4000},
+    "gemini-2.0-flash-thinking":  {"low": 512, "medium": 2048, "high": 8000},
+    "gemini-2.5-flash-lite":      {"low": 0,   "medium": 0,    "high": 512},
 }
 
-# Legacy thinking level strings (used by some callers)
+# Context window map (tokens) — used for dynamic 1M routing decisions
+MODEL_CONTEXT_WINDOWS = {
+    "gemini-2.5-pro":            2_000_000,
+    "gemini-2.5-flash":          1_000_000,
+    "gemini-2.0-flash-thinking": 1_000_000,
+    "gemini-2.5-flash-lite":       500_000,
+    "gpt-5":                       128_000,
+    "gpt-5-mini":                  128_000,
+    "gpt-5-nano":                   32_000,
+    "gpt-4.1":                   1_000_000,
+    "gpt-4.1-mini":              1_000_000,
+    "o4-mini":                     128_000,
+    "o3-mini":                     128_000,
+    "gpt-4o":                      128_000,
+    "gpt-4o-mini":                 128_000,
+}
+
+# ── Gemini Context Caching (Paid Tier) ───────────────────────────────────
+# When enabled, large prompts (>32k tokens) use Gemini's Cached Content API.
+# This can reduce costs by 90%+ on repeated large-context calls (e.g., books,
+# large codebases). Override via JOI_GEMINI_CONTEXT_CACHE env var.
+import os as _os
+GEMINI_CONTEXT_CACHE_ENABLED = _os.getenv("JOI_GEMINI_CONTEXT_CACHE", "1").strip() == "1"
+GEMINI_CONTEXT_CACHE_TTL_SECONDS = int(_os.getenv("JOI_GEMINI_CACHE_TTL", "3600"))  # 1 hour default
+GEMINI_CONTEXT_CACHE_MIN_TOKENS = int(_os.getenv("JOI_GEMINI_CACHE_MIN_TOKENS", "32768"))  # 32k min
+
+# Legacy thinking level strings
 GEMINI_DEFAULT_THINKING_LEVEL = "low"
 GEMINI_COMPLEX_THINKING_LEVEL  = "medium"
 GEMINI_HEAVY_THINKING_LEVEL    = "high"
@@ -120,29 +153,26 @@ def get_thinking_budget(model_id: str, level: str) -> int:
 # MODEL PROVIDERS
 # -----------------------------
 
-# Gemini model roles
-# primary  = T1 : best available on free tier, 1M context, primary brain
-# emergency= T2 : last resort for rate limits (~1000 RPD free tier hard cap)
-# standard/general/fallback = backward-compat aliases -> primary
-# NOTE: gemini-2.5-pro has limit: 0 on free tier — do not use until billing enabled
+# Gemini model roles — Paid Tier 1 routing
 GEMINI_MODELS = {
-    "primary":   "gemini-2.5-flash",      # T1: Primary brain (best on free tier, 1M context)
-    "standard":  "gemini-2.5-flash",      # T1: Compat alias -> primary
-    "emergency": "gemini-2.5-flash-lite", # T2: Emergency only (~1000 RPD)
-    # Backward-compat aliases (used by agents, orchestrator, etc.)
-    "general":   "gemini-2.5-flash",      # -> primary
-    "fallback":  "gemini-2.5-flash-lite", # -> emergency
+    "primary":   "gemini-2.5-pro",         # T1: Best quality, 2M context (PAID)
+    "large":     "gemini-2.5-pro",         # T1: Alias for large-context routing
+    "thinking":  "gemini-2.0-flash-thinking",# T2: Debugging, structured reasoning
+    "standard":  "gemini-2.5-flash",       # T3: Fast, high quality, 1M context
+    "general":   "gemini-2.5-flash",       # T3: Backward-compat alias
+    "fallback":  "gemini-2.5-flash",       # T3: Fallback (Flash is free-tier-safe too)
+    "emergency": "gemini-2.5-flash-lite",  # T4: Rate-limit last resort only
 }
 
 OPENAI_MODELS = {
-    "architect":    "gpt-5",        # T1: Planning, complex architecture — best quality
-    "reasoning":    "o4-mini",      # T1: Orchestration logic, validation, reasoning chains
-    "coding":       "gpt-4o",       # T2: Code edits, Joi codebase (gpt-5-codex-mini = 404)
-    "worker":       "gpt-5-mini",   # T2: Swarm workers — 500k TPM, never rate-limits
-    "fast":         "gpt-5-nano",   # T3: Simple tasks, data cleanup — cheapest
-    "long_context": "gpt-4.1-mini", # Special: 1M token window, reading full files
-    "vision":       "gpt-4o",       # Special: image/screenshot analysis
-    "vision_fast":  "gpt-4o-mini",  # Special: cheaper multimodal
+    "architect":    "gpt-5",        # T1: Complex planning, deep reasoning — flagship
+    "reasoning":    "o4-mini",      # T1: Orchestration, validation, tool routing
+    "coding":       "gpt-5",        # T1: Code edits on paid tier (use best quality)
+    "worker":       "gpt-5-mini",   # T2: Swarm workers — 10M TPM, never rate-limits
+    "fast":         "gpt-5-nano",   # T3: Simple transforms, scaffolding — cheapest
+    "long_context": "gpt-4.1",      # Special: 1M token window, full file/codebase reads
+    "vision":       "gpt-4o",       # Special: image/screenshot analysis (multimodal)
+    "vision_fast":  "gpt-4o-mini",  # Special: cheaper multimodal fallback
     "fallback":     "gpt-5-mini",   # Default fallback for any OpenAI role
 }
 
@@ -223,7 +253,7 @@ TASK_MODEL_ROUTING = {
         "fallback": ("openai", "o4-mini"),
     },
     "coding": {
-        "primary":  ("openai", "gpt-4o"),       # gpt-5-codex-mini returns 404
+        "primary":  ("openai", "gpt-5"),         # Up from gpt-4o — paid tier allows best
         "fallback": ("openai", "gpt-5-mini"),
     },
     "validation": {
@@ -231,12 +261,19 @@ TASK_MODEL_ROUTING = {
         "fallback": ("openai", "o3-mini"),
     },
     "chat": {
-        # Gemini Flash as primary chat brain (best on free tier, 1M context)
-        "primary":  ("gemini", "gemini-2.5-flash"),
-        "fallback": ("gemini", "gemini-2.5-flash-lite"),
+        "primary":  ("gemini", "gemini-2.5-pro"),     # Paid: use Pro for all chat
+        "fallback": ("gemini", "gemini-2.5-flash"),
+    },
+    "debugging": {                                    # NEW: dedicated debugging route
+        "primary":  ("gemini", "gemini-2.0-flash-thinking"),
+        "fallback": ("openai", "o4-mini"),
+    },
+    "large_context": {                                # NEW: 1M-token read tasks
+        "primary":  ("gemini", "gemini-2.5-pro"),
+        "fallback": ("openai", "gpt-4.1"),
     },
     "exploration": {
-        "primary":  ("openai", "gpt-4.1-mini"),
+        "primary":  ("openai", "gpt-4.1"),            # Up from gpt-4.1-mini — full 1M
         "fallback": ("openai", "gpt-5-mini"),
     },
     "security": {
@@ -270,18 +307,21 @@ TASK_MODEL_ROUTING = {
 # -----------------------------
 
 MODEL_DESCRIPTIONS = {
-    # Gemini — free tier routing (Pro requires paid billing, limit: 0 on free tier)
-    "gemini-2.5-flash":     "PRIMARY BRAIN: Best available on free tier, 1M context. High quality for all standard work.",
-    "gemini-2.5-flash-lite":"EMERGENCY: Rate-limit fallback only (~1000 requests/day). Fast but limited.",
-    # OpenAI — specialist roles
-    "gpt-5":        "Best OpenAI quality for architect planning, complex analysis, deep reasoning",
-    "gpt-5-mini":   "Swarm workers — 500k TPM, never rate-limits parallel runs, great value",
-    "gpt-5-nano":   "Fastest/cheapest for simple transforms, data cleanup, scaffolding",
-    "o4-mini":      "Reasoning chains, validation, orchestration logic, verification",
-    "o3-mini":      "Heavy reasoning fallback when o4-mini unavailable",
-    "gpt-4.1-mini": "1M token context window — use when reading very large files",
-    "gpt-4o":       "Vision/screenshots, image analysis, code edits, multimodal tasks",
-    "gpt-4o-mini":  "Cheaper multimodal fallback for vision tasks",
+    # Gemini — Paid Tier 1
+    "gemini-2.5-pro":             "PRIMARY BRAIN: 2M context, highest quality. Best for large files, full codebases, complex reasoning. PAID tier.",
+    "gemini-2.5-flash":           "FAST BRAIN: 1M context, fast, high quality. General purpose and fallback.",
+    "gemini-2.0-flash-thinking":  "DEBUGGER: Flash Thinking — structured reasoning for failure analysis, whys, and deep logic chains.",
+    "gemini-2.5-flash-lite":      "EMERGENCY: Rate-limit last resort only. Fastest/cheapest Gemini.",
+    # OpenAI — Tier 2
+    "gpt-5":        "Best OpenAI flagship — complex planning, coding, architecture, deep reasoning. Tier 2 capacity.",
+    "gpt-5-mini":   "Swarm workers — 10M TPM on Tier 2, never rate-limits parallel runs, great value.",
+    "gpt-5-nano":   "Fastest/cheapest for simple transforms, scaffolding, data cleanup.",
+    "o4-mini":      "Reasoning chains, validation, tool routing, orchestration logic.",
+    "o3-mini":      "Heavy reasoning fallback when o4-mini unavailable.",
+    "gpt-4.1":      "1M token context window — use when reading entire files or codebases (OpenAI alternative to Gemini Pro).",
+    "gpt-4.1-mini": "1M token context window, cheaper variant. Use for exploration and moderate-sized file reads.",
+    "gpt-4o":       "Vision/screenshots, image analysis, multimodal tasks.",
+    "gpt-4o-mini":  "Cheaper multimodal fallback for vision tasks.",
 }
 
 # -----------------------------

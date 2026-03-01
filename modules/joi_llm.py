@@ -32,13 +32,17 @@ from typing import List, Dict, Any, Optional, Tuple
 from pathlib import Path
 from datetime import datetime
 
-# ── Rate limit / throttling (free tier) ─────────────────────────────────────
+# ── Rate limit / throttling (Paid Tier — relaxed) ────────────────────────────
 _GEMINI_REQUEST_TIMESTAMPS: List[float] = []
 _gemini_preflight_lock = threading.Lock()
-GEMINI_PREFLIGHT_MAX_PER_MINUTE = 5
-GEMINI_PREFLIGHT_SLEEP_SECONDS = 10
-MAX_429_RETRIES = 3  # Increased for backoff/fallback logic
-MAX_CONTEXT_TOKENS = int(os.getenv("JOI_MAX_CONTEXT_TOKENS", "32000")) 
+# Gemini Paid Tier 1: 150+ RPM — preflight guard only for true burst storms
+GEMINI_PREFLIGHT_MAX_PER_MINUTE = 140      # was 5 on free tier
+GEMINI_PREFLIGHT_SLEEP_SECONDS  = 1        # was 10s — now minimal (paid tier)
+MAX_429_RETRIES = 3  # Kept for resilience against transient API errors
+# Raised from 32k — OpenAI Tier 2 & Gemini Paid Tier 1 baseline
+MAX_CONTEXT_TOKENS = int(os.getenv("JOI_MAX_CONTEXT_TOKENS", "128000"))
+# Deep Research mode: use 1M-context models when conversation/files exceed this
+DEEP_CONTEXT_THRESHOLD = int(os.getenv("JOI_DEEP_CONTEXT_THRESHOLD", "80000"))
 
 _USAGE_LOG_PATH = Path(__file__).parent.parent / "usage_log.json"
 _usage_lock = threading.Lock()
@@ -211,7 +215,11 @@ HAVE_ANTHROPIC = bool(ANTHROPIC_API_KEY and HAVE_ANTHROPIC_LIB)
 OPENAI_TOOL_MODEL = sanitize_openai_model(os.getenv("JOI_OPENAI_TOOL_MODEL", "").strip() or OPENAI_MODELS.get("worker", "gpt-5-mini"))
 MAIN_MODEL = sanitize_openai_model(os.getenv("JOI_MODEL", "").strip() or OPENAI_MODELS.get("worker", "gpt-5-mini"))
 VISION_MODEL = sanitize_openai_model(os.getenv("JOI_VISION_MODEL", "").strip() or OPENAI_MODELS.get("vision", "gpt-4o"))
-MAX_OUTPUT_TOKENS = int(os.getenv("JOI_MAX_OUTPUT_TOKENS", "8000"))
+# Fallback model used on 429 rate limit — default to fast/mini tier. Override via JOI_OPENAI_FALLBACK_MODEL in .env
+OPENAI_FALLBACK_MODEL = sanitize_openai_model(os.getenv("JOI_OPENAI_FALLBACK_MODEL", "").strip() or OPENAI_MODELS.get("fast", "gpt-5-nano"))
+# Large-context model for deep research / full-file reads (1M window)
+OPENAI_LARGE_CONTEXT_MODEL = sanitize_openai_model(os.getenv("JOI_OPENAI_LARGE_CONTEXT_MODEL", "").strip() or OPENAI_MODELS.get("long_context", "gpt-4.1"))
+MAX_OUTPUT_TOKENS = int(os.getenv("JOI_MAX_OUTPUT_TOKENS", "16000"))  # Raised from 6k — Tier 2 allows full-file rewrites
 CLAUDE_MODEL = os.getenv("JOI_CLAUDE_MODEL", "claude-3-7-sonnet-20250219").strip()
 
 # ── Runtime Provider Override ────────────────────────────────────────────
@@ -767,15 +775,19 @@ def _call_openai(messages, tools=None, max_tokens=2000, model=None, llm_params=N
                 continue
 
             if is_429 and attempt < MAX_429_RETRIES:
-                wait = 2 ** (attempt + 1)
-                print(f"  [OPENAI] 429 Rate limit -- waiting {wait}s before retry {attempt + 1}/{MAX_429_RETRIES}")
-                
-                # Model Fallback Strategy: step down to o4-mini on second retry
-                if attempt >= 1 and m != "o4-mini":
-                    print(f"  [OPENAI] Falling back to o4-mini (low latency, high capacity)")
-                    m = "o4-mini"
-                    is_reasoning = True # o4-mini uses max_completion_tokens
-                
+                import random as _random
+                base_wait = 2 ** (attempt + 1)
+                # Jitter: randomize ±50% to desynchronize parallel retries hitting the same limit
+                wait = base_wait * _random.uniform(0.5, 1.5)
+                print(f"  [OPENAI] 429 Rate limit -- waiting {wait:.1f}s (jittered) before retry {attempt + 1}/{MAX_429_RETRIES}")
+
+                # Immediate downgrade on FIRST 429 — no point retrying the model that just
+                # said it's at capacity. Switch to the configured fallback immediately.
+                if m != OPENAI_FALLBACK_MODEL:
+                    print(f"  [OPENAI] 429 immediate fallback: {m} → {OPENAI_FALLBACK_MODEL}")
+                    m = OPENAI_FALLBACK_MODEL
+                    is_reasoning = _is_openai_reasoning_model(m)
+
                 time.sleep(wait)
                 continue
 
@@ -812,9 +824,13 @@ def _gemini_preflight_throttle():
         _GEMINI_REQUEST_TIMESTAMPS.append(now)
 
 
-def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_level=None):
-    """Call Gemini via google-genai SDK. Pre-flight throttle (free tier); 429 -> exponential backoff.
-    thinking_level: 'low', 'medium', 'high' for Gemini 3 Flash token budget control.
+def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_level=None, use_cache=None):
+    """Call Gemini via google-genai SDK (Paid Tier 1).
+    - Preflight throttle is now near-unlimited (140/min vs 5/min on free tier).
+    - Large prompts (>32k tokens) are auto-cached via joi_context_cache for 90% cost reduction.
+    - 429 -> jittered backoff -> immediate downgrade to gemini-2.5-flash.
+    - thinking_level: 'low'/'medium'/'high' int budget for Gemini thinking models.
+    - use_cache: True=force cache, False=skip cache, None=auto (threshold-based).
     """
     if not HAVE_GEMINI or _gemini_client is None:
         return None
@@ -829,6 +845,21 @@ def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_
         except Exception:
             thinking_level = "low"
 
+    # ── Context Cache: auto-cache large prompts for 90% cost/latency reduction ───
+    cached_content_name = None
+    prompt_text = prompt if isinstance(prompt, str) else ""
+    if prompt_text and use_cache is not False:
+        try:
+            from modules.joi_context_cache import maybe_cache_content, CACHE_MIN_CHARS
+            force_cache = (use_cache is True)
+            # Only attempt cache for string prompts large enough to justify it
+            if force_cache or len(prompt_text) >= CACHE_MIN_CHARS:
+                cached_content_name = maybe_cache_content(
+                    _gemini_client, model, prompt_text, force=force_cache
+                )
+        except Exception as _ce:
+            print(f"  [GEMINI] Cache setup skipped: {_ce}")
+
     last_exc = None
     for attempt in range(MAX_429_RETRIES + 1):
         try:
@@ -841,11 +872,17 @@ def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_
                 "max_output_tokens": max_tokens,
                 "thinking_config": {"thinking_budget": _tb},
             }
-            response = _gemini_client.models.generate_content(
-                model=model,
-                contents=prompt,
-                config=gen_config,
-            )
+
+            # Build generate_content kwargs — add cached_content if we have one
+            gc_kwargs: dict = {
+                "model":    model,
+                "contents": prompt,
+                "config":   gen_config,
+            }
+            if cached_content_name:
+                gc_kwargs["cached_content"] = cached_content_name
+
+            response = _gemini_client.models.generate_content(**gc_kwargs)
             
             # Log usage
             try:
@@ -873,13 +910,21 @@ def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_
             is_429 = "429" in err_str or "rate_limit" in err_str.lower() or "quota" in err_str.lower()
             
             if is_429 and attempt < MAX_429_RETRIES:
-                wait = 2 ** (attempt + 1)
-                print(f"  [GEMINI] 429/rate limit -- waiting {wait}s before retry {attempt + 1}/{MAX_429_RETRIES}")
+                import random as _random
+                base_wait = 2 ** (attempt + 1)
+                # Jitter: ±50% randomization to desynchronize parallel bursts
+                wait = base_wait * _random.uniform(0.5, 1.5)
+                print(f"  [GEMINI] 429/rate limit -- waiting {wait:.1f}s (jittered) before retry {attempt + 1}/{MAX_429_RETRIES}")
                 
-                # Model Fallback: step down to flash-lite on second retry
-                if attempt >= 1 and "flash-lite" not in model.lower():
-                    print(f"  [GEMINI] Falling back to gemini-2.5-flash-lite")
+                # Immediate downgrade on first 429 — drop from Pro to Flash
+                if "flash" not in model.lower():
+                    print(f"  [GEMINI] 429 fallback: {model} → gemini-2.5-flash")
+                    model = "gemini-2.5-flash"
+                    cached_content_name = None  # Cache may not be valid for different model
+                elif "lite" not in model.lower():
+                    print(f"  [GEMINI] 429 fallback: {model} → gemini-2.5-flash-lite")
                     model = "gemini-2.5-flash-lite"
+                    cached_content_name = None
                 
                 time.sleep(wait)
                 continue

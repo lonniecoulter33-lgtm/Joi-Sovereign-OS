@@ -165,23 +165,6 @@ class SystemMonitor:
 
     def get_dashboard_data(self) -> Dict[str, Any]:
         """Assemble all data for the dashboard UI"""
-        # Claude Code status (lazy import to avoid circular dependency)
-        claude_status = {
-            "is_running": False,
-            "active_tasks": 0,
-            "queued_tasks": 0,
-            "completed_tasks": 0,
-            "recent_history": []
-        }
-        recent_tasks: List[Dict[str, Any]] = []
-        try:
-            from plugins.claude_code_delegate import delegate
-            if delegate:
-                claude_status = delegate.get_status()
-                recent_tasks = delegate.task_history[-10:]
-        except Exception:
-            pass
-
         # Active AI sessions
         sessions: List[Dict[str, Any]] = []
         session_file = DATA_DIR / "active_sessions.json"
@@ -196,10 +179,6 @@ class SystemMonitor:
                 "cpu": list(self.metrics["cpu_usage"])[-20:],
                 "memory": list(self.metrics["memory_usage"])[-20:],
                 "uptime": self._get_uptime()
-            },
-            "claude_code": {
-                "status": claude_status,
-                "recent_tasks": recent_tasks
             },
             "joi": {
                 "active_sessions": sessions,
@@ -223,17 +202,7 @@ class SystemMonitor:
         alerts: List[Dict[str, Any]] = []
         now = datetime.now().isoformat()
 
-        # Claude Code running alert
-        try:
-            from plugins.claude_code_delegate import delegate
-            if delegate and delegate.is_claude_code_running():
-                alerts.append({
-                    "level": "warning",
-                    "message": "Claude Code is currently running - file modifications in progress",
-                    "timestamp": now
-                })
-        except Exception:
-            pass
+        # (Claude Code removed — no longer in use)
 
         if not HAVE_PSUTIL:
             alerts.append({
