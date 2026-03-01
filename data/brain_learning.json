@@ -1,12 +1,5 @@
 [
   {
-    "model": "openai-coding",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 874,
-    "timestamp": 1771741522.4502926
-  },
-  {
     "model": "openai-architect",
     "task_type": "general",
     "success": false,
@@ -3498,5 +3491,12 @@
     "success": true,
     "latency_ms": 9931,
     "timestamp": 1772365138.6423795
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 2106,
+    "timestamp": 1772409558.9454126
   }
 ]
