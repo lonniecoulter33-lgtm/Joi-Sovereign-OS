@@ -8660,6 +8660,46 @@
       "response_time": null,
       "input_length": 27,
       "response_length": 70
+    },
+    {
+      "id": "auto_1772364708491",
+      "timestamp": 1772364708.491146,
+      "datetime": "2026-03-01T04:31:48.491146",
+      "user_input": "Joi that failed do you know why?",
+      "joi_response": "It failed because the original proposal was missing required metadata keys (diff_summary, proposal_id, target_file). I started a new orchestration run with proper proposal fields and began building the image pipeline. I'll report back when the images are ready.",
+      "feedback": null,
+      "context": [
+        "auto_recorded"
+      ],
+      "topics": [
+        "failed",
+        "know"
+      ],
+      "response_time": null,
+      "input_length": 32,
+      "response_length": 261
+    },
+    {
+      "id": "auto_1772364828288",
+      "timestamp": 1772364828.2889397,
+      "datetime": "2026-03-01T04:33:48.288939",
+      "user_input": "You already created the images what failed was the manual you were writing",
+      "joi_response": "Hit my iteration limit -- want me to keep going, Lonnie?",
+      "feedback": null,
+      "context": [
+        "auto_recorded"
+      ],
+      "topics": [
+        "already",
+        "created",
+        "images",
+        "failed",
+        "manual",
+        "writing"
+      ],
+      "response_time": null,
+      "input_length": 74,
+      "response_length": 56
     }
   ],
   "feedback_summary": {
@@ -9334,7 +9374,7 @@
       "negative_feedback": 0
     },
     "created": {
-      "count": 3,
+      "count": 4,
       "positive_feedback": 0,
       "negative_feedback": 0
     },
@@ -9419,7 +9459,7 @@
       "negative_feedback": 0
     },
     "know": {
-      "count": 18,
+      "count": 19,
       "positive_feedback": 0,
       "negative_feedback": 0
     },
@@ -9624,7 +9664,7 @@
       "negative_feedback": 0
     },
     "writing": {
-      "count": 2,
+      "count": 3,
       "positive_feedback": 0,
       "negative_feedback": 0
     },
@@ -9829,7 +9869,7 @@
       "negative_feedback": 0
     },
     "already": {
-      "count": 2,
+      "count": 3,
       "positive_feedback": 0,
       "negative_feedback": 0
     },
@@ -10529,7 +10569,7 @@
       "negative_feedback": 0
     },
     "failed": {
-      "count": 4,
+      "count": 6,
       "positive_feedback": 0,
       "negative_feedback": 0
     },
@@ -10554,7 +10594,7 @@
       "negative_feedback": 0
     },
     "manual": {
-      "count": 5,
+      "count": 6,
       "positive_feedback": 0,
       "negative_feedback": 0
     },
@@ -11729,6 +11769,11 @@
       "negative_feedback": 0
     },
     "whatever": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "images": {
       "count": 1,
       "positive_feedback": 0,
       "negative_feedback": 0

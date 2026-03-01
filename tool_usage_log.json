@@ -1819,6 +1819,86 @@
         "source": "chat_loop",
         "task_type": "conversation"
       }
+    },
+    {
+      "ts": 1772364708.644211,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364708.7225003,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364708.7801113,
+      "tool": "get_orchestrator_status",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364708.8312736,
+      "tool": "get_orchestrator_status",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364708.921854,
+      "tool": "run_proposal_simulation",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364708.9772825,
+      "tool": "run_proposal_simulation",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364709.0271192,
+      "tool": "orchestrate_task",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772364709.068352,
+      "tool": "orchestrate_task",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
     }
   ],
   "tool_stats": {
@@ -1868,8 +1948,8 @@
       "failures": 1
     },
     "internal_monologue": {
-      "calls": 25,
-      "successes": 25,
+      "calls": 27,
+      "successes": 27,
       "failures": 0
     },
     "monitor_ai_research": {
@@ -1883,8 +1963,8 @@
       "failures": 0
     },
     "orchestrate_task": {
-      "calls": 23,
-      "successes": 22,
+      "calls": 25,
+      "successes": 24,
       "failures": 1
     },
     "self_diagnose": {
@@ -1913,8 +1993,8 @@
       "failures": 0
     },
     "get_orchestrator_status": {
-      "calls": 8,
-      "successes": 8,
+      "calls": 10,
+      "successes": 10,
       "failures": 0
     },
     "delegate_to_claude_code": {
@@ -2028,6 +2108,11 @@
       "failures": 2
     },
     "create_orchestration_proposal": {
+      "calls": 2,
+      "successes": 2,
+      "failures": 0
+    },
+    "run_proposal_simulation": {
       "calls": 2,
       "successes": 2,
       "failures": 0
@@ -2366,7 +2451,7 @@
       "tier": 2
     },
     "openai:gpt-5-mini": {
-      "calls": 3,
+      "calls": 4,
       "task_types": {
         "capability_query": {
           "count": 1,
@@ -2374,12 +2459,12 @@
           "verified_fail": 0
         },
         "conversation": {
-          "count": 2,
+          "count": 3,
           "verified_ok": 0,
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 28701
+      "avg_response_ms": 36513
     },
     "brain:OpenAI gpt-5": {
       "calls": 6,

@@ -792,10 +792,117 @@
       "created": 1772361427.7949402,
       "source": "auto_captured",
       "confidence": 70
+    },
+    "skill_1772364708": {
+      "id": "skill_1772364708",
+      "name": "joi_failed_do_you_know",
+      "description": "Joi that failed do you know why?",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "run_proposal_simulation",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "run_proposal_simulation",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772364708.5405078,
+      "created": 1772364708.5405078,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772364828": {
+      "id": "skill_1772364828",
+      "name": "you_already_created_images_what",
+      "description": "You already created the images what failed was the manual you were writing",
+      "domain_tags": [
+        "filesystem",
+        "media"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "cancel_orchestration",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "cancel_orchestration",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772364828.2243328,
+      "created": 1772364828.2243328,
+      "source": "auto_captured",
+      "confidence": 70
     }
   },
   "stats": {
-    "total_skills": 23,
+    "total_skills": 25,
     "total_executions": 0,
     "total_successes": 0
   }

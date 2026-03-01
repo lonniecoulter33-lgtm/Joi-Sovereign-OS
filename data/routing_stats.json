@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1770981108.70463,
-      "datetime": "2026-02-13T04:11:48.704630",
-      "message_preview": "Joi run self diagnostic",
-      "task_type": "conversation",
-      "tier": "standard",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "brain:Gemini 2.5 Flash",
-      "response_time_ms": 64031
-    },
-    {
       "ts": 1770981196.143003,
       "datetime": "2026-02-13T04:13:16.143002",
       "message_preview": "i give up",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "openai:gpt-5-mini",
       "response_time_ms": 45272
+    },
+    {
+      "ts": 1772364708.4545524,
+      "datetime": "2026-03-01T04:31:48.454552",
+      "message_preview": "Joi that failed do you know why?",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 59952
     }
   ],
   "model_usage": {
-    "openai": 549,
+    "openai": 550,
     "claude": 1,
     "gemini": 89,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 514,
+    "conversation": 515,
     "system_control": 41,
     "research": 15,
     "memory": 7,
@@ -6525,7 +6525,7 @@
   },
   "tier_counts": {
     "fast": 335,
-    "standard": 276,
+    "standard": 277,
     "critical": 56
   },
   "verification_results": {

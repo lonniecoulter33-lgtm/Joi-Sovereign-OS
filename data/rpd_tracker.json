@@ -1,7 +1,9 @@
 {
   "date": "2026-03-01",
   "usage": {
-    "openai-architect": 1
+    "openai-architect": 6,
+    "openai-reasoning": 3,
+    "openai-vision": 2
   },
   "exhausted": []
 }

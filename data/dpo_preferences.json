@@ -2,49 +2,49 @@
   "preferences": {
     "brevity": {
       "value": 0.7569,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 3,
       "last_updated": "2026-02-26T04:02:08.056187"
     },
     "sass_level": {
       "value": 0.424,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 1,
       "last_updated": "2026-02-28T16:09:18.537000"
     },
     "tool_eagerness": {
       "value": 0.5,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 0,
       "last_updated": null
     },
     "detail_depth": {
       "value": 1.0,
-      "confidence": 0.16999999999999957,
-      "samples": 34,
-      "last_updated": "2026-02-28T18:58:06.480108"
+      "confidence": 0.17999999999999955,
+      "samples": 35,
+      "last_updated": "2026-03-01T04:31:48.558287"
     },
     "formality": {
       "value": 0.5036,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 4,
       "last_updated": "2026-02-27T23:30:12.523461"
     },
     "emoji_use": {
       "value": 0.2,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 0,
       "last_updated": null
     },
     "question_frequency": {
       "value": 0.2,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 0,
       "last_updated": null
     },
     "explanation_style": {
       "value": 0.4,
-      "confidence": 0.11,
+      "confidence": 0.1,
       "samples": 0,
       "last_updated": null
     }
@@ -1513,6 +1513,22 @@
       "delta": 0,
       "trigger": "exactly",
       "user_preview": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no"
+    },
+    {
+      "ts": "2026-03-01T04:31:48.558287",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "Joi that failed do you know why?"
+    },
+    {
+      "ts": "2026-03-01T04:31:48.558287",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi that failed do you know why?"
     }
   ]
 }
