@@ -1,0 +1,11 @@
+{
+  "settings": "设置",
+  "about": "关于",
+  "windowsPushNotificationsTitle": "Windows推送通知",
+  "windowsPushNotificationsDesc": "切换要接收的通知",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. 在全球范围內保留所有权利。 使用 BlueStacks 即表示您同意我们的使用条款",
+  "errorConnectingToService": "连接到服务时出错",
+  "unableToFetchCategories": "无法获取类别，请稍后再试",
+  "unableToConnect": "无法连接到BlueStacks服务器。请稍后再试。",
+  "termsOfUse": "使用条款"
+}

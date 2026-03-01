@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <style>
+            #root-body {
+                margin: 0;
+            }
+        </style>
+        <script type="text/javascript">
+            // The list of anchor ids that will trigger a trackInAppClick
+            const ITERABLE_TRACKINAPPCLICK_ELEMENT_IDS = ['ipm-cta', 'ipm-link']
+            // The list of anchor ids that will trigger a trackInAppHardClose
+            const ITERABLE_TRACKINAPPHARDCLOSE_ELEMENT_IDS = [
+                'ipm-hard-close',
+                'ipm-hard-close-button',
+            ]
+            // The list of anchor ids that will trigger a trackInAppSoftClose
+            const ITERABLE_TRACKINAPPSOFTCLOSE_ELEMENT_IDS = [
+                'ipm-soft-close',
+                'ipm-soft-close-button',
+                'ipm-close', // Deprecated
+                'ipm-dismiss', //Deprecated
+                'gbutton',
+            ]
+
+            const DEFAULT_IFRAME_SIZE = {
+                width: 400,
+                height: 500
+            }            
+
+            function handleIFrameOnLoad() {
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('id', 'iterable-iframe');
+                iframe.setAttribute('sandbox', 'allow-same-origin allow-popups allow-top-navigation allow-scripts');
+                iframe.style.visibility = 'hidden';
+                iframe.srcdoc = ipm;
+                iframe.addEventListener('load', handleIFrameLoadEvent);
+                document.body.appendChild(iframe);
+            }
+
+            function handleIFrameLoadEvent() {
+                const iframe = document.getElementById('iterable-iframe');
+                if (iframe.contentWindow) {
+                    iframe.contentWindow.document.body.style.margin = '0';
+                    handleIPMEvents(iframe.contentWindow.document);
+                }
+                
+                const { width, height } = getIterableIFrameSize(iframe);
+                iframe.style.border = 'none'
+                iframe.style.width = `${width}px`
+                iframe.style.height = `${height}px`
+                iframe.style.visibility = 'visible'
+                iframe.style.overflow = 'hidden'
+                iframe.scrolling = 'no'
+                iframe.style.zIndex = '10000'
+
+                const body = document.getElementById("root-body");
+                body.style.width = `${width}px`;
+                body.style.height = `${height}px`;                                
+                iframe.removeEventListener('load', handleIFrameLoadEvent);
+
+                // Send message to resize the webview
+                window.chrome.webview.postMessage({ name: 'resize', width: width, height: height });
+
+                window.chrome.webview.postMessage({ name: 'messageOpen', messageId: messageId, campaignId: campaignId});
+            }
+
+            function getIterableIFrameSize(iframe) {
+                return iframe.contentWindow
+                    ? {
+                        width: iframe.contentWindow.document.body.scrollWidth,
+                        height: iframe.contentWindow.document.body.scrollHeight
+                    }
+                    : DEFAULT_IFRAME_SIZE;
+            }
+
+            function handleIPMEvents(document) {
+                const iterableAnchorElementIds = [
+                    ...ITERABLE_TRACKINAPPCLICK_ELEMENT_IDS,
+                    ...ITERABLE_TRACKINAPPHARDCLOSE_ELEMENT_IDS,
+                    ...ITERABLE_TRACKINAPPSOFTCLOSE_ELEMENT_IDS
+                ];
+                iterableAnchorElementIds.forEach((id) => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.onclick = function () {
+                            if (ITERABLE_TRACKINAPPCLICK_ELEMENT_IDS.includes(id)) {
+                                window.chrome.webview.postMessage({ name: 'messageClick', messageId: messageId, campaignId: campaignId });
+                                window.open(element.href, element.target);
+                            }
+                            if (ITERABLE_TRACKINAPPSOFTCLOSE_ELEMENT_IDS.includes(id)) {
+                                window.chrome.webview.postMessage({ name: 'messageSoftClose', messageId: messageId, elementId: id, campaignId: campaignId });
+                            }
+                            if (ITERABLE_TRACKINAPPHARDCLOSE_ELEMENT_IDS.includes(id)) {
+                                window.chrome.webview.postMessage({ name: 'messageHardClose', messageId: messageId, elementId: id, campaignId: campaignId });
+                            }
+                            window.chrome.webview.postMessage({ name: 'close'});
+                            return false;
+                        }
+                    }
+                });
+            }
+
+            let ipm;
+            let messageId;
+            let campaignId;
+            window.chrome.webview.addEventListener('message', event => {
+                if (event.data.type === "ipm") {
+                    ipm = event.data.content;
+                    messageId = event.data.messageId;
+                    campaignId = event.data.campaignId
+
+                    handleIFrameOnLoad();
+                }
+            });
+        </script>
+    </head>
+    <body id="root-body">
+    </body>
+</html>

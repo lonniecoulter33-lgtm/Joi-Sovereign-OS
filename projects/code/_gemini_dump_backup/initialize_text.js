@@ -1,0 +1,9 @@
+document.getElementById("settings").innerHTML += i18next.t("settings");
+document.getElementById("about").innerHTML += i18next.t("about");
+document.getElementById("aboutPageDesc").innerHTML += i18next.t("aboutPageDesc");
+document.getElementById("windowsPushNotificationsTitle").innerHTML += i18next.t("windowsPushNotificationsTitle");
+document.getElementById("windowsPushNotificationsDesc").innerHTML += i18next.t("windowsPushNotificationsDesc");
+document.getElementById("errorConnectingToService").innerHTML += i18next.t("errorConnectingToService");
+document.getElementById("unableToFetchCategories").innerHTML += i18next.t("unableToFetchCategories");
+document.getElementById('unableToConnect').innerHTML += i18next.t('unableToConnect');
+document.getElementById('termsOfUse').innerHTML += i18next.t('termsOfUse');

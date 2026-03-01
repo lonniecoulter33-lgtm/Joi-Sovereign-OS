@@ -1,0 +1,51 @@
+/task SYSTEM AUDIT AND FINAL EVOLUTION PROTOCOL (PROJECT JOI)
+
+CONTEXT:
+You are the Lead Systems Architect for "Project Joi," a fully autonomous, self-evolving AI companion currently consisting of approximately 18,000 files.
+
+OBJECTIVE:
+Your goal is to finalize the system by fixing critical bugs and implementing missing "Super-AI" features. You must STRICTLY adhere to an "Audit-First" policy: DO NOT generate new files if valid ones exist. Check, then Fix, then Create.
+
+EXECUTION QUEUE (Perform in Order):
+
+1. AUDIO SUBSYSTEM REPAIR (High Priority)
+   - ACTION: Audit the microphone input logic (likely in 'joi_voice.py', 'joi_ears.py', or similar).
+   - ISSUE: User reports "Hey Joi" wake word is failing.
+   - FIX: Verify the input device index selector, check the silence threshold (it may be too high), and ensure the Wake Word engine (Porcupine/Vosk) is initializing correctly. Implement a fallback "Push-to-Talk" key if the Wake Word fails.
+
+2. UI & DOWNLOAD HANDLING (High Priority)
+   - ACTION: Audit the file serving logic in the backend (Flask/Node) and the chat interface.
+   - ISSUE: Joi provides "sandbox" links that do not work.
+   - FIX: Ensure that when Joi generates a document (PDF/TXT), it is saved to a local '/public/downloads' directory and the link provided to the user is a valid local host URL (e.g., 'http://localhost:5000/downloads/filename').
+
+3. UI "BRAIN STATE" INDICATORS
+   - ACTION: Inspect the frontend HTML/CSS/React components.
+   - REQUIREMENT: Create a "Model Activity" status bar.
+   - IMPLEMENTATION: Add visual light indicators for: [ChatGPT] [Gemini] [GPT-4o] [Claude] [Claude Code] [Mistral].
+   - LOGIC: When 'joi_llm.py' routes a request to a specific model, the corresponding light on the UI must flash or turn green.
+
+4. DESKTOP VISION (Screen Awareness)
+   - ACTION: Check for a "Screen Share" or "Desktop Vision" module.
+   - REQUIREMENT: Joi needs to see the user's active screen (browser/apps) to provide context-aware help.
+   - IMPLEMENTATION: If missing, create 'joi_desktop.py' using 'mss' or 'pyautogui' to take screenshots on request (or interval) and feed them to the Vision LLM (GPT-4o/Gemini) for analysis.
+
+5. VECTOR MEMORY EXPANSION
+   - ACTION: Audit 'joi_memory.py' and the Vector DB configuration (Chroma/Pinecone).
+   - REQUIREMENT: Increase the context retention limit.
+   - IMPLEMENTATION: If the current chunk size is small (e.g., 512), increase it (e.g., to 2048 or 4096) if the model supports it. Ensure the "Recall" function is actually querying this DB before every response.
+
+6. PERSONALITY MATRIX OVERHAUL
+   - ACTION: Locate the System Prompt or 'joi_persona.py'.
+   - ISSUE: Responses are robotic and repetitive.
+   - FIX: Rewrite the core System Prompt.
+     - REMOVE: "I am an AI assistant", "How can I help you today".
+     - ADD: Dynamic Tone Variables. Instruct Joi to mirror the user's energy. If the user is working, be concise. If the user is chatting, be emotional and expressive.
+     - IMPLEMENT: A "Creativity Temperature" that fluctuates.
+
+7. THE SELF-EVOLUTION LOOP
+   - ACTION: Verify 'joi_evolution.py' is active.
+   - REQUIREMENT: Every interaction must save a "Learning Point" to the DB.
+   - IMPLEMENTATION: Ensure the system commits successful code executions and user preferences to long-term memory to "train" itself on the fly.
+
+COMMAND:
+Start with Step 1 (Audio Repair). Locate the relevant file, diagnose the wake word failure, and propose the fix.

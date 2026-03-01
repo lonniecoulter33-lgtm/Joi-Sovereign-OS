@@ -1,0 +1,9 @@
+SPINE WIDTH (IMPORTANT FOR COVER)
+
+For standard cream paper (~440 pages per inch):
+
+108 pages ÷ 440 ≈ 0.245 inches
+
+👉 Spine width: ~0.25 inches
+
+Your cover designer (or printer) will want this exact number.

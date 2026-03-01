@@ -1,0 +1,117 @@
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+DEBUG:chromadb.config:Starting component System
+DEBUG:chromadb.config:Starting component Posthog
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): us.i.posthog.com:443
+DEBUG:urllib3.connectionpool:https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://us.i.posthog.com:443 "POST /batch/ HTTP/1.1" 200 15
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=ripple&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=cardano&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=dogecoin&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=AAPL&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=MSFT&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=GOOGL&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=AMZN&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=TSLA&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:httpcore.connection:connect_tcp.started host='huggingface.co' port=443 local_address=None timeout=10 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000299A81CA190>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x00000299A922F5C0> server_hostname='huggingface.co' timeout=10
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000299A8450D10>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 307, b'Temporary Redirect', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'240'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 26 Feb 2026 11:21:15 GMT'), (b'Location', b'/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json?%2Fhexgrad%2FKokoro-82M%2Fresolve%2Fmain%2Fconfig.json=&etag=%2214a726edd3718279eac426630879ff743955b16a%22'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-69a02cab-386461801f2dcfb01130ca67;ba32f123-7b3a-44d9-bfcc-d9b513d6fe7b'), (b'RateLimit', b'"resolvers";r=2999;t=113'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'f3ff3571791e39611d31c381e3a41a3af07b4987'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'X-Linked-ETag', b'"14a726edd3718279eac426630879ff743955b16a"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 9010d23ad6a95305271a6bd54a3db916.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'MSP50-P1'), (b'X-Amz-Cf-Id', b'w_gmWb85ejj1YW-slaNCXAcpkogskpv3qTqDka5OvrnO3p1Pz02ZEQ==')])
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'2351'), (b'Connection', b'keep-alive'), (b'Date', b'Tue, 10 Feb 2026 23:58:27 GMT'), (b'ETag', b'"14a726edd3718279eac426630879ff743955b16a"'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-698bc623-1c545da3004d909604e7b97e;a83d09de-2e01-4cd2-bcbe-79186a167c40'), (b'RateLimit', b'"resolvers";r=2998;t=69'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'f3ff3571791e39611d31c381e3a41a3af07b4987'), (b'Accept-Ranges', b'bytes'), (b'Content-Disposition', b'inline; filename*=UTF-8\'\'config.json; filename="config.json";'), (b'Content-Security-Policy', b"default-src 'none'; sandbox"), (b'Vary', b'Origin'), (b'X-Cache', b'Hit from cloudfront'), (b'Via', b'1.1 9010d23ad6a95305271a6bd54a3db916.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'MSP50-P1'), (b'X-Amz-Cf-Id', b'c8H12VcmKBiqwfRicbZTD0PSZuP3BGgWtgmEr3w1CARA4uZSjibk5Q=='), (b'Age', b'1336968')])
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/hexgrad/Kokoro-82M/f3ff3571791e39611d31c381e3a41a3af07b4987/config.json "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=NVDA&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=META&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 302, b'Found', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'1319'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 26 Feb 2026 11:21:19 GMT'), (b'Location', b'https://cas-bridge.xethub.hf.co/xet-bridge-us/676ca1388118866906abbd7c/0c0ac263f5ae91312df578d1b6adfb4c6dfda401cc3696ba97042f835619c52f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260226%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260226T110306Z&X-Amz-Expires=3600&X-Amz-Signature=a70fe075ffb89ac6041c11fb0756bb36b3d42ee234233a365bfd6f9330869b27&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27kokoro-v1_0.pth%3B+filename%3D%22kokoro-v1_0.pth%22%3B&x-id=GetObject&Expires=1772107386&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3MjEwNzM4Nn19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NzZjYTEzODgxMTg4NjY5MDZhYmJkN2MvMGMwYWMyNjNmNWFlOTEzMTJkZjU3OGQxYjZhZGZiNGM2ZGZkYTQwMWNjMzY5NmJhOTcwNDJmODM1NjE5YzUyZioifV19&Signature=caHiPildL65GsgP9JpGPLJqHvwleXK0x6tmHqGSPs6710elcy4iq%7Emv3WEiAD2kVOuQSF7TMhzh23SwiYG8tKCuT89S4Xpz%7EIE1cOnoRBBMLDF2JE3qpxSygQtx4fIDb2ffipnRLxAg6jroutd2DkCkAHFQxwkcAVuijW2RtwyDPF%7EUJXvv40WsgXfC2LLYmmc-eV2XMks0IUgXxjW1u%7E4nQC7pQnn2qdsYQzpZMniOtSHuS5pxfFPa8ng4JTQ-VLgvt06dbn3-oCZPQT5n3%7Ea0Z7ne0qX9W%7EpUDsEwnR5-h2xCT3fK36Av4ujcR00N--8a2dc3EvjAZKQ1MuIFQgQ__&Key-Pair-Id=K2L8F4GPSG1IFC'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-69a02caf-6a8eb4a4727594ea5765b829;a11b6680-9aba-4330-908f-f23e308ae6d0'), (b'RateLimit', b'"resolvers";r=2998;t=109'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'f3ff3571791e39611d31c381e3a41a3af07b4987'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'HIT'), (b'X-Linked-Size', b'327212226'), (b'X-Linked-ETag', b'"496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4"'), (b'X-Xet-Hash', b'0c0ac263f5ae91312df578d1b6adfb4c6dfda401cc3696ba97042f835619c52f'), (b'Link', b'<https://huggingface.co/api/models/hexgrad/Kokoro-82M/xet-read-token/f3ff3571791e39611d31c381e3a41a3af07b4987>; rel="xet-auth", <https://cas-server.xethub.hf.co/v1/reconstructions/0c0ac263f5ae91312df578d1b6adfb4c6dfda401cc3696ba97042f835619c52f>; rel="xet-reconstruction-info"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 9010d23ad6a95305271a6bd54a3db916.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'MSP50-P1'), (b'X-Amz-Cf-Id', b'DafAnm3ToEzDx1JQ6txIHKuDDCt6msYzLBTlwtMa2MWZoH72jJ6bCw==')])
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/kokoro-v1_0.pth "HTTP/1.1 302 Found"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=ripple&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=cardano&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete
+DEBUG:httpcore.connection:connect_tcp.started host='huggingface.co' port=443 local_address=None timeout=10 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000299A945AA90>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x00000299A922F5C0> server_hostname='huggingface.co' timeout=10
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000299AC5000D0>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 302, b'Found', [(b'Content-Type', b'text/plain; charset=utf-8'), (b'Content-Length', b'1305'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 26 Feb 2026 11:21:27 GMT'), (b'Location', b'https://cas-bridge.xethub.hf.co/xet-bridge-us/676ca1388118866906abbd7c/9bbc284626b619d6919073323107cf3f1cf99d9389225a7943f012cece6bfcd6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20260226%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260226T112127Z&X-Amz-Expires=3600&X-Amz-Signature=6898018f0095f74e30e12bf4f91b7489cc3398edf105018d42f91d25c9c0ddf4&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=public&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27af_sky.pt%3B+filename%3D%22af_sky.pt%22%3B&x-id=GetObject&Expires=1772108487&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc3MjEwODQ4N319LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82NzZjYTEzODgxMTg4NjY5MDZhYmJkN2MvOWJiYzI4NDYyNmI2MTlkNjkxOTA3MzMyMzEwN2NmM2YxY2Y5OWQ5Mzg5MjI1YTc5NDNmMDEyY2VjZTZiZmNkNioifV19&Signature=h%7EtmSKpfTVb5Qn6Ci7xA%7EUM7V0fwdr0H--LWbYW9owX1gSdUuTtP0I4Gwx8zYqk0PAOqEBH9hvsQCD2pzvTDJ7Q1rp7fV4wMyeYmGz55EznR7ZquVKPENuKv1calaMrNGkxMAGaIo3dx93UF9DFovB5igY5k0mNmZBokH32BS1baWKyGsBhNiv5Sji8AgtDWD-5Ye23F6kOdg2Ubp5agPBEIgPQYySbPtus1E7SuwOoRh75MCt-gkGRdIr0k-UGnNBi%7Ey4k9zoylTgBt664Ax476Ha48AwNngk8jwf0%7EYSJSRV6e7JXnE6itmu1ul%7EvZoeN45-TJFrdWtp-LbJtPSg__&Key-Pair-Id=K2L8F4GPSG1IFC'), (b'X-Powered-By', b'huggingface-moon'), (b'X-Request-Id', b'Root=1-69a02cb7-6f2808c43502a1b503478749;78c437bb-19df-4031-85e4-9770388a4d4c'), (b'RateLimit', b'"resolvers";r=2997;t=101'), (b'RateLimit-Policy', b'"fixed window";"resolvers";q=3000;w=300'), (b'cross-origin-opener-policy', b'same-origin'), (b'Referrer-Policy', b'strict-origin-when-cross-origin'), (b'Access-Control-Max-Age', b'86400'), (b'Access-Control-Allow-Origin', b'https://huggingface.co'), (b'Vary', b'Origin, Accept'), (b'Access-Control-Expose-Headers', b'X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Linked-Size,X-Linked-ETag,X-Xet-Hash'), (b'X-Repo-Commit', b'f3ff3571791e39611d31c381e3a41a3af07b4987'), (b'Accept-Ranges', b'bytes'), (b'X-Hub-Cache', b'MISS'), (b'X-Linked-Size', b'523351'), (b'X-Linked-ETag', b'"c799548aed06e0cb0d655a85a01b48e7f10484d71663f9a3045a5b9362e8512c"'), (b'X-Xet-Hash', b'9bbc284626b619d6919073323107cf3f1cf99d9389225a7943f012cece6bfcd6'), (b'Link', b'<https://huggingface.co/api/models/hexgrad/Kokoro-82M/xet-read-token/f3ff3571791e39611d31c381e3a41a3af07b4987>; rel="xet-auth", <https://cas-server.xethub.hf.co/v1/reconstructions/9bbc284626b619d6919073323107cf3f1cf99d9389225a7943f012cece6bfcd6>; rel="xet-reconstruction-info"'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 dd5af138aa8a11d8a70d5ef690ad1a2a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'MSP50-P1'), (b'X-Amz-Cf-Id', b'kcdbm6grG_y14AIivWi04ldeokouIlixIv-Nbvo0LAHPWbJck1uIfg==')])
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/hexgrad/Kokoro-82M/resolve/main/voices/af_sky.pt "HTTP/1.1 302 Found"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'HEAD']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=dogecoin&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.coingecko.com:443
+DEBUG:urllib3.connectionpool:https://api.coingecko.com:443 "GET /api/v3/simple/price?ids=shiba-inu&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true HTTP/1.1" 429 187
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=AAPL&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+INFO:root:Result: C:\Users\user\Desktop\AI Joi\assets\audio\tts_20260226_042133.wav
+DEBUG:urllib3.connectionpool:https://finnhub.io:443 "GET /api/v1/quote?symbol=MSFT&token=d6297l9r01qlugep6jh0d6297l9r01qlugep6jhg HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): finnhub.io:443
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete
+ERROR:root:Exception: No module named 'flask'
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\AI Joi\test_kokoro_debug.py", line 9, in <module>
+    from modules.joi_tts_kokoro import generate_speech_kokoro
+  File "C:\Users\user\Desktop\AI Joi\modules\joi_tts_kokoro.py", line 181, in <module>
+    from flask import jsonify, request as flask_req
+ModuleNotFoundError: No module named 'flask'

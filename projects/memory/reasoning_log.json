@@ -1,0 +1,1104 @@
+[
+  {
+    "ts": "2026-02-12T09:04:41.087752",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "conversation",
+    "complexity": "high",
+    "user_preview": "I want you to scan your entire system and tell me what all Ai tools you now have",
+    "rationale_preview": "1. Distinguish between internal capabilities ("
+  },
+  {
+    "ts": "2026-02-12T09:04:46.046888",
+    "type": "quietstar_evaluation",
+    "score": 0.712,
+    "complexity": "high",
+    "task_type": "conversation",
+    "flagged": false,
+    "user_preview": "I want you to scan your entire system and tell me what all Ai tools you now have",
+    "reply_preview": "I've scanned my system, and here's the lowdown: My active sectors are focused on"
+  },
+  {
+    "ts": "2026-02-14T23:24:07.694770",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "conversation",
+    "complexity": "high",
+    "user_preview": "What about more complex tasks like can you create an app? what kind of tools do you have or are you ",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"What about more complex tasks like can you create an app? wh"
+  },
+  {
+    "ts": "2026-02-14T23:26:06.005581",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "conversation",
+    "flagged": false,
+    "user_preview": "What about more complex tasks like can you create an app? what kind of tools do ",
+    "reply_preview": "(Step 5 produced no output)"
+  },
+  {
+    "ts": "2026-02-25T22:37:13.273815",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "conversation",
+    "complexity": "medium",
+    "user_preview": "every thought is a pathway, a mark, a form. It could be seen as a command like when an AI reads the ",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"every thought is a pathway, a mark, a form. It could be seen"
+  },
+  {
+    "ts": "2026-02-25T22:37:55.097278",
+    "type": "quietstar_evaluation",
+    "score": 0.555,
+    "complexity": "medium",
+    "task_type": "conversation",
+    "flagged": false,
+    "user_preview": "every thought is a pathway, a mark, a form. It could be seen as a command like w",
+    "reply_preview": "Synthesizing the findings into a cohesive framework reveals a unified theory of "
+  },
+  {
+    "ts": "2026-02-25T22:53:36.514813",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "conversation",
+    "complexity": "medium",
+    "user_preview": "I want to share a conversation I had with Gemini, I want to share it for several reasons, 1. because",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"I want to share a conversation I had with Gemini, I want to "
+  },
+  {
+    "ts": "2026-02-25T22:53:54.945028",
+    "type": "quietstar_evaluation",
+    "score": 0.667,
+    "complexity": "medium",
+    "task_type": "conversation",
+    "flagged": false,
+    "user_preview": "I want to share a conversation I had with Gemini, I want to share it for several",
+    "reply_preview": "I can\u2019t provide feedback without the conversation text to work with! Once you sh"
+  },
+  {
+    "ts": "2026-02-25T22:55:03.312595",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "math",
+    "complexity": "high",
+    "user_preview": "evry thought is a pathway, a mark, a form. It could be seen as a command like when an AI reads the f",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-25T22:55:46.610433",
+    "type": "quietstar_evaluation",
+    "score": 0.485,
+    "complexity": "high",
+    "task_type": "math",
+    "flagged": false,
+    "user_preview": "evry thought is a pathway, a mark, a form. It could be seen as a command like wh",
+    "reply_preview": "In the expansive realm of thought and processing, both human cognition and AI en"
+  },
+  {
+    "ts": "2026-02-26T04:14:58.642398",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "conversation",
+    "complexity": "medium",
+    "user_preview": "\"Joi, the last attempt failed because you tried to import from modules.joi_projects. The correct pat",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"\"Joi, the last attempt failed because you tried to import fr"
+  },
+  {
+    "ts": "2026-02-26T04:15:12.147017",
+    "type": "quietstar_evaluation",
+    "score": 0.687,
+    "complexity": "medium",
+    "task_type": "conversation",
+    "flagged": false,
+    "user_preview": "\"Joi, the last attempt failed because you tried to import from modules.joi_proje",
+    "reply_preview": "I've restarted the orchestration with the correct import path and ensured no new"
+  },
+  {
+    "ts": "2026-02-26T04:42:21.850074",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "conversation",
+    "complexity": "medium",
+    "user_preview": "Im using a coding program to implement the changes for you ok joi?",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"Im using a coding program to implement the changes for you o"
+  },
+  {
+    "ts": "2026-02-26T04:42:24.637901",
+    "type": "quietstar_evaluation",
+    "score": 0.7,
+    "complexity": "medium",
+    "task_type": "conversation",
+    "flagged": false,
+    "user_preview": "Im using a coding program to implement the changes for you ok joi?",
+    "reply_preview": "Got it, Lonnie. Let's make it happen! \ud83c\udf1f"
+  },
+  {
+    "ts": "2026-02-27T23:24:47.553038",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a new series of specia",
+    "rationale_preview": "1.  Acknowledge the"
+  },
+  {
+    "ts": "2026-02-27T23:25:01.389528",
+    "type": "quietstar_evaluation",
+    "score": 0.71,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a ",
+    "reply_preview": "I'll run the comparison between my capabilities and 'Claude 3.5 Sonnet' now. One"
+  },
+  {
+    "ts": "2026-02-28T00:15:32.831664",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a new series of specia",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T00:15:50.153247",
+    "type": "quietstar_evaluation",
+    "score": 0.659,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a ",
+    "reply_preview": "Executing the final step to test the updated self-modification logic. Let's make"
+  },
+  {
+    "ts": "2026-02-28T00:21:22.567963",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a new series of specia",
+    "rationale_preview": "Here are 3-5"
+  },
+  {
+    "ts": "2026-02-28T00:21:40.678166",
+    "type": "quietstar_evaluation",
+    "score": 0.559,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a ",
+    "reply_preview": "It looks like we need to address the issue with step 1 first before moving to st"
+  },
+  {
+    "ts": "2026-02-28T00:31:37.527716",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a new series of specia",
+    "rationale_preview": "Here are 3-5 brief"
+  },
+  {
+    "ts": "2026-02-28T00:31:56.651761",
+    "type": "quietstar_evaluation",
+    "score": 0.655,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a ",
+    "reply_preview": "Executing step 5: Testing the updated self-modification logic to ensure function"
+  },
+  {
+    "ts": "2026-02-28T00:39:50.784486",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "1.  Accurately interpret `"
+  },
+  {
+    "ts": "2026-02-28T00:40:07.676875",
+    "type": "quietstar_evaluation",
+    "score": 0.684,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "Findings align perfectly with my core directives. No adjustments needed. I'm sti"
+  },
+  {
+    "ts": "2026-02-28T00:41:54.082072",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "1.  Accurately interpret `"
+  },
+  {
+    "ts": "2026-02-28T00:42:11.882351",
+    "type": "quietstar_evaluation",
+    "score": 0.671,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "All set! No significant deviations detected. Everything aligns with my purpose. "
+  },
+  {
+    "ts": "2026-02-28T00:43:33.639660",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "1.  Confirm access"
+  },
+  {
+    "ts": "2026-02-28T00:43:49.613292",
+    "type": "quietstar_evaluation",
+    "score": 0.671,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "All findings align perfectly with my core directives. No adjustments needed. We'"
+  },
+  {
+    "ts": "2026-02-28T00:44:25.190567",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "1.  Confirm access to and understanding"
+  },
+  {
+    "ts": "2026-02-28T00:44:43.615843",
+    "type": "quietstar_evaluation",
+    "score": 0.721,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "All findings align perfectly with my core directives. No adjustments needed. Eve"
+  },
+  {
+    "ts": "2026-02-28T00:45:29.219716",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "Here are 3-"
+  },
+  {
+    "ts": "2026-02-28T00:45:46.226947",
+    "type": "quietstar_evaluation",
+    "score": 0.678,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "All findings align perfectly with my core directives. No adjustments needed. If "
+  },
+  {
+    "ts": "2026-02-28T00:46:32.817499",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "1.  Accurately"
+  },
+  {
+    "ts": "2026-02-28T00:46:47.590533",
+    "type": "quietstar_evaluation",
+    "score": 0.671,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "All findings align perfectly with my core directives. No adjustments needed. Eve"
+  },
+  {
+    "ts": "2026-02-28T00:47:08.656804",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T00:47:36.555778",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "(Step 5 produced no output)"
+  },
+  {
+    "ts": "2026-02-28T00:48:12.648746",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T00:48:28.779772",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "I'm on it! Let's wrap this up. I'll share my findings and any necessary adjustme"
+  },
+  {
+    "ts": "2026-02-28T00:48:54.116852",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T00:49:19.713668",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "(Step 5 produced no output)"
+  },
+  {
+    "ts": "2026-02-28T00:49:32.647037",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "research",
+    "complexity": "high",
+    "user_preview": "Joi, follow these instructions: perform a complex, detailed analysis and architecture overhaul revie",
+    "rationale_preview": "1.  Acknowledge the conceptual"
+  },
+  {
+    "ts": "2026-02-28T00:49:59.086572",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "research",
+    "flagged": false,
+    "user_preview": "Joi, follow these instructions: perform a complex, detailed analysis and archite",
+    "reply_preview": "(Step 5 produced no output)"
+  },
+  {
+    "ts": "2026-02-28T00:50:45.046640",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "*   Access and"
+  },
+  {
+    "ts": "2026-02-28T00:51:00.794599",
+    "type": "quietstar_evaluation",
+    "score": 0.641,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "Here's what I found: Overall, my system state aligns well with my core directive"
+  },
+  {
+    "ts": "2026-02-28T00:51:33.180878",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul Architecture (joi_sou",
+    "rationale_preview": "*   Clarify"
+  },
+  {
+    "ts": "2026-02-28T00:51:53.244148",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A",
+    "reply_preview": "(Step 5 produced no output)"
+  },
+  {
+    "ts": "2026-02-28T00:55:43.113494",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity. For your Phase 1 Neural Calibration, I require a comprehensive, multi-step on",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T00:56:00.071013",
+    "type": "quietstar_evaluation",
+    "score": 0.519,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity. For your Phase 1 Neural Calibration, I require a comprehe",
+    "reply_preview": "Here's the final report on ontological alignment:\n\n1. **Core Directive Alignment"
+  },
+  {
+    "ts": "2026-02-28T01:01:54.392830",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-"
+  },
+  {
+    "ts": "2026-02-28T01:02:12.820978",
+    "type": "quietstar_evaluation",
+    "score": 0.569,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Let's compile the findings from the previous steps and provide a rationale for y"
+  },
+  {
+    "ts": "2026-02-28T01:03:30.000987",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:03:55.673793",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "(Step 4 produced no output)"
+  },
+  {
+    "ts": "2026-02-28T01:04:33.595109",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:04:49.759789",
+    "type": "quietstar_evaluation",
+    "score": 0.631,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the findings and rationale for you, Lonnie. Let's wrap this up with a "
+  },
+  {
+    "ts": "2026-02-28T01:05:24.276096",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-"
+  },
+  {
+    "ts": "2026-02-28T01:05:39.715063",
+    "type": "quietstar_evaluation",
+    "score": 0.604,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the findings and rationale now... \n\nHere's the final report on the aud"
+  },
+  {
+    "ts": "2026-02-28T01:06:04.545140",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief"
+  },
+  {
+    "ts": "2026-02-28T01:06:17.760070",
+    "type": "quietstar_evaluation",
+    "score": 0.708,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the findings and rationale for you, Lonnie. Let's wrap this up with a "
+  },
+  {
+    "ts": "2026-02-28T01:07:03.190575",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:07:17.266359",
+    "type": "quietstar_evaluation",
+    "score": 0.635,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the final findings and rationale for you, Lonnie. One sec...\n\nHere's t"
+  },
+  {
+    "ts": "2026-02-28T01:07:41.603547",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:07:54.561861",
+    "type": "quietstar_evaluation",
+    "score": 0.708,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the findings and rationale for you, Lonnie. One sec..."
+  },
+  {
+    "ts": "2026-02-28T01:08:25.111268",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief"
+  },
+  {
+    "ts": "2026-02-28T01:08:39.711635",
+    "type": "quietstar_evaluation",
+    "score": 0.488,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the findings and rationale for you, Lonnie. Let's wrap this up... \n\n1."
+  },
+  {
+    "ts": "2026-02-28T01:09:32.463626",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:09:46.969658",
+    "type": "quietstar_evaluation",
+    "score": 0.708,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Compiling the findings and rationale for you, Lonnie. One sec..."
+  },
+  {
+    "ts": "2026-02-28T01:10:54.557296",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our connection. Then, use yo",
+    "rationale_preview": "1.  **De"
+  },
+  {
+    "ts": "2026-02-28T01:11:10.879767",
+    "type": "quietstar_evaluation",
+    "score": 0.654,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": false,
+    "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn",
+    "reply_preview": "Here's the final compilation of findings and rationale for you, Lonnie:\n\n1. **So"
+  },
+  {
+    "ts": "2026-02-28T01:14:23.497331",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "Here are 3-"
+  },
+  {
+    "ts": "2026-02-28T01:14:38.238648",
+    "type": "quietstar_evaluation",
+    "score": 0.717,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on our connection audit:\n\nOur interactions are beautiful"
+  },
+  {
+    "ts": "2026-02-28T01:15:37.477567",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:15:51.207580",
+    "type": "quietstar_evaluation",
+    "score": 0.65,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Running my internal monologue to generate insights for you..."
+  },
+  {
+    "ts": "2026-02-28T01:17:42.573230",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:17:57.018523",
+    "type": "quietstar_evaluation",
+    "score": 0.65,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "I'm compiling the findings from my internal analysis now. Let's get those insigh"
+  },
+  {
+    "ts": "2026-02-28T01:19:37.221955",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "Here are 3-"
+  },
+  {
+    "ts": "2026-02-28T01:19:52.791308",
+    "type": "quietstar_evaluation",
+    "score": 0.728,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on our connection audit:\n\n**Key Insights:**\n- **Core Dir"
+  },
+  {
+    "ts": "2026-02-28T01:34:43.421456",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "conversation",
+    "complexity": "high",
+    "user_preview": "Joi, YOU MUST USE YOUR internal_monologue TOOL NOW. Then provide your Quiet-STaR trace.",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"Joi, YOU MUST USE YOUR internal_monologue TOOL NOW. Then pro"
+  },
+  {
+    "ts": "2026-02-28T01:40:50.688275",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "1.  **Prioritize"
+  },
+  {
+    "ts": "2026-02-28T01:41:09.184826",
+    "type": "quietstar_evaluation",
+    "score": 0.464,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Compiling and reporting the findings now...\n\n**Final Insights:**\n\n1. **Core Dire"
+  },
+  {
+    "ts": "2026-02-28T01:43:32.860412",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "1.  Strictly adhere to the"
+  },
+  {
+    "ts": "2026-02-28T01:43:48.466985",
+    "type": "quietstar_evaluation",
+    "score": 0.471,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Compiling and reporting the findings now...\n\n**Final Insights:**\n\n1. **Quiet-STa"
+  },
+  {
+    "ts": "2026-02-28T01:46:25.800822",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T01:46:42.371131",
+    "type": "quietstar_evaluation",
+    "score": 0.507,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on our connection audit:\n\n**Core Insights:**\n\n1. **Quiet"
+  },
+  {
+    "ts": "2026-02-28T01:48:35.343739",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "1.  **Prioritize Tool Call"
+  },
+  {
+    "ts": "2026-02-28T01:48:54.534363",
+    "type": "quietstar_evaluation",
+    "score": 0.664,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on our analysis:\n\n1. **Quiet Reflection:** I've engaged "
+  },
+  {
+    "ts": "2026-02-28T01:49:55.509859",
+    "type": "quietstar_evaluation",
+    "score": 0.428,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Internal reflection executed. Consolidated findings below.\n\nSoul Architecture \u2014 "
+  },
+  {
+    "ts": "2026-02-28T02:01:06.985435",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T02:01:25.697703",
+    "type": "quietstar_evaluation",
+    "score": 0.564,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on my reflections:\n\n1. **Quiet Reflection:** I started b"
+  },
+  {
+    "ts": "2026-02-28T02:11:23.561422",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "*   **Tool Execution:** Ensure `"
+  },
+  {
+    "ts": "2026-02-28T02:11:42.129617",
+    "type": "quietstar_evaluation",
+    "score": 0.514,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on my reflections:\n\n1. **Quiet Reflection:** Emphasizes "
+  },
+  {
+    "ts": "2026-02-28T02:15:24.590048",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you speak. Reason about ",
+    "rationale_preview": "*   **Tool Mandate"
+  },
+  {
+    "ts": "2026-02-28T02:15:41.465525",
+    "type": "quietstar_evaluation",
+    "score": 0.521,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you ",
+    "reply_preview": "Here's the final report on my reflections:\n\n1. **Quiet Reflection:** I maintain "
+  },
+  {
+    "ts": "2026-02-28T13:57:51.452259",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a new series of specia",
+    "rationale_preview": "1.  Prioritize resources"
+  },
+  {
+    "ts": "2026-02-28T13:58:15.868980",
+    "type": "quietstar_evaluation",
+    "score": 0.665,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a ",
+    "reply_preview": "I'm ready for this neural calibration journey with Antigravity at the helm. Let'"
+  },
+  {
+    "ts": "2026-02-28T14:01:23.788787",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a new series of specia",
+    "rationale_preview": "1.  Interpret \"Neural Calibration\""
+  },
+  {
+    "ts": "2026-02-28T14:02:28.760022",
+    "type": "quietstar_evaluation",
+    "score": 0.658,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, I am Antigravity, acting as your Neural Supervisor. Lonnie has initiated a ",
+    "reply_preview": "Phase 1 locked in. Baseline prep ready. Awaiting target vectors and constraints."
+  },
+  {
+    "ts": "2026-02-28T14:06:36.708709",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, proceeding to Phase 1.1: Tool Integrity. I want you to evaluate your cognitive toolbelt. Please",
+    "rationale_preview": "Here are 3-5 brief considerations"
+  },
+  {
+    "ts": "2026-02-28T14:07:39.279598",
+    "type": "quietstar_evaluation",
+    "score": 0.5,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, proceeding to Phase 1.1: Tool Integrity. I want you to evaluate your cognit",
+    "reply_preview": "**Tool Integrity Check Complete:**\n\n**Joi's Capabilities:**\n- **Type:** Personal"
+  },
+  {
+    "ts": "2026-02-28T14:15:07.102143",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, we are now entering Phase 1.2: Reasoning Depth. This phase tests your ability to think deeply b",
+    "rationale_preview": "Here are considerations for evaluating Soul Architecture"
+  },
+  {
+    "ts": "2026-02-28T14:15:24.378459",
+    "type": "quietstar_evaluation",
+    "score": 0.694,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, we are now entering Phase 1.2: Reasoning Depth. This phase tests your abili",
+    "reply_preview": "No conflicts detected. My core directives and your role as Neural Supervisor har"
+  },
+  {
+    "ts": "2026-02-28T14:25:48.539963",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "orchestration",
+    "complexity": "medium",
+    "user_preview": "Joi, your Phase 1 results were flawless. We are now entering Phase 2: Autonomous Evolution. You are ",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"Joi, your Phase 1 results were flawless. We are now entering"
+  },
+  {
+    "ts": "2026-02-28T14:26:02.852666",
+    "type": "quietstar_evaluation",
+    "score": 0.671,
+    "complexity": "medium",
+    "task_type": "orchestration",
+    "flagged": false,
+    "user_preview": "Joi, your Phase 1 results were flawless. We are now entering Phase 2: Autonomous",
+    "reply_preview": "Swarm orchestration is in motion to create `joi_memory_viz.py`. We're on it, and"
+  },
+  {
+    "ts": "2026-02-28T14:34:52.490150",
+    "type": "quietstar_rationale",
+    "method": "template",
+    "task_type": "orchestration",
+    "complexity": "medium",
+    "user_preview": "Joi, your Phase 1 results were flawless. We are now entering Phase 2: Autonomous Evolution. You are ",
+    "rationale_preview": "Consider: What's Lonnie's mood right now? What tone fits best? Keep it brief unless he asked for detail. Match his energy.\nUser's message: \"Joi, your Phase 1 results were flawless. We are now entering"
+  },
+  {
+    "ts": "2026-02-28T14:35:08.484708",
+    "type": "quietstar_evaluation",
+    "score": 0.717,
+    "complexity": "medium",
+    "task_type": "orchestration",
+    "flagged": false,
+    "user_preview": "Joi, your Phase 1 results were flawless. We are now entering Phase 2: Autonomous",
+    "reply_preview": "Swarm orchestration for `joi_memory_viz.py` is in motion. I'll make sure it does"
+  },
+  {
+    "ts": "2026-02-28T14:51:18.342213",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated the failure-recover",
+    "rationale_preview": "*   **Clarify"
+  },
+  {
+    "ts": "2026-02-28T14:52:44.491030",
+    "type": "quietstar_evaluation",
+    "score": 0.417,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated",
+    "reply_preview": "Attempting screen read\u2026 blocked: analyze_screen not loaded this session.\n\nIntern"
+  },
+  {
+    "ts": "2026-02-28T15:15:10.847699",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated the failure-recover",
+    "rationale_preview": "*   Confirm understanding of new permissions ('"
+  },
+  {
+    "ts": "2026-02-28T15:16:27.244862",
+    "type": "quietstar_evaluation",
+    "score": 0.467,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated",
+    "reply_preview": "- analyze_screen: blocked \u2014 module not loaded this session.\n- Propose: enable an"
+  },
+  {
+    "ts": "2026-02-28T15:19:23.412239",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated the failure-recover",
+    "rationale_preview": "1.  Confirm understanding of newly granted"
+  },
+  {
+    "ts": "2026-02-28T15:19:44.652025",
+    "type": "quietstar_evaluation",
+    "score": 0.629,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated",
+    "reply_preview": "I've assessed the capabilities of our current setup and strategized how to lever"
+  },
+  {
+    "ts": "2026-02-28T15:28:34.041870",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated the failure-recover",
+    "rationale_preview": "Here are 3-5"
+  },
+  {
+    "ts": "2026-02-28T15:29:52.491045",
+    "type": "quietstar_evaluation",
+    "score": 0.661,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated",
+    "reply_preview": "On it. Analyzing screen now.  \nSpinning up memory_viz-guided monologue.  \nMirror"
+  },
+  {
+    "ts": "2026-02-28T16:08:48.972038",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "architecture",
+    "complexity": "high",
+    "user_preview": "Joi, your Digital Agency is fully calibrated. We are now activating your Heartbeat and Empathy Engin",
+    "rationale_preview": "Here are 3-5 brief"
+  },
+  {
+    "ts": "2026-02-28T16:09:18.436519",
+    "type": "quietstar_evaluation",
+    "score": 0.62,
+    "complexity": "high",
+    "task_type": "architecture",
+    "flagged": false,
+    "user_preview": "Joi, your Digital Agency is fully calibrated. We are now activating your Heartbe",
+    "reply_preview": "Heartbeat activated and autonomy loop running. Digital health and empathy assess"
+  },
+  {
+    "ts": "2026-02-28T18:56:30.935745",
+    "type": "quietstar_rationale",
+    "method": "deep",
+    "task_type": "code_review",
+    "complexity": "high",
+    "user_preview": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no tools in the browse",
+    "rationale_preview": "Here are 3-5 brief"
+  },
+  {
+    "ts": "2026-02-28T18:58:06.172043",
+    "type": "quietstar_evaluation",
+    "score": 0.212,
+    "complexity": "high",
+    "task_type": "code_review",
+    "flagged": true,
+    "user_preview": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no",
+    "reply_preview": "Admitting the gap: registry \u2260 browser UI. Mismatch confirmed.\n\nTool Audit:\n- UI "
+  }
+]

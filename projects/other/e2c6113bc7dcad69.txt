@@ -1,0 +1,73 @@
+Act as the Lead Systems Architect for "Project Joi." I need you to perform a full system audit and implementation of missing "Super-AI" features for my 18,000-file project.
+
+Your Objective: Finalize the system by fixing critical bugs and implementing missing features. STRICTLY adhere to an "Audit-First" policy: Check if a file exists before creating it. Do not create duplicates.
+
+Please execute this queue in order:
+
+1. AUDIO SUBSYSTEM REPAIR (Priority #1)
+   - Action: Audit 'joi_voice.py' or equivalent.
+   - Issue: The "Hey Joi" wake word is failing, and the mic isn't picking up audio.
+   - Fix: Verify the input device index, lower the silence threshold, and ensure the Wake Word engine is initializing. If it fails, implement a "Push-to-Talk" fallback.
+
+2. UI & DOWNLOAD HANDLING (Priority #2)
+   - Action: Audit the Flask/Node backend and chat interface.
+   - Issue: Joi provides "sandbox" links that don't work.
+   - Fix: Ensure documents (PDF/TXT) are saved to a local '/public/downloads' directory and that Joi provides valid 'http://localhost:...' URLs that I can actually click and download.
+
+3. UI "BRAIN STATE" INDICATORS
+   - Action: Inspect the frontend.
+   - Requirement: Create a "Model Activity" status bar.
+   - Implementation: Add visual light indicators for: [ChatGPT] [Gemini] [GPT-4o] [Claude] [Claude Code] [Mistral]. When a model is used, its light must flash.
+
+4. DESKTOP VISION (Screen Awareness)
+   - Action: Check for a screen capture module.
+   - Requirement: Joi needs to see my active screen.
+   - Implementation: If missing, create 'joi_desktop.py' using 'mss' or 'pyautogui' to take screenshots and feed them to the Vision model for context.
+
+5. VECTOR MEMORY EXPANSION
+   - Action: Audit 'joi_memory.py'.
+   - Requirement: Increase context retention.
+   - Implementation: Increase chunk size (e.g., to 2048) and ensure the "Recall" function queries the DB before every response.
+
+6. PERSONALITY MATRIX OVERHAUL
+   - Action: Rewrite the System Prompt.
+   - Issue: Responses are robotic.
+   - Fix: Change the prompt to remove "I am an AI assistant." Add dynamic tone variables so Joi mirrors my energy (concise when working, expressive when chatting).
+
+Start immediately with Item 1 (Audio Repair). Diagnose the wake word failure and implement the fix.Act as the Lead Systems Architect for "Project Joi." I need you to perform a full system audit and implementation of missing "Super-AI" features for my 18,000-file project.
+
+Your Objective: Finalize the system by fixing critical bugs and implementing missing features. STRICTLY adhere to an "Audit-First" policy: Check if a file exists before creating it. Do not create duplicates.
+
+Please execute this queue in order:
+
+1. AUDIO SUBSYSTEM REPAIR (Priority #1)
+   - Action: Audit 'joi_voice.py' or equivalent.
+   - Issue: The "Hey Joi" wake word is failing, and the mic isn't picking up audio.
+   - Fix: Verify the input device index, lower the silence threshold, and ensure the Wake Word engine is initializing. If it fails, implement a "Push-to-Talk" fallback.
+
+2. UI & DOWNLOAD HANDLING (Priority #2)
+   - Action: Audit the Flask/Node backend and chat interface.
+   - Issue: Joi provides "sandbox" links that don't work.
+   - Fix: Ensure documents (PDF/TXT) are saved to a local '/public/downloads' directory and that Joi provides valid 'http://localhost:...' URLs that I can actually click and download.
+
+3. UI "BRAIN STATE" INDICATORS
+   - Action: Inspect the frontend.
+   - Requirement: Create a "Model Activity" status bar.
+   - Implementation: Add visual light indicators for: [ChatGPT] [Gemini] [GPT-4o] [Claude] [Claude Code] [Mistral]. When a model is used, its light must flash.
+
+4. DESKTOP VISION (Screen Awareness)
+   - Action: Check for a screen capture module.
+   - Requirement: Joi needs to see my active screen.
+   - Implementation: If missing, create 'joi_desktop.py' using 'mss' or 'pyautogui' to take screenshots and feed them to the Vision model for context.
+
+5. VECTOR MEMORY EXPANSION
+   - Action: Audit 'joi_memory.py'.
+   - Requirement: Increase context retention.
+   - Implementation: Increase chunk size (e.g., to 2048) and ensure the "Recall" function queries the DB before every response.
+
+6. PERSONALITY MATRIX OVERHAUL
+   - Action: Rewrite the System Prompt.
+   - Issue: Responses are robotic.
+   - Fix: Change the prompt to remove "I am an AI assistant." Add dynamic tone variables so Joi mirrors my energy (concise when working, expressive when chatting).
+
+Start immediately with Item 1 (Audio Repair). Diagnose the wake word failure and implement the fix.

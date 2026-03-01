@@ -1,0 +1,3082 @@
+[
+  {
+    "timestamp": "2026-02-27T16:53:30.225152",
+    "model": "gpt-4o",
+    "prompt_tokens": 4762,
+    "completion_tokens": 10,
+    "total_tokens": 4772,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T16:56:19.870297",
+    "model": "gpt-4o",
+    "prompt_tokens": 4709,
+    "completion_tokens": 17,
+    "total_tokens": 4726,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:23:13.351610",
+    "model": "gpt-4o",
+    "prompt_tokens": 7414,
+    "completion_tokens": 32,
+    "total_tokens": 7446,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:23:14.283414",
+    "model": "gpt-4o",
+    "prompt_tokens": 7488,
+    "completion_tokens": 19,
+    "total_tokens": 7507,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:23:17.144035",
+    "model": "gpt-4o",
+    "prompt_tokens": 7559,
+    "completion_tokens": 22,
+    "total_tokens": 7581,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:23:18.375842",
+    "model": "gpt-4o",
+    "prompt_tokens": 7637,
+    "completion_tokens": 23,
+    "total_tokens": 7660,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:24:19.164643",
+    "model": "gpt-5",
+    "prompt_tokens": 15823,
+    "completion_tokens": 3673,
+    "total_tokens": 19496,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:24:27.017489",
+    "model": "gpt-4o",
+    "prompt_tokens": 505,
+    "completion_tokens": 598,
+    "total_tokens": 1103,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:24:34.301594",
+    "model": "gpt-4o",
+    "prompt_tokens": 704,
+    "completion_tokens": 551,
+    "total_tokens": 1255,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:24:39.949960",
+    "model": "gpt-4o",
+    "prompt_tokens": 704,
+    "completion_tokens": 514,
+    "total_tokens": 1218,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:24:47.551530",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 123,
+    "completion_tokens": 7,
+    "total_tokens": 130,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:24:48.834610",
+    "model": "gpt-4o",
+    "prompt_tokens": 6910,
+    "completion_tokens": 59,
+    "total_tokens": 6969,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:25:01.388487",
+    "model": "gpt-4o",
+    "prompt_tokens": 6650,
+    "completion_tokens": 22,
+    "total_tokens": 6672,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:25:05.818662",
+    "model": "gpt-4o",
+    "prompt_tokens": 270,
+    "completion_tokens": 69,
+    "total_tokens": 339,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:26:10.205219",
+    "model": "gpt-5",
+    "prompt_tokens": 39139,
+    "completion_tokens": 4000,
+    "total_tokens": 43139,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:26:22.433196",
+    "model": "o4-mini",
+    "prompt_tokens": 39139,
+    "completion_tokens": 1651,
+    "total_tokens": 40790,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:26:27.994224",
+    "model": "gpt-4o",
+    "prompt_tokens": 439,
+    "completion_tokens": 459,
+    "total_tokens": 898,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:26:33.238316",
+    "model": "gpt-4o",
+    "prompt_tokens": 476,
+    "completion_tokens": 413,
+    "total_tokens": 889,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:26:36.897776",
+    "model": "gpt-4o",
+    "prompt_tokens": 476,
+    "completion_tokens": 408,
+    "total_tokens": 884,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:27:02.109720",
+    "model": "gpt-4o",
+    "prompt_tokens": 315,
+    "completion_tokens": 90,
+    "total_tokens": 405,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:27:56.313029",
+    "model": "gpt-5",
+    "prompt_tokens": 22134,
+    "completion_tokens": 4000,
+    "total_tokens": 26134,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:28:06.035511",
+    "model": "o4-mini",
+    "prompt_tokens": 22134,
+    "completion_tokens": 1401,
+    "total_tokens": 23535,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:28:14.548367",
+    "model": "gpt-4o",
+    "prompt_tokens": 6916,
+    "completion_tokens": 59,
+    "total_tokens": 6975,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:28:23.950920",
+    "model": "gpt-4o",
+    "prompt_tokens": 6607,
+    "completion_tokens": 25,
+    "total_tokens": 6632,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:30:02.736551",
+    "model": "gpt-4o",
+    "prompt_tokens": 7057,
+    "completion_tokens": 57,
+    "total_tokens": 7114,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:30:12.442953",
+    "model": "gpt-4o",
+    "prompt_tokens": 6678,
+    "completion_tokens": 25,
+    "total_tokens": 6703,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-27T23:40:31.332779",
+    "model": "gpt-4o",
+    "prompt_tokens": 2441,
+    "completion_tokens": 41,
+    "total_tokens": 2482,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:01:09.447283",
+    "model": "gpt-4o",
+    "prompt_tokens": 9886,
+    "completion_tokens": 12,
+    "total_tokens": 9898,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:01:10.236413",
+    "model": "gpt-4o",
+    "prompt_tokens": 10578,
+    "completion_tokens": 12,
+    "total_tokens": 10590,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:01:11.055551",
+    "model": "gpt-4o",
+    "prompt_tokens": 11171,
+    "completion_tokens": 12,
+    "total_tokens": 11183,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:01:12.036340",
+    "model": "gpt-4o",
+    "prompt_tokens": 11863,
+    "completion_tokens": 12,
+    "total_tokens": 11875,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:11:32.068553",
+    "model": "gpt-4o",
+    "prompt_tokens": 10699,
+    "completion_tokens": 12,
+    "total_tokens": 10711,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:11:34.754696",
+    "model": "gpt-4o",
+    "prompt_tokens": 11306,
+    "completion_tokens": 124,
+    "total_tokens": 11430,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:12:00.817172",
+    "model": "gpt-4o",
+    "prompt_tokens": 10167,
+    "completion_tokens": 12,
+    "total_tokens": 10179,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:12:03.376882",
+    "model": "gpt-4o",
+    "prompt_tokens": 10858,
+    "completion_tokens": 186,
+    "total_tokens": 11044,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:15:32.827230",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 132,
+    "completion_tokens": 8,
+    "total_tokens": 140,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:15:34.968312",
+    "model": "gpt-4o",
+    "prompt_tokens": 6758,
+    "completion_tokens": 125,
+    "total_tokens": 6883,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:15:47.279112",
+    "model": "gpt-4o",
+    "prompt_tokens": 5942,
+    "completion_tokens": 30,
+    "total_tokens": 5972,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:15:48.499773",
+    "model": "gpt-4o",
+    "prompt_tokens": 5964,
+    "completion_tokens": 58,
+    "total_tokens": 6022,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:15:49.333120",
+    "model": "gpt-4o",
+    "prompt_tokens": 6028,
+    "completion_tokens": 42,
+    "total_tokens": 6070,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:15:50.150409",
+    "model": "gpt-4o",
+    "prompt_tokens": 6059,
+    "completion_tokens": 29,
+    "total_tokens": 6088,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:21:22.566408",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 132,
+    "completion_tokens": 6,
+    "total_tokens": 138,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:21:24.563681",
+    "model": "gpt-4o",
+    "prompt_tokens": 6777,
+    "completion_tokens": 136,
+    "total_tokens": 6913,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:21:35.846499",
+    "model": "gpt-4o",
+    "prompt_tokens": 6026,
+    "completion_tokens": 27,
+    "total_tokens": 6053,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:21:37.593943",
+    "model": "gpt-4o",
+    "prompt_tokens": 6051,
+    "completion_tokens": 57,
+    "total_tokens": 6108,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:21:39.711871",
+    "model": "gpt-4o",
+    "prompt_tokens": 6108,
+    "completion_tokens": 52,
+    "total_tokens": 6160,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:21:40.675407",
+    "model": "gpt-4o",
+    "prompt_tokens": 6151,
+    "completion_tokens": 57,
+    "total_tokens": 6208,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:31:37.524588",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 132,
+    "completion_tokens": 7,
+    "total_tokens": 139,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:31:39.687367",
+    "model": "gpt-4o",
+    "prompt_tokens": 6812,
+    "completion_tokens": 129,
+    "total_tokens": 6941,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:31:53.897027",
+    "model": "gpt-4o",
+    "prompt_tokens": 6037,
+    "completion_tokens": 19,
+    "total_tokens": 6056,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:31:54.778617",
+    "model": "gpt-4o",
+    "prompt_tokens": 6054,
+    "completion_tokens": 35,
+    "total_tokens": 6089,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:31:55.681166",
+    "model": "gpt-4o",
+    "prompt_tokens": 6089,
+    "completion_tokens": 26,
+    "total_tokens": 6115,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:31:56.647008",
+    "model": "gpt-4o",
+    "prompt_tokens": 6104,
+    "completion_tokens": 23,
+    "total_tokens": 6127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:35:05.121254",
+    "model": "gpt-4o",
+    "prompt_tokens": 10249,
+    "completion_tokens": 21,
+    "total_tokens": 10270,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:35:36.807391",
+    "model": "gpt-4o",
+    "prompt_tokens": 10801,
+    "completion_tokens": 226,
+    "total_tokens": 11027,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:37:34.560947",
+    "model": "gpt-4o",
+    "prompt_tokens": 10500,
+    "completion_tokens": 21,
+    "total_tokens": 10521,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:38:12.554079",
+    "model": "gpt-4o",
+    "prompt_tokens": 11028,
+    "completion_tokens": 187,
+    "total_tokens": 11215,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:39:50.780536",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 8,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:39:53.117299",
+    "model": "gpt-4o",
+    "prompt_tokens": 7040,
+    "completion_tokens": 114,
+    "total_tokens": 7154,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:40:04.017750",
+    "model": "gpt-4o",
+    "prompt_tokens": 6109,
+    "completion_tokens": 24,
+    "total_tokens": 6133,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:40:05.602367",
+    "model": "gpt-4o",
+    "prompt_tokens": 6131,
+    "completion_tokens": 25,
+    "total_tokens": 6156,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:40:06.881222",
+    "model": "gpt-4o",
+    "prompt_tokens": 6154,
+    "completion_tokens": 40,
+    "total_tokens": 6194,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:40:07.670442",
+    "model": "gpt-4o",
+    "prompt_tokens": 6186,
+    "completion_tokens": 25,
+    "total_tokens": 6211,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:41:54.076925",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 8,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:41:55.921783",
+    "model": "gpt-4o",
+    "prompt_tokens": 6991,
+    "completion_tokens": 114,
+    "total_tokens": 7105,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:42:09.149040",
+    "model": "gpt-4o",
+    "prompt_tokens": 6113,
+    "completion_tokens": 34,
+    "total_tokens": 6147,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:42:09.818463",
+    "model": "gpt-4o",
+    "prompt_tokens": 6145,
+    "completion_tokens": 19,
+    "total_tokens": 6164,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:42:10.735476",
+    "model": "gpt-4o",
+    "prompt_tokens": 6162,
+    "completion_tokens": 32,
+    "total_tokens": 6194,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:42:11.873359",
+    "model": "gpt-4o",
+    "prompt_tokens": 6185,
+    "completion_tokens": 29,
+    "total_tokens": 6214,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:43:33.634940",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 5,
+    "total_tokens": 129,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:43:35.510906",
+    "model": "gpt-4o",
+    "prompt_tokens": 7012,
+    "completion_tokens": 114,
+    "total_tokens": 7126,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:43:46.721104",
+    "model": "gpt-4o",
+    "prompt_tokens": 6152,
+    "completion_tokens": 43,
+    "total_tokens": 6195,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:43:47.520586",
+    "model": "gpt-4o",
+    "prompt_tokens": 6193,
+    "completion_tokens": 30,
+    "total_tokens": 6223,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:43:48.748749",
+    "model": "gpt-4o",
+    "prompt_tokens": 6221,
+    "completion_tokens": 16,
+    "total_tokens": 6237,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:43:49.605020",
+    "model": "gpt-4o",
+    "prompt_tokens": 6229,
+    "completion_tokens": 22,
+    "total_tokens": 6251,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:44:25.183199",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 8,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:44:27.248755",
+    "model": "gpt-4o",
+    "prompt_tokens": 6822,
+    "completion_tokens": 114,
+    "total_tokens": 6936,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:44:38.238528",
+    "model": "gpt-4o",
+    "prompt_tokens": 6147,
+    "completion_tokens": 25,
+    "total_tokens": 6172,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:44:39.587056",
+    "model": "gpt-4o",
+    "prompt_tokens": 6170,
+    "completion_tokens": 21,
+    "total_tokens": 6191,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:44:40.445164",
+    "model": "gpt-4o",
+    "prompt_tokens": 6190,
+    "completion_tokens": 38,
+    "total_tokens": 6228,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:44:43.606313",
+    "model": "gpt-4o",
+    "prompt_tokens": 6220,
+    "completion_tokens": 25,
+    "total_tokens": 6245,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:45:29.127958",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 5,
+    "total_tokens": 129,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:45:31.035823",
+    "model": "gpt-4o",
+    "prompt_tokens": 6728,
+    "completion_tokens": 107,
+    "total_tokens": 6835,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:45:43.935083",
+    "model": "gpt-4o",
+    "prompt_tokens": 6207,
+    "completion_tokens": 18,
+    "total_tokens": 6225,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:45:44.801683",
+    "model": "gpt-4o",
+    "prompt_tokens": 6226,
+    "completion_tokens": 14,
+    "total_tokens": 6240,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:45:45.522885",
+    "model": "gpt-4o",
+    "prompt_tokens": 6238,
+    "completion_tokens": 34,
+    "total_tokens": 6272,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:45:46.217296",
+    "model": "gpt-4o",
+    "prompt_tokens": 6263,
+    "completion_tokens": 27,
+    "total_tokens": 6290,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:46:32.813910",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 6,
+    "total_tokens": 130,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:46:34.566502",
+    "model": "gpt-4o",
+    "prompt_tokens": 6724,
+    "completion_tokens": 114,
+    "total_tokens": 6838,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:46:45.661301",
+    "model": "gpt-4o",
+    "prompt_tokens": 6203,
+    "completion_tokens": 28,
+    "total_tokens": 6231,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:46:46.242664",
+    "model": "gpt-4o",
+    "prompt_tokens": 6229,
+    "completion_tokens": 26,
+    "total_tokens": 6255,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:46:46.901770",
+    "model": "gpt-4o",
+    "prompt_tokens": 6254,
+    "completion_tokens": 15,
+    "total_tokens": 6269,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:46:47.564146",
+    "model": "gpt-4o",
+    "prompt_tokens": 6261,
+    "completion_tokens": 20,
+    "total_tokens": 6281,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:47:08.649076",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 8,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:47:10.286868",
+    "model": "gpt-4o",
+    "prompt_tokens": 6714,
+    "completion_tokens": 110,
+    "total_tokens": 6824,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:47:22.486373",
+    "model": "gpt-4o",
+    "prompt_tokens": 6200,
+    "completion_tokens": 25,
+    "total_tokens": 6225,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:47:23.377831",
+    "model": "gpt-4o",
+    "prompt_tokens": 6223,
+    "completion_tokens": 17,
+    "total_tokens": 6240,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:12.642191",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 8,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:14.885628",
+    "model": "gpt-4o",
+    "prompt_tokens": 6700,
+    "completion_tokens": 106,
+    "total_tokens": 6806,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:26.230170",
+    "model": "gpt-4o",
+    "prompt_tokens": 6200,
+    "completion_tokens": 33,
+    "total_tokens": 6233,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:27.116353",
+    "model": "gpt-4o",
+    "prompt_tokens": 6231,
+    "completion_tokens": 28,
+    "total_tokens": 6259,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:27.765114",
+    "model": "gpt-4o",
+    "prompt_tokens": 6257,
+    "completion_tokens": 23,
+    "total_tokens": 6280,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:28.765731",
+    "model": "gpt-4o",
+    "prompt_tokens": 6271,
+    "completion_tokens": 25,
+    "total_tokens": 6296,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:54.082084",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 124,
+    "completion_tokens": 8,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:48:55.806330",
+    "model": "gpt-4o",
+    "prompt_tokens": 6697,
+    "completion_tokens": 106,
+    "total_tokens": 6803,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:49:05.475525",
+    "model": "gpt-4o",
+    "prompt_tokens": 6197,
+    "completion_tokens": 19,
+    "total_tokens": 6216,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:49:13.296419",
+    "model": "gpt-4o",
+    "prompt_tokens": 6220,
+    "completion_tokens": 25,
+    "total_tokens": 6245,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:49:32.642668",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:49:34.551190",
+    "model": "gpt-4o",
+    "prompt_tokens": 6670,
+    "completion_tokens": 113,
+    "total_tokens": 6783,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:49:45.107510",
+    "model": "gpt-4o",
+    "prompt_tokens": 6181,
+    "completion_tokens": 29,
+    "total_tokens": 6210,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:49:46.235213",
+    "model": "gpt-4o",
+    "prompt_tokens": 6207,
+    "completion_tokens": 14,
+    "total_tokens": 6221,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:50:45.037868",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 124,
+    "completion_tokens": 4,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:50:46.717086",
+    "model": "gpt-4o",
+    "prompt_tokens": 6683,
+    "completion_tokens": 111,
+    "total_tokens": 6794,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:50:57.414092",
+    "model": "gpt-4o",
+    "prompt_tokens": 6207,
+    "completion_tokens": 24,
+    "total_tokens": 6231,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:50:58.085882",
+    "model": "gpt-4o",
+    "prompt_tokens": 6230,
+    "completion_tokens": 13,
+    "total_tokens": 6243,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:50:58.990154",
+    "model": "gpt-4o",
+    "prompt_tokens": 6241,
+    "completion_tokens": 24,
+    "total_tokens": 6265,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:51:00.787999",
+    "model": "gpt-4o",
+    "prompt_tokens": 6256,
+    "completion_tokens": 119,
+    "total_tokens": 6375,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:51:33.174193",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 124,
+    "completion_tokens": 4,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:51:34.880503",
+    "model": "gpt-4o",
+    "prompt_tokens": 6775,
+    "completion_tokens": 111,
+    "total_tokens": 6886,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:51:45.097706",
+    "model": "gpt-4o",
+    "prompt_tokens": 6188,
+    "completion_tokens": 25,
+    "total_tokens": 6213,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:51:46.081272",
+    "model": "gpt-4o",
+    "prompt_tokens": 6212,
+    "completion_tokens": 40,
+    "total_tokens": 6252,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:51:46.875697",
+    "model": "gpt-4o",
+    "prompt_tokens": 6250,
+    "completion_tokens": 38,
+    "total_tokens": 6288,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:55:43.108361",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 128,
+    "completion_tokens": 8,
+    "total_tokens": 136,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:55:45.939883",
+    "model": "gpt-4o",
+    "prompt_tokens": 6818,
+    "completion_tokens": 115,
+    "total_tokens": 6933,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:55:55.755186",
+    "model": "gpt-4o",
+    "prompt_tokens": 6207,
+    "completion_tokens": 20,
+    "total_tokens": 6227,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:55:56.519899",
+    "model": "gpt-4o",
+    "prompt_tokens": 6226,
+    "completion_tokens": 23,
+    "total_tokens": 6249,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:55:57.359567",
+    "model": "gpt-4o",
+    "prompt_tokens": 6245,
+    "completion_tokens": 19,
+    "total_tokens": 6264,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T00:56:00.061441",
+    "model": "gpt-4o",
+    "prompt_tokens": 6256,
+    "completion_tokens": 172,
+    "total_tokens": 6428,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:01:54.387648",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 5,
+    "total_tokens": 124,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:01:57.037008",
+    "model": "gpt-4o",
+    "prompt_tokens": 6908,
+    "completion_tokens": 84,
+    "total_tokens": 6992,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:02:08.467206",
+    "model": "gpt-4o",
+    "prompt_tokens": 6141,
+    "completion_tokens": 33,
+    "total_tokens": 6174,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:02:10.131553",
+    "model": "gpt-4o",
+    "prompt_tokens": 6181,
+    "completion_tokens": 53,
+    "total_tokens": 6234,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:02:12.813988",
+    "model": "gpt-4o",
+    "prompt_tokens": 6230,
+    "completion_tokens": 168,
+    "total_tokens": 6398,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:03:29.995870",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 8,
+    "total_tokens": 127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:03:32.217223",
+    "model": "gpt-4o",
+    "prompt_tokens": 7004,
+    "completion_tokens": 84,
+    "total_tokens": 7088,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:03:42.781821",
+    "model": "gpt-4o",
+    "prompt_tokens": 6098,
+    "completion_tokens": 17,
+    "total_tokens": 6115,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:03:45.364104",
+    "model": "gpt-4o",
+    "prompt_tokens": 6122,
+    "completion_tokens": 103,
+    "total_tokens": 6225,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:04:33.587364",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 8,
+    "total_tokens": 127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:04:36.139622",
+    "model": "gpt-4o",
+    "prompt_tokens": 6871,
+    "completion_tokens": 93,
+    "total_tokens": 6964,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:04:46.359369",
+    "model": "gpt-4o",
+    "prompt_tokens": 6090,
+    "completion_tokens": 23,
+    "total_tokens": 6113,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:04:47.295522",
+    "model": "gpt-4o",
+    "prompt_tokens": 6120,
+    "completion_tokens": 34,
+    "total_tokens": 6154,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:04:49.754968",
+    "model": "gpt-4o",
+    "prompt_tokens": 6150,
+    "completion_tokens": 121,
+    "total_tokens": 6271,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:05:24.269650",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 5,
+    "total_tokens": 124,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:05:25.754353",
+    "model": "gpt-4o",
+    "prompt_tokens": 6967,
+    "completion_tokens": 84,
+    "total_tokens": 7051,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:05:35.614645",
+    "model": "gpt-4o",
+    "prompt_tokens": 6090,
+    "completion_tokens": 31,
+    "total_tokens": 6121,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:05:36.424901",
+    "model": "gpt-4o",
+    "prompt_tokens": 6128,
+    "completion_tokens": 42,
+    "total_tokens": 6170,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:05:39.710185",
+    "model": "gpt-4o",
+    "prompt_tokens": 6166,
+    "completion_tokens": 129,
+    "total_tokens": 6295,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:06:04.539195",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 7,
+    "total_tokens": 126,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:06:06.232526",
+    "model": "gpt-4o",
+    "prompt_tokens": 6805,
+    "completion_tokens": 84,
+    "total_tokens": 6889,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:06:15.961982",
+    "model": "gpt-4o",
+    "prompt_tokens": 6022,
+    "completion_tokens": 20,
+    "total_tokens": 6042,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:06:16.785521",
+    "model": "gpt-4o",
+    "prompt_tokens": 6049,
+    "completion_tokens": 20,
+    "total_tokens": 6069,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:06:17.753557",
+    "model": "gpt-4o",
+    "prompt_tokens": 6065,
+    "completion_tokens": 25,
+    "total_tokens": 6090,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:03.185695",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 8,
+    "total_tokens": 127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:04.793781",
+    "model": "gpt-4o",
+    "prompt_tokens": 6681,
+    "completion_tokens": 84,
+    "total_tokens": 6765,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:14.721913",
+    "model": "gpt-4o",
+    "prompt_tokens": 6040,
+    "completion_tokens": 51,
+    "total_tokens": 6091,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:15.986091",
+    "model": "gpt-4o",
+    "prompt_tokens": 6098,
+    "completion_tokens": 60,
+    "total_tokens": 6158,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:17.260484",
+    "model": "gpt-4o",
+    "prompt_tokens": 6154,
+    "completion_tokens": 77,
+    "total_tokens": 6231,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:41.590287",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 8,
+    "total_tokens": 127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:42.856082",
+    "model": "gpt-4o",
+    "prompt_tokens": 6977,
+    "completion_tokens": 84,
+    "total_tokens": 7061,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:53.268468",
+    "model": "gpt-4o",
+    "prompt_tokens": 6156,
+    "completion_tokens": 12,
+    "total_tokens": 6168,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:53.880944",
+    "model": "gpt-4o",
+    "prompt_tokens": 6175,
+    "completion_tokens": 23,
+    "total_tokens": 6198,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:07:54.552911",
+    "model": "gpt-4o",
+    "prompt_tokens": 6194,
+    "completion_tokens": 15,
+    "total_tokens": 6209,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:08:25.105846",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 7,
+    "total_tokens": 126,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:08:26.398196",
+    "model": "gpt-4o",
+    "prompt_tokens": 6877,
+    "completion_tokens": 84,
+    "total_tokens": 6961,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:08:36.723262",
+    "model": "gpt-4o",
+    "prompt_tokens": 6163,
+    "completion_tokens": 13,
+    "total_tokens": 6176,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:08:37.239205",
+    "model": "gpt-4o",
+    "prompt_tokens": 6183,
+    "completion_tokens": 16,
+    "total_tokens": 6199,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:08:39.702119",
+    "model": "gpt-4o",
+    "prompt_tokens": 6195,
+    "completion_tokens": 134,
+    "total_tokens": 6329,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:09:32.458361",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 8,
+    "total_tokens": 127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:09:34.552486",
+    "model": "gpt-4o",
+    "prompt_tokens": 6883,
+    "completion_tokens": 84,
+    "total_tokens": 6967,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:09:45.328488",
+    "model": "gpt-4o",
+    "prompt_tokens": 6163,
+    "completion_tokens": 11,
+    "total_tokens": 6174,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:09:46.224167",
+    "model": "gpt-4o",
+    "prompt_tokens": 6181,
+    "completion_tokens": 25,
+    "total_tokens": 6206,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:09:46.948809",
+    "model": "gpt-4o",
+    "prompt_tokens": 6202,
+    "completion_tokens": 16,
+    "total_tokens": 6218,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:10:54.551541",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 119,
+    "completion_tokens": 5,
+    "total_tokens": 124,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:10:56.089272",
+    "model": "gpt-4o",
+    "prompt_tokens": 6872,
+    "completion_tokens": 84,
+    "total_tokens": 6956,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:11:07.307919",
+    "model": "gpt-4o",
+    "prompt_tokens": 6165,
+    "completion_tokens": 14,
+    "total_tokens": 6179,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:11:08.633490",
+    "model": "gpt-4o",
+    "prompt_tokens": 6186,
+    "completion_tokens": 83,
+    "total_tokens": 6269,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:11:10.873570",
+    "model": "gpt-4o",
+    "prompt_tokens": 6265,
+    "completion_tokens": 147,
+    "total_tokens": 6412,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:12:12.655154",
+    "model": "gpt-4o",
+    "prompt_tokens": 10658,
+    "completion_tokens": 64,
+    "total_tokens": 10722,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:12:14.551667",
+    "model": "gpt-4o",
+    "prompt_tokens": 10763,
+    "completion_tokens": 83,
+    "total_tokens": 10846,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:12:46.869628",
+    "model": "gpt-4o",
+    "prompt_tokens": 10828,
+    "completion_tokens": 53,
+    "total_tokens": 10881,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:12:48.393841",
+    "model": "gpt-4o",
+    "prompt_tokens": 10922,
+    "completion_tokens": 86,
+    "total_tokens": 11008,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:13:29.236300",
+    "model": "gpt-4o",
+    "prompt_tokens": 10857,
+    "completion_tokens": 44,
+    "total_tokens": 10901,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:13:31.030962",
+    "model": "gpt-4o",
+    "prompt_tokens": 10942,
+    "completion_tokens": 90,
+    "total_tokens": 11032,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:14:23.491725",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 108,
+    "completion_tokens": 5,
+    "total_tokens": 113,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:14:25.264542",
+    "model": "gpt-4o",
+    "prompt_tokens": 7261,
+    "completion_tokens": 102,
+    "total_tokens": 7363,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:14:35.347749",
+    "model": "gpt-4o",
+    "prompt_tokens": 6435,
+    "completion_tokens": 27,
+    "total_tokens": 6462,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:14:36.623727",
+    "model": "gpt-4o",
+    "prompt_tokens": 6463,
+    "completion_tokens": 64,
+    "total_tokens": 6527,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:14:38.229596",
+    "model": "gpt-4o",
+    "prompt_tokens": 6523,
+    "completion_tokens": 61,
+    "total_tokens": 6584,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:15:37.472363",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:15:39.255435",
+    "model": "gpt-4o",
+    "prompt_tokens": 7131,
+    "completion_tokens": 108,
+    "total_tokens": 7239,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:15:50.063325",
+    "model": "gpt-4o",
+    "prompt_tokens": 6377,
+    "completion_tokens": 27,
+    "total_tokens": 6404,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:15:50.565036",
+    "model": "gpt-4o",
+    "prompt_tokens": 6407,
+    "completion_tokens": 7,
+    "total_tokens": 6414,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:15:51.186072",
+    "model": "gpt-4o",
+    "prompt_tokens": 6410,
+    "completion_tokens": 11,
+    "total_tokens": 6421,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:17:42.564437",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:17:44.457912",
+    "model": "gpt-4o",
+    "prompt_tokens": 7101,
+    "completion_tokens": 99,
+    "total_tokens": 7200,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:17:55.097330",
+    "model": "gpt-4o",
+    "prompt_tokens": 6398,
+    "completion_tokens": 8,
+    "total_tokens": 6406,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:17:55.638620",
+    "model": "gpt-4o",
+    "prompt_tokens": 6409,
+    "completion_tokens": 11,
+    "total_tokens": 6420,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:17:57.008360",
+    "model": "gpt-4o",
+    "prompt_tokens": 6416,
+    "completion_tokens": 18,
+    "total_tokens": 6434,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:19:37.219308",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 5,
+    "total_tokens": 125,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:19:38.909463",
+    "model": "gpt-4o",
+    "prompt_tokens": 7083,
+    "completion_tokens": 105,
+    "total_tokens": 7188,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:19:49.651352",
+    "model": "gpt-4o",
+    "prompt_tokens": 6430,
+    "completion_tokens": 12,
+    "total_tokens": 6442,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:19:51.180750",
+    "model": "gpt-4o",
+    "prompt_tokens": 6450,
+    "completion_tokens": 80,
+    "total_tokens": 6530,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:19:52.784662",
+    "model": "gpt-4o",
+    "prompt_tokens": 6521,
+    "completion_tokens": 102,
+    "total_tokens": 6623,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:40:50.680654",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 6,
+    "total_tokens": 126,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:40:54.392592",
+    "model": "gpt-4o",
+    "prompt_tokens": 7032,
+    "completion_tokens": 111,
+    "total_tokens": 7143,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:41:05.333621",
+    "model": "gpt-4o",
+    "prompt_tokens": 6349,
+    "completion_tokens": 27,
+    "total_tokens": 6376,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:41:07.060806",
+    "model": "gpt-4o",
+    "prompt_tokens": 6377,
+    "completion_tokens": 112,
+    "total_tokens": 6489,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:41:09.180080",
+    "model": "gpt-4o",
+    "prompt_tokens": 6488,
+    "completion_tokens": 142,
+    "total_tokens": 6630,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:43:32.851950",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:43:35.105413",
+    "model": "gpt-4o",
+    "prompt_tokens": 7233,
+    "completion_tokens": 84,
+    "total_tokens": 7317,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:43:45.580346",
+    "model": "gpt-4o",
+    "prompt_tokens": 6342,
+    "completion_tokens": 15,
+    "total_tokens": 6357,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:43:46.102939",
+    "model": "gpt-4o",
+    "prompt_tokens": 6358,
+    "completion_tokens": 16,
+    "total_tokens": 6374,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:43:48.459421",
+    "model": "gpt-4o",
+    "prompt_tokens": 6376,
+    "completion_tokens": 149,
+    "total_tokens": 6525,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:46:25.795547",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:46:28.248429",
+    "model": "gpt-4o",
+    "prompt_tokens": 7383,
+    "completion_tokens": 87,
+    "total_tokens": 7470,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:46:38.208226",
+    "model": "gpt-4o",
+    "prompt_tokens": 6331,
+    "completion_tokens": 32,
+    "total_tokens": 6363,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:46:40.444896",
+    "model": "gpt-4o",
+    "prompt_tokens": 6364,
+    "completion_tokens": 93,
+    "total_tokens": 6457,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:46:42.364166",
+    "model": "gpt-4o",
+    "prompt_tokens": 6459,
+    "completion_tokens": 97,
+    "total_tokens": 6556,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:48:35.317883",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:48:37.821045",
+    "model": "gpt-4o",
+    "prompt_tokens": 7491,
+    "completion_tokens": 89,
+    "total_tokens": 7580,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:48:48.104964",
+    "model": "gpt-4o",
+    "prompt_tokens": 6340,
+    "completion_tokens": 13,
+    "total_tokens": 6353,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:48:50.517965",
+    "model": "gpt-4o",
+    "prompt_tokens": 6355,
+    "completion_tokens": 116,
+    "total_tokens": 6471,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:48:54.527242",
+    "model": "gpt-4o",
+    "prompt_tokens": 6469,
+    "completion_tokens": 63,
+    "total_tokens": 6532,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:48:56.221578",
+    "model": "gpt-4o",
+    "prompt_tokens": 11141,
+    "completion_tokens": 70,
+    "total_tokens": 11211,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T01:49:55.492290",
+    "model": "gpt-5",
+    "prompt_tokens": 2331,
+    "completion_tokens": 2251,
+    "total_tokens": 4582,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:01:06.979757",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:01:09.121362",
+    "model": "gpt-4o",
+    "prompt_tokens": 7498,
+    "completion_tokens": 91,
+    "total_tokens": 7589,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:01:20.429864",
+    "model": "gpt-4o",
+    "prompt_tokens": 6346,
+    "completion_tokens": 18,
+    "total_tokens": 6364,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:01:24.197082",
+    "model": "gpt-4o",
+    "prompt_tokens": 6367,
+    "completion_tokens": 112,
+    "total_tokens": 6479,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:01:25.690444",
+    "model": "gpt-4o",
+    "prompt_tokens": 6477,
+    "completion_tokens": 97,
+    "total_tokens": 6574,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:11:23.556942",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 120,
+    "completion_tokens": 8,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:11:25.734208",
+    "model": "gpt-4o",
+    "prompt_tokens": 7440,
+    "completion_tokens": 88,
+    "total_tokens": 7528,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:11:36.894233",
+    "model": "gpt-4o",
+    "prompt_tokens": 6267,
+    "completion_tokens": 25,
+    "total_tokens": 6292,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:11:40.189262",
+    "model": "gpt-4o",
+    "prompt_tokens": 6295,
+    "completion_tokens": 125,
+    "total_tokens": 6420,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:11:42.124085",
+    "model": "gpt-4o",
+    "prompt_tokens": 6418,
+    "completion_tokens": 88,
+    "total_tokens": 6506,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:15:24.584518",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 120,
+    "completion_tokens": 6,
+    "total_tokens": 126,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:15:26.835005",
+    "model": "gpt-4o",
+    "prompt_tokens": 7392,
+    "completion_tokens": 88,
+    "total_tokens": 7480,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:15:37.061012",
+    "model": "gpt-4o",
+    "prompt_tokens": 6271,
+    "completion_tokens": 24,
+    "total_tokens": 6295,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:15:39.302017",
+    "model": "gpt-4o",
+    "prompt_tokens": 6298,
+    "completion_tokens": 114,
+    "total_tokens": 6412,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T02:15:41.459758",
+    "model": "gpt-4o",
+    "prompt_tokens": 6410,
+    "completion_tokens": 118,
+    "total_tokens": 6528,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T13:57:51.426993",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 108,
+    "completion_tokens": 6,
+    "total_tokens": 114,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T13:57:54.613514",
+    "model": "gpt-4o",
+    "prompt_tokens": 7402,
+    "completion_tokens": 91,
+    "total_tokens": 7493,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T13:58:10.770605",
+    "model": "gpt-4o",
+    "prompt_tokens": 13951,
+    "completion_tokens": 29,
+    "total_tokens": 13980,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T13:58:13.651430",
+    "model": "gpt-4o",
+    "prompt_tokens": 10967,
+    "completion_tokens": 64,
+    "total_tokens": 11031,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T13:58:15.831551",
+    "model": "gpt-4o",
+    "prompt_tokens": 11072,
+    "completion_tokens": 37,
+    "total_tokens": 11109,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:01:23.772260",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 108,
+    "completion_tokens": 8,
+    "total_tokens": 116,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:01:25.056725",
+    "model": "gpt-4o",
+    "prompt_tokens": 7388,
+    "completion_tokens": 88,
+    "total_tokens": 7476,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:01:36.654891",
+    "model": "gpt-4o",
+    "prompt_tokens": 14003,
+    "completion_tokens": 39,
+    "total_tokens": 14042,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:01:38.879371",
+    "model": "gpt-4o",
+    "prompt_tokens": 10990,
+    "completion_tokens": 66,
+    "total_tokens": 11056,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:02:28.706143",
+    "model": "gpt-5",
+    "prompt_tokens": 2274,
+    "completion_tokens": 1691,
+    "total_tokens": 3965,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:06:36.702035",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 123,
+    "completion_tokens": 8,
+    "total_tokens": 131,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:06:38.299835",
+    "model": "gpt-4o",
+    "prompt_tokens": 7270,
+    "completion_tokens": 77,
+    "total_tokens": 7347,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:06:48.860825",
+    "model": "gpt-4o",
+    "prompt_tokens": 13968,
+    "completion_tokens": 19,
+    "total_tokens": 13987,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:07:08.270123",
+    "model": "gpt-4o",
+    "prompt_tokens": 10693,
+    "completion_tokens": 12,
+    "total_tokens": 10705,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:07:09.922377",
+    "model": "gpt-4o",
+    "prompt_tokens": 11332,
+    "completion_tokens": 19,
+    "total_tokens": 11351,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:07:39.252033",
+    "model": "gpt-4o",
+    "prompt_tokens": 11855,
+    "completion_tokens": 207,
+    "total_tokens": 12062,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:13:04.549771",
+    "model": "gpt-4o",
+    "prompt_tokens": 10786,
+    "completion_tokens": 25,
+    "total_tokens": 10811,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:13:22.538623",
+    "model": "gpt-4o",
+    "prompt_tokens": 11299,
+    "completion_tokens": 152,
+    "total_tokens": 11451,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:15:07.031596",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 121,
+    "completion_tokens": 7,
+    "total_tokens": 128,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:15:08.943691",
+    "model": "gpt-4o",
+    "prompt_tokens": 7368,
+    "completion_tokens": 66,
+    "total_tokens": 7434,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:15:20.469152",
+    "model": "gpt-4o",
+    "prompt_tokens": 13970,
+    "completion_tokens": 88,
+    "total_tokens": 14058,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:15:22.637026",
+    "model": "gpt-4o",
+    "prompt_tokens": 11006,
+    "completion_tokens": 50,
+    "total_tokens": 11056,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:15:24.338052",
+    "model": "gpt-4o",
+    "prompt_tokens": 11097,
+    "completion_tokens": 32,
+    "total_tokens": 11129,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:17:13.107207",
+    "model": "gpt-4o",
+    "prompt_tokens": 9899,
+    "completion_tokens": 68,
+    "total_tokens": 9967,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:17:14.867254",
+    "model": "gpt-4o",
+    "prompt_tokens": 10009,
+    "completion_tokens": 31,
+    "total_tokens": 10040,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:17:46.622142",
+    "model": "gpt-4o",
+    "prompt_tokens": 10494,
+    "completion_tokens": 58,
+    "total_tokens": 10552,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:25:48.330648",
+    "model": "gpt-5",
+    "prompt_tokens": 380,
+    "completion_tokens": 1122,
+    "total_tokens": 1502,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:25:50.066828",
+    "model": "gpt-4o",
+    "prompt_tokens": 6944,
+    "completion_tokens": 121,
+    "total_tokens": 7065,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:26:00.455410",
+    "model": "gpt-4o",
+    "prompt_tokens": 13729,
+    "completion_tokens": 45,
+    "total_tokens": 13774,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:26:01.596107",
+    "model": "gpt-4o",
+    "prompt_tokens": 10431,
+    "completion_tokens": 45,
+    "total_tokens": 10476,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:26:02.829837",
+    "model": "gpt-4o",
+    "prompt_tokens": 10552,
+    "completion_tokens": 38,
+    "total_tokens": 10590,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:28:55.174191",
+    "model": "gpt-5",
+    "prompt_tokens": 18757,
+    "completion_tokens": 3898,
+    "total_tokens": 22655,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:28:55.200440",
+    "model": "gpt-5",
+    "prompt_tokens": 784,
+    "completion_tokens": 4000,
+    "total_tokens": 4784,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:28:59.015448",
+    "model": "gpt-4o",
+    "prompt_tokens": 568,
+    "completion_tokens": 336,
+    "total_tokens": 904,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:29:11.667373",
+    "model": "o4-mini",
+    "prompt_tokens": 784,
+    "completion_tokens": 1864,
+    "total_tokens": 2648,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:29:21.417524",
+    "model": "gpt-5",
+    "prompt_tokens": 400,
+    "completion_tokens": 727,
+    "total_tokens": 1127,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:34:52.266850",
+    "model": "gpt-5",
+    "prompt_tokens": 380,
+    "completion_tokens": 1001,
+    "total_tokens": 1381,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:34:54.224392",
+    "model": "gpt-4o",
+    "prompt_tokens": 7238,
+    "completion_tokens": 130,
+    "total_tokens": 7368,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:35:05.890245",
+    "model": "gpt-4o",
+    "prompt_tokens": 14041,
+    "completion_tokens": 53,
+    "total_tokens": 14094,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:35:07.215818",
+    "model": "gpt-4o",
+    "prompt_tokens": 10690,
+    "completion_tokens": 55,
+    "total_tokens": 10745,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:35:08.445246",
+    "model": "gpt-4o",
+    "prompt_tokens": 10831,
+    "completion_tokens": 43,
+    "total_tokens": 10874,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:03.383451",
+    "model": "gpt-5",
+    "prompt_tokens": 791,
+    "completion_tokens": 2312,
+    "total_tokens": 3103,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:07.177339",
+    "model": "gpt-4o",
+    "prompt_tokens": 507,
+    "completion_tokens": 364,
+    "total_tokens": 871,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:13.706367",
+    "model": "gpt-4o",
+    "prompt_tokens": 10135,
+    "completion_tokens": 13,
+    "total_tokens": 10148,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:14.916755",
+    "model": "gpt-4o",
+    "prompt_tokens": 10363,
+    "completion_tokens": 39,
+    "total_tokens": 10402,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:17.735129",
+    "model": "gpt-4o",
+    "prompt_tokens": 553,
+    "completion_tokens": 428,
+    "total_tokens": 981,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:23.610263",
+    "model": "gpt-4o",
+    "prompt_tokens": 553,
+    "completion_tokens": 638,
+    "total_tokens": 1191,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:42.874718",
+    "model": "gpt-5",
+    "prompt_tokens": 34325,
+    "completion_tokens": 3834,
+    "total_tokens": 38159,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:49.095289",
+    "model": "gpt-4o",
+    "prompt_tokens": 734,
+    "completion_tokens": 544,
+    "total_tokens": 1278,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:36:49.839643",
+    "model": "gpt-4o",
+    "prompt_tokens": 279,
+    "completion_tokens": 44,
+    "total_tokens": 323,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:37:19.814022",
+    "model": "gpt-4o",
+    "prompt_tokens": 11101,
+    "completion_tokens": 59,
+    "total_tokens": 11160,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:37:21.277553",
+    "model": "gpt-4o",
+    "prompt_tokens": 11250,
+    "completion_tokens": 45,
+    "total_tokens": 11295,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:19.300815",
+    "model": "gpt-5",
+    "prompt_tokens": 818,
+    "completion_tokens": 2791,
+    "total_tokens": 3609,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:25.188463",
+    "model": "gpt-4o",
+    "prompt_tokens": 622,
+    "completion_tokens": 617,
+    "total_tokens": 1239,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:29.584487",
+    "model": "gpt-4o",
+    "prompt_tokens": 656,
+    "completion_tokens": 518,
+    "total_tokens": 1174,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:29.956855",
+    "model": "gpt-5",
+    "prompt_tokens": 30977,
+    "completion_tokens": 3462,
+    "total_tokens": 34439,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:33.652360",
+    "model": "gpt-4o",
+    "prompt_tokens": 691,
+    "completion_tokens": 290,
+    "total_tokens": 981,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:35.975996",
+    "model": "gpt-4o",
+    "prompt_tokens": 656,
+    "completion_tokens": 491,
+    "total_tokens": 1147,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:38:51.298850",
+    "model": "gpt-5",
+    "prompt_tokens": 392,
+    "completion_tokens": 726,
+    "total_tokens": 1118,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:39:03.503037",
+    "model": "gpt-4o",
+    "prompt_tokens": 306,
+    "completion_tokens": 72,
+    "total_tokens": 378,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:39:49.222066",
+    "model": "gpt-5",
+    "prompt_tokens": 846,
+    "completion_tokens": 2481,
+    "total_tokens": 3327,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:39:52.512369",
+    "model": "gpt-4o",
+    "prompt_tokens": 652,
+    "completion_tokens": 421,
+    "total_tokens": 1073,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:39:56.977775",
+    "model": "gpt-4o",
+    "prompt_tokens": 686,
+    "completion_tokens": 465,
+    "total_tokens": 1151,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:40:01.794773",
+    "model": "gpt-4o",
+    "prompt_tokens": 686,
+    "completion_tokens": 591,
+    "total_tokens": 1277,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:51:18.304809",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 127,
+    "completion_tokens": 5,
+    "total_tokens": 132,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:51:20.684215",
+    "model": "gpt-4o",
+    "prompt_tokens": 7749,
+    "completion_tokens": 116,
+    "total_tokens": 7865,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:51:32.685122",
+    "model": "gpt-4o",
+    "prompt_tokens": 14467,
+    "completion_tokens": 74,
+    "total_tokens": 14541,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:51:34.558613",
+    "model": "gpt-4o",
+    "prompt_tokens": 11109,
+    "completion_tokens": 74,
+    "total_tokens": 11183,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T14:52:44.431667",
+    "model": "gpt-5",
+    "prompt_tokens": 2355,
+    "completion_tokens": 2985,
+    "total_tokens": 5340,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:15:10.817176",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 127,
+    "completion_tokens": 8,
+    "total_tokens": 135,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:15:13.151173",
+    "model": "gpt-4o",
+    "prompt_tokens": 7914,
+    "completion_tokens": 129,
+    "total_tokens": 8043,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:15:24.586262",
+    "model": "gpt-4o",
+    "prompt_tokens": 14418,
+    "completion_tokens": 49,
+    "total_tokens": 14467,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:15:27.150497",
+    "model": "gpt-4o",
+    "prompt_tokens": 11274,
+    "completion_tokens": 94,
+    "total_tokens": 11368,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:16:27.198472",
+    "model": "gpt-5",
+    "prompt_tokens": 2447,
+    "completion_tokens": 2521,
+    "total_tokens": 4968,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:19:23.397382",
+    "model": "gemini-2.5-flash-lite",
+    "prompt_tokens": 127,
+    "completion_tokens": 8,
+    "total_tokens": 135,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:19:26.505244",
+    "model": "gpt-4o",
+    "prompt_tokens": 7827,
+    "completion_tokens": 141,
+    "total_tokens": 7968,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:19:38.741823",
+    "model": "gpt-4o",
+    "prompt_tokens": 14140,
+    "completion_tokens": 50,
+    "total_tokens": 14190,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:19:40.671769",
+    "model": "gpt-4o",
+    "prompt_tokens": 11187,
+    "completion_tokens": 86,
+    "total_tokens": 11273,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:19:44.631759",
+    "model": "gpt-4o",
+    "prompt_tokens": 12016,
+    "completion_tokens": 193,
+    "total_tokens": 12209,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:28:34.019766",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 127,
+    "completion_tokens": 6,
+    "total_tokens": 133,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:28:37.163380",
+    "model": "gpt-4o",
+    "prompt_tokens": 8180,
+    "completion_tokens": 152,
+    "total_tokens": 8332,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:28:49.057497",
+    "model": "gpt-4o",
+    "prompt_tokens": 14137,
+    "completion_tokens": 74,
+    "total_tokens": 14211,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:28:51.184338",
+    "model": "gpt-4o",
+    "prompt_tokens": 11540,
+    "completion_tokens": 67,
+    "total_tokens": 11607,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:29:52.430753",
+    "model": "gpt-5",
+    "prompt_tokens": 2453,
+    "completion_tokens": 2353,
+    "total_tokens": 4806,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:42:42.163327",
+    "model": "gpt-5",
+    "prompt_tokens": 442,
+    "completion_tokens": 800,
+    "total_tokens": 1242,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:26.659825",
+    "model": "gpt-5",
+    "prompt_tokens": 31997,
+    "completion_tokens": 4000,
+    "total_tokens": 35997,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:45.383216",
+    "model": "o4-mini",
+    "prompt_tokens": 31997,
+    "completion_tokens": 2643,
+    "total_tokens": 34640,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:47.738838",
+    "model": "gpt-4o",
+    "prompt_tokens": 419,
+    "completion_tokens": 162,
+    "total_tokens": 581,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:50.092333",
+    "model": "gpt-4o",
+    "prompt_tokens": 456,
+    "completion_tokens": 190,
+    "total_tokens": 646,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:52.651204",
+    "model": "gpt-4o",
+    "prompt_tokens": 456,
+    "completion_tokens": 206,
+    "total_tokens": 662,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:54.194297",
+    "model": "gpt-4o",
+    "prompt_tokens": 429,
+    "completion_tokens": 120,
+    "total_tokens": 549,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:55.727097",
+    "model": "gpt-4o",
+    "prompt_tokens": 466,
+    "completion_tokens": 128,
+    "total_tokens": 594,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:43:57.304414",
+    "model": "gpt-4o",
+    "prompt_tokens": 466,
+    "completion_tokens": 125,
+    "total_tokens": 591,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:44:30.025888",
+    "model": "gpt-4o",
+    "prompt_tokens": 485,
+    "completion_tokens": 114,
+    "total_tokens": 599,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:45:13.076892",
+    "model": "gpt-5",
+    "prompt_tokens": 27937,
+    "completion_tokens": 4000,
+    "total_tokens": 31937,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:45:26.674191",
+    "model": "o4-mini",
+    "prompt_tokens": 27937,
+    "completion_tokens": 1932,
+    "total_tokens": 29869,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:45:28.837417",
+    "model": "gpt-4o",
+    "prompt_tokens": 442,
+    "completion_tokens": 207,
+    "total_tokens": 649,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:45:32.507872",
+    "model": "gpt-4o",
+    "prompt_tokens": 518,
+    "completion_tokens": 198,
+    "total_tokens": 716,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:45:34.803339",
+    "model": "gpt-4o",
+    "prompt_tokens": 518,
+    "completion_tokens": 203,
+    "total_tokens": 721,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:46:07.679312",
+    "model": "gpt-4o",
+    "prompt_tokens": 485,
+    "completion_tokens": 155,
+    "total_tokens": 640,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:46:49.701804",
+    "model": "gpt-5",
+    "prompt_tokens": 36411,
+    "completion_tokens": 4000,
+    "total_tokens": 40411,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:10.970916",
+    "model": "o4-mini",
+    "prompt_tokens": 36411,
+    "completion_tokens": 3384,
+    "total_tokens": 39795,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:13.045074",
+    "model": "gpt-4o",
+    "prompt_tokens": 443,
+    "completion_tokens": 186,
+    "total_tokens": 629,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:15.339060",
+    "model": "gpt-4o",
+    "prompt_tokens": 519,
+    "completion_tokens": 164,
+    "total_tokens": 683,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:17.477431",
+    "model": "gpt-4o",
+    "prompt_tokens": 519,
+    "completion_tokens": 202,
+    "total_tokens": 721,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:19.677865",
+    "model": "gpt-4o",
+    "prompt_tokens": 407,
+    "completion_tokens": 91,
+    "total_tokens": 498,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:21.594586",
+    "model": "gpt-4o",
+    "prompt_tokens": 480,
+    "completion_tokens": 97,
+    "total_tokens": 577,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T15:47:23.433432",
+    "model": "gpt-4o",
+    "prompt_tokens": 480,
+    "completion_tokens": 109,
+    "total_tokens": 589,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T16:08:48.908032",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 134,
+    "completion_tokens": 7,
+    "total_tokens": 141,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T16:08:52.592097",
+    "model": "gpt-4o",
+    "prompt_tokens": 8149,
+    "completion_tokens": 123,
+    "total_tokens": 8272,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T16:09:08.306167",
+    "model": "gpt-4o",
+    "prompt_tokens": 14070,
+    "completion_tokens": 69,
+    "total_tokens": 14139,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T16:09:16.148616",
+    "model": "gpt-4o",
+    "prompt_tokens": 11538,
+    "completion_tokens": 386,
+    "total_tokens": 11924,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T16:09:18.397557",
+    "model": "gpt-4o",
+    "prompt_tokens": 12037,
+    "completion_tokens": 50,
+    "total_tokens": 12087,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:12:54.711374",
+    "model": "gpt-4o",
+    "prompt_tokens": 10870,
+    "completion_tokens": 20,
+    "total_tokens": 10890,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:13:18.843492",
+    "model": "gpt-4o",
+    "prompt_tokens": 10130,
+    "completion_tokens": 11,
+    "total_tokens": 10141,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:13:33.487777",
+    "model": "gpt-4o",
+    "prompt_tokens": 9920,
+    "completion_tokens": 18,
+    "total_tokens": 9938,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:13:34.898108",
+    "model": "gpt-4o",
+    "prompt_tokens": 9989,
+    "completion_tokens": 26,
+    "total_tokens": 10015,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:13:58.873305",
+    "model": "gpt-4o",
+    "prompt_tokens": 9708,
+    "completion_tokens": 34,
+    "total_tokens": 9742,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:14:01.991588",
+    "model": "gpt-4o",
+    "prompt_tokens": 9581,
+    "completion_tokens": 38,
+    "total_tokens": 9619,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:14:27.452313",
+    "model": "gpt-4o",
+    "prompt_tokens": 9458,
+    "completion_tokens": 45,
+    "total_tokens": 9503,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:15:11.049598",
+    "model": "gpt-4o",
+    "prompt_tokens": 10032,
+    "completion_tokens": 17,
+    "total_tokens": 10049,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:15:12.739356",
+    "model": "gpt-4o",
+    "prompt_tokens": 10140,
+    "completion_tokens": 82,
+    "total_tokens": 10222,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:17:37.256918",
+    "model": "gpt-4o",
+    "prompt_tokens": 9518,
+    "completion_tokens": 81,
+    "total_tokens": 9599,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T17:19:09.080175",
+    "model": "gpt-4o",
+    "prompt_tokens": 9547,
+    "completion_tokens": 23,
+    "total_tokens": 9570,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:30:22.527793",
+    "model": "gpt-4o",
+    "prompt_tokens": 9833,
+    "completion_tokens": 72,
+    "total_tokens": 9905,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:31:11.604038",
+    "model": "gpt-4o",
+    "prompt_tokens": 9501,
+    "completion_tokens": 12,
+    "total_tokens": 9513,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:31:18.652814",
+    "model": "gpt-4o",
+    "prompt_tokens": 10094,
+    "completion_tokens": 56,
+    "total_tokens": 10150,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:56:30.894420",
+    "model": "gemini-2.5-flash",
+    "prompt_tokens": 138,
+    "completion_tokens": 7,
+    "total_tokens": 145,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:56:34.028081",
+    "model": "gpt-4o",
+    "prompt_tokens": 6931,
+    "completion_tokens": 143,
+    "total_tokens": 7074,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:56:57.580185",
+    "model": "gpt-4o",
+    "prompt_tokens": 13792,
+    "completion_tokens": 22,
+    "total_tokens": 13814,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:56:59.220510",
+    "model": "gpt-4o",
+    "prompt_tokens": 10574,
+    "completion_tokens": 22,
+    "total_tokens": 10596,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:57:00.641318",
+    "model": "gpt-4o",
+    "prompt_tokens": 11137,
+    "completion_tokens": 43,
+    "total_tokens": 11180,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T18:58:05.989090",
+    "model": "gpt-5",
+    "prompt_tokens": 2419,
+    "completion_tokens": 3447,
+    "total_tokens": 5866,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T19:45:31.390773",
+    "model": "gpt-4o",
+    "prompt_tokens": 10356,
+    "completion_tokens": 18,
+    "total_tokens": 10374,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T19:53:53.256802",
+    "model": "gpt-4o",
+    "prompt_tokens": 10328,
+    "completion_tokens": 63,
+    "total_tokens": 10391,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:06:13.877660",
+    "model": "gpt-4o",
+    "prompt_tokens": 10351,
+    "completion_tokens": 67,
+    "total_tokens": 10418,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:06:46.101797",
+    "model": "gpt-4o",
+    "prompt_tokens": 9962,
+    "completion_tokens": 63,
+    "total_tokens": 10025,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:08:21.817626",
+    "model": "gpt-4o",
+    "prompt_tokens": 10299,
+    "completion_tokens": 242,
+    "total_tokens": 10541,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:08:23.479714",
+    "model": "gpt-4o",
+    "prompt_tokens": 10635,
+    "completion_tokens": 40,
+    "total_tokens": 10675,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:08:50.131706",
+    "model": "gpt-4o",
+    "prompt_tokens": 10193,
+    "completion_tokens": 244,
+    "total_tokens": 10437,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:08:52.055832",
+    "model": "gpt-4o",
+    "prompt_tokens": 10525,
+    "completion_tokens": 36,
+    "total_tokens": 10561,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:09:50.758345",
+    "model": "gpt-4o",
+    "prompt_tokens": 10339,
+    "completion_tokens": 34,
+    "total_tokens": 10373,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:09:53.026367",
+    "model": "gpt-4o",
+    "prompt_tokens": 10419,
+    "completion_tokens": 61,
+    "total_tokens": 10480,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:09:53.896317",
+    "model": "gpt-4o",
+    "prompt_tokens": 10653,
+    "completion_tokens": 17,
+    "total_tokens": 10670,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-02-28T20:09:55.899429",
+    "model": "gpt-4o",
+    "prompt_tokens": 10840,
+    "completion_tokens": 41,
+    "total_tokens": 10881,
+    "task": "chat"
+  }
+]

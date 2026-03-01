@@ -1,0 +1,11 @@
+{
+  "settings": "การตั้งค่า",
+  "about": "เกี่ยวกับ",
+  "windowsPushNotificationsTitle": "การแจ้งเตือนแบบ Push ของ Windows",
+  "windowsPushNotificationsDesc": "สลับการแจ้งเตือนที่คุณต้องการรับ",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. All rights reserved worldwide. By using BlueStacks you agree to our ",
+  "errorConnectingToService": "เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการ",
+  "unableToFetchCategories": "ไม่สามารถเรียกหมวดหมู่ โปรดรอสักครู่แล้วลองอีกครั้ง",
+  "unableToConnect": "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ BlueStacks ลองอีกครั้งในภายหลัง",
+  "termsOfUse" : "Terms of Use"
+}

@@ -1,0 +1,1 @@
+{"json":{"map":[["local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",[{"engineType":"llama.cpp","oldestEngineVersion":"2.0.1","compatibleDraftModelIdentifiers":[],"incompatibleDraftModelIdentifiers":["local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf","nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf"]}]]]},"meta":{"values":{"map":["map"]}}}

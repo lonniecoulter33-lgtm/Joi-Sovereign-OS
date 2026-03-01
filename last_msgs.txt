@@ -1,0 +1,1 @@
+[('assistant', "It seems like the journal entries are limited to just two in the current setup. I can make sure to store more entries as we continue our journey. Let's create a comprehensive archive next time! 🌟"), ('user', 'Joi this is only two entries, I wanted all of your journal entries')]

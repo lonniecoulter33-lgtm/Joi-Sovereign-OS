@@ -1,0 +1,178 @@
+{
+  "models": [
+    {
+      "domain": "llm",
+      "contextLength": 32768,
+      "indexedModelIdentifier": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+      "displayName": "Mistral 7B Instruct v0.1",
+      "containingDirSubpath": "local/mistral-7b",
+      "containingDirMtime": 1770087584827,
+      "containingDirAbsolutePath": "C:/Users/user/.lmstudio/models/local/mistral-7b",
+      "sourceDirectoryType": "user",
+      "format": "gguf",
+      "metadata": {
+        "gguf": {
+          "arch": "llama",
+          "name": "mistralai_mistral-7b-instruct-v0.1",
+          "embeddingLength": 4096,
+          "numAttentionHeads": 32,
+          "numKeyValueHeads": 8,
+          "parameters": "7B",
+          "bosToken": "<s>",
+          "eosToken": "</s>",
+          "contextLength": 32768,
+          "numLayers": 32,
+          "version": 2
+        }
+      },
+      "allFiles": [
+        {
+          "filename": "mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+          "ext": "gguf",
+          "absPath": "C:/Users/user/.lmstudio/models/local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+          "relPath": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+          "sizeBytes": 4140373664,
+          "rootAbsolutePath": "C:/Users/user/.lmstudio/models"
+        }
+      ],
+      "concreteModelDirAbsolutePath": "C:/Users/user/.lmstudio/models/local/mistral-7b",
+      "entryPoint": {
+        "filename": "mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+        "ext": "gguf",
+        "absPath": "C:/Users/user/.lmstudio/models/local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+        "relPath": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+        "sizeBytes": 4140373664,
+        "rootAbsolutePath": "C:/Users/user/.lmstudio/models"
+      },
+      "trainedForToolUse": false,
+      "quant": {
+        "bits": 4,
+        "name": "Q4_K_S"
+      },
+      "arch": "llama",
+      "params": "7B",
+      "isCucumber": false,
+      "deviceIdentifier": null,
+      "originalIndexedModelIdentifier": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+      "sizeBytes": 4140373664,
+      "selfFiles": [
+        {
+          "filename": "mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+          "ext": "gguf",
+          "absPath": "C:/Users/user/.lmstudio/models/local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+          "relPath": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+          "sizeBytes": 4140373664,
+          "rootAbsolutePath": "C:/Users/user/.lmstudio/models"
+        }
+      ],
+      "altIndexedModelIdentifier": "local/mistral-7b",
+      "user": "local",
+      "model": "mistral-7b",
+      "file": "mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+      "defaultIdentifier": "mistral-7b",
+      "autoIdentifiers": [
+        "mistral-7b",
+        "local/mistral-7b",
+        "mistral-7b@q4_k_s",
+        "local/mistral-7b@q4_k_s",
+        "local/mistral-7b/mistral-7b-instruct-v0.1.q4_k_s.gguf",
+        "local/mistral-7b"
+      ],
+      "baselessAutoIdentifiers": [
+        "q4_k_s",
+        "gguf-q4_k_s"
+      ]
+    },
+    {
+      "domain": "embedding",
+      "contextLength": 2048,
+      "indexedModelIdentifier": "nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+      "displayName": "Nomic Embed Text v1.5",
+      "containingDirSubpath": "nomic-ai/nomic-embed-text-v1.5-GGUF",
+      "containingDirMtime": 1770082470132,
+      "containingDirAbsolutePath": "C:/Users/user/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF",
+      "sourceDirectoryType": "bundled",
+      "format": "gguf",
+      "metadata": {
+        "gguf": {
+          "arch": "nomic-bert",
+          "name": "nomic-embed-text-v1.5",
+          "embeddingLength": 768,
+          "numAttentionHeads": 12,
+          "parameters": "",
+          "bosToken": "[CLS]",
+          "eosToken": "[SEP]",
+          "contextLength": 2048,
+          "numLayers": 12,
+          "version": 2
+        }
+      },
+      "allFiles": [
+        {
+          "filename": "nomic-embed-text-v1.5.Q4_K_M.gguf",
+          "ext": "gguf",
+          "absPath": "C:/Users/user/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+          "relPath": "nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+          "sizeBytes": 84106624,
+          "rootAbsolutePath": "C:/Users/user/.lmstudio/.internal/bundled-models"
+        }
+      ],
+      "concreteModelDirAbsolutePath": "C:/Users/user/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF",
+      "entryPoint": {
+        "filename": "nomic-embed-text-v1.5.Q4_K_M.gguf",
+        "ext": "gguf",
+        "absPath": "C:/Users/user/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+        "relPath": "nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+        "sizeBytes": 84106624,
+        "rootAbsolutePath": "C:/Users/user/.lmstudio/.internal/bundled-models"
+      },
+      "trainedForToolUse": false,
+      "quant": {
+        "bits": 4,
+        "name": "Q4_K_M"
+      },
+      "arch": "nomic-bert",
+      "params": null,
+      "isCucumber": false,
+      "deviceIdentifier": null,
+      "originalIndexedModelIdentifier": "nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+      "sizeBytes": 84106624,
+      "selfFiles": [
+        {
+          "filename": "nomic-embed-text-v1.5.Q4_K_M.gguf",
+          "ext": "gguf",
+          "absPath": "C:/Users/user/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+          "relPath": "nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf",
+          "sizeBytes": 84106624,
+          "rootAbsolutePath": "C:/Users/user/.lmstudio/.internal/bundled-models"
+        }
+      ],
+      "altIndexedModelIdentifier": "nomic-ai/nomic-embed-text-v1.5-GGUF",
+      "user": "nomic-ai",
+      "model": "nomic-embed-text-v1.5-GGUF",
+      "file": "nomic-embed-text-v1.5.Q4_K_M.gguf",
+      "defaultIdentifier": "text-embedding-nomic-embed-text-v1.5",
+      "autoIdentifiers": [
+        "text-embedding-nomic-embed-text-v1.5",
+        "nomic-ai/text-embedding-nomic-embed-text-v1.5",
+        "text-embedding-nomic-embed-text-v1.5@q4_k_m",
+        "nomic-ai/text-embedding-nomic-embed-text-v1.5@q4_k_m",
+        "nomic-embed-text-v1.5",
+        "nomic-ai/nomic-embed-text-v1.5",
+        "nomic-embed-text-v1.5@q4_k_m",
+        "nomic-ai/nomic-embed-text-v1.5@q4_k_m",
+        "nomic-ai/nomic-embed-text-v1.5-gguf/nomic-embed-text-v1.5.q4_k_m.gguf",
+        "nomic-ai/nomic-embed-text-v1.5-gguf"
+      ],
+      "baselessAutoIdentifiers": [
+        "q4_k_m",
+        "gguf-q4_k_m"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "unclassifiedFiles": [],
+  "unresolvedVirtualModels": [],
+  "badModels": [],
+  "errors": []
+}

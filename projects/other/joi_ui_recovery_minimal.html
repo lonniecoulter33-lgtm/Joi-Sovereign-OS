@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Joi</title>
+<style>
+:root{--bg:#0b0c10;--panel:#12141a;--border:#2a2f3a;--text:#e9eef7;--muted:#a7b0bf;--accent:#7aa2ff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,Segoe UI,Roboto,Arial}
+a{color:var(--accent)}
+#app{display:flex;height:100vh;overflow:hidden}
+#sidebar{width:280px;min-width:280px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column}
+#main{flex:1;display:flex;flex-direction:column}
+header{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border);background:rgba(18,20,26,.9)}
+#avatarWrap{display:flex;gap:10px;align-items:center}
+#avatar{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--border);background:#000}
+#status{color:var(--muted);font-size:12px}
+#chatLog{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:900px;padding:10px 12px;border:1px solid var(--border);border-radius:14px;background:rgba(18,20,26,.7)}
+.msg.user{align-self:flex-end}
+.msg.assistant{align-self:flex-start}
+.msg pre{white-space:pre-wrap;word-break:break-word;margin:8px 0 0}
+.copyBtn{margin-left:8px;font-size:12px;padding:4px 8px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer}
+#composer{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);background:rgba(18,20,26,.9)}
+#input{flex:1;min-height:42px;max-height:160px;resize:vertical;padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:#0f1117;color:var(--text)}
+button{padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:#161a22;color:var(--text);cursor:pointer}
+button:hover{border-color:#3a4354}
+#loginBox{padding:12px}
+#loginBox input{width:100%;padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:#0f1117;color:var(--text);margin-bottom:8px}
+.small{font-size:12px;color:var(--muted)}
+/* allow selection/copy */
+#chatLog, #input, pre, code, textarea, input {user-select:text;-webkit-user-select:text}
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div id="loginBox">
+      <div style="font-weight:600;margin-bottom:6px;">Login</div>
+      <input id="pw" type="password" placeholder="Password"/>
+      <button id="loginBtn">Login</button>
+      <div class="small" style="margin-top:8px;">Tip: if things act weird, clear site data for localhost and log in again.</div>
+    </div>
+    <div style="padding:12px;border-top:1px solid var(--border);" class="small">
+      Uploads and exports show as clickable links in chat.
+    </div>
+  </aside>
+
+  <main id="main">
+    <header>
+      <div id="avatarWrap">
+        <img id="avatar" src="/file/project/assets/avatars/custom.png" alt="avatar"/>
+        <div>
+          <div style="font-weight:650;">Joi</div>
+          <div id="status">disconnected</div>
+        </div>
+      </div>
+      <div style="margin-left:auto" class="small" id="whoami"></div>
+    </header>
+
+    <div id="chatLog"></div>
+
+    <div id="composer">
+      <input id="fileInput" type="file" style="display:none"/>
+      <button id="uploadBtn" title="Upload file">📎</button>
+      <textarea id="input" placeholder="Type..."></textarea>
+      <button id="sendBtn">Send</button>
+    </div>
+  </main>
+</div>
+
+<script>
+const $ = (id)=>document.getElementById(id);
+const chatLog = $("chatLog");
+const statusEl = $("status");
+const whoEl = $("whoami");
+
+function addMessage(role, text){
+  const d=document.createElement("div");
+  d.className="msg "+(role==="user"?"user":"assistant");
+  // simple code fence rendering + copy
+  const parts = String(text||"").split(/```/);
+  if(parts.length>=3){
+    // alternating text / code
+    d.innerHTML="";
+    for(let i=0;i<parts.length;i++){
+      const seg=parts[i];
+      if(i%2===0){
+        if(seg.trim()){
+          const p=document.createElement("div");
+          p.innerHTML=seg.replace(/\n/g,"<br/>");
+          d.appendChild(p);
+        }
+      }else{
+        const pre=document.createElement("pre");
+        pre.textContent=seg.replace(/^\w+\n/,"");
+        const btn=document.createElement("button");
+        btn.className="copyBtn";
+        btn.textContent="Copy";
+        btn.onclick=()=>navigator.clipboard.writeText(pre.textContent||"");
+        d.appendChild(btn);
+        d.appendChild(pre);
+      }
+    }
+  }else{
+    d.innerHTML=text;
+  }
+  chatLog.appendChild(d);
+  // cap DOM
+  while(chatLog.children.length>140) chatLog.removeChild(chatLog.firstChild);
+  chatLog.scrollTop=chatLog.scrollHeight;
+}
+
+async function refreshAvatar(){
+  try{
+    const r=await fetch("/avatar",{cache:"no-store"});
+    if(!r.ok) return;
+    const j=await r.json();
+    if(j && j.ok && j.current && j.current.url){
+      $("avatar").src = j.current.url;
+    }
+  }catch{}
+}
+
+async function doLogin(){
+  const password = $("pw").value;
+  if(!password) return;
+  statusEl.textContent="logging in…";
+  try{
+    const r = await fetch("/login",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({password})
+    });
+    const j = await r.json();
+    if(!j.ok){ statusEl.textContent="login failed"; addMessage("assistant", j.error||"Login failed"); return; }
+    statusEl.textContent="ready";
+    whoEl.textContent = j.admin ? "admin" : "user";
+    await refreshAvatar();
+  }catch(e){
+    statusEl.textContent="error";
+    addMessage("assistant", "Login error: "+e.message);
+  }
+}
+
+async function send(){
+  const text=$("input").value.trim();
+  if(!text) return;
+  $("input").value="";
+  addMessage("user", text);
+  statusEl.textContent="thinking…";
+  try{
+    const r=await fetch("/chat",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({message:text})
+    });
+    const j=await r.json();
+    if(!j.ok){ statusEl.textContent="error"; addMessage("assistant", j.error||"Error"); return; }
+    statusEl.textContent="ready";
+    const reply = j.reply || "";
+    // render links as clickable
+    const safe = reply.replace(/(\/file\/[\w\-]+\/[\w\-\/\.]+)/g,'<a href="$1" target="_blank">$1</a>');
+    addMessage("assistant", safe);
+
+    // Auto-speak if your /tts exists and UI wants it
+    try{
+      const t = await fetch("/tts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text: reply})});
+      const tj = await t.json();
+      if(tj.ok && tj.url){
+        const a=new Audio(tj.url);
+        a.play().catch(()=>{});
+      }
+    }catch{}
+  }catch(e){
+    statusEl.textContent="error";
+    addMessage("assistant","Network error: "+e.message);
+  }
+}
+
+async function uploadFile(file){
+  const fd=new FormData();
+  fd.append("file",file);
+  const r=await fetch("/upload",{method:"POST",body:fd});
+  const j=await r.json();
+  if(!j.ok) throw new Error(j.error||"Upload failed");
+  addMessage("assistant", `Uploaded <b>${j.filename}</b>: <a href="${j.url}" target="_blank">open</a>`);
+}
+
+$("loginBtn").onclick=doLogin;
+$("sendBtn").onclick=send;
+$("input").addEventListener("keydown",(e)=>{ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); send(); }});
+
+$("uploadBtn").onclick=()=> $("fileInput").click();
+$("fileInput").addEventListener("change", async ()=>{
+  const f=$("fileInput").files && $("fileInput").files[0];
+  if(!f) return;
+  try{ await uploadFile(f); }catch(e){ addMessage("assistant", e.message); }
+  $("fileInput").value="";
+});
+
+window.addEventListener("dragover",(e)=>{ e.preventDefault(); });
+window.addEventListener("drop", async (e)=>{
+  e.preventDefault();
+  const f=e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if(!f) return;
+  try{ await uploadFile(f); }catch(err){ addMessage("assistant", err.message); }
+});
+
+// initial
+statusEl.textContent="please login";
+refreshAvatar();
+</script>
+</body>
+</html>

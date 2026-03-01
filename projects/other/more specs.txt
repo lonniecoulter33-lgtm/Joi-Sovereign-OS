@@ -1,0 +1,149 @@
+Trim size: 6 × 9
+
+Page count: ~175 pages
+
+Printer: KDP / IngramSpark (standard cream or white)
+
+Cover finish: Matte (strongly recommended)
+
+I’ll give exact measurements, then the design logic.
+
+1. Spine Width (Critical)
+
+Spine depends on paper type, but at ~175 pages:
+
+KDP cream paper: ~0.41 in
+
+KDP white paper: ~0.38 in
+
+IngramSpark cream: ~0.39–0.41 in
+
+Safe working number:
+👉 0.40 inches
+
+Your formatter will confirm this at upload.
+
+2. Full Cover Canvas Size
+KDP Example (with bleed)
+
+Width:
+6 (back) + 6 (front) + 0.40 (spine) + 0.25 bleed × 2
+= 12.90 inches
+
+Height:
+9 + 0.25 bleed × 2
+= 9.50 inches
+
+📐 Total cover file:
+12.90″ × 9.50″ at 300 DPI, CMYK
+
+(IngramSpark is nearly identical; I can give that version too.)
+
+3. Front Cover (What You Already Have)
+
+✅ Keep exactly as-is conceptually
+
+Minor checks only:
+
+Title remains dominant
+
+Subtitle readable at thumbnail size
+
+Author name clear but not loud
+
+No additional elements needed.
+
+4. Spine Design (Zen-Appropriate)
+Spine Text (Centered Vertically)
+
+THE ACTOR TAKES A BOW
+Lonnie Coulter
+
+Formatting:
+
+Same gold tone as front title
+
+Slight letterspacing
+
+No icons
+
+No publisher mark (optional)
+
+If space is tight:
+
+Drop subtitle
+
+Keep title only
+
+Minimal is strength here.
+
+5. Back Cover (Image + Text Integration)
+Back Cover Image
+
+Use:
+
+A darkened continuation of the front image
+or
+
+A simplified curtain / stage shadow / cosmic fade
+
+Important:
+
+The back image should feel like the afterimage of the front
+
+Not a new scene
+
+Same color family, slightly quieter
+
+Back Cover Copy Placement
+
+Centered vertically or slightly high, never bottom-heavy.
+
+Use the copy we finalized:
+
+Most of us move through life as if we are the character alone—
+caught in the script, absorbed in the role, convinced the drama is personal.
+
+But what if there is something quietly watching?
+Something that never entered the stage, yet never left it.
+
+The Actor Takes a Bow is a contemplative exploration of consciousness…
+(etc.)
+
+Formatting:
+
+Warm off-white or soft gold
+
+No bold
+
+No blurbs
+
+No barcode overlap
+
+6. Barcode Placement (Do This Quietly)
+
+Bottom-right corner of back cover
+
+White box or lightly faded overlay
+
+Keep it clean and unobtrusive
+
+Do not fight it. Let it be the only “modern” mark.
+
+7. Visual Continuity Rule (Very Important)
+
+When someone lays the book flat:
+
+The front image should feel like it dissolves into the back.
+
+Not mirrored.
+Not repeated.
+Just continuing.
+
+This mirrors the book’s teaching perfectly.
+
+8. One-Sentence Instruction for a Designer or Printer
+
+You can copy/paste this:
+
+“Create a full-wrap 6×9 matte paperback cover with a continuous theatrical image across front, spine, and back; gold serif typography; minimal spine text; and back-cover copy over a darkened image, maintaining a quiet, contemplative tone.”

@@ -1,0 +1,16 @@
+{
+  "proposal_id": "upgrade_1770897333",
+  "capability": "native multimodal perception",
+  "description": "Capability acquired from comparison with Gemini: native multimodal perception",
+  "target_file": "joi_native_multimodal_perception.py",
+  "upgrade_type": "new_module",
+  "code_size": 7006,
+  "validation": {
+    "syntax_valid": true,
+    "imports_available": true
+  },
+  "created": 1770897333.817711,
+  "created_datetime": "2026-02-12T04:55:33.817711",
+  "status": "pending_review",
+  "proposal_path": "proposals\\upgrade_1770897333_joi_native_multimodal_perception.py"
+}

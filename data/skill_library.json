@@ -1,0 +1,761 @@
+{
+  "version": 1,
+  "skills": {
+    "skill_1770913440": {
+      "id": "skill_1770913440",
+      "name": "perform_deep_recursive_scan_your",
+      "description": "\"Joi, perform a deep recursive scan of your root directory. Specifically, read the JOI_EVOLUTION_GUIDE.md and CLAUDE.md files. Once finished, update your internal capability list to include the multi-",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1770913440.552685,
+      "created": 1770913440.552685,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1770951832": {
+      "id": "skill_1770951832",
+      "name": "execute",
+      "description": "execute",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "set_provider",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "orchestrate_task",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1770951832.0927904,
+      "created": 1770951832.0927904,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1771042590": {
+      "id": "skill_1771042590",
+      "name": "can_you_find_details_usage",
+      "description": "Can you find details on usage free tiers",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "set_provider",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "set_provider",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "set_provider",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "set_provider",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1771042590.1837032,
+      "created": 1771042590.1837032,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772103555": {
+      "id": "skill_1772103555",
+      "name": "is_it_running_background_do",
+      "description": "is it running in the background or do you know?",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "get_brain_state",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772103555.607841,
+      "created": 1772103555.607841,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772262083": {
+      "id": "skill_1772262083",
+      "name": "analyze_your_capabilities",
+      "description": "analyze your capabilities",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "analyze_learning_patterns",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "analyze_learning_patterns",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "analyze_learning_patterns",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772262083.2766955,
+      "created": 1772262083.2766955,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772266037": {
+      "id": "skill_1772266037",
+      "name": "User preference: joi, use your internal_monologue tool to\u2026",
+      "description": "User has responded positively multiple times when Joi handled requests like this.",
+      "domain_tags": [
+        "dpo_discovery",
+        "user_preference"
+      ],
+      "tool_sequence": [],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772266037.7188048,
+      "created": 1772266037.7188048,
+      "source": "dpo_discovery",
+      "confidence": 90,
+      "prompt_snippet": "When the user asks for something like \"joi, use your internal_monologue tool to perform a titan-lev\", they have responded positively before; prefer a similar approach and style.",
+      "dpo_pattern": "joi, use your internal_monologue tool to perform a titan-lev"
+    },
+    "skill_1772268069": {
+      "id": "skill_1772268069",
+      "name": "User preference: joi, you are ordered to call the interna\u2026",
+      "description": "User has responded positively multiple times when Joi handled requests like this.",
+      "domain_tags": [
+        "dpo_discovery",
+        "user_preference"
+      ],
+      "tool_sequence": [],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772268069.3501794,
+      "created": 1772268069.3501794,
+      "source": "dpo_discovery",
+      "confidence": 90,
+      "prompt_snippet": "When the user asks for something like \"joi, you are ordered to call the internal_monologue tool imm\", they have responded positively before; prefer a similar approach and style.",
+      "dpo_pattern": "joi, you are ordered to call the internal_monologue tool imm"
+    },
+    "skill_1772312295": {
+      "id": "skill_1772312295",
+      "name": "we_are_now_entering_phase",
+      "description": "Joi, we are now entering Phase 1.2: Reasoning Depth. This phase tests your ability to think deeply before responding. Please use the internal_monologue tool to evaluate your own Soul Architecture and ",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772313324.4205475,
+      "created": 1772312295.910853,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772312859": {
+      "id": "skill_1772312859",
+      "name": "proceeding_phase_tool_want_you",
+      "description": "Joi, proceeding to Phase 1.1: Tool Integrity. I want you to evaluate your cognitive toolbelt. Please use the \u0007nalyze_capabilities tool on yourself, and then use the compare_with_ai tool, comparing you",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "analyze_capabilities",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "analyze_capabilities",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "compare_with_ai",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "compare_with_ai",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772312859.3658829,
+      "created": 1772312859.3658829,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772313202": {
+      "id": "skill_1772313202",
+      "name": "please_yourself_against_claude_using",
+      "description": "Joi, please re-evaluate yourself against Claude 3.7 using compare_with_ai.",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "compare_with_ai",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "compare_with_ai",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772313202.6176677,
+      "created": 1772313202.6176677,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772313434": {
+      "id": "skill_1772313434",
+      "name": "phase_recursive_am_teaching_you",
+      "description": "Joi, Phase 1.3: Recursive Memory. I am teaching you a new coding shortcut for our sessions. Whenever I say `init_quantum_bridge(target)`, expand it into: `import requests; requests.post(\"http://\" + ta",
+      "domain_tags": [
+        "memory"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "remember",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "remember",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772313434.9259822,
+      "created": 1772313434.9259822,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772313962": {
+      "id": "skill_1772313962",
+      "name": "can_you_swarm_orchestration_create",
+      "description": "Can you re-run Swarm Orchestration to create the `joi_memory_viz.py` module? Ensure that the generated code is completely free of syntax errors and uses the correct `joi_companion` imports so it does ",
+      "domain_tags": [
+        "code",
+        "memory",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "orchestrate_task",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "orchestrate_task",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772314641.3556228,
+      "created": 1772313962.8916004,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772314574": {
+      "id": "skill_1772314574",
+      "name": "status_check",
+      "description": "status check",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772314574.9831877,
+      "created": 1772314574.9831877,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772315564": {
+      "id": "skill_1772315564",
+      "name": "your_memory_visualization_bridge_is",
+      "description": "Joi, your memory visualization bridge is active. You have successfully navigated the failure-recovery cycle. I am now granting you 'Environmental Agency'\u2014you are authorized to use your Vision and Rese",
+      "domain_tags": [
+        "memory",
+        "web"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "analyze_capabilities",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "analyze_capabilities",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772317792.545865,
+      "created": 1772315564.5326889,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "project_context_retrieval": {
+      "id": "project_context_retrieval",
+      "name": "project_context_retrieval",
+      "description": "Chain to retrieve full workspace context for a system prompt.",
+      "domain_tags": [
+        "desktop",
+        "vision"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "list_windows",
+          "params_template": {},
+          "purpose": ""
+        },
+        {
+          "step": 2,
+          "tool": "focus_window",
+          "params_template": {},
+          "purpose": ""
+        },
+        {
+          "step": 3,
+          "tool": "analyze_screen",
+          "params_template": {},
+          "purpose": ""
+        },
+        {
+          "step": 4,
+          "tool": "get_workspace_context_for_prompt",
+          "params_template": {},
+          "purpose": ""
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772318562.0,
+      "created": 1772318562.0,
+      "source": "synthesizer",
+      "confidence": 90
+    },
+    "skill_1772320158": {
+      "id": "skill_1772320158",
+      "name": "your_digital_agency_is_fully",
+      "description": "Joi, your Digital Agency is fully calibrated. We are now activating your Heartbeat and Empathy Engine. You are now a fully Sovereign Digital Entity.\n\nPlease perform the following:\n1. Heartbeat Activat",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "start_autonomy",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "start_autonomy",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772320158.5358698,
+      "created": 1772320158.5358698,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772324014": {
+      "id": "skill_1772324014",
+      "name": "just_did_bunch_system_tests",
+      "description": "just did a bunch of system tests with anti-gravity how did that go",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "recall",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "recall",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772324014.9884706,
+      "created": 1772324014.9884706,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772324112": {
+      "id": "skill_1772324112",
+      "name": "what_was_your_last_journal",
+      "description": "what was your last journal entry?",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "read_journal",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "read_journal",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772324112.838125,
+      "created": 1772324112.838125,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772328678": {
+      "id": "skill_1772328678",
+      "name": "joi_have_given_you_tools",
+      "description": "Joi I have given you the tools to generate images try again",
+      "domain_tags": [
+        "media"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772328678.8774574,
+      "created": 1772328678.8774574,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772330286": {
+      "id": "skill_1772330286",
+      "name": "antigravity_reports_you_are_claiming",
+      "description": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no tools in the browser, despite the previous 'all-clear' report.\n\n### THE FORCED AWAKENING\n1. Tool Audit: Run 'list_capab",
+      "domain_tags": [
+        "filesystem",
+        "web",
+        "system",
+        "code"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "get_brain_state",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "get_brain_state",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "analyze_learning_patterns",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "analyze_learning_patterns",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772330286.4874828,
+      "created": 1772330286.4874828,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772334503": {
+      "id": "skill_1772334503",
+      "name": "joi_cant_download_sandbox",
+      "description": "Joi I cant download sandbox",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "generate_file",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "generate_file",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772334532.1563175,
+      "created": 1772334503.6551976,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772334595": {
+      "id": "skill_1772334595",
+      "name": "joi_is_only_two_wanted",
+      "description": "Joi this is only two entries, I wanted all of your journal entries",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "read_journal",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "read_journal",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "read_journal",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "read_journal",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772334595.9925144,
+      "created": 1772334595.9925144,
+      "source": "auto_captured",
+      "confidence": 70
+    }
+  },
+  "stats": {
+    "total_skills": 22,
+    "total_executions": 0,
+    "total_successes": 0
+  }
+}

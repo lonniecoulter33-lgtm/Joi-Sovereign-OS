@@ -1,0 +1,75 @@
+--- VirtualDJ System Report --- 850.9004.pc64.2202 --- 2026-01-20 14:33 ---
+
+-- System info --
+CPU: Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz
+GPU: Intel(R) UHD Graphics 620
+Memory: 16162 MB
+Power Mode: Balanced
+
+-- MIDI Devices --
+Midi out device: drivernameout="Microsoft GS Wavetable Synth" 
+
+-- HID Devices --
+HID Device (no attributes): path="\\?\hid#vid_8087&pid_0ac2#6&1101436&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (no attributes): path="\\?\hid#vid_8087&pid_0ac3#6&364caa91&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x056A" pid="0x48E3" path="\\?\hid#wcom48e2&col02#5&35ff0089&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x8087" pid="0x0A1E" path="\\?\hid#intc816&col01#3&207f9b7f&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x056A" pid="0x48E3" path="\\?\hid#wcom48e2&col03#5&35ff0089&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x8087" pid="0x0A1E" path="\\?\hid#intc816&col02#3&207f9b7f&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x056A" pid="0x48E3" path="\\?\hid#wcom48e2&col05#5&35ff0089&0&0004#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x045E" pid="0x0000" path="\\?\hid#converteddevice&col02#5&17bac0a6&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x045E" pid="0x0000" path="\\?\hid#converteddevice&col03#5&17bac0a6&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (no attributes): path="\\?\hid#vid_8087&pid_0ac2#6&17377cf3&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x044E" pid="0x120A" path="\\?\hid#dell08b6&col03#5&9c2c4ba&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x044E" pid="0x120A" path="\\?\hid#dell08b6&col04#5&9c2c4ba&0&0003#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (no attributes): path="\\?\hid#vid_8087&pid_0ac2#6&47dcc4e&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (no attributes): path="\\?\hid#vid_8087&pid_0ac2#6&29f12d98&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+HID Device (unknown): vid="0x044E" pid="0x120A" path="\\?\hid#dell08b6&col05#5&9c2c4ba&0&0004#{4d1e55b2-f16f-11cf-88cb-001111000030}"
+
+-- Audio Devices --
+Audio device: asio="Realtek ASIO" hardwareID:"A80362FF-CE76-4DD9-874A704C57BF0D6A" 
+Audio device: input name="CHBT-590" hardwareID:"{0.0.1.00000000}.{76940387-8c10-4cb7-bff2-1f94d5385658}" 
+Audio device: input name="Realtek(R) Audio" vid="0x10EC" pid="0x0295" hardwareID:"{0.0.1.00000000}.{3d23a799-a7c5-40a2-9c36-10ea9a12859a}" 
+Audio device: input name="soundcore P20i" hardwareID:"{0.0.1.00000000}.{956e7cf0-fe87-4c17-a59e-c5a6c2958d16}" 
+Audio device: name="CHBT-590" hardwareID:"{0.0.0.00000000}.{976cb6cb-3d76-4779-9284-473e48e4f795}" 
+Audio device: name="Realtek(R) Audio" vid="0x10EC" pid="0x0295" hardwareID:"{0.0.0.00000000}.{fb7265f1-cb8f-495b-b06d-46240b5cf718}" 
+Audio device: name="soundcore P20i" hardwareID:"{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26}" 
+
+-- Audio Devices Used --
+asio://A80362FF-CE76-4DD9-874A704C57BF0D6A (Realtek ASIO) - 44100 Hz, Int24LSB, 2 chan out, 2 chan in, 1024 samples
+  master : 1/2
+
+-- Audio Error Log --
+
+-- Audio High Cpu Log --
+[11:03] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 111.07% (5x)
+[11:16] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 200.86% (30x)
+[11:26] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 247.61% (29x)
+[11:36] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 264.89% (52x)
+[11:46] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 221.17% (39x)
+[11:56] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 222.02% (72x)
+[12:37] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 221.11% (126x)
+[12:47] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 196.02% (84x)
+[12:57] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 188.60% (49x)
+[13:08] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 150.67% (11x)
+[13:17] wasapi://{0.0.0.00000000}.{976cb6cb-3d76-4779-9284-473e48e4f795} (CHBT-590) : Peak cpu: 190.10% (33x)
+[13:21] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 469.23% (15x)
+[13:28] wasapi://{0.0.0.00000000}.{976cb6cb-3d76-4779-9284-473e48e4f795} (CHBT-590) : Peak cpu: 188.82% (44x)
+[13:31] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 179.26% (35x)
+[13:38] wasapi://{0.0.0.00000000}.{976cb6cb-3d76-4779-9284-473e48e4f795} (CHBT-590) : Peak cpu: 188.52% (24x)
+[13:42] wasapi://{0.0.0.00000000}.{c6b716ed-7ecd-4265-be8d-2602af127e26} (soundcore P20i) : Peak cpu: 150.56% (15x)
+[13:49] asio://A80362FF-CE76-4DD9-874A704C57BF0D6A (Realtek ASIO) : Peak cpu: 155.08% (25x)
+[13:59] asio://A80362FF-CE76-4DD9-874A704C57BF0D6A (Realtek ASIO) : Peak cpu: 146.57% (48x)
+[14:10] asio://A80362FF-CE76-4DD9-874A704C57BF0D6A (Realtek ASIO) : Peak cpu: 192.77% (57x)
+[14:20] asio://A80362FF-CE76-4DD9-874A704C57BF0D6A (Realtek ASIO) : Peak cpu: 170.14% (33x)
+[14:31] asio://A80362FF-CE76-4DD9-874A704C57BF0D6A (Realtek ASIO) : Peak cpu: 115.77% (5x)
+
+-- Controller Reconnect Log --
+
+-- Performance Log --
+Performance stats (session duration: 03:36:40)
+ avg peak audio cpu: 88% - low skin fps avg: 42 fps - periods with skin drops (<24fps): 10% - periods with skin drops (<15fps): 1%
+
+-- Database --
+Loading database C: (11.99 KB)
+Database loading time: 1.98 ms - Number of entries: 17

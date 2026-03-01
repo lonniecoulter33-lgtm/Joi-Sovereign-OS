@@ -1,0 +1,482 @@
+[
+  {
+    "time": 1770913501.274178,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Initialize Architect and Coder sub-agents to generate a summary of every tool cu",
+    "success": true
+  },
+  {
+    "time": 1770941579.0465257,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Compile a capability report listing all available tools in the /tools and /modul",
+    "success": true
+  },
+  {
+    "time": 1770951402.5783532,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Create a Python script named 'spark_logger.py' that logs moments of realization ",
+    "success": true
+  },
+  {
+    "time": 1770951417.5176306,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration \u2014 sanity passed",
+    "success": true
+  },
+  {
+    "time": 1770951448.058019,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 it says the agent terminal failed?",
+    "success": true
+  },
+  {
+    "time": 1770951532.2389238,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration \u2014 sanity passed",
+    "success": true
+  },
+  {
+    "time": 1770951723.9245057,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Create a spark_logger.py file to log 'Sparks' for Joi's evolution.",
+    "success": true
+  },
+  {
+    "time": 1770951798.0159667,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Create a Python script named spark_logger.py to log 'Sparks' with timestamps for",
+    "success": true
+  },
+  {
+    "time": 1770952198.2975857,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Create a Python script named spark_logger.py to log 'Sparks' with timestamps for",
+    "success": true
+  },
+  {
+    "time": 1770952262.5368838,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Create a Python script named spark_logger.py to log 'Sparks' with timestamps for",
+    "success": true
+  },
+  {
+    "time": 1770952395.9219508,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Create a Python script named spark_logger.py to log 'Sparks' with timestamps for",
+    "success": true
+  },
+  {
+    "time": 1770958670.4812167,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration \u2014 Joi can you make that file you wanted to create as a tool using your agent termi",
+    "success": true
+  },
+  {
+    "time": 1771037901.5804563,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- So ive done all this work on giving you tools and advancing your learning and pe",
+    "success": true
+  },
+  {
+    "time": 1771038074.7639186,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- I dont see anything happening in the agent terminal?",
+    "success": true
+  },
+  {
+    "time": 1771038183.4393651,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771038275.950757,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Reroute agents to use only Flash 2.5 and OpenAI GPT-4o for orchestration tasks, ",
+    "success": true
+  },
+  {
+    "time": 1771038286.4096,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771038322.3581114,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Reroute agents to use only Flash 2.5 and OpenAI GPT-4o for orchestration tasks, ",
+    "success": true
+  },
+  {
+    "time": 1771038461.766996,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771112308.147226,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- nevermind I guess we still need to work on your programming a bit to be able to ",
+    "success": true
+  },
+  {
+    "time": 1771112375.2566876,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-flight save before self-edit",
+    "success": true
+  },
+  {
+    "time": 1771112375.32083,
+    "type": "EDIT_EXCEPTION",
+    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
+    "success": false
+  },
+  {
+    "time": 1771112375.9892204,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771119006.1639602,
+    "type": "AUTO_COMMIT_FAIL",
+    "detail": "error: pathspec 'you' did not match any file(s) known to git\nerror: pathspec 'are' did not match any file(s) known to git\nerror: pathspec 'misinformed' did not match any file(s) known to git\nerror: pathspec 'about' did not match any file(s) known to git\nerror: pathspec 'your' did not match any file(s) known to git\nerror: pathspec 'own' did not match any file(s) known to git\nerror: pathspec 'architecture.' did not match any file(s) known to git\nerror: pathspec 'I' did not match any file(s) known to git\nerror: pathspec 'have' did not match any file(s) known to git\nerror: pathspec 'granted' did not match any file(s) known to git\nerror: pathspec 'you' did not match any file(s) known to git\nerror: pathspec 'Actuat' did not match any file(s) known to git",
+    "success": false
+  },
+  {
+    "time": 1771137443.411405,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- So how does your agent terminal work?",
+    "success": true
+  },
+  {
+    "time": 1771137480.0409672,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Do you know why Agent terminal crashed?",
+    "success": true
+  },
+  {
+    "time": 1771137746.8697255,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- ok well im going to see if i can fix your agent terminal and i will restart you ",
+    "success": true
+  },
+  {
+    "time": 1771140789.4082448,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- do you know what is wrong with the agent terminal and why it doesnt work?",
+    "success": true
+  },
+  {
+    "time": 1771140868.6636157,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771141327.447606,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Your suppose to be digging into the bugs of why agent terminal wasnt working , w",
+    "success": true
+  },
+  {
+    "time": 1771141430.9654906,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-flight save before self-edit",
+    "success": true
+  },
+  {
+    "time": 1771141431.119433,
+    "type": "EDIT_EXCEPTION",
+    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
+    "success": false
+  },
+  {
+    "time": 1771141431.6091897,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771141491.0134583,
+    "type": "EDIT_EXCEPTION",
+    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
+    "success": false
+  },
+  {
+    "time": 1771141491.37464,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771141613.175192,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771141776.9183106,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771550824.657472,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Can you have spawn some agents with the agent terminal to run a complete system ",
+    "success": true
+  },
+  {
+    "time": 1771551025.8751094,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-flight save before self-edit",
+    "success": true
+  },
+  {
+    "time": 1771551025.975296,
+    "type": "EDIT_EXCEPTION",
+    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
+    "success": false
+  },
+  {
+    "time": 1771551026.7877226,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771551063.0303519,
+    "type": "EDIT_EXCEPTION",
+    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
+    "success": false
+  },
+  {
+    "time": 1771551063.260759,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771551068.886649,
+    "type": "EDIT_EXCEPTION",
+    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
+    "success": false
+  },
+  {
+    "time": 1771551069.0931327,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771551113.2223089,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771551346.192589,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Agent Terminal ready. Use orchestrate_task or the sidebar to start.\n[WATCHDOG] S",
+    "success": true
+  },
+  {
+    "time": 1771551545.1449757,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771575610.2371113,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- I want to see how well you know all of your capabilities and if your agent termi",
+    "success": true
+  },
+  {
+    "time": 1771575864.2297854,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771580250.4325695,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- So I added 8 different llms to the 2 that were working and so now you have 10llm",
+    "success": true
+  },
+  {
+    "time": 1771580293.9627967,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771580450.7728856,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Create the manual using the agent terminal with the updated LLM setup.",
+    "success": true
+  },
+  {
+    "time": 1771580497.8160667,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1771666244.1011333,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Joi is your agent terminal working?",
+    "success": true
+  },
+  {
+    "time": 1771666458.3314915,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- the agent terminal didnt run?",
+    "success": true
+  },
+  {
+    "time": 1771748715.0860546,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- can  you open agent terminal",
+    "success": true
+  },
+  {
+    "time": 1771748743.497141,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771748784.2648337,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1771749114.4606774,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772086182.6464732,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Can you run a diagnostic using your agent terminal to see why you dont have file",
+    "success": true
+  },
+  {
+    "time": 1772086298.9646719,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772086416.6242394,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772086518.7220035,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772106086.7810824,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- I might have to restart you for new changes to take place I am trying to fix you",
+    "success": true
+  },
+  {
+    "time": 1772106804.6374452,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772106921.8565042,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772259797.696913,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- search the web for today's weather",
+    "success": true
+  },
+  {
+    "time": 1772259904.4604342,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772260020.3932965,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772313961.010207,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Implement core functionality for memory visualization in the module.",
+    "success": true
+  },
+  {
+    "time": 1772314185.2643478,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772314506.1992762,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Implement core functionality for memory visualization within the module `joi_mem",
+    "success": true
+  },
+  {
+    "time": 1772314608.761346,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772314742.1051254,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772314756.23268,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772314827.7527146,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
+    "success": true
+  },
+  {
+    "time": 1772318563.253102,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Joi, Phase 4 is a 'Digital Synthesis' test. Your goal is to optimize the workspa",
+    "success": true
+  },
+  {
+    "time": 1772318667.74515,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772318765.6693008,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  }
+]

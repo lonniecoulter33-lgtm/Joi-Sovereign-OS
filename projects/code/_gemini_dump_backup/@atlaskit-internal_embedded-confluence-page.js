@@ -1,0 +1,3 @@
+"use strict";(global.webpackChunk_loomhq_desktop_monorepo=global.webpackChunk_loomhq_desktop_monorepo||[]).push([[448],{784949:(s,e,_)=>{_.r(e),_.d(e,{default:()=>O});var n=_(411788),o=_.n(n),E=_(275271),l=_(979294),t=_(643431),a=_(929846),P=_(36814),D=function(d){var M=(0,P.YB)(),m=M.locale;return E.createElement(l.T3,o()({},d,{locale:m,viewComponent:t.A,editComponent:a.e}))};const O=D}}]);
+
+//# sourceMappingURL=@atlaskit-internal_embedded-confluence-page.js.map

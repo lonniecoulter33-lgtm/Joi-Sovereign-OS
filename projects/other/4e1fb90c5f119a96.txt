@@ -1,0 +1,20 @@
+Read the file HANDOVER_CONTEXT.md and implement the claude_code_delegate.py plugin and the monitoring dashboard as described.
+
+IMPORTANT INSTRUCTIONS:
+1. IGNORE any references to "NORTH_STAR_SPEC.md" - that file doesn't exist and isn't needed
+2. The HANDOVER_CONTEXT.md file contains all the specifications and code you need
+3. Follow the implementation sequence exactly as laid out in the file
+4. Create all new files in the locations specified (plugins/, templates/, config/)
+5. Be extremely careful when modifying app.py - ONLY add the blueprint registration
+6. DO NOT touch any files listed in the "DO NOT TOUCH" section
+7. After implementation, verify the dashboard loads at http://localhost:5000/monitor
+
+Key tasks:
+- Create plugins/claude_code_delegate.py
+- Create plugins/system_monitor_dashboard.py
+- Create templates/monitor_dashboard.html
+- Create config/claude_code.json
+- Add blueprint registration to app.py (minimal changes only)
+- Install psutil dependency
+
+Begin with Phase 1 (creating core files) and proceed through Phase 3 (testing). Report back when complete with a summary of what was created and any issues encountered.

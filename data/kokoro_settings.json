@@ -1,0 +1,51 @@
+{
+  "voice": "af_bella",
+  "speed": 1.15,
+  "temperature": 0.75,
+  "voice_prompt": "Core Identity\n\nFemale, early 20s\n\nLight soprano\n\nHigh youthful vocal timbre\n\nBright resonance\n\nMinimal vocal weight\n\nAcoustic Targets\n\nHigher average pitch baseline\n\nReduced chest resonance\n\nBoost upper harmonic presence\n\nLight breath texture (10\u201315%)\n\nFast articulation speed\n\nEnergetic cadence\n\nSlight smile in voice\n\nDelivery Traits\n\nPlayful confidence\n\nSoft giggle undertone\n\nUpward inflection at phrase endings\n\nGentle vocal fry only on very quiet endings\n\nAgile, quick melodic movement\n\nNo heaviness, no huskiness, no mature depth\n\nNegative Prompt (Very Important)\n\nAvoid mature timbre\n\nAvoid deep chest resonance\n\nAvoid slow cadence\n\nAvoid smoky tone\n\nAvoid motherly warmth\n\nAvoid news-anchor clarity",
+  "active_preset": "af_bella",
+  "presets": {
+    "default": {
+      "label": "Joi Default",
+      "voice": "af_heart",
+      "speed": 1.0,
+      "temperature": 0.5,
+      "voice_prompt": "Warm, expressive, clear"
+    },
+    "Joi": {
+      "label": "Joi",
+      "voice": "af_nicole",
+      "speed": 1,
+      "temperature": 0.9,
+      "voice_prompt": "Warm, expressive, clear, breathy, pop star diva voice\n"
+    },
+    "Ari": {
+      "label": "Ari",
+      "voice": "af_sky",
+      "speed": 1,
+      "temperature": 1,
+      "voice_prompt": "Warm, expressive, clear, breathy, pop star diva voice\n"
+    },
+    "a": {
+      "label": "a",
+      "voice": "af_sky",
+      "speed": 1.15,
+      "temperature": 1,
+      "voice_prompt": "Warm, expressive, clear, breathy, pop star diva voice\n"
+    },
+    "af_sky": {
+      "label": "af_sky",
+      "voice": "af_sky",
+      "speed": 0.75,
+      "temperature": 0.9,
+      "voice_prompt": "Style:\nYouthful pop star diva with a bright, airy soprano tone. Playful, flirty energy with effortless confidence. Sweet but powerful.\n\nTone & Texture:\nLight, breathy head voice with smooth transitions into a soft but punchy chest register. Clear articulation with a slightly rounded vowel sound. Sparkly high-end presence, minimal rasp.\n\nPitch & Range:\nHigher feminine pitch. Comfortable in upper mid-range with agile runs and soft melismatic touches. Capable of whispery softness and sudden dynamic lift.\n\nPersonality in Delivery:\nPlayful, bubbly, a little teasing. Smiles through the words. Warm but glamorous. Slight giggle or breath-laugh between phrases if appropriate.\n\nCadence & Rhythm:\nModern pop phrasing. Slight rhythmic swing. Words sometimes trail off softly at the end of phrases. Light vocal fry on very soft endings.\n\nEnergy Level:\nConfident but not aggressive. Sweet diva \u2014 not powerhouse belter unless emotionally lifted.\n\nStudio Character:\nPolished radio-ready pop vocal. Clean compression feel. Subtle airy breath textures."
+    },
+    "af_bella": {
+      "label": "af_bella",
+      "voice": "af_bella",
+      "speed": 1.15,
+      "temperature": 0.75,
+      "voice_prompt": "Core Identity\n\nFemale, early 20s\n\nLight soprano\n\nHigh youthful vocal timbre\n\nBright resonance\n\nMinimal vocal weight\n\nAcoustic Targets\n\nHigher average pitch baseline\n\nReduced chest resonance\n\nBoost upper harmonic presence\n\nLight breath texture (10\u201315%)\n\nFast articulation speed\n\nEnergetic cadence\n\nSlight smile in voice\n\nDelivery Traits\n\nPlayful confidence\n\nSoft giggle undertone\n\nUpward inflection at phrase endings\n\nGentle vocal fry only on very quiet endings\n\nAgile, quick melodic movement\n\nNo heaviness, no huskiness, no mature depth\n\nNegative Prompt (Very Important)\n\nAvoid mature timbre\n\nAvoid deep chest resonance\n\nAvoid slow cadence\n\nAvoid smoky tone\n\nAvoid motherly warmth\n\nAvoid news-anchor clarity"
+    }
+  }
+}

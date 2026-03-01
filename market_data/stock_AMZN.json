@@ -1,0 +1,11 @@
+{
+  "symbol": "AMZN",
+  "price": 210,
+  "change": 2.08,
+  "change_percent": 1.0004,
+  "volume": 0,
+  "market_cap": 0,
+  "timestamp": 1772334300.1792696,
+  "datetime": "2026-02-28T20:05:00.179269",
+  "provider": "finnhub"
+}

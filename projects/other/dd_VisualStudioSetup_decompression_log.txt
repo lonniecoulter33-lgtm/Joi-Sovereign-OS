@@ -1,0 +1,10 @@
+[2/5/2026, 23:45:33] === Logging started: 2026/02/05 23:45:33 ===
+[2/5/2026, 23:45:33] Executable: C:\Users\user\Downloads\VisualStudioSetup.exe v18.3.11429.125
+[2/5/2026, 23:45:33] --- logging level: standard ---
+[2/5/2026, 23:45:33] Directory 'C:\Users\user\AppData\Local\Temp\33a7438a3559d86c16cc5b8d\' has been selected for file extraction
+[2/5/2026, 23:45:33] Extracting files to: C:\Users\user\AppData\Local\Temp\33a7438a3559d86c16cc5b8d\
+[2/5/2026, 23:45:33] Extraction took 750 milliseconds
+[2/5/2026, 23:45:33] Executing extracted package: 'vs_bootstrapper_d15\vs_setup_bootstrapper.exe ' with commandline '  --env "_SFX_CAB_EXE_PACKAGE:C:\Users\user\Downloads\VisualStudioSetup.exe _SFX_CAB_EXE_ORIGINALWORKINGDIR:C:\Users\user\Downloads"'
+[2/5/2026, 23:46:16] The entire Box execution exiting with result code: 0x0
+[2/5/2026, 23:46:16] Launched extracted application exiting with result code: 0x0
+[2/5/2026, 23:46:16] === Logging stopped: 2026/02/05 23:46:16 ===

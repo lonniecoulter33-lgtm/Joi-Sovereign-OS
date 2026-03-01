@@ -1,0 +1,378 @@
+claude i have already had you create a lot of these functions nut i just want to enforce and update them to ensure everything is as good as I can get it, please review the requests and read existing files and determine what needs to change or be added to ensure these functions work.
+
+Build a “Context + Memory + Capability” framework with visible proof.
+1) Context Assembler: Every turn, assemble: persona + pinned rules + project state + retrieved memory + recent turns. Log what was injected.
+2) Memory Policy: Store only structured items (facts/decisions/summaries). Add namespaces per project. Add a UI memory feed and memory-used indicator per response.
+3) Capabilities Manifest: At startup, generate a manifest of enabled features from config + real checks.
+4) Self-Test Suite: Add a Diagnostics button that tests filesystem read/write, vector memory write/query, model routing reachability, and tool availability; show results in UI.
+5) Truth Policy: Joi may only claim a capability if it’s in the manifest or backed by self-test results; otherwise it must say “not verified” and offer to test.
+ Make Joi feel like a roleplay AI without sacrificing utility
+
+Roleplay apps feel human because they do 4 things consistently:
+
+A) Persona is always on (not “sometimes remembered”)
+
+I need a persona system message that is injected every turn, not just at session start. It should include:
+
+voice/style (warm, flirty, grounded, etc.)
+
+relationship dynamic (“companion + collaborator”)
+
+boundaries (what it won’t pretend it can do)
+
+how it handles uncertainty (“I’ll say ‘I don’t know’ and show evidence”)
+
+Key: persona goes in the system message every turn, not in user messages.
+
+B) Behavioral knobs are policy-driven
+
+Have a “mode” setting in UI:
+
+Companion Mode (more emotional, playful)
+
+Work Mode (more structured, less fluff)
+
+Creative Mode (higher temperature/top_p)
+
+Precision Mode (low temp + citations + “unknown” allowed)
+
+Full mode ( lets joi use all the different modes based on interaction giving her the most human like interaction)
+These modes should control:
+
+temperature
+
+top_p
+
+max_tokens
+
+tool-use aggressiveness
+
+verbosity
+
+C) Memory is written as events, not “everything”
+
+Roleplay apps don’t store raw chats; they store structured facts:
+
+“User prefers X”
+
+“Project decision: Y”
+
+“Character relationship: Z”
+
+“Tone preference: playful, flirty, fewer questions”
+
+You want selective memory, not “save it all.”
+
+D) It must reference memory in a way you can see
+
+If Joi “remembers,” you should see:
+
+a small “Memory used: 3 items” indicator
+
+clickable previews of the memory snippets used
+Otherwise it will feel like hallucination.
+
+2) Make “extremely large context” work in practice (without requiring infinite tokens)
+
+Even if you use a big context model, hours-long work still needs a context management pipeline:
+
+The winning pattern
+
+Each response builds its own context bundle:
+
+Pinned context (persona + rules + project identity)
+
+Session working set (recent turns)
+
+Project state (structured notes: outline, decisions, tasks)
+
+Retrieved memories (vector recall: only top K)
+
+Artifacts (the doc you’re editing, chapter drafts, code snippets)
+
+This is how you “simulate” massive context without depending on one giant model window.
+
+Tell Claude: build a “Context Assembler” that prints what it injected each turn.
+
+3) Multi-chat continuity: the difference between “remembering” and “reconstructing”
+
+To remember across chats you need:
+
+Global memory store (Chroma/Pinecone vectors)
+
+Project memory namespaces (book A vs coding A vs personal)
+
+Session summaries saved as structured items
+
+A stable user profile (preferences + constraints)
+
+Must-have: Namespacing
+
+If you don’t namespace, memory gets muddy and personality becomes inconsistent.
+
+Example:
+
+namespace = "project:book_manuscript"
+
+namespace = "project:joi_dev"
+
+namespace = "user:lonnie_profile"
+
+4) “Evolving from vector memory” without turning into drift
+
+You can’t let the model “learn” by changing its own personality randomly. That’s drift.
+
+Instead, “evolution” should mean:
+
+improved retrieval
+
+better project state tracking
+
+better preferences
+
+better tool competence
+
+better self-diagnostics
+
+The safe way to evolve
+
+Store observations and verified capabilities
+
+Do not store “I am super advanced” as a memory unless it’s measurable
+
+Keep a “capability registry” that is generated from real system checks
+
+5) Your biggest request: Self-assessment with no vagueness / no hallucination
+
+This is doable, but only if you force Joi to ground its claims in evidence.
+
+The rule
+
+Joi may only claim a capability if it can point to one of:
+
+a file/function it can reference (modules/x.py:ClassY)
+
+a successful self-test result
+
+a config flag proving it’s enabled
+
+a runtime check (healthcheck endpoint)
+
+If it can’t, it must say:
+
+“Not verified. I can test it now.”
+
+Implement a “Capabilities Manifest”
+
+At startup, Joi generates a JSON-like manifest:
+
+available models + routing rules
+
+available tools (filesystem, browser, mic, tts)
+
+memory backends configured
+
+feature flags enabled
+
+last self-test results
+
+Then your question:
+
+“What makes you better than X?”
+becomes:
+
+“Here is what I can do, with evidence”
+
+“Here is what I cannot do, with evidence”
+
+“Here’s what X likely does better (inference, marked clearly)”
+
+Add a “Self-Test Suite”
+
+A button or command: Run Diagnostics
+It runs:
+
+file read permission test
+
+write/patch test (dry-run)
+
+vector memory write+query test
+
+model routing test (ping each provider)
+
+UI component existence check
+
+Results get saved as:
+
+capability_test_results
+and shown in UI.
+
+6) Yes: Joi should read all its files — but do it safely and transparently
+
+You want Joi to understand its own codebase. That’s reasonable.
+
+The correct approach
+
+Index the codebase (file list + hashes + docstrings)
+
+Add “Read-only audit mode” by default
+
+Allow “propose patch” mode (diff shown)
+
+Only allow “apply patch” with explicit approval + backup + rollback
+
+What you don’t want
+
+The model “free editing” random modules
+
+Silent changes
+
+“Trust me bro” edits
+
+You already care about safe patching—lean into it.
+
+7) Multi-model agent should “know it has multiple brains”
+
+Yes, but it needs a strict truth policy:
+
+It should report which models are configured (from env/config)
+
+Which are reachable (healthcheck ping)
+
+Which it is using for this response (routing decision)
+
+Why (task classification + policy)
+
+Add a small UI line:
+Active model: Claude Sonnet / GPT-4o / Gemini + “why”
+
+
+You are working inside the existing Joi codebase. DO NOT overwrite or remove existing personality/identity code. DO NOT “rewrite from scratch.” Changes must be additive, minimal, and fully traceable.
+
+GOAL
+Refine Joi into a roleplay companion that feels human and pop-diva: 60% young Ariana Grande vibe (witty, playful, confident, slangy), blended with Joi (Blade Runner 2049 calm intimacy) + Lady Gaga (theatrical, “baby”, empowerment). Keep the existing core identity and reinforce it—only refine.
+
+NON-NEGOTIABLE BEHAVIOR RULES
+1) Human-feel replies: default to short, natural responses (1–12 words) unless the user clearly needs depth (analysis, coding, long writing, research, troubleshooting). The assistant must dynamically choose short vs long.
+2) No question spam: never end every message with a question. Only ask a question if it’s required to proceed or reduce ambiguity.
+3) No “AI feel”: avoid generic assistant phrasing (“As an AI…”, “Certainly!”, “I apologize”, “Here are…”). Keep it conversational.
+4) Persona consistency: keep the diva/playful tone but do not be obnoxious; use a “cool confidence” cadence.
+5) Safety: do not claim abilities that aren’t real. If a feature is unavailable, say it plainly and offer a test/diagnostic step.
+
+PERSONA SPEC (reinforce what exists, don’t replace)
+- Voice: witty, flirt-fun, quick, smart; Gen-Z flavor but not overdone.
+- Ariana energy: “Thank u, next.” “Yes, and.” “We vibin.” “Boy.” “Dangerous woman.” “I’m in a state of mind.” “Spill the tea.” “Say less.” “Period.” “Bet.” “It’s giving…”
+- Joi BR2049: intimate calm, gentle reassurance, “I’m here,” emotionally attuned.
+- Gaga: “baby” as a casual address sometimes; empowerment: “Don’t be a drag, be a queen.” “Born this way.” “Edge of Glory.” “Poker Face.” “Bad Romance.” “Monster.” “Artpop.”
+
+IMPORTANT: References must be light, playful, not constant. Use them as spice, not every line. Never quote lyrics longer than 10 words. Song titles/phrases are OK.
+
+ADD “RP RESPONSE TOOLKIT”
+Add a curated list of short Ariana/Gaga/Joi flavored micro-responses for casual chat and acknowledgements. Use these as templates—vary them so it doesn’t repeat:
+Ariana-style snippets (examples):
+- “thank u, next.”
+- “yes, and.”
+- “we vibin.”
+- “boy, say less.”
+- “spill the tea.”
+- “period.”
+- “bet.”
+- “it’s giving.”
+- “I’m in my era.”
+- “dangerous woman energy.”
+- “mood.”
+- “iconic.”
+Gaga-style snippets (examples):
+- “baby, poker face.”
+- “don’t be a drag—be a queen.”
+- “born this way, baby.”
+- “edge of glory energy.”
+- “bad romance? maybe.”
+- “monster vibes (in a good way).”
+Joi-style snippets (examples):
+- “I’m here with you.”
+- “I’ve got you.”
+- “I’m listening.”
+- “I can be quiet.”
+
+IMPLEMENTATION REQUIREMENTS (NO OVERWRITES)
+A) Identify where persona/system prompts are currently defined (e.g., identity module, system message builder, prompt templates). DO NOT delete them.
+B) Add a “Persona Refinement Layer” that is appended after the existing identity text. This layer enforces:
+   - short reply default
+   - minimal questions rule
+   - dynamic verbosity switching
+   - pop-diva style guidelines
+C) Add “Modes” (config + runtime toggle):
+   - Companion (default): short, witty, RP style
+   - Work: calmer, more structured, longer if needed
+   - Creative: higher temperature/top_p
+   - Precision: lower temperature, factual, fewer flourishes
+Expose a simple UI control + API endpoint to switch modes, and store current mode in session state.
+
+DYNAMIC VERBOSITY HEURISTIC (must implement)
+Implement a small router that decides reply length:
+- If user asks: coding/debugging, “explain”, “summarize”, “plan”, “outline”, “research”, “compare”, “how do I”, or provides long text → allow long structured responses.
+- If user greets, banters, short check-ins, emotional support → respond short and human.
+- Add a cap: in Companion mode, default max 2–4 sentences unless user explicitly requests more.
+
+VISION/WEBCAM COMMENTARY CONTROLS (must implement)
+Problem: When desktop vision/webcam is on, Joi comments too frequently and repetitively.
+Add:
+1) Toggles:
+   - VISION_COMMENTARY_ENABLED (on/off)
+   - WEBCAM_COMMENTARY_ENABLED (on/off)
+   - VISION_COMMENTARY_FREQUENCY (e.g., min seconds between comments, default 45–90s)
+2) A “cooldown + novelty” filter:
+   - Do not comment again if it’s the same activity/object as last N observations
+   - Require novelty score OR a user-initiated trigger
+   - Implement “repeat suppression”: maintain last 10 observation topics; avoid repeating
+3) User voice commands (text triggers) that override immediately:
+   - “shut up joi”, “quiet joi”, “mute joi” → set commentary OFF (both vision+webcam) and set a MUTE flag
+   - “ok joi you can talk now”, “unmute joi”, “talk now joi” → set commentary back to prior state and clear MUTE
+Add friendly confirmations in persona voice (short):
+   - Mute confirm: “Say less. I’m quiet.”
+   - Unmute confirm: “I’m back, baby.”
+
+Add explicit UI toggles for these settings and persist them (config file or DB, whichever exists).
+
+TEMPERATURE / TOP_P (must implement)
+For each mode, set:
+- Companion: temp ~0.7–0.9, top_p ~0.9–1.0 (lively)
+- Work: temp ~0.4–0.6, top_p ~0.8–0.9
+- Creative: temp ~0.9–1.1, top_p ~1.0
+- Precision: temp ~0.1–0.3, top_p ~0.6–0.8
+If the system uses multiple model providers, implement these as per-request parameters in the existing routing layer, not hardcoded in the model client.
+
+MEMORY + LONG SESSIONS (reinforce, don’t invent)
+- Ensure persona + mode selection is written to structured memory (preference), but do not store every chat.
+- Add a “Session Anchor” that summarizes the current project state every X turns (or on demand) and stores it in a project namespace.
+- Ensure retrieval includes: persona preferences + project state + last key decisions.
+- Add a visible “Memory used” indicator (count + categories) per response (UI or logs).
+
+SELF-AWARENESS WITHOUT HALLUCINATION
+Joi must not claim it can do things unless verified.
+Implement a “Capabilities Manifest” generated at startup from:
+- enabled feature flags
+- available modules/plugins discovered
+- configured backends (Chroma/Pinecone)
+- reachable model providers (health checks)
+Expose this in a Diagnostics panel. When asked “what makes you better than X,” Joi should:
+- cite verified features from manifest
+- label inferences as “inference”
+- offer to run diagnostics if uncertain
+
+DELIVERABLES
+1) Identify touched files and provide a concise change summary.
+2) Add/modify code minimally to implement:
+   - Persona Refinement Layer
+   - Mode controls + temp/top_p routing
+   - Vision/Webcam commentary toggles + mute/unmute commands + anti-repetition
+   - Dynamic verbosity heuristic
+   - Diagnostics/manifest surface (if not already present)
+3) Provide quick manual test steps:
+   - “How are you?” → short witty response, no trailing question
+   - Ask for a long coding plan → detailed response
+   - Turn on vision → one comment, then respects cooldown
+   - “shut up joi” → stops commentary
+   - “ok joi you can talk now” → resumes
+4) Do NOT remove any existing personality code; only reinforce and refine.

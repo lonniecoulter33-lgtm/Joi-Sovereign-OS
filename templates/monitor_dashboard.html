@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joi System Monitor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.active {
+            background: #4ade80;
+        }
+
+        .status-indicator.warning {
+            background: #fbbf24;
+        }
+
+        .status-indicator.error {
+            background: #ef4444;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #1a1f3a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #a78bfa;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2f4a;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: #9ca3af;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        .chart {
+            height: 150px;
+            margin-top: 15px;
+            background: #0f1429;
+            border-radius: 5px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .activity-log {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #0f1429;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        .activity-item.file_modified {
+            border-left-color: #fbbf24;
+        }
+
+        .activity-item.error {
+            border-left-color: #ef4444;
+        }
+
+        .activity-item.claude_code {
+            border-left-color: #a78bfa;
+        }
+
+        .activity-item.api_call {
+            border-left-color: #60a5fa;
+        }
+
+        .activity-time {
+            font-size: 0.85em;
+            color: #6b7280;
+        }
+
+        .task-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .task-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #0f1429;
+            border-radius: 5px;
+        }
+
+        .task-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .task-status.completed {
+            background: #065f46;
+            color: #10b981;
+        }
+
+        .task-status.running {
+            background: #1e40af;
+            color: #60a5fa;
+        }
+
+        .task-status.failed {
+            background: #7f1d1d;
+            color: #ef4444;
+        }
+
+        .task-status.queued {
+            background: #78350f;
+            color: #fbbf24;
+        }
+
+        .alert {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .alert.warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-left-color: #fbbf24;
+        }
+
+        .alert.error {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: #ef4444;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #0f1429;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .no-data {
+            color: #6b7280;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Joi System Monitor <span class="status-indicator active" id="systemStatus"></span></h1>
+            <p>Real-time monitoring of AI operations and system resources</p>
+        </header>
+
+        <div id="alerts"></div>
+
+        <div class="grid">
+            <!-- System Resources -->
+            <div class="card">
+                <h2>System Resources</h2>
+                <div class="metric">
+                    <span class="metric-label">CPU Usage</span>
+                    <span class="metric-value" id="cpuUsage">--</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="cpuBar" style="width: 0%"></div>
+                </div>
+
+                <div class="metric" style="margin-top: 15px;">
+                    <span class="metric-label">Memory Usage</span>
+                    <span class="metric-value" id="memUsage">--</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="memBar" style="width: 0%"></div>
+                </div>
+
+                <div class="metric" style="margin-top: 15px;">
+                    <span class="metric-label">Uptime</span>
+                    <span class="metric-value" id="uptime">0:00:00</span>
+                </div>
+
+                <div class="chart">
+                    <canvas id="resourceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Claude Code Status -->
+            <div class="card">
+                <h2>Claude Code Status</h2>
+                <div class="metric">
+                    <span class="metric-label">Status</span>
+                    <span class="metric-value" id="claudeStatus">Idle</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Active Tasks</span>
+                    <span class="metric-value" id="activeTasks">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Queued Tasks</span>
+                    <span class="metric-value" id="queuedTasks">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Completed</span>
+                    <span class="metric-value" id="completedTasks">0</span>
+                </div>
+            </div>
+
+            <!-- Joi AI Activity -->
+            <div class="card">
+                <h2>Joi AI Activity</h2>
+                <div class="metric">
+                    <span class="metric-label">Active Sessions</span>
+                    <span class="metric-value" id="activeSessions">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">API Calls (recent)</span>
+                    <span class="metric-value" id="apiCalls">0</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">File Operations</span>
+                    <span class="metric-value" id="fileOps">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Recent Tasks -->
+            <div class="card">
+                <h2>Recent Claude Code Tasks</h2>
+                <div class="task-list" id="taskList">
+                    <p class="no-data">No recent tasks</p>
+                </div>
+            </div>
+
+            <!-- Activity Log -->
+            <div class="card">
+                <h2>Activity Log</h2>
+                <div class="activity-log" id="activityLog">
+                    <p class="no-data">No recent activity</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart setup
+        const ctx = document.getElementById('resourceChart').getContext('2d');
+        const resourceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'CPU %',
+                    data: [],
+                    borderColor: '#60a5fa',
+                    backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                    tension: 0.4
+                }, {
+                    label: 'Memory %',
+                    data: [],
+                    borderColor: '#a78bfa',
+                    backgroundColor: 'rgba(167, 139, 250, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#e0e0e0' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { color: '#9ca3af' },
+                        grid: { color: '#2a2f4a' }
+                    },
+                    x: {
+                        ticks: { color: '#9ca3af' },
+                        grid: { color: '#2a2f4a' }
+                    }
+                }
+            }
+        });
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Update dashboard
+        function updateDashboard() {
+            fetch('/monitor/api/data')
+                .then(res => res.json())
+                .then(data => {
+                    // Update system metrics
+                    if (data.system.cpu.length > 0) {
+                        const latestCPU = data.system.cpu[data.system.cpu.length - 1].value;
+                        document.getElementById('cpuUsage').textContent = latestCPU.toFixed(1) + '%';
+                        document.getElementById('cpuBar').style.width = latestCPU + '%';
+                    }
+
+                    if (data.system.memory.length > 0) {
+                        const latestMem = data.system.memory[data.system.memory.length - 1].value;
+                        document.getElementById('memUsage').textContent = latestMem.toFixed(1) + '%';
+                        document.getElementById('memBar').style.width = latestMem + '%';
+                    }
+
+                    document.getElementById('uptime').textContent = data.system.uptime.formatted;
+
+                    // Update chart
+                    resourceChart.data.labels = data.system.cpu.map((_, i) => i);
+                    resourceChart.data.datasets[0].data = data.system.cpu.map(d => d.value);
+                    resourceChart.data.datasets[1].data = data.system.memory.map(d => d.value);
+                    resourceChart.update('none');
+
+                    // Update Claude Code status
+                    const cs = data.claude_code.status;
+                    document.getElementById('claudeStatus').textContent = cs.is_running ? 'Running' : 'Idle';
+                    document.getElementById('activeTasks').textContent = cs.active_tasks;
+                    document.getElementById('queuedTasks').textContent = cs.queued_tasks;
+                    document.getElementById('completedTasks').textContent = cs.completed_tasks;
+
+                    // Update Joi activity
+                    document.getElementById('activeSessions').textContent = data.joi.active_sessions.length;
+                    document.getElementById('apiCalls').textContent = data.joi.api_calls.length;
+                    document.getElementById('fileOps').textContent = data.joi.file_operations.length;
+
+                    // Update alerts
+                    const alertsDiv = document.getElementById('alerts');
+                    alertsDiv.innerHTML = '';
+                    data.alerts.forEach(alert => {
+                        alertsDiv.innerHTML +=
+                            '<div class="alert ' + escapeHtml(alert.level) + '">' +
+                            '<strong>' + escapeHtml(alert.level.toUpperCase()) + ':</strong> ' +
+                            escapeHtml(alert.message) + '</div>';
+                    });
+
+                    // Update task list
+                    const taskList = document.getElementById('taskList');
+                    if (data.claude_code.recent_tasks.length > 0) {
+                        taskList.innerHTML = data.claude_code.recent_tasks.map(task =>
+                            '<div class="task-item">' +
+                            '<span class="task-status ' + escapeHtml(task.status) + '">' + escapeHtml(task.status) + '</span>' +
+                            '<div style="margin-top: 5px;">' + escapeHtml(task.description || '') + '</div>' +
+                            '<div class="activity-time">' + (task.started_at ? new Date(task.started_at).toLocaleString() : '') + '</div>' +
+                            '</div>'
+                        ).join('');
+                    } else {
+                        taskList.innerHTML = '<p class="no-data">No recent tasks</p>';
+                    }
+
+                    // Update activity log
+                    const activityLog = document.getElementById('activityLog');
+                    if (data.activity_log.length > 0) {
+                        const reversed = data.activity_log.slice().reverse();
+                        activityLog.innerHTML = reversed.map(a =>
+                            '<div class="activity-item ' + escapeHtml(a.type) + '">' +
+                            '<strong>' + escapeHtml(a.type) + ':</strong> ' + escapeHtml(a.description) +
+                            '<div class="activity-time">' + new Date(a.timestamp).toLocaleString() + '</div>' +
+                            '</div>'
+                        ).join('');
+                    } else {
+                        activityLog.innerHTML = '<p class="no-data">No recent activity</p>';
+                    }
+
+                    // Update system status indicator
+                    const indicator = document.getElementById('systemStatus');
+                    if (data.alerts.some(a => a.level === 'error')) {
+                        indicator.className = 'status-indicator error';
+                    } else if (data.alerts.some(a => a.level === 'warning')) {
+                        indicator.className = 'status-indicator warning';
+                    } else {
+                        indicator.className = 'status-indicator active';
+                    }
+                })
+                .catch(err => {
+                    console.error('Dashboard update failed:', err);
+                    document.getElementById('systemStatus').className = 'status-indicator error';
+                });
+        }
+
+        // Update every 3 seconds
+        updateDashboard();
+        setInterval(updateDashboard, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "settings": "Ayarlar",
+  "about": "Hakkında",
+  "windowsPushNotificationsTitle": "Windows Anında Bildirimler",
+  "windowsPushNotificationsDesc": "Almak istediğiniz bildirimleri değiştirin",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. Tüm hakları dünya çapında saklıdır. BlueStacks'i kullanarak şunları kabul etmiş olursunuz:",
+  "errorConnectingToService": "Hizmete bağlanırken hata oluştu",
+  "unableToFetchCategories": "Kategoriler getirilemiyor, bir süre sonra tekrar deneyin",
+  "unableToConnect": "BlueStacks Sunucusuna bağlanılamıyor. Daha sonra tekrar deneyin.",
+  "termsOfUse" : "Kullanım Şartları"
+}

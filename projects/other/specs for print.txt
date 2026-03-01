@@ -1,0 +1,98 @@
+Trim size:
+6.0″ × 9.0″ (width × height)
+
+Page Margins (Interior)
+
+These margins create calm, balance, and breath.
+
+Top: 1.00″
+
+Bottom: 1.00″
+
+Inner (gutter): 0.90″
+
+Outer: 0.75″
+
+This leaves a live area of approximately:
+
+Width: 4.35″
+
+Height: 7.00″
+
+Plenty of space for floating art and silence.
+
+Floating Art Size (Recommended)
+
+For a contemplative, Zen feel:
+
+Image Dimensions
+
+Width: 4.25″ – 4.50″
+
+Height: auto (preserve aspect ratio)
+
+This equals roughly 70–75% of page width.
+
+Do not stretch the image to fill the live area.
+
+Vertical Placement (Very Important)
+
+Place the image:
+
+Centered horizontally
+
+Slightly above vertical center
+
+Exact Placement Guide
+
+Top of image starts approx 2.25″ – 2.50″ from top of page
+
+Bottom white space should feel slightly heavier than the top
+
+This subtle imbalance feels natural, like a bow.
+
+Page Rules for Image Pages
+
+No page numbers
+
+No headers or footers
+
+No captions
+
+One image per page
+
+Facing page may be blank (optional but powerful)
+
+DPI & Color (Print-Safe)
+
+Resolution: 300 DPI
+
+Color mode: Grayscale or pure black
+
+File format: TIFF or PNG
+
+No bleed required for floating art
+
+Chapter Flow Example
+[End of previous chapter text]
+
+— page break —
+
+[Full-page floating Zen ink image]
+(no page number)
+
+— page break —
+
+[Chapter Title]
+[Chapter Text begins]
+
+
+Optional:
+
+Insert one blank page after the image for maximum stillness
+
+One-Line Instruction for a Formatter
+
+You can copy-paste this exactly:
+
+“Chapter opening pages use floating Zen ink artwork at 4.4″ wide, centered horizontally and placed slightly above vertical center, with no page numbers or captions, in a 6×9 book with 1″ top/bottom margins.”

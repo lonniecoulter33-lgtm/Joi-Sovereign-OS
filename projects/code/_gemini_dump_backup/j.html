@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joi - Your AI Companion</title>
+    <style>
+        :root {
+            --primary-color: #ff00ff;
+            --secondary-color: #00ffcc;
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #9d00ff;
+            --bg-image: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Login Screen */
+        #login-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+        }
+
+        #login-screen.hidden {
+            display: none;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+            text-align: center;
+            min-width: 350px;
+        }
+
+        .login-box h1 {
+            font-size: 3em;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .login-box .subtitle {
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .login-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Main App Container */
+        #app-container {
+            display: none;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #app-container.active {
+            display: flex;
+        }
+
+        /* Header */
+        .app-header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 4px 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .app-header h1 {
+            font-size: 2em;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Area */
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Avatar Container */
+        #avatar-container {
+            width: 350px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border-right: 2px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #avatar-visual {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            box-shadow: 0 0 50px var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #avatar-visual.speaking {
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 50px var(--primary-color);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 80px var(--primary-color);
+                transform: scale(1.05);
+            }
+        }
+
+        #avatar-visual canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .avatar-name {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Chat Area */
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        #chat-log {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            scroll-behavior: smooth;
+        }
+
+        #chat-log::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #chat-log::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #chat-log::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .message.user .message-header {
+            color: var(--secondary-color);
+        }
+
+        .message.assistant .message-header {
+            color: var(--primary-color);
+        }
+
+        .message-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--secondary-color);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .message.assistant .message-content {
+            border-left-color: var(--primary-color);
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--primary-color);
+            display: flex;
+            gap: 10px;
+        }
+
+        #message-input {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            resize: none;
+            min-height: 50px;
+            max-height: 150px;
+        }
+
+        #message-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-btn {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            min-width: 60px;
+        }
+
+        .input-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .input-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 40, 0.95);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Status indicator */
+        .status-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            display: none;
+        }
+
+        .status-indicator.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* File input (hidden) */
+        #image-input {
+            display: none;
+        }
+
+        /* Thinking indicator */
+        .thinking {
+            display: inline-block;
+        }
+
+        .thinking::after {
+            content: '';
+            animation: ellipsis 1.5s infinite;
+        }
+
+        @keyframes ellipsis {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>Joi</h1>
+            <p class="subtitle">Your AI Companion</p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <button onclick="login(false)">Login</button>
+            <button onclick="login(true)">Admin Login</button>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app-container">
+        <div class="app-header">
+            <h1>Joi</h1>
+            <div class="header-controls">
+                <button class="header-btn" onclick="showProposals()">📋 Proposals</button>
+                <button class="header-btn" onclick="showResearch()">📚 Research</button>
+                <button class="header-btn" onclick="showSettings()">⚙️ Settings</button>
+                <button class="header-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div id="avatar-container">
+            <div id="avatar-visual">
+                <canvas></canvas> 
+            </div>
+            <div class="avatar-name">Joi</div>
+        </div>
+
+        <div id="chat-container">
+            <div id="chat-log"></div>
+            
+            <div id="chat-input-area">
+                <textarea id="message-input" placeholder="Enter your message..." rows="1"></textarea>
+                <div id="chat-controls">
+                    <button id="voice-btn" onclick="toggleVoice()" title="Toggle Voice Only">🎤 Voice</button>
+                    <button id="send-btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>   </div>
+
+    <!-- Modals -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-btn" onclick="closeModal('settings-modal')">✕</button>
+            </div>
+            <div class="settings-content">
+                <h3>Background</h3>
+                <input type="file" id="bg-image-input" accept="image/*" onchange="setBackgroundImage(this)">
+                <button onclick="document.getElementById('bg-image-input').click()">Choose Background Image</button>
+                <br><br>
+                <input type="color" id="bg-color-input" onchange="setBackgroundColor(this.value)">
+                <label for="bg-color-input">Background Color</label>
+                <br><br>
+                <h3>Voice</h3>
+                <select id="voice-select" onchange="updateVoice()">
+                    <option value="">Default</option>
+                </select>
+                <br><br>
+                <button onclick="testVoice()">Test Voice</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="proposals-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Code Proposals</h2>
+                <button class="close-btn" onclick="closeModal('proposals-modal')">✕</button>
+            </div>
+            <div id="proposals-content"></div>
+        </div>
+    </div>
+
+    <div id="research-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Research & Notes</h2>
+                <button class="close-btn" onclick="closeModal('research-modal')">✕</button>
+            </div>
+            <div id="research-content"></div>
+        </div>
+    </div>
+
+    <div class="status-indicator" id="status-indicator"></div>
+
+    <input type="file" id="image-input" accept="image/*" onchange="handleImageUpload(this)">
+
+    <script>
+        // Global state
+        let isLoggedIn = false;
+        let isAdmin = false;
+        let currentImage = null;
+        let selectedVoice = null;
+        let isSpeaking = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAvatar();
+            loadVoices();
+            autoResizeTextarea();
+        });
+
+        // Auto-resize textarea
+        function autoResizeTextarea() {
+            const textarea = document.getElementById('message-input');
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        }
+
+        // Login
+        async function login(admin = false) {
+            const password = document.getElementById('password-input').value;
+            if (!password) {
+                alert('Please enter a password');
+                return;
+            }
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({password, admin})
+                });
+
+                const data = await response.json();
+                if (data.ok) {
+                    isLoggedIn = true;
+                    isAdmin = data.admin;
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('app-container').classList.add('active');
+                    speak("Hello, Lonnie. I've missed you.");
+                } else {
+                    alert(data.error || 'Login failed');
+                }
+            } catch (error) {
+                alert('Login error: ' + error.message);
+            }
+        }
+
+        // Logout
+        async function logout() {
+            try {
+                await fetch('/logout', {method: 'POST'});
+                location.reload();
+            } catch (error) {
+                alert('Logout error: ' + error.message);
+            }
+        }
+
+        // Send message
+        async function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+
+            if (!message && !currentImage) return;
+
+            // Add user message to chat
+            addMessage('user', message, currentImage);
+
+            // Clear input
+            input.value = '';
+            input.style.height = 'auto';
+            const tempImage = currentImage;
+            currentImage = null;
+
+            // Disable send button
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<span class="thinking">Thinking</span>';
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: message,
+                        image: tempImage
+                    })
+                });
+
+                const data = await response.json();
+                if (data.ok) {
+                    addMessage('assistant', data.reply);
+                    speak(data.reply);
+                } else {
+                    addMessage('assistant', 'Error: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                addMessage('assistant', 'Error: ' + error.message);
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '➤';
+            }
+        }
+
+        // Add message to chat
+        function addMessage(role, content, imageData = null) {
+            const chatLog = document.getElementById('chat-log');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'message-header';
+            headerDiv.textContent = role === 'user' ? 'Lonnie' : 'Joi';
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            
+            if (imageData) {
+                const img = document.createElement('img');
+                img.src = imageData;
+                img.style.maxWidth = '300px';
+                img.style.borderRadius = '10px';
+                contentDiv.appendChild(img);
+                contentDiv.appendChild(document.createElement('br'));
+            }
+            
+            contentDiv.appendChild(document.createTextNode(content));
+
+            messageDiv.appendChild(headerDiv);
+            messageDiv.appendChild(contentDiv);
+            chatLog.appendChild(messageDiv);
+
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        // Voice synthesis
+        function speak(text) {
+            if (!text || isSpeaking) return;
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Use selected voice
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            } else {
+                // Try to find a female voice
+                const voices = window.speechSynthesis.getVoices();
+                const femaleVoice = voices.find(v => 
+                    v.name.includes('Female') || 
+                    v.name.includes('Samantha') ||
+                    v.name.includes('Zira') ||
+                    v.name.includes('Victoria')
+                );
+                if (femaleVoice) utterance.voice = femaleVoice;
+            }
+
+            utterance.rate = 0.95;
+            utterance.pitch = 1.1;
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('avatar-visual').classList.add('speaking');
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('avatar-visual').classList.remove('speaking');
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Voice input
+        function startVoiceInput() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                alert('Voice recognition not supported in this browser');
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            const voiceBtn = document.getElementById('voice-btn');
+            voiceBtn.style.background = 'red';
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('message-input').value = transcript;
+                sendMessage();
+            };
+
+            recognition.onend = () => {
+                voiceBtn.style.background = '';
+            };
+
+            recognition.onerror = (event) => {
+                alert('Voice recognition error: ' + event.error);
+                voiceBtn.style.background = '';
+            };
+
+            recognition.start();
+        }
+
+        // Load available voices
+        function loadVoices() {
+            const select = document.getElementById('voice-select');
+            const voices = window.speechSynthesis.getVoices();
+
+            voices.forEach(voice => {
+                const option = document.createElement('option');
+                option.value = voice.name;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                select.appendChild(option);
+            });
+
+            // Auto-select a female voice if available
+            const femaleVoice = voices.find(v => 
+                v.name.includes('Female') || 
+                v.name.includes('Samantha') ||
+                v.name.includes('Zira')
+            );
+            
+            if (femaleVoice) {
+                selectedVoice = femaleVoice;
+                select.value = femaleVoice.name;
+            }
+        }
+
+        // Update voice
+        function updateVoice() {
+            const select = document.getElementById('voice-select');
+            const voices = window.speechSynthesis.getVoices();
+            selectedVoice = voices.find(v => v.name === select.value);
+        }
+
+        // Test voice
+        function testVoice() {
+            speak("Hello, Lonnie. This is how I sound.");
+        }
+
+        // Image handling
+        function attachImage() {
+            document.getElementById('image-input').click();
+        }
+
+        function handleImageUpload(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    currentImage = e.target.result;
+                    showStatus('Image attached');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Background customization
+        function setBackgroundImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.documentElement.style.setProperty('--bg-image', `url(${e.target.result})`);
+                    localStorage.setItem('joi-bg-image', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function setBackgroundColor(color) {
+            document.documentElement.style.setProperty('--bg-color', color);
+            localStorage.setItem('joi-bg-color', color);
+        }
+
+        // Avatar visualization
+        function initializeAvatar() {
+            const canvas = document.getElementById('avatar-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 300;
+            canvas.height = 300;
+
+            //joi_bg.jpg = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    size: Math.random() * 3 + 1
+                });
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.fillStyle = 'rgba(255, 0, 255, 0.8)';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        // Modals
+        function showSettings() {
+            document.getElementById('settings-modal').classList.add('active');
+        }
+
+        async function showProposals() {
+            try {
+                const response = await fetch('/proposals');
+                const data = await response.json();
+                
+                if (data.ok) {
+                    const content = document.getElementById('proposals-content');
+                    content.innerHTML = '';
+                    
+                    if (data.proposals.length === 0) {
+                        content.innerHTML = '<p>No proposals yet.</p>';
+                    } else {
+                        data.proposals.forEach(p => {
+                            const div = document.createElement('div');
+                            div.innerHTML = `
+                                <h3>Proposal #${p.id}: ${p.summary}</h3>
+                                <p>Status: ${p.status}</p>
+                                <p>File: ${p.target_file}</p>
+                                <button onclick="viewProposal(${p.id})">View Details</button>
+                                ${isAdmin && p.status === 'pending' ? `
+                                    <button onclick="approveProposal(${p.id})">Approve</button>
+                                    <button onclick="rejectProposal(${p.id})">Reject</button>
+                                ` : ''}
+                                <hr>
+                            `;
+                            content.appendChild(div);
+                        });
+                    }
+                }
+                
+                document.getElementById('proposals-modal').classList.add('active');
+            } catch (error) {
+                alert('Error loading proposals: ' + error.message);
+            }
+        }
+
+        async function approveProposal(id) {
+            if (!confirm('Are you sure you want to approve this proposal? This will modify code.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/proposals/${id}/approve`, {method: 'POST'});
+                const data = await response.json();
+                
+                if (data.ok) {
+                    alert('Proposal approved and applied!');
+                    showProposals(); // Refresh
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error approving proposal: ' + error.message);
+            }
+        }
+
+        async function rejectProposal(id) {
+            try {
+                const response = await fetch(`/proposals/${id}/reject`, {method: 'POST'});
+                const data = await response.json();
+                
+                if (data.ok) {
+                    alert('Proposal rejected');
+                    showProposals(); // Refresh
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error rejecting proposal: ' + error.message);
+            }
+        }
+
+        async function showResearch() {
+            try {
+                const response = await fetch('/research');
+                const data = await response.json();
+                
+                if (data.ok) {
+                    const content = document.getElementById('research-content');
+                    content.innerHTML = '';
+                    
+                    if (data.entries.length === 0) {
+                        content.innerHTML = '<p>No research entries yet.</p>';
+                    } else {
+                        data.entries.forEach(e => {
+                            const div = document.createElement('div');
+                            div.innerHTML = `
+                                <h3>${e.title}</h3>
+                                <p>Category: ${e.category}</p>
+                                <p>Date: ${new Date(e.ts).toLocaleString()}</p>
+                                <button onclick="viewResearch(${e.id})">View</button>
+                                <hr>
+                            `;
+                            content.appendChild(div);
+                        });
+                    }
+                }
+                
+                document.getElementById('research-modal').classList.add('active');
+            } catch (error) {
+                alert('Error loading research: ' + error.message);
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showStatus(message) {
+            const indicator = document.getElementById('status-indicator');
+            indicator.textContent = message;
+            indicator.classList.add('active');
+            setTimeout(() => {
+                indicator.classList.remove('active');
+            }, 3000);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey && e.target.id === 'message-input') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Load saved preferences
+        const savedBgImage = localStorage.getItem('joi-bg-image');
+        if (savedBgImage) {
+            document.documentElement.style.setProperty('--bg-image', `url(${savedBgImage})`);
+        }
+
+        const savedBgColor = localStorage.getItem('joi-bg-color');
+        if (savedBgColor) {
+            document.documentElement.style.setProperty('--bg-color', savedBgColor);
+        }
+
+        // Load voices when available
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
+    </script>
+</body>
+</html>

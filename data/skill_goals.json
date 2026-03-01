@@ -1,0 +1,24 @@
+{
+  "active_goals": [
+    {
+      "id": "goal_1772320167_0",
+      "skill_area": "about",
+      "description": "Improve performance in 'about' (negative feedback: 3, positive: 0)",
+      "priority": "high",
+      "practice_count": 1,
+      "status": "active",
+      "created": "2026-02-28T16:09:27.760235"
+    },
+    {
+      "id": "goal_1772320167_1",
+      "skill_area": "just",
+      "description": "Improve performance in 'just' (negative feedback: 2, positive: 0)",
+      "priority": "high",
+      "practice_count": 0,
+      "status": "active",
+      "created": "2026-02-28T16:09:27.760235"
+    }
+  ],
+  "completed_goals": [],
+  "last_goal_generation": "2026-02-28T16:09:27.760235"
+}

@@ -1,0 +1,19 @@
+{
+  "patterns_detected": [
+    {
+      "id": "unknown:unknown",
+      "pattern": "Tool 'unknown' has failed 12 times",
+      "tool": "unknown",
+      "occurrences": 12,
+      "first_seen": "2026-02-28T16:09:16.889488",
+      "fix_applied": false,
+      "proposed_fix": {
+        "fix_type": "code_patch",
+        "description": "Modify the tool invocation wrapper or error handling logic to ensure the actual tool name or identifier is captured and logged upon failure. The 'unknown' label indicates a failure to properly identify which tool caused the error, hindering root cause analysis.",
+        "confidence": 95
+      }
+    }
+  ],
+  "fixes_applied": [],
+  "last_review": "2026-02-28T16:09:27.689897"
+}

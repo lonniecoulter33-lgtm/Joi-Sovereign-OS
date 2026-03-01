@@ -1,0 +1,9 @@
+flask>=2.3
+python-dotenv>=1.0
+requests>=2.31
+pypdf>=4.0
+openai>=1.0
+py -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements_joi_v2.txt
+py appjoi.py

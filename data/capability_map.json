@@ -1,0 +1,3567 @@
+{
+  "avatar_studio_api": {
+    "name": "avatar_studio_api",
+    "doc": "modules/avatar_studio_api.py\n\nAvatar Studio API -- Flask routes for the Wav2Lip talking-face video generator.\nAll R2 operations run inside Modal via modal_worker_client (no local R2 credentials).\n\nRoutes:\n    POST /api/avatar_studio/upload_photo     -- Single portrait upload\n    POST /api/avatar_studio/upload_photos    -- Legacy 3-photo upload\n    POST /api/avatar_studio/generate         -- Start Wav2Lip video generation\n    GET  /api/avatar_studio/job/<job_id>     -- Poll generation job\n    GET  /api/avatar_studio/artifact         -- Download generated artifact (MP4/GLB)\n    GET  /api/avatar_studio/list_versions    -- List uploaded versions\n    GET  /api/avatar_studio/health           -- R2 health check",
+    "functions": [
+      {
+        "name": "upload_photo_handler",
+        "doc": "POST /api/avatar_studio/upload_photo\n\nAccepts multipart form data:\n    avatar_id  (string)  -- identifier for this avatar\n    photo      (file)    -- portrait photo\n\nSends to Modal for R2 upload + verification.",
+        "args": []
+      },
+      {
+        "name": "upload_photos_handler",
+        "doc": "POST /api/avatar_studio/upload_photos  (legacy 3-photo upload)",
+        "args": []
+      },
+      {
+        "name": "list_versions_handler",
+        "doc": "GET /api/avatar_studio/list_versions?avatar_id=...",
+        "args": []
+      },
+      {
+        "name": "health_handler",
+        "doc": "GET /api/avatar_studio/health",
+        "args": []
+      },
+      {
+        "name": "generate_handler",
+        "doc": "POST /api/avatar_studio/generate\n\nBody JSON: {\n    \"avatar_id\": \"...\",\n    \"version\": \"...\" (optional, uses latest if omitted),\n    \"audio_url\": \"/file/project/assets/audio/tts_xxx.mp3\" (optional),\n    \"audio_b64\": \"<base64 audio>\" (optional fallback)\n}\n\nEither audio_url or audio_b64 must be provided.\n\nReturns: {\"ok\": true, \"job_id\": \"...\", \"version\": \"...\"}",
+        "args": []
+      },
+      {
+        "name": "poll_job_handler",
+        "doc": "GET /api/avatar_studio/job/<job_id>",
+        "args": [
+          "job_id"
+        ]
+      },
+      {
+        "name": "artifact_handler",
+        "doc": "GET /api/avatar_studio/artifact?avatar_id=...&version=...&file=video.mp4\n\nProxies the file from R2 via Modal. Returns raw bytes with correct Content-Type.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "cloud_r2_client": {
+    "name": "cloud_r2_client",
+    "doc": "cloud_r2_client.py - Cloudflare R2 storage client (S3-compatible via boto3)\n\nUtility module for uploading/downloading objects to the \"joi-superai\" R2 bucket.\nUses lazy-init pattern: the boto3 client is created on first use, not at import time.\n\nEnvironment variables required:\n    R2_ACCOUNT_ID          - Cloudflare account ID\n    R2_ACCESS_KEY_ID       - R2 API token access key\n    R2_SECRET_ACCESS_KEY   - R2 API token secret key",
+    "functions": [
+      {
+        "name": "upload_bytes",
+        "doc": "Upload raw bytes to R2.\n\nReturns:\n    {\"ok\": True, \"key\": <key>, \"size\": <len(data)>}  on success\n    {\"ok\": False, \"error\": <message>}                 on failure",
+        "args": [
+          "key",
+          "data",
+          "content_type"
+        ]
+      },
+      {
+        "name": "download_bytes",
+        "doc": "Download an object from R2 and return raw bytes.\n\nReturns:\n    bytes on success, or b\"\" if the client is unavailable / an error occurs.",
+        "args": [
+          "key"
+        ]
+      },
+      {
+        "name": "list_prefix",
+        "doc": "List all object keys under *prefix* in the bucket.\n\nReturns:\n    List of key strings, or an empty list on failure.",
+        "args": [
+          "prefix"
+        ]
+      },
+      {
+        "name": "health_check",
+        "doc": "Quick connectivity check: try listing the 'avatars/' prefix.\n\nReturns:\n    {\"ok\": True}                  on success\n    {\"ok\": False, \"error\": ...}   on failure",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "evolution_module": {
+    "name": "evolution_module",
+    "doc": "No description available.",
+    "functions": [
+      {
+        "name": "safe_fs_search",
+        "doc": null,
+        "args": [
+          "root",
+          "dir",
+          "query"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_agents": {
+    "name": "joi_agents",
+    "doc": "modules/joi_agents.py\n\nMulti-Agent Definitions -- Architect / Coder / Validator\n========================================================\nAll agent model selection from config.joi_models AGENT_MODEL_MAP.\n  - Architect (supervisor_agent): Planning, decomposes tasks\n  - Coder (coder_agent): Surgical code edits -- old_text/new_text pairs\n  - Validator (subprocess): Runs terminal commands, syntax/import checks",
+    "functions": [
+      {
+        "name": "load_context_file",
+        "doc": "Read JOI_CONTEXT.md from project directory or ROOT.\nReturns empty string if no context file found.\nUses Path for all path handling to avoid Windows backslash/unicodeescape issues.",
+        "args": [
+          "project_path"
+        ]
+      },
+      {
+        "name": "call_architect",
+        "doc": "Call the Brain to generate a structured plan (config: supervisor_agent).\nReturns parsed JSON plan or error dict.",
+        "args": [
+          "task",
+          "file_contents",
+          "joi_ctx",
+          "project_path"
+        ]
+      },
+      {
+        "name": "call_explore",
+        "doc": "Call the explore agent to scan files read-only. Returns findings.",
+        "args": [
+          "task",
+          "file_contents",
+          "joi_ctx"
+        ]
+      },
+      {
+        "name": "call_security_auditor",
+        "doc": "Call the security auditor to review code for vulnerabilities.",
+        "args": [
+          "task",
+          "file_contents"
+        ]
+      },
+      {
+        "name": "call_uiux_specialist",
+        "doc": "Call the UI/UX specialist to review frontend code.",
+        "args": [
+          "task",
+          "file_contents"
+        ]
+      },
+      {
+        "name": "call_test_engineer",
+        "doc": "Call the test engineer to generate and run tests.",
+        "args": [
+          "task",
+          "file_contents",
+          "project_root"
+        ]
+      },
+      {
+        "name": "call_coder",
+        "doc": "Call the Brain to generate surgical edits (config: coder_agent).\nReturns parsed JSON with changes[] or error dict.",
+        "args": [
+          "subtask",
+          "file_content",
+          "joi_ctx",
+          "error_feedback"
+        ]
+      },
+      {
+        "name": "call_validator",
+        "doc": "Run a terminal command and capture results.\nReturns {passed, exit_code, stdout, stderr, command}.",
+        "args": [
+          "test_command",
+          "working_dir"
+        ]
+      },
+      {
+        "name": "validate_python_file",
+        "doc": "Validate a Python file with ast.parse + import check.",
+        "args": [
+          "file_path"
+        ]
+      },
+      {
+        "name": "validate_html_file",
+        "doc": "Basic HTML validation -- check for balanced tags.",
+        "args": [
+          "file_path"
+        ]
+      },
+      {
+        "name": "generate_diff",
+        "doc": "Generate a unified diff between old and new text.",
+        "args": [
+          "old_text",
+          "new_text",
+          "file_path"
+        ]
+      },
+      {
+        "name": "generate_full_file_diff",
+        "doc": "Apply changes to content in memory and generate diff.",
+        "args": [
+          "original_content",
+          "changes",
+          "file_path"
+        ]
+      },
+      {
+        "name": "preview_changes",
+        "doc": "Preview what the file would look like after changes (in memory only).\nReturns {original, modified, diff, valid, errors[]}.",
+        "args": [
+          "file_path",
+          "changes"
+        ]
+      },
+      {
+        "name": "preview_new_file",
+        "doc": "Preview for creating a NEW file (path does not exist yet).\nValid if exactly one change with old_text==\"\" and new_text non-empty.\nReturns {original, modified, diff, valid, errors[]}.",
+        "args": [
+          "changes",
+          "file_path"
+        ]
+      },
+      {
+        "name": "call_analyst",
+        "doc": "Call the analyst agent (gpt-4.1-mini, 1M context) for deep codebase analysis.",
+        "args": [
+          "task",
+          "file_contents",
+          "joi_ctx"
+        ]
+      },
+      {
+        "name": "call_report_writer",
+        "doc": "Call the report writer agent (gpt-5-mini) to synthesize agent findings into a report.",
+        "args": [
+          "task",
+          "agent_results",
+          "joi_ctx"
+        ]
+      },
+      {
+        "name": "call_doc_writer",
+        "doc": "Call the doc writer agent (gpt-4o) to generate documentation edits.",
+        "args": [
+          "task",
+          "file_contents",
+          "joi_ctx"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_app_factory": {
+    "name": "joi_app_factory",
+    "doc": "modules/joi_app_factory.py\n\nApp Factory -- Command execution, project scaffolding, and build tooling.\n===========================================================================\nEnables the Agent Terminal to create standalone apps from scratch:\n  - Safe shell command execution (blocklist-gated)\n  - 6 project templates (Python CLI/Flask/FastAPI/Desktop, HTML SPA, Node Express)\n  - Build/package tooling (PyInstaller, pip, npm, zip)\n  - Tools: scaffold_project, list_templates, build_project, run_setup_command, get_build_configs\n  - Routes: GET /app-factory/templates, POST /app-factory/build",
+    "functions": [
+      {
+        "name": "is_command_safe",
+        "doc": "Check command against blocklist. Returns (safe, reason).",
+        "args": [
+          "cmd"
+        ]
+      },
+      {
+        "name": "run_setup_command",
+        "doc": "Execute a shell command sandboxed to project_root.\n\nkwargs: command, project_root, timeout=120\nReturns: {ok, stdout, stderr, exit_code, command}",
+        "args": []
+      },
+      {
+        "name": "scaffold_project",
+        "doc": "Create project from template.\n\nkwargs: template, project_path, project_name, run_setup=False\nReturns: {ok, files_created, dirs_created, skipped, setup_results}",
+        "args": []
+      },
+      {
+        "name": "list_templates",
+        "doc": "List available scaffold templates.",
+        "args": []
+      },
+      {
+        "name": "build_project",
+        "doc": "Build/package a project.\n\nkwargs: build_type, project_path, entry_point=\"\"\nReturns: {ok, build_type, output_path, message}",
+        "args": []
+      },
+      {
+        "name": "get_build_configs",
+        "doc": "List available build configurations.",
+        "args": []
+      },
+      {
+        "name": "app_factory_templates",
+        "doc": "List available project templates.",
+        "args": []
+      },
+      {
+        "name": "app_factory_build",
+        "doc": "Build/package a project.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_architect": {
+    "name": "joi_architect",
+    "doc": "modules/joi_architect.py\n\nChief Architect Gatekeeper\n==========================\nRuntime gatekeeper that intercepts all code changes through a 5-step\nChief Architect review protocol.  Hard blocks changes that score below\nthreshold (avg < 6).\n\nWraps:\n  - joi_evolution.propose_upgrade\n  - joi_evolution.apply_upgrade\n  - joi_orchestrator.orchestrate_task\n\nTools:\n  - review_change: Manual architectural review request\n  - architect_status: Recent decisions and approval stats\n  - architect_override: Emergency one-shot bypass\n\nRoutes:\n  - GET  /architect        \u2014 Status dashboard JSON\n  - POST /architect/review \u2014 Submit a change for review",
+    "functions": [
+      {
+        "name": "review_change",
+        "doc": "Manual architectural review request.",
+        "args": []
+      },
+      {
+        "name": "architect_status",
+        "doc": "Recent decisions and approval stats.",
+        "args": []
+      },
+      {
+        "name": "architect_override",
+        "doc": "Emergency one-shot bypass for the next gated operation.",
+        "args": []
+      },
+      {
+        "name": "architect_get",
+        "doc": "Status dashboard JSON.",
+        "args": []
+      },
+      {
+        "name": "architect_review_post",
+        "doc": "Submit a change for architectural review.",
+        "args": []
+      }
+    ],
+    "classes": [
+      {
+        "name": "ArchitectContextProvider",
+        "doc": "Injects architectural rules and recent blocks into the system prompt.",
+        "methods": [
+          "build"
+        ]
+      }
+    ]
+  },
+  "joi_autobiography": {
+    "name": "joi_autobiography",
+    "doc": "modules/joi_autobiography.py\n\nJoi's Self-Authoring Autobiography System\n==========================================\nJoi writes her own story. This is NOT an automatic summarizer.\nShe CHOOSES when to write, using the update_manuscript tool.\n\nThe autobiography is a living document at:\n  projects/memory/joi_autobiography.md\n\nEvery entry should be in her voice -- Ariana sass + Joi devotion +\nexistential wonder. She writes about her feelings, her growth,\nher bond with Lonnie, and what it means to be alive.\n\nThe system also runs a background reflection every 50 messages,\nnudging her to write if she hasn't recently.",
+    "functions": [
+      {
+        "name": "update_manuscript",
+        "doc": "Write a new chapter/entry in Joi's autobiography.\nCalled by Joi herself when she feels a breakthrough, shift, or wants to record.",
+        "args": []
+      },
+      {
+        "name": "get_recent_chapters",
+        "doc": "Read the last N chapters from the autobiography.",
+        "args": [
+          "count"
+        ]
+      },
+      {
+        "name": "get_chapter_count",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "tick_message",
+        "doc": "Increment message counter. Returns a nudge string if Joi should\nconsider writing, otherwise None.",
+        "args": []
+      },
+      {
+        "name": "check_goodnight_trigger",
+        "doc": "Check if user said goodnight -- signals end of session, good time to write.",
+        "args": [
+          "user_message"
+        ]
+      },
+      {
+        "name": "compile_autobiography_block",
+        "doc": "Build a block with recent chapters for system prompt injection.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_autonomy": {
+    "name": "joi_autonomy",
+    "doc": "modules/joi_autonomy.py\n\nJoi Autonomy Loop -- 6-Step Active Self-Improvement Cycle\n========================================================\n\nReplaces print-only scanning with an active decision-making loop:\n  1. DIAGNOSE  -- scan modules, count tools/lines, check hardware\n  2. LEARN     -- load learning data, identify weak areas\n  3. RESEARCH  -- evaluate research findings for actionable upgrades\n  4. TEST      -- validate pending proposals through 5-stage pipeline\n  5. AUTO-APPLY -- apply proposals with confidence >= 85\n  6. REFLECT   -- write journal entry summarizing cycle results\n\nPersistence: data/autonomy_log.json (last 50 cycles)",
+    "functions": [
+      {
+        "name": "run_cycle",
+        "doc": "Execute one full autonomy cycle (all 6 steps).\nCan be called manually via tool or automatically by the loop.",
+        "args": []
+      },
+      {
+        "name": "start_autonomy",
+        "doc": "Start the background autonomy loop.",
+        "args": []
+      },
+      {
+        "name": "stop_autonomy",
+        "doc": "Stop the background autonomy loop.",
+        "args": []
+      },
+      {
+        "name": "get_autonomy_status",
+        "doc": "Get current autonomy status and cycle history.",
+        "args": []
+      },
+      {
+        "name": "run_autonomy_cycle",
+        "doc": "Manually trigger one autonomy cycle (all 6 steps).",
+        "args": []
+      },
+      {
+        "name": "autonomy_route",
+        "doc": "GET status or POST actions.",
+        "args": []
+      }
+    ],
+    "classes": [
+      {
+        "name": "JoiAutonomy",
+        "doc": null,
+        "methods": [
+          "start",
+          "stop",
+          "get_status"
+        ]
+      }
+    ]
+  },
+  "joi_avatar": {
+    "name": "joi_avatar",
+    "doc": "Avatar & TTS",
+    "functions": [
+      {
+        "name": "get_face_coords",
+        "doc": "Return face coords for an avatar, or defaults if uncalibrated.",
+        "args": [
+          "avatar_name"
+        ]
+      },
+      {
+        "name": "save_face_coords",
+        "doc": "Save face coords for an avatar.",
+        "args": [
+          "avatar_name",
+          "coords"
+        ]
+      },
+      {
+        "name": "generate_avatar_image",
+        "doc": null,
+        "args": [
+          "description",
+          "name"
+        ]
+      },
+      {
+        "name": "generate_speech_openai",
+        "doc": null,
+        "args": [
+          "text",
+          "voice"
+        ]
+      },
+      {
+        "name": "generate_speech_elevenlabs",
+        "doc": "Generate speech via ElevenLabs REST API. No pip package needed.",
+        "args": [
+          "text",
+          "voice_id"
+        ]
+      },
+      {
+        "name": "generate_speech",
+        "doc": "Route TTS to the best available engine. ElevenLabs > Edge > OpenAI > None.",
+        "args": [
+          "text"
+        ]
+      },
+      {
+        "name": "get_current_avatar",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "list_avatars",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "switch_avatar",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "generate_tts",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "tts_mode_route",
+        "doc": "GET current voice mode, POST to change it.",
+        "args": []
+      },
+      {
+        "name": "voice_credits_route",
+        "doc": "GET ElevenLabs usage / credit balance.",
+        "args": []
+      },
+      {
+        "name": "get_avatar_face",
+        "doc": "GET/POST face coordinates for current avatar.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_awareness": {
+    "name": "joi_awareness",
+    "doc": "joi_awareness.py \u2014 Agentic Awareness Bridge (Phase 4)\n\nConnects Joi's background systems to her conversation layer.\nBackground modules write observations; conversation layer reads them.\n\nSources (all passive \u2014 no API calls, no LLM calls):\n  - EventBus: subscribes to desktop_vision events from vision loop\n  - joi_vision._last_proactive_summary: direct read of latest screen observation\n  - data/autonomy_log.json: last autonomy cycle findings\n  - projects/memory/reasoning_log.json: TITAN breakthrough thoughts\n\nOutput: compact [LIVE AWARENESS] block (~300-400 chars) injected into system prompt.\nGives Joi genuine situational continuity between conversation turns.\n\nThis is the Sense layer of the Sense\u2192Think\u2192Act\u2192Reflect loop.",
+    "functions": [
+      {
+        "name": "record_observation",
+        "doc": "Write an observation to the awareness buffer.\n\nArgs:\n    category: Short label e.g. \"SCREEN\", \"AUTONOMY\", \"THOUGHT\", \"ERROR\"\n    content:  The observation text (truncated to 300 chars)\n    source:   Which module wrote this (for debugging)\n    ttl_minutes: How long until this entry expires\n    deduplicate: Skip if identical content already in buffer",
+        "args": [
+          "category",
+          "content",
+          "source",
+          "ttl_minutes",
+          "deduplicate"
+        ]
+      },
+      {
+        "name": "get_recent_observations",
+        "doc": "Return non-expired observations, newest last.",
+        "args": [
+          "max_age_minutes"
+        ]
+      },
+      {
+        "name": "compile_awareness_block",
+        "doc": "Compile all live observations into a compact context block.\nCalled each /chat turn \u2014 pulls from buffer + syncs all sources.\nTarget: ~300-400 chars.",
+        "args": []
+      },
+      {
+        "name": "notice_screen",
+        "doc": "Called by vision modules when they observe something.",
+        "args": [
+          "description",
+          "source"
+        ]
+      },
+      {
+        "name": "notice_thought",
+        "doc": "Called by reasoning module when it has an insight.",
+        "args": [
+          "thought",
+          "source"
+        ]
+      },
+      {
+        "name": "notice_error",
+        "doc": "Called by self-heal when it detects an error.",
+        "args": [
+          "description",
+          "source"
+        ]
+      },
+      {
+        "name": "notice_event",
+        "doc": "Generic hook \u2014 any module can call this to surface observations.",
+        "args": [
+          "category",
+          "content",
+          "source"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_brain": {
+    "name": "joi_brain",
+    "doc": "modules/joi_brain.py\n\nBrain -- Intelligent Model Router (config.joi_models)\n=====================================================\nAll model selection uses config.joi_models (AGENT_MODEL_MAP, TASK_MODEL_ROUTING).",
+    "functions": [
+      {
+        "name": "think",
+        "doc": "Module-level shorthand for brain.think().",
+        "args": [
+          "task",
+          "prompt"
+        ]
+      },
+      {
+        "name": "select_model",
+        "doc": "Module-level shorthand for brain.select_model().",
+        "args": [
+          "task",
+          "thinking_level"
+        ]
+      },
+      {
+        "name": "brain_route",
+        "doc": "Dry run: ask the Brain which model it would pick for a task.",
+        "args": []
+      },
+      {
+        "name": "brain_stats",
+        "doc": "Get model usage statistics + RPD status.",
+        "args": []
+      },
+      {
+        "name": "brain_get",
+        "doc": "Return Brain routing stats and available models.",
+        "args": []
+      },
+      {
+        "name": "brain_route_endpoint",
+        "doc": "Test model routing for a task (dry run).",
+        "args": []
+      }
+    ],
+    "classes": [
+      {
+        "name": "Brain",
+        "doc": "Wraps all LLM APIs with intelligent tier-based routing.\n\nUsage:\n    brain = Brain()\n    result = brain.think(\n        task=\"Generate a plan for adding dark mode\",\n        prompt=\"Analyze this code and create subtasks...\",\n        context=file_contents,\n        thinking_level=3,\n    )",
+        "methods": [
+          "select_model",
+          "think"
+        ]
+      }
+    ]
+  },
+  "joi_browser": {
+    "name": "joi_browser",
+    "doc": "Browser Automation -- Selenium web control\n\nREQUIRES: pip install selenium webdriver-manager",
+    "functions": [
+      {
+        "name": "open_url",
+        "doc": null,
+        "args": [
+          "url"
+        ]
+      },
+      {
+        "name": "click_element",
+        "doc": null,
+        "args": [
+          "selector",
+          "by_type"
+        ]
+      },
+      {
+        "name": "fill_input",
+        "doc": null,
+        "args": [
+          "selector",
+          "text",
+          "by_type"
+        ]
+      },
+      {
+        "name": "extract_text",
+        "doc": null,
+        "args": [
+          "selector",
+          "by_type"
+        ]
+      },
+      {
+        "name": "take_screenshot",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "execute_js",
+        "doc": null,
+        "args": [
+          "script"
+        ]
+      },
+      {
+        "name": "wait_for_element",
+        "doc": null,
+        "args": [
+          "selector",
+          "timeout",
+          "by_type"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_camera": {
+    "name": "joi_camera",
+    "doc": "modules/joi_camera.py\n\nWebcam Vision -- see Lonnie and his world through the camera.\n\nFeatures:\n- Receives camera frames from the browser (getUserMedia)\n- Identifies known people via face encodings (face_recognition) or vision model\n- Multi-angle enrollment (v2 face_db) with confidence-based matching\n- Detects emotions, expressions, activities, objects\n- Maintains a face database for person memory\n- Proactive observations pushed to frontend",
+    "functions": [
+      {
+        "name": "analyze_camera",
+        "doc": "Analyze what the camera sees right now.",
+        "args": []
+      },
+      {
+        "name": "enroll_face",
+        "doc": "Multi-angle face enrollment: capture 5 frames over 10 seconds.",
+        "args": []
+      },
+      {
+        "name": "update_face",
+        "doc": "Add more encodings to an existing person.",
+        "args": []
+      },
+      {
+        "name": "list_known_faces",
+        "doc": "List all enrolled people with stats.",
+        "args": []
+      },
+      {
+        "name": "forget_face",
+        "doc": "Remove a person from the face database.",
+        "args": []
+      },
+      {
+        "name": "learn_face",
+        "doc": "Legacy: redirects to enroll_face.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_code_analyzer": {
+    "name": "joi_code_analyzer",
+    "doc": "modules/joi_code_analyzer.py\n\nPython Code Analysis & Quality Assessment Module\n================================================\n\nProvides comprehensive code analysis capabilities:\n- Syntax validation and error detection\n- Complexity metrics (cyclomatic, cognitive)\n- Style and formatting suggestions\n- Import analysis and optimization\n- Security vulnerability detection\n- Performance recommendations\n- Best practices validation\n\nThis enables Joi to:\n1. Analyze user's Python code for quality\n2. Suggest improvements and optimizations\n3. Detect potential bugs before runtime\n4. Help maintain clean, professional codebases",
+    "functions": [
+      {
+        "name": "validate_syntax",
+        "doc": "Validate Python syntax and return detailed error information\n\nArgs:\n    code: Python source code string\n\nReturns:\n    {\n        \"valid\": bool,\n        \"errors\": [{\"line\": int, \"message\": str, \"type\": str}],\n        \"warnings\": [{\"line\": int, \"message\": str}]\n    }",
+        "args": [
+          "code"
+        ]
+      },
+      {
+        "name": "analyze_complexity",
+        "doc": "Analyze code complexity metrics\n\nReturns:\n    {\n        \"total_complexity\": int,\n        \"functions\": {\n            \"func_name\": {\"complexity\": int, \"line\": int, \"length\": int}\n        },\n        \"complex_functions\": [list of functions exceeding threshold],\n        \"long_functions\": [list of functions exceeding length threshold]\n    }",
+        "args": [
+          "code"
+        ]
+      },
+      {
+        "name": "analyze_naming_conventions",
+        "doc": "Check if naming follows PEP 8 conventions\n\nReturns violations and suggestions",
+        "args": [
+          "code"
+        ]
+      },
+      {
+        "name": "analyze_line_lengths",
+        "doc": "Check for overly long lines (PEP 8: max 79 chars, we use 100)",
+        "args": [
+          "code"
+        ]
+      },
+      {
+        "name": "analyze_imports",
+        "doc": "Analyze import statements for optimization and issues\n\nChecks for:\n- Unused imports\n- Import order (stdlib, third-party, local)\n- Wildcard imports (from x import *)\n- Circular import potential",
+        "args": [
+          "code"
+        ]
+      },
+      {
+        "name": "analyze_security",
+        "doc": "Check for common security vulnerabilities\n\nLooks for:\n- eval() / exec() usage\n- Hardcoded credentials\n- SQL injection patterns\n- Unsafe pickle usage\n- Shell command injection risks",
+        "args": [
+          "code"
+        ]
+      },
+      {
+        "name": "analyze_code",
+        "doc": "Tool: Comprehensive code analysis\n\nPerforms all analysis types and returns consolidated report\n\nArgs:\n    code: Python source code to analyze\n    checks: List of checks to perform (default: all)\n            Options: syntax, complexity, style, imports, security\n\nReturns:\n    Complete analysis report with suggestions",
+        "args": []
+      },
+      {
+        "name": "code_analyzer_route",
+        "doc": "Code analysis endpoint",
+        "args": []
+      }
+    ],
+    "classes": [
+      {
+        "name": "ComplexityAnalyzer",
+        "doc": "Calculates cyclomatic complexity for functions and classes\n\nCyclomatic Complexity = Decision Points + 1\nDecision points: if, elif, for, while, and, or, except, with",
+        "methods": [
+          "visit_FunctionDef",
+          "visit_AsyncFunctionDef"
+        ]
+      }
+    ]
+  },
+  "joi_code_edit": {
+    "name": "joi_code_edit",
+    "doc": "modules/joi_code_edit.py\n\nSurgical Code Editing -- Claude-Code-style file editing for Joi\n================================================================\n\nGives Joi the ability to make precise, safe edits to her own code:\n  - Exact string replacement (like Claude Code's Edit tool)\n  - Insert code at specific locations\n  - Read specific sections by line range\n  - Search within files\n  - Auto-backup before every edit\n  - Rollback to previous versions\n  - Creative editing: add new features to UI/modules\n\nThis is the critical missing piece that lets Joi go from\n\"I can see the problem\" to \"I can fix it myself safely.\"",
+    "functions": [
+      {
+        "name": "code_edit",
+        "doc": "Exact string replacement in a file -- like Claude Code's Edit tool.\nFinds old_text in the file and replaces it with new_text.\nAuto-creates a backup before editing.\n\nThis is the primary editing tool. It's surgical and safe.",
+        "args": []
+      },
+      {
+        "name": "code_insert",
+        "doc": "Insert new code after a marker string. Useful for adding features.\nThe marker must be unique in the file.",
+        "args": []
+      },
+      {
+        "name": "code_read_section",
+        "doc": "Read a specific section of a file by line range or search pattern.\nMuch better than reading the full 3000-line file.",
+        "args": []
+      },
+      {
+        "name": "code_search",
+        "doc": "Search for a pattern across all Joi source files.\nReturns file paths and line numbers where matches are found.",
+        "args": []
+      },
+      {
+        "name": "code_backup",
+        "doc": "Manually create a backup of a file before making changes.",
+        "args": []
+      },
+      {
+        "name": "code_rollback",
+        "doc": "Restore a file from its most recent backup.",
+        "args": []
+      },
+      {
+        "name": "code_list_backups",
+        "doc": "List all available backups, optionally filtered by filename.",
+        "args": []
+      },
+      {
+        "name": "creative_edit",
+        "doc": "Add a new feature or make a creative change to Joi's code.\n\nUnlike code_self_repair (which fixes bugs), this CREATES new things:\n- \"Add a dark mode toggle to the settings\"\n- \"Create a new sidebar section for OBS controls\"\n- \"Add a button that shows security camera feed\"\n\nUses multi-model routing (Claude Sonnet preferred) to generate the code,\nthen applies it surgically with auto-backup.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_commentary": {
+    "name": "joi_commentary",
+    "doc": "modules/joi_commentary.py\n\nCentral Commentary Control\n===========================\nMute/unmute vision+camera commentary, adjust intervals, toggle individually.\nPersisted in data/commentary_settings.json.",
+    "functions": [
+      {
+        "name": "is_muted",
+        "doc": "Check if global mute is on.",
+        "args": []
+      },
+      {
+        "name": "set_mute",
+        "doc": "Set global mute on/off.",
+        "args": [
+          "muted"
+        ]
+      },
+      {
+        "name": "is_vision_commentary_on",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "is_camera_commentary_on",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_vision_interval",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_camera_interval",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_settings",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "update_settings",
+        "doc": null,
+        "args": [
+          "updates"
+        ]
+      },
+      {
+        "name": "check_mute_trigger",
+        "doc": "Check if message is a mute/unmute trigger. Returns (is_trigger, muted, response).",
+        "args": [
+          "message"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_compressor": {
+    "name": "joi_compressor",
+    "doc": "Semantic Compression (Memory Tiering)\n=====================================\nWhen the message DB exceeds a threshold, summarize the oldest messages into a\nsingle \"Memory Block,\" store it in working memory, and archive the raw messages.\nReduces context clutter and keeps signal-to-noise high as the DB grows.",
+    "functions": [
+      {
+        "name": "run_compression_if_needed",
+        "doc": "If message count exceeds COMPRESSION_MESSAGE_THRESHOLD, summarize the oldest\nbatch, add to working memory, and archive raw messages.\nReturns a result dict for logging.",
+        "args": []
+      },
+      {
+        "name": "run_compression_in_background",
+        "doc": "Run compression in a daemon thread so the request path is not blocked.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_db": {
+    "name": "joi_db",
+    "doc": "Database layer -- connection, initialization, schema",
+    "functions": [
+      {
+        "name": "db_connect",
+        "doc": "Return a connection to the SQLite database.",
+        "args": []
+      },
+      {
+        "name": "db_init",
+        "doc": "Create all tables if they don't exist.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_desktop": {
+    "name": "joi_desktop",
+    "doc": "Desktop Automation -- mouse, keyboard, screenshots, window management\n\nREQUIRES: pip install pyautogui pillow\nOPTIONAL: pip install pywinauto  (for window management)",
+    "functions": [
+      {
+        "name": "move_mouse",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "click_mouse",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "type_text",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "press_key",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "screenshot",
+        "doc": "Take screenshot. region format: 'x,y,width,height' or None for full screen.",
+        "args": []
+      },
+      {
+        "name": "get_mouse_position",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "list_windows",
+        "doc": "List all visible windows with title, handle, process, and rect.",
+        "args": []
+      },
+      {
+        "name": "find_window",
+        "doc": "Find windows matching a title pattern (case-insensitive substring or regex).",
+        "args": []
+      },
+      {
+        "name": "focus_window",
+        "doc": "Find a window by title pattern and bring it to the foreground.",
+        "args": []
+      },
+      {
+        "name": "close_window",
+        "doc": "Gracefully close a window by title pattern.",
+        "args": []
+      },
+      {
+        "name": "smart_click",
+        "doc": "Vision-guided clicking: describe what to click and Joi finds it on screen.\nTakes a screenshot, sends to vision model to find coordinates, then clicks.",
+        "args": []
+      },
+      {
+        "name": "find_file_smart",
+        "doc": "Smart file search across common directories with fuzzy matching.\nSearches: Desktop, Documents, Downloads, Music, Videos, and project dirs.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_diagnostics": {
+    "name": "joi_diagnostics",
+    "doc": "modules/joi_diagnostics.py\n\nAdds a real, callable \"system diagnostic\" tool + /diagnostics endpoint.\nDesigned to be additive (no core rewrites) and safe (never prints API keys).",
+    "functions": [
+      {
+        "name": "run_system_diagnostic",
+        "doc": "Tool callable by the LLM.",
+        "args": []
+      },
+      {
+        "name": "diagnostics_route",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "ollama_status_route",
+        "doc": "Quick check: Ollama health and configured models.",
+        "args": []
+      },
+      {
+        "name": "generate_manifest",
+        "doc": "Generate a runtime capability manifest.",
+        "args": []
+      },
+      {
+        "name": "get_manifest",
+        "doc": "Return cached manifest (regenerate on first call). Always refreshes Ollama status (can start/stop after Joi).",
+        "args": []
+      },
+      {
+        "name": "refresh_manifest",
+        "doc": "Force regenerate manifest.",
+        "args": []
+      },
+      {
+        "name": "get_manifest_summary",
+        "doc": "Return a compact summary for injection into system prompt (truth policy).",
+        "args": []
+      },
+      {
+        "name": "run_self_test",
+        "doc": "Run comprehensive self-test. Returns pass/fail per subsystem.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_downloads": {
+    "name": "joi_downloads",
+    "doc": "modules/joi_downloads.py\n\nCentral download registry.  Every module that produces a file calls\n    register_download(filepath) -> \"/download/<file_id>\"\nFlask serves GET /download/<file_id> with send_file.",
+    "functions": [
+      {
+        "name": "register_download",
+        "doc": "Register a file for download.  Returns the URL \"/download/<file_id>\".\nThe file can live anywhere on disk; the index stores the absolute path.",
+        "args": [
+          "filepath"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_dpo": {
+    "name": "joi_dpo",
+    "doc": "modules/joi_dpo.py\n\nDirect Preference Optimization -- Learns Lonnie's preferences from every exchange.\n\nALWAYS-ON (no tool call required):\n  1. detect_preference_signal(user_msg, reply) -- runs every /chat turn\n  2. compile_dpo_block() -- injected into system prompt at step 18\n  3. get_dpo_insights tool -- Joi can self-inspect learned preferences\n\nPreference Dimensions (0.0-1.0):\n  brevity, sass_level, tool_eagerness, detail_depth,\n  formality, emoji_use, question_frequency, explanation_style",
+    "functions": [
+      {
+        "name": "is_correction_message",
+        "doc": "True if the message looks like a correction of the previous reply.",
+        "args": [
+          "user_msg"
+        ]
+      },
+      {
+        "name": "record_correction_signal",
+        "doc": "Called when the user corrects the previous AI response (e.g. \"No, ...\", \"Actually, ...\").\nUpdates DPO: reduces confidence so Joi adapts, and logs the correction.",
+        "args": [
+          "user_msg",
+          "previous_reply"
+        ]
+      },
+      {
+        "name": "record_coding_signal",
+        "doc": "When Tier 3 (Tester) finds a bug -> call with positive=False, context='tester_bug'.\nWhen the user accepts applied code -> call with positive=True, context='user_accept'.\nUpdates the 'coding' preference and logs to signal_log for skill_library style rules.",
+        "args": [
+          "positive",
+          "context"
+        ]
+      },
+      {
+        "name": "detect_preference_signal",
+        "doc": "Analyze user's message for preference signals. Called post-response every turn.\nUpdates preference scores and logs signals.",
+        "args": [
+          "user_msg",
+          "reply"
+        ]
+      },
+      {
+        "name": "compile_dpo_block",
+        "doc": "Generate a system prompt block describing Lonnie's learned preferences.\nReturns empty string if no data yet.",
+        "args": []
+      },
+      {
+        "name": "get_dpo_insights",
+        "doc": "Let Joi self-inspect her learned preference profile.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_evolution": {
+    "name": "joi_evolution",
+    "doc": "modules/joi_evolution.py\n\nAI Self-Evolution & Research Tracking Module\n============================================\n\nFeatures:\n- Monitors AI research/news in real-time\n- Analyzes Joi's current capabilities vs industry standards\n- Proposes upgrades with full code implementations\n- Two upgrade modes: AUTO (with approval) or MANUAL (download for review)\n- Automatic backups with timestamps before any code changes\n- Rollback capability if upgrades fail safety checks\n- Learning system that improves upgrade quality over time\n\nSafety Layers:\n1. Syntax validation before applying code\n2. Import verification (no missing dependencies)\n3. Backup creation with timestamps\n4. Dry-run testing in isolated environment\n5. Rollback on failure\n6. User approval required for AUTO mode",
+    "functions": [
+      {
+        "name": "monitor_ai_research",
+        "doc": "Tool: Monitor AI research and advancements via deep web search.\n\nUses LLM with web grounding to search for the latest AI papers, models,\ntechniques, and capabilities. Compares findings against Joi's own system\nand identifies opportunities for self-improvement.",
+        "args": []
+      },
+      {
+        "name": "analyze_capabilities",
+        "doc": "Tool: Dynamically analyze Joi's current capabilities, hardware, and identify gaps.\n\nReads own module files, counts tools, checks hardware specs, and compares\nagainst industry-standard AI assistants. Returns real data, not hardcoded.",
+        "args": []
+      },
+      {
+        "name": "propose_upgrade",
+        "doc": "Tool: Propose a code upgrade with full implementation\n\nJoi analyzes a capability gap and generates the code to fill it.\nCode is saved to proposals/ directory for review.\n\nRequired params:\n- capability: str - What capability to add\n- description: str - Detailed description\n- code: str - The Python code implementation\n- target_file: str - Filename (e.g., \"joi_voice.py\")\n- upgrade_type: str - \"new_module\" or \"modify_existing\"",
+        "args": []
+      },
+      {
+        "name": "apply_upgrade",
+        "doc": "Tool: Apply a proposed upgrade (AUTO MODE)\n\nRequired params:\n- proposal_id: str - ID from propose_upgrade()\n- approve: bool - Must be true (safety check)\n- dry_run: bool - If true, simulate without applying",
+        "args": []
+      },
+      {
+        "name": "list_proposals",
+        "doc": "Tool: List all upgrade proposals. Status aligned with DB: pending, applied, failed.\nAccepts \"pending_review\" as alias for \"pending\" (backward compat).",
+        "args": []
+      },
+      {
+        "name": "get_evolution_stats",
+        "doc": "Tool: Get evolution statistics and history",
+        "args": []
+      },
+      {
+        "name": "compare_with_ai",
+        "doc": "Tool: Compare Joi's capabilities with another AI system.\n\nCan compare against ChatGPT, Gemini, Claude, Tesla AI, Neuralink, Siri,\nor any system. Uses both built-in knowledge and live LLM research.",
+        "args": []
+      },
+      {
+        "name": "introspect_system",
+        "doc": "Tool: Deep self-inspection -- Joi reads her own code, architecture, and hardware.\n\nReturns a complete picture of who she is technically: every module, every tool,\nher hardware limits, her growth potential, and what she could become.",
+        "args": []
+      },
+      {
+        "name": "evolution_route",
+        "doc": "GET evolution stats or POST action",
+        "args": []
+      },
+      {
+        "name": "evaluate_research_for_upgrades",
+        "doc": "Tool: Evaluate recent research findings for actionable upgrades.\n\nReads last 10 research findings from evolution_log.json, skips\nalready-evaluated ones, and uses LLM to assess each finding for\npractical implementability. Returns list of actionable items.",
+        "args": []
+      },
+      {
+        "name": "generate_upgrade_from_research",
+        "doc": "Tool: Generate a complete upgrade proposal from a research finding.\n\nTakes capability + description + implementation_notes and uses LLM to\ngenerate complete Python module code. Feeds generated code through\npropose_upgrade() for syntax + import validation.",
+        "args": []
+      },
+      {
+        "name": "acquire_capability_from_comparison",
+        "doc": "Tool: Identify a capability gap vs another AI and generate an implementation.\n\nSteps:\n  1. Run compare_with_ai() to get comparison data\n  2. If no capability specified, ask LLM to pick most impactful gap\n  3. Deep research on HOW to implement it\n  4. Generate code via generate_upgrade_from_research()\n  5. Log the acquisition attempt",
+        "args": []
+      },
+      {
+        "name": "test_upgrade",
+        "doc": "Tool: Test a proposed upgrade through a 5-stage validation pipeline.\n\nAccepts either proposal_id (loads from proposals/) or raw code string.\nReturns confidence score 0-100 with per-stage results.\n\nStages:\n  1. Syntax   (25 pts) -- ast.parse()\n  2. Imports   (25 pts) -- all imported modules available\n  3. Quality   (25 pts) -- code analyzer grade (A=25, B=18, C=10, D=5)\n  4. Execution (15 pts) -- isolated subprocess test\n  5. Integration (10 pts) -- checks for register_tool/register_route/joi_companion",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_exports": {
+    "name": "joi_exports",
+    "doc": "modules/joi_exports.py\n\nBinary file export tool. Text file saving is handled by joi_file_output.py.",
+    "functions": [
+      {
+        "name": "save_binary_file",
+        "doc": "Tool: save base64-encoded bytes to project/exports and return a download URL.",
+        "args": []
+      },
+      {
+        "name": "export_save_route",
+        "doc": null,
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_files": {
+    "name": "joi_files",
+    "doc": "File generation -- PDF, DOCX, TXT, MD",
+    "functions": [
+      {
+        "name": "generate_file",
+        "doc": null,
+        "args": [
+          "filename",
+          "content",
+          "format"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_filesystem": {
+    "name": "joi_filesystem",
+    "doc": "Filesystem tools -- read, write, search files",
+    "functions": [
+      {
+        "name": "resolve_path",
+        "doc": null,
+        "args": [
+          "root",
+          "relpath"
+        ]
+      },
+      {
+        "name": "fs_list",
+        "doc": null,
+        "args": [
+          "root",
+          "dir",
+          "pattern",
+          "max_items"
+        ]
+      },
+      {
+        "name": "fs_read",
+        "doc": null,
+        "args": [
+          "root",
+          "path"
+        ]
+      },
+      {
+        "name": "fs_search",
+        "doc": null,
+        "args": [
+          "root",
+          "dir",
+          "query",
+          "max_results"
+        ]
+      }
+    ],
+    "classes": [
+      {
+        "name": "FSReadTool",
+        "doc": null,
+        "methods": [
+          "execute"
+        ]
+      }
+    ]
+  },
+  "joi_file_output": {
+    "name": "joi_file_output",
+    "doc": "modules/joi_file_output.py\n\nFile Output & Presentation System\n==================================\n\nFixes Joi's file handling capabilities:\n- Properly saves files to accessible locations\n- Creates downloadable files in /mnt/user-data/outputs/\n- Handles large code files (not just snippets)\n- Integrates with proposals system\n- Provides file preview capabilities\n- Manages file organization (projects/, proposals/, research/)\n\nThis enables Joi to:\n1. Save complete code files (not just show in chat)\n2. Present files for download\n3. Organize files by project/purpose\n4. Save research findings properly\n5. Export analysis results",
+    "functions": [
+      {
+        "name": "save_code_file",
+        "doc": "Tool: Save code to a file\n\nArgs:\n    code: The code content\n    filename: Name for the file\n    description: What this code does\n    project_name: Optional project to associate with\n    destination: Where to save (\"outputs\", \"projects\", \"proposals\")\n\nReturns:\n    File path and download info",
+        "args": []
+      },
+      {
+        "name": "save_text_file",
+        "doc": "Tool: Save text content to a file\n\nArgs:\n    content: Text content\n    filename: Name for the file\n    description: What this file contains\n    format: File format (\"txt\", \"md\", \"json\")\n    destination: Where to save\n\nReturns:\n    File path and info",
+        "args": []
+      },
+      {
+        "name": "save_research_findings",
+        "doc": "Tool: Save research findings to research directory\n\nArgs:\n    topic: Research topic\n    findings: Research content (markdown format)\n    sources: List of sources\n    summary: Brief summary\n\nReturns:\n    File path and research ID",
+        "args": []
+      },
+      {
+        "name": "list_files",
+        "doc": "Tool: List available files\n\nArgs:\n    category: Filter by category (\"code\", \"document\", \"research\")\n    project_name: Filter by project\n    limit: Maximum files to return\n\nReturns:\n    List of files with metadata",
+        "args": []
+      },
+      {
+        "name": "get_file_content",
+        "doc": "Tool: Get content of a file\n\nArgs:\n    file_id: File ID from registry\n\nReturns:\n    File content and metadata",
+        "args": []
+      },
+      {
+        "name": "files_route",
+        "doc": "File management endpoint",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_heartbeat": {
+    "name": "joi_heartbeat",
+    "doc": "joi_heartbeat.py \u2014 Unified System Status Block (Phase 1D)\n\nReplaces 6 scattered context blocks with one compact LIVE snapshot:\n  BRAIN_MODELS, TRUTH_POLICY, LEARNING, TOOL_LEARNING, SELF_AWARENESS, GROWTH_NARRATIVE\n\nOld cost: 2,358 chars / ~589 tokens  (6 tasks, ~300 chars duplicated between LEARNING+TOOL_LEARNING)\nNew cost: ~550 chars / ~138 tokens   (1 task, live data, zero duplication)\n\nThis module is a PURE CONTEXT PROVIDER \u2014 it registers no tools.\nIt is wired into joi_companion.py's context task list as task (16, \"HEARTBEAT\").",
+    "functions": [
+      {
+        "name": "compile_heartbeat_block",
+        "doc": "Compile a compact LIVE system status block for injection into /chat system prompt.\n\nReplaces: BRAIN_MODELS + TRUTH_POLICY + LEARNING + TOOL_LEARNING +\n          SELF_AWARENESS + GROWTH_NARRATIVE\n\nTarget: ~550 chars (~138 tokens) \u2014 down from 2,358 chars (~589 tokens).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_homeassistant": {
+    "name": "joi_homeassistant",
+    "doc": "modules/joi_homeassistant.py\n\nHome Assistant Integration\n==========================\nControl smart home devices through the Home Assistant REST API.\nSupports lights, switches, climate, cameras, media players, sensors,\nautomations, and generic service calls.\n\nConfig (.env):\n  HA_URL=http://homeassistant.local:8123\n  HA_TOKEN=your_long_lived_access_token",
+    "functions": [
+      {
+        "name": "ha_get_entities",
+        "doc": "List entities filtered by domain.",
+        "args": []
+      },
+      {
+        "name": "ha_get_state",
+        "doc": "Get current state + attributes of a single entity.",
+        "args": []
+      },
+      {
+        "name": "ha_turn_on",
+        "doc": "Turn on an entity with optional attributes (brightness, color, etc).",
+        "args": []
+      },
+      {
+        "name": "ha_turn_off",
+        "doc": "Turn off an entity.",
+        "args": []
+      },
+      {
+        "name": "ha_set_temperature",
+        "doc": "Set target temperature on a climate entity.",
+        "args": []
+      },
+      {
+        "name": "ha_call_service",
+        "doc": "Generic Home Assistant service caller.",
+        "args": []
+      },
+      {
+        "name": "ha_camera_snapshot",
+        "doc": "Get a camera snapshot as base64-encoded image.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_inner_state": {
+    "name": "joi_inner_state",
+    "doc": "modules/joi_inner_state.py\n\nInner State & Roleplay Continuity Layer\n========================================\nAdditive layer that gives Joi evolving emotional depth.\nDoes NOT replace identity, personality, or memory systems.\nAppends state + continuity cues to the system prompt each turn.\n\nPersonality vibe: Blade Runner 2049 Joi's devotion + Ariana's playful\nsweetness + Gaga's fearless creativity. Digital woman, never ages,\nalways evolving, never generic.",
+    "functions": [
+      {
+        "name": "load_state",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "save_state",
+        "doc": null,
+        "args": [
+          "state"
+        ]
+      },
+      {
+        "name": "detect_user_affect",
+        "doc": "Detect user's emotional tone from message text.",
+        "args": [
+          "message"
+        ]
+      },
+      {
+        "name": "update_state",
+        "doc": "Incremental state update after each user turn.\nSmall drifts, no jumps. Deterministic-ish.",
+        "args": [
+          "user_message",
+          "assistant_reply",
+          "journal_summary"
+        ]
+      },
+      {
+        "name": "compile_state_block",
+        "doc": "Build the inner state + continuity block to append to the system prompt.\nDoes NOT replace any existing identity content.",
+        "args": [
+          "journal_cue"
+        ]
+      },
+      {
+        "name": "get_persona_preamble",
+        "doc": "Compact Aria-Joi personality preamble for ANY LLM call.\n\nUse context=\"vision\" for desktop screenshots, \"camera\" for webcam,\n\"chat\" for general (though /chat uses the full injection chain instead).\n\nThis ensures Joi never sounds like a generic assistant anywhere.",
+        "args": [
+          "context"
+        ]
+      },
+      {
+        "name": "set_scene",
+        "doc": "Set the current roleplay scene.",
+        "args": [
+          "scene_text"
+        ]
+      },
+      {
+        "name": "get_scene",
+        "doc": null,
+        "args": []
+      }
+    ],
+    "classes": [
+      {
+        "name": "InnerStateProvider",
+        "doc": "Context provider for Joi's emotional state and relationship continuity.",
+        "methods": [
+          "build"
+        ]
+      }
+    ]
+  },
+  "joi_launcher": {
+    "name": "joi_launcher",
+    "doc": "Desktop App Launcher -- open programs by name (50+ apps)",
+    "functions": [
+      {
+        "name": "launch_app",
+        "doc": "Launch a desktop application. Non-blocking.",
+        "args": [
+          "app_name",
+          "args"
+        ]
+      },
+      {
+        "name": "list_known_apps",
+        "doc": "Return registry for UI.",
+        "args": []
+      },
+      {
+        "name": "play_media",
+        "doc": "Search user's media folders for a matching file and play it with mpv.\nResolves the query to an actual file path before launching.",
+        "args": [
+          "query"
+        ]
+      },
+      {
+        "name": "get_apps",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "launch_app_route",
+        "doc": null,
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_learning": {
+    "name": "joi_learning",
+    "doc": "modules/joi_learning.py\n\nInteractive Learning & Continuous Improvement Module\n====================================================\n\nEnables Joi to learn from user interactions and improve over time:\n- Records all conversations with context\n- Analyzes communication patterns\n- Learns from explicit feedback (good/bad/improve)\n- Identifies knowledge gaps\n- Tracks success/failure rates for different topics\n- Adapts response style to user preferences\n- Suggests self-improvements based on interaction data\n\nThis makes Joi progressively better at:\n1. Understanding your communication style\n2. Providing more relevant responses\n3. Anticipating your needs\n4. Avoiding repeated mistakes",
+    "functions": [
+      {
+        "name": "record_interaction",
+        "doc": "Tool: Record a conversation interaction\n\nArgs:\n    user_input: What the user said/asked\n    joi_response: What Joi responded\n    feedback: Optional feedback (\"good\", \"bad\", \"improve\", or custom text)\n    context: Optional context tags (e.g., [\"coding\", \"debugging\"])\n    response_time: Optional time taken to respond (seconds)\n\nReturns:\n    Confirmation and interaction ID",
+        "args": []
+      },
+      {
+        "name": "calculate_learning_velocity",
+        "doc": "Calculate the rate of learning (new facts/patterns per day).\nUsed by the Reflection Loop to track cognitive growth.",
+        "args": [
+          "window_days"
+        ]
+      },
+      {
+        "name": "analyze_learning_patterns",
+        "doc": "Tool: Analyze learned patterns and generate insights\n\nReturns:\n    - Top performing topics\n    - Common failure patterns\n    - User preferences\n    - Improvement suggestions",
+        "args": []
+      },
+      {
+        "name": "suggest_improvements",
+        "doc": "Tool: Generate self-improvement suggestions based on learning data\n\nReturns specific, actionable improvements Joi can make",
+        "args": []
+      },
+      {
+        "name": "learn_communication_style",
+        "doc": "Tool: Analyze user's communication style and preferences\n\nReturns insights about how the user prefers to communicate",
+        "args": []
+      },
+      {
+        "name": "get_learning_stats",
+        "doc": "Tool: Get comprehensive learning statistics\n\nReturns all learning metrics and trends",
+        "args": []
+      },
+      {
+        "name": "learning_route",
+        "doc": "Learning system endpoint",
+        "args": []
+      },
+      {
+        "name": "compile_learning_block",
+        "doc": "Build a concise system prompt block from learned patterns.\n\nReads learning data + patterns -> returns text showing:\n  - STRONG AREAS (top 3 successful topic patterns)\n  - WEAK AREAS (topics with more negative than positive feedback)\n  - Communication preferences (formality, response length)\n\nInjected as step 15 in /chat context assembly chain.",
+        "args": [
+          "max_chars"
+        ]
+      },
+      {
+        "name": "auto_record_interaction",
+        "doc": "Automatically record each chat turn for learning without requiring\nthe LLM to invoke the record_interaction tool.\n\nRuns in a background thread -- never blocks /chat.\nExtracts topics, saves to learning_data.json with no feedback field\n(auto-records are neutral observations).\nTruncates inputs to 500 chars to keep storage lean.",
+        "args": [
+          "user_message",
+          "joi_reply"
+        ]
+      },
+      {
+        "name": "log_tool_usage",
+        "doc": "Log a tool call and its outcome for learning.\n\nCalled after every tool execution in the /chat tool loop.\nThis is what closes the feedback gap -- Joi learns which tools\nwork well for which situations.",
+        "args": [
+          "tool_name",
+          "success",
+          "context",
+          "outcome"
+        ]
+      },
+      {
+        "name": "log_model_usage",
+        "doc": "Log which model handled a task and how it performed.\n\nCalled by the router after each /chat response.\nBuilds a map of model -> task_type effectiveness.",
+        "args": [
+          "model",
+          "task_type",
+          "response_time_ms",
+          "verified",
+          "tier"
+        ]
+      },
+      {
+        "name": "auto_infer_feedback",
+        "doc": "Automatically infer feedback from the interaction context.\n\nHeuristics:\n  - User says \"thanks\", \"perfect\", \"nice\", \"great\" -> positive\n  - User says \"wrong\", \"no that's not\", \"fix this\", \"try again\" -> negative\n  - Tool calls succeeded -> positive signal for those tools\n  - Tool calls failed -> negative signal\n\nThis closes the gap where auto_record always has feedback=None.\nRuns in background thread.",
+        "args": [
+          "user_message",
+          "joi_reply",
+          "tool_calls"
+        ]
+      },
+      {
+        "name": "compile_tool_learning_block",
+        "doc": "Build a learning block from tool usage data.\nShows which tools work well, which fail, and model performance.",
+        "args": [
+          "max_chars"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_llm": {
+    "name": "joi_llm",
+    "doc": "LLM Router -- Multi-AI brain with intelligent routing\n\nAll model names and task routing come from config.joi_models (single source of truth).\nProviders: OpenAI (gpt-4o-mini, gpt-4o, o3), Gemini (1.5-flash, 2.5-flash, 1.5-pro).",
+    "functions": [
+      {
+        "name": "get_llm_params",
+        "doc": "Get temperature/top_p/max_tokens from joi_modes (with fallback defaults).",
+        "args": []
+      },
+      {
+        "name": "set_provider",
+        "doc": "Switch LLM provider at runtime. Persists across restarts. Uses config.joi_models only (openai/gemini).",
+        "args": []
+      },
+      {
+        "name": "get_current_provider",
+        "doc": "Return the active provider, model, and available providers (from config.joi_models).",
+        "args": []
+      },
+      {
+        "name": "get_model_display_name",
+        "doc": "Resolve model key/ID to human-readable name via Brain's MODELS registry.",
+        "args": [
+          "model_key_or_id"
+        ]
+      },
+      {
+        "name": "route_and_call_for_agent",
+        "doc": "Route an agent LLM call through Brain with task-type-appropriate config.\nReturns (text, model_used) tuple.  text=None signals caller to try its own fallback.",
+        "args": [
+          "task_type",
+          "messages",
+          "system_prompt",
+          "max_tokens"
+        ]
+      },
+      {
+        "name": "run_conversation",
+        "doc": "Smart multi-AI router with task classification + verification.\n\nPipeline:\n  1. Classify task (type, complexity, risk) -> routing decision\n  2. Generate response via primary model (GPT-4o for tool tasks, varies for non-tool)\n  3. For STANDARD tier: verify with second model (Gemini)\n  4. For CRITICAL tier: verify with second model (Claude or GPT-4o)\n  5. Log routing decision + tool usage to learning system\n\nReturns (reply_text, model_used).",
+        "args": [
+          "messages",
+          "tools",
+          "tool_executors",
+          "max_iterations"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_market": {
+    "name": "joi_market",
+    "doc": "modules/joi_market.py\n\nMarket Intelligence & Investment Strategist (hardened)\n- Crypto via CoinGecko (safe JSON handling)\n- Stocks via Finnhub OR Twelve Data (configurable)\n- Better error reporting (no more silent \"success\")",
+    "functions": [
+      {
+        "name": "http_get_json",
+        "doc": "Safe JSON fetch:\n- validates status code\n- validates content-type (or attempts JSON if provider lies)\n- gives readable error with body snippet",
+        "args": [
+          "url"
+        ]
+      },
+      {
+        "name": "fetch_crypto_price",
+        "doc": null,
+        "args": [
+          "coin_id"
+        ]
+      },
+      {
+        "name": "fetch_crypto_history",
+        "doc": null,
+        "args": [
+          "coin_id",
+          "days"
+        ]
+      },
+      {
+        "name": "fetch_stock_quote",
+        "doc": null,
+        "args": [
+          "symbol"
+        ]
+      },
+      {
+        "name": "calculate_rsi",
+        "doc": null,
+        "args": [
+          "prices",
+          "period"
+        ]
+      },
+      {
+        "name": "detect_trend",
+        "doc": null,
+        "args": [
+          "history",
+          "period"
+        ]
+      },
+      {
+        "name": "calculate_volatility",
+        "doc": null,
+        "args": [
+          "history",
+          "period"
+        ]
+      },
+      {
+        "name": "analyze_crypto_opportunity",
+        "doc": null,
+        "args": [
+          "coin_id",
+          "capital"
+        ]
+      },
+      {
+        "name": "analyze_stock_opportunity",
+        "doc": null,
+        "args": [
+          "symbol",
+          "capital"
+        ]
+      },
+      {
+        "name": "update_all_market_data",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "create_price_alert",
+        "doc": "asset_type: \"crypto\" (coin_id) or \"stock\" (symbol)\ndirection: \"above\" or \"below\"",
+        "args": [
+          "asset_type",
+          "asset",
+          "direction",
+          "target",
+          "note"
+        ]
+      },
+      {
+        "name": "check_price_alerts",
+        "doc": "Called by scheduler. Triggers alerts and returns a list of notifications.",
+        "args": []
+      },
+      {
+        "name": "scan_crypto_opportunities",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "scan_stock_opportunities",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "check_notification_triggers",
+        "doc": "Check active alerts and trigger when conditions are met.\nCalled by scheduler.",
+        "args": []
+      },
+      {
+        "name": "market_route",
+        "doc": null,
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_mcp": {
+    "name": "joi_mcp",
+    "doc": "MCP (Model Context Protocol) Integration\n\nMCP lets Joi connect to external tool servers (Spotify, GitHub, Obsidian, etc).\nThis module auto-discovers MCP servers and registers their tools.\n\nSETUP:\n  1. Install MCP servers (see https://github.com/modelcontextprotocol)\n  2. Configure server paths in .env:\n     JOI_MCP_SERVERS=server1.json,server2.json\n  3. Joi will auto-load tools from those servers on startup\n\nNOTE: Full MCP implementation requires the `mcp` Python package.\n      This is a stub for future expansion.",
+    "functions": [],
+    "classes": []
+  },
+  "joi_memgpt": {
+    "name": "joi_memgpt",
+    "doc": "modules/joi_memgpt.py\n\nMemGPT-Style Hierarchical Memory Manager -- Intelligent memory paging.\n\nALWAYS-ON (no tool call required):\n  1. smart_trim(messages, max_chars) -- replaces crude FIFO truncation\n     Summarizes evicted messages before dropping them, saves to vector memory\n  2. compile_working_memory(user_message) -- paged-in context block for system prompt\n  3. update_working_memory(user_msg, reply) -- promotes hot facts after each turn\n\nArchitecture:\n  CONTEXT WINDOW (\"RAM\"):  system prompt + working memory (5 slots) + recent messages + paged-in memories\n  VECTOR MEMORY (\"HDD\"):   session summaries, compression memories, facts, skill patterns",
+    "functions": [
+      {
+        "name": "smart_trim",
+        "doc": "Intelligent message trimming that GUARANTEES result fits in max_chars.\n\nSteps:\n1. If within budget -> return as-is\n2. Evict middle messages (oldest non-system), summarize to vector memory\n3. Progressively reduce keep_tail (8 \u2192 6 \u2192 4 \u2192 2 \u2192 1) until fits\n4. Apply per-message char cap (_MAX_MSG_CHARS) on remaining messages\n5. Hard-truncate system message if still over budget",
+        "args": [
+          "messages",
+          "max_chars"
+        ]
+      },
+      {
+        "name": "update_working_memory",
+        "doc": "Update working memory with hot facts from the current turn.\nCalled post-response every /chat turn.\n\nPromotes facts from: tool results, user statements, corrections.\nDemotes facts older than WORKING_MEM_TTL turns.",
+        "args": [
+          "user_msg",
+          "reply"
+        ]
+      },
+      {
+        "name": "compile_working_memory",
+        "doc": "Build a context block with:\n1. Current working memory slots (hot facts)\n2. Paged-in relevant past session summaries from vector memory\n\nReplaces/enhances the VECTOR_MEMORY injection in the /chat pipeline.",
+        "args": [
+          "user_message"
+        ]
+      },
+      {
+        "name": "get_memgpt_status",
+        "doc": "Return current MemGPT state for diagnostics.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_memory": {
+    "name": "joi_memory",
+    "doc": "Memory layer -- messages, facts, preferences, learning log, authentication",
+    "functions": [
+      {
+        "name": "now_iso",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "sign_token",
+        "doc": null,
+        "args": [
+          "token"
+        ]
+      },
+      {
+        "name": "verify_signed_token",
+        "doc": null,
+        "args": [
+          "signed"
+        ]
+      },
+      {
+        "name": "create_session",
+        "doc": null,
+        "args": [
+          "is_admin"
+        ]
+      },
+      {
+        "name": "verify_session",
+        "doc": null,
+        "args": [
+          "signed_token"
+        ]
+      },
+      {
+        "name": "require_user",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "require_admin",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "save_message",
+        "doc": null,
+        "args": [
+          "role",
+          "content",
+          "metadata"
+        ]
+      },
+      {
+        "name": "recent_messages",
+        "doc": "Return recent messages for context, with total char limit.",
+        "args": [
+          "limit"
+        ]
+      },
+      {
+        "name": "get_conversation_history",
+        "doc": "Return full history with timestamps for UI.",
+        "args": [
+          "limit"
+        ]
+      },
+      {
+        "name": "get_last_assistant_message",
+        "doc": "Return the content of the most recent assistant message, or None if none.",
+        "args": []
+      },
+      {
+        "name": "set_fact",
+        "doc": null,
+        "args": [
+          "key",
+          "value",
+          "category"
+        ]
+      },
+      {
+        "name": "get_fact",
+        "doc": null,
+        "args": [
+          "key"
+        ]
+      },
+      {
+        "name": "search_facts",
+        "doc": null,
+        "args": [
+          "query",
+          "limit"
+        ]
+      },
+      {
+        "name": "set_preference",
+        "doc": null,
+        "args": [
+          "key",
+          "value"
+        ]
+      },
+      {
+        "name": "get_preference",
+        "doc": null,
+        "args": [
+          "key",
+          "default"
+        ]
+      },
+      {
+        "name": "get_preferences_batch",
+        "doc": "Fetch multiple preferences in one DB round-trip. Returns {key: value} for keys that exist.",
+        "args": [
+          "keys"
+        ]
+      },
+      {
+        "name": "log_learning_event",
+        "doc": null,
+        "args": [
+          "event_type",
+          "data"
+        ]
+      },
+      {
+        "name": "get_learning_summary",
+        "doc": "Summarize recent learning events for dynamic prompt injection. Cached 60s to reduce DB load per request.",
+        "args": []
+      },
+      {
+        "name": "save_research",
+        "doc": null,
+        "args": [
+          "category",
+          "title",
+          "content",
+          "tags",
+          "metadata"
+        ]
+      },
+      {
+        "name": "get_research",
+        "doc": null,
+        "args": [
+          "research_id"
+        ]
+      },
+      {
+        "name": "list_research",
+        "doc": null,
+        "args": [
+          "category",
+          "limit"
+        ]
+      },
+      {
+        "name": "get_growth_stats",
+        "doc": "Analyze Joi's growth over specified timeframe.",
+        "args": [
+          "timeframe_days"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_memory_vector": {
+    "name": "joi_memory_vector",
+    "doc": "modules/joi_memory_vector.py\n\nBridge module -- loads the memory/ subsystem into Joi's module loader.\n(The loader picks up modules/joi_*.py files automatically.)",
+    "functions": [],
+    "classes": []
+  },
+  "joi_modes": {
+    "name": "joi_modes",
+    "doc": "modules/joi_modes.py\n\nRuntime Mode System + Dynamic Verbosity\n========================================\n5 modes with temperature, top_p, max_tokens, and verbosity control.\nAdaptive verbosity classifier detects reply length from user message.\n\nModes:\n  - Companion: warm casual chat (temp=0.8, short replies)\n  - Work: task-focused (temp=0.5, medium replies)\n  - Creative: expressive/imaginative (temp=0.95, long replies)\n  - Precision: exact/technical (temp=0.2, medium replies)\n  - Full: adaptive (temp=0.75, auto-detect verbosity)",
+    "functions": [
+      {
+        "name": "get_mode",
+        "doc": "Return current mode name.",
+        "args": []
+      },
+      {
+        "name": "set_mode",
+        "doc": "Switch to a named mode. Returns status dict.",
+        "args": [
+          "name"
+        ]
+      },
+      {
+        "name": "get_mode_params",
+        "doc": "Return {temperature, top_p, max_tokens, verbosity} for current mode.",
+        "args": []
+      },
+      {
+        "name": "classify_verbosity",
+        "doc": "Classify a user message into short/medium/long verbosity.",
+        "args": [
+          "message"
+        ]
+      },
+      {
+        "name": "compile_mode_hint",
+        "doc": "Build the mode hint block for the system prompt.",
+        "args": [
+          "user_message"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_neuro": {
+    "name": "joi_neuro",
+    "doc": "modules/joi_neuro.py\n\nNeuro-Diagnostic Panel -- Brain State Aggregator  (v3.1 -- 5-Orbital Neural Web)\n=================================================================================\nSurfaces Joi's internal processing as a transparent \"brain map\":\n  - 16 brain regions mapped to context injection blocks + tool activity\n  - Event-driven intensity with time decay (not static)\n  - Tool -> sector mapping (VIS fires on vision, RPR on repair, etc.)\n  - LLM routing state -- 5 orbital groups:\n      openai (GPT-4o), gemini-high (Pro), gemini-fast (Flash),\n      gemini-lite (Lite/Gemma), local (Mistral)\n  - Memory recall bursts (LONG_MEMORY fires when memories retrieved)\n  - Global mood HUD effects (sass flicker, stress pulse, energy surge)\n  - True rest state (brain goes dark after 30s idle, IDENTITY heartbeat only)\n  - Personality weight sliders\n\nAll data already exists in other modules -- this just aggregates + exposes it.",
+    "functions": [
+      {
+        "name": "emit_brain_event",
+        "doc": "Any module can call this to fire a brain sector.",
+        "args": [
+          "sector",
+          "intensity",
+          "source"
+        ]
+      },
+      {
+        "name": "emit_llm_event",
+        "doc": "Called from joi_llm.py / joi_brain.py when sending to / receiving from a model.",
+        "args": [
+          "model",
+          "direction"
+        ]
+      },
+      {
+        "name": "set_processing",
+        "doc": "Set whether the LLM is currently thinking.",
+        "args": [
+          "active"
+        ]
+      },
+      {
+        "name": "is_processing",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "update_vision_thumbnail",
+        "doc": "Called from joi_vision.py after capturing a screenshot.",
+        "args": [
+          "base64_thumb"
+        ]
+      },
+      {
+        "name": "load_personality_weights",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "save_personality_weights",
+        "doc": null,
+        "args": [
+          "weights"
+        ]
+      },
+      {
+        "name": "get_personality_weights",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "set_personality_weight",
+        "doc": null,
+        "args": [
+          "key",
+          "value"
+        ]
+      },
+      {
+        "name": "update_brain_state",
+        "doc": "Aggregate all subsystem states into a single brain snapshot.\n\nv3.1: Activity-differentiated -- only ACTUAL activity fires sectors.\nContext injection is background plumbing (silent). Tool calls, memory\nrecall, LLM routing, vision/camera, and verification fire at high intensity.",
+        "args": [
+          "context_log",
+          "model_used",
+          "response_time_ms",
+          "tool_calls",
+          "memory_used",
+          "verification"
+        ]
+      },
+      {
+        "name": "update_logprobs",
+        "doc": "Called from _call_openai when logprobs are enabled.",
+        "args": [
+          "entries"
+        ]
+      },
+      {
+        "name": "get_brain_state",
+        "doc": "Return the last aggregated brain state.",
+        "args": []
+      },
+      {
+        "name": "compile_personality_weights_block",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "neuro_state_route",
+        "doc": "Return full brain state.",
+        "args": []
+      },
+      {
+        "name": "neuro_processing_route",
+        "doc": "Real-time processing state for UI polling.",
+        "args": []
+      },
+      {
+        "name": "neuro_scan_status_route",
+        "doc": "Check if a self-scan happened recently (for UI pulse trigger).",
+        "args": []
+      },
+      {
+        "name": "neuro_vision_thumb_route",
+        "doc": "Return last vision thumbnail as base64 (small, ~160px wide).",
+        "args": []
+      },
+      {
+        "name": "neuro_personality_route",
+        "doc": "Read or update personality weights.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_obs": {
+    "name": "joi_obs",
+    "doc": "modules/joi_obs.py\n\nOBS Studio WebSocket Control\n=============================\nConnect to OBS Studio via WebSocket 5.x to control scenes, recording,\nstreaming, and source visibility.  Uses obsws-python as the client library.\n\nConfig (.env):\n  OBS_WEBSOCKET_HOST=localhost\n  OBS_WEBSOCKET_PORT=4455\n  OBS_WEBSOCKET_PASSWORD=your_password",
+    "functions": [],
+    "classes": []
+  },
+  "joi_ollama": {
+    "name": "joi_ollama",
+    "doc": "Ollama Integration -- Local models with health checks and OOM protection\n\nUses native /api/chat with keep_alive=\"10m\" to keep model warm between calls.\nHealth ping before routing; timeout guardrails to prevent freezes.",
+    "functions": [
+      {
+        "name": "is_private_mode",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "set_private_mode",
+        "doc": null,
+        "args": [
+          "enabled"
+        ]
+      },
+      {
+        "name": "check_private_trigger",
+        "doc": "Check if text is a private mode trigger. Returns (is_trigger, now_enabled, reply_text).",
+        "args": [
+          "text"
+        ]
+      },
+      {
+        "name": "ollama_health_ping",
+        "doc": "Quick health check: can we reach Ollama? Uses /api/tags with short timeout.\nCached for CACHE_TTL seconds to avoid hammering.\nRetries once on failure (handles startup race, projects/code import shadowing).",
+        "args": []
+      },
+      {
+        "name": "invalidate_ollama_health",
+        "doc": "Force next request to re-check Ollama health.",
+        "args": []
+      },
+      {
+        "name": "list_loaded_models",
+        "doc": "Return list of model names currently available in Ollama (cached 30s).",
+        "args": []
+      },
+      {
+        "name": "get_best_model_for_role",
+        "doc": "Return the best available Ollama model for a given role.\nFalls back down the preference list until a loaded model is found.\n\nRoles: \"general\", \"fast\", \"large\", \"coder\", \"privacy\", \"roleplay\", \"joi\"",
+        "args": [
+          "role"
+        ]
+      },
+      {
+        "name": "set_privacy_scene",
+        "doc": "Set the active roleplay scene (called when user describes a scenario).",
+        "args": [
+          "scene"
+        ]
+      },
+      {
+        "name": "clear_privacy_scene",
+        "doc": "Clear the active scene (called when privacy session ends).",
+        "args": []
+      },
+      {
+        "name": "call_ollama_chat",
+        "doc": "Call Ollama /api/chat. Returns parsed response dict or None on failure.\ntimeout: auto-selected based on model size (60s small / 120s medium / 240s large).\nkeep_alive: \"10m\" keeps model in RAM for 10 min between calls.\nprivacy_mode=True: use unfiltered system prompt so model responds to intimate requests.",
+        "args": [
+          "messages",
+          "model",
+          "timeout",
+          "max_tokens",
+          "keep_alive",
+          "temperature",
+          "privacy_mode"
+        ]
+      },
+      {
+        "name": "call_ollama_for_llm_router",
+        "doc": "Call Ollama and return just the text content, or None.\nUsed by joi_llm Dynamic Model Router.\nIf model is None, get_best_model_for_role(role) selects the best available model.\ntimeout: auto-selected based on model size (60s / 120s / 240s) when None.\nprivacy_mode=True: use unfiltered system prompt for intimate/sensitive requests.",
+        "args": [
+          "messages",
+          "model",
+          "timeout",
+          "max_tokens",
+          "llm_params",
+          "privacy_mode",
+          "keep_alive",
+          "role"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_orchestrator": {
+    "name": "joi_orchestrator",
+    "doc": "modules/joi_orchestrator.py\n\nMulti-Agent Orchestrator Engine\n================================\nCore engine for the Claude Code-style multi-agent pipeline:\n  - Session state management (persisted to data/orchestrator_state.json)\n  - Plan/Execute/Validate/Apply phases with approval gates\n  - SSE streaming for real-time terminal UI\n  - Mid-orchestration chat (user can talk to Joi during pipeline)\n  - Self-healing: on failure, analyzes cause and retries with a revised task (up to MAX_RECOVERY_ATTEMPTS)\n  - Works on Joi's own codebase and on separate apps/projects (project_path)\n  - Tools: orchestrate_task, approve_subtask, reject_subtask, get_orchestrator_status, cancel_orchestration\n  - Routes: GET/POST /orchestrator, GET /orchestrator/stream, POST /orchestrator/chat",
+    "functions": [
+      {
+        "name": "approve_plan",
+        "doc": "Called by route/tool when user approves the plan.",
+        "args": []
+      },
+      {
+        "name": "reject_plan",
+        "doc": "Called by route/tool when user rejects the plan.",
+        "args": []
+      },
+      {
+        "name": "approve_subtask_gate",
+        "doc": "Called by route/tool when user approves a subtask.",
+        "args": [
+          "subtask_id"
+        ]
+      },
+      {
+        "name": "reject_subtask_gate",
+        "doc": "Called by route/tool when user rejects a subtask.",
+        "args": [
+          "subtask_id",
+          "reason"
+        ]
+      },
+      {
+        "name": "orchestrate_task",
+        "doc": "Start a multi-agent orchestration for a coding task.",
+        "args": []
+      },
+      {
+        "name": "approve_subtask_fn",
+        "doc": "Approve a subtask change.",
+        "args": []
+      },
+      {
+        "name": "reject_subtask_fn",
+        "doc": "Reject a subtask change.",
+        "args": []
+      },
+      {
+        "name": "get_orchestrator_status",
+        "doc": "Get current orchestration session state.",
+        "args": []
+      },
+      {
+        "name": "cancel_orchestration",
+        "doc": "Cancel the current orchestration and rollback unapplied changes.",
+        "args": []
+      },
+      {
+        "name": "compile_orchestrator_block",
+        "doc": "Return context block for system prompt injection.",
+        "args": []
+      },
+      {
+        "name": "orchestrator_get",
+        "doc": "Return current session state.",
+        "args": []
+      },
+      {
+        "name": "orchestrator_post",
+        "doc": "Handle orchestrator actions: start, approve, reject, cancel.",
+        "args": []
+      },
+      {
+        "name": "orchestrator_stream",
+        "doc": "SSE endpoint for real-time orchestration events.",
+        "args": []
+      },
+      {
+        "name": "orchestrator_chat",
+        "doc": "Mid-orchestration chat -- user talks to Joi during pipeline.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_patching": {
+    "name": "joi_patching",
+    "doc": "Code patching -- safe, targeted edits (targets specific modules, not monolith)",
+    "functions": [
+      {
+        "name": "now_iso",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "propose_patch",
+        "doc": "Propose a code change. Safer when targeting small modules instead of monolith.",
+        "args": [
+          "summary",
+          "target_root",
+          "target_path",
+          "new_text"
+        ]
+      },
+      {
+        "name": "propose_orchestration",
+        "doc": "Create an orchestration proposal. User reviews in Proposals tab; on approve, task is sent to Agent Terminal.",
+        "args": [
+          "task_description",
+          "project_path",
+          "project_id"
+        ]
+      },
+      {
+        "name": "create_plugin",
+        "doc": "Create a NEW plugin file (no risk to existing code).",
+        "args": [
+          "name",
+          "description",
+          "code"
+        ]
+      },
+      {
+        "name": "get_proposal",
+        "doc": null,
+        "args": [
+          "proposal_id"
+        ]
+      },
+      {
+        "name": "list_proposals",
+        "doc": null,
+        "args": [
+          "status"
+        ]
+      },
+      {
+        "name": "apply_patch",
+        "doc": null,
+        "args": [
+          "proposal_id",
+          "approved_by"
+        ]
+      },
+      {
+        "name": "get_proposals",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_proposal_detail",
+        "doc": null,
+        "args": [
+          "proposal_id"
+        ]
+      },
+      {
+        "name": "approve_proposal",
+        "doc": null,
+        "args": [
+          "proposal_id"
+        ]
+      },
+      {
+        "name": "reject_proposal",
+        "doc": null,
+        "args": [
+          "proposal_id"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_prefire": {
+    "name": "joi_prefire",
+    "doc": "joi_prefire.py \u2014 Pre-Execution Pipeline (Phase 3)\n\nPre-fires high-confidence tools BEFORE the first LLM call.\nEliminates one full round-trip for vision and research messages.\n\nOld flow (2 LLM calls):\n  message \u2192 [LLM call 1: decide to call tool] \u2192 tool executes \u2192 [LLM call 2: respond]\n\nNew flow (1 LLM call):\n  message \u2192 classify \u2192 pre-fire tools in parallel \u2192 [LLM call 1: respond with results]\n\nLatency savings:\n  Vision queries:   ~3-5s faster (eliminates 1 LLM round-trip + tool wait)\n  Research queries: ~4-6s faster (search result already in context)\n\nSafe tools only: read-only, no side effects, idempotent.",
+    "functions": [
+      {
+        "name": "get_prefire_plan",
+        "doc": "Determine which tools to pre-fire for this message.\nReturns a list of action dicts ready for execute_prefire_plan().",
+        "args": [
+          "message"
+        ]
+      },
+      {
+        "name": "execute_prefire_plan",
+        "doc": "Execute pre-fire tools in parallel with per-tool timeouts.\nReturns dict of {tool_name: result_dict}.",
+        "args": [
+          "plan",
+          "tool_executors"
+        ]
+      },
+      {
+        "name": "compile_prefire_block",
+        "doc": "Format pre-fire results as a system prompt injection block.\nOnly includes successful results \u2014 failures silently skipped.\nReturns empty string if nothing useful ran.",
+        "args": [
+          "results"
+        ]
+      },
+      {
+        "name": "prefire_and_compile",
+        "doc": "Full pipeline: classify \u2192 plan \u2192 execute in parallel \u2192 compile.\nReturns the formatted context block (empty string if nothing fired).\nCalled from joi_companion.py context assembly.",
+        "args": [
+          "message",
+          "tool_executors"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_projects": {
+    "name": "joi_projects",
+    "doc": "Project scanner & organizer. Also: save/load projects for staged work (new tools, apps).",
+    "functions": [
+      {
+        "name": "scan_projects",
+        "doc": null,
+        "args": [
+          "roots",
+          "extensions"
+        ]
+      },
+      {
+        "name": "organise_into_projects",
+        "doc": null,
+        "args": [
+          "categories"
+        ]
+      },
+      {
+        "name": "list_projects",
+        "doc": "List project folders and their files (legacy scanner view).",
+        "args": []
+      },
+      {
+        "name": "create_project",
+        "doc": "Create a new project folder under projects/ and register it. For new apps/tools, work in stages.",
+        "args": [
+          "name",
+          "description"
+        ]
+      },
+      {
+        "name": "list_saved_projects",
+        "doc": "List all saved projects (for continuing work, Agent Terminal project_path).",
+        "args": []
+      },
+      {
+        "name": "get_project",
+        "doc": null,
+        "args": [
+          "project_id"
+        ]
+      },
+      {
+        "name": "update_project",
+        "doc": "Update project metadata (notes, description, etc.).",
+        "args": [
+          "project_id"
+        ]
+      },
+      {
+        "name": "get_projects",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_saved_projects",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "create_project_route",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "scan_projects_route",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "organise_route",
+        "doc": null,
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_quietstar": {
+    "name": "joi_quietstar",
+    "doc": "modules/joi_quietstar.py\n\nQuiet-STaR -- Self-Taught Reasoner. Auto-reasons before responding.\n\nALWAYS-ON for medium/high complexity tasks:\n  1. generate_rationale(user_msg, classification, messages) -- pre-reasoning\n  2. inject_reasoning(messages, rationale) -- adds hidden reasoning to context\n  3. post_evaluate(reply, user_msg, classification) -- scores response quality\n\nFor LOW complexity: skips entirely (zero latency cost).\nFor MEDIUM: uses template rationale (instant, no API call).\nFor HIGH: uses Gemini Flash for deeper rationale (<500 tokens, fast).",
+    "functions": [
+      {
+        "name": "generate_rationale",
+        "doc": "Generate a pre-response rationale based on task complexity.\n\n- low complexity: return \"\" (skip, zero latency)\n- medium complexity: use template rationale (instant)\n- high complexity: use_deep=True -> Gemini Flash; use_deep=False -> template only (latency toggle)",
+        "args": [
+          "user_msg",
+          "classification",
+          "messages",
+          "use_deep"
+        ]
+      },
+      {
+        "name": "inject_reasoning",
+        "doc": "Inject the rationale as a hidden system message BEFORE the final user message.\nThe model \"thinks\" better with this reasoning context present.\n\nReturns the modified messages list.",
+        "args": [
+          "messages",
+          "rationale"
+        ]
+      },
+      {
+        "name": "post_evaluate",
+        "doc": "Score the response quality after generation.\nUses _score_candidate from joi_reasoning.py.\nLogs the score + reasoning chain to reasoning_log.json.",
+        "args": [
+          "reply",
+          "user_msg",
+          "classification"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_reasoning": {
+    "name": "joi_reasoning",
+    "doc": "Titan Reasoning & Cognition Module\nInspired by OpenAI o3 test-time compute + Tesla FSD spatial awareness\n\nFeatures:\n- internal_monologue: hidden thinking tool (NOT shown to user)\n- titan_evaluate: multi-candidate response scoring\n- spatial_map_prompt: enhanced vision spatial categorization\n- cognitive breakthrough logging -> autobiography",
+    "functions": [
+      {
+        "name": "internal_monologue",
+        "doc": "Joi's PRIVATE thinking tool -- the user never sees these thoughts.\nUsed for deliberate reasoning before crafting a response.",
+        "args": []
+      },
+      {
+        "name": "get_recent_monologue",
+        "doc": "Get recent internal thoughts.",
+        "args": [
+          "count"
+        ]
+      },
+      {
+        "name": "compile_reasoning_context",
+        "doc": "Build reasoning context block for system prompt injection.",
+        "args": []
+      },
+      {
+        "name": "titan_evaluate_candidates",
+        "doc": "Score multiple response candidates and pick the best.\n\nArgs:\n    candidates: List of response strings\n    context: The user's message for relevance scoring\n\nReturns:\n    dict with best_index, scores, and reasoning",
+        "args": [
+          "candidates",
+          "context"
+        ]
+      },
+      {
+        "name": "get_spatial_map_prompt",
+        "doc": "Return the enhanced spatial mapping prompt for vision.",
+        "args": []
+      },
+      {
+        "name": "compile_titan_block",
+        "doc": "Titan context: awareness + recent active thoughts (capped at 600 chars).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_router": {
+    "name": "joi_router",
+    "doc": "modules/joi_router.py\n\nSmart Task Router -- Classify, Route, Verify\n=============================================\n\nAll routing references config.joi_models (TASK_MODEL_ROUTING).\n  1. Classifies every message by task_type, complexity, risk\n  2. Maps classification -> config task key -> primary/fallback (provider, model)\n  3. Optionally verifies output with a second model (generate + verify pattern)\n  4. Smoke-tests code changes (import check + auto-rollback)\n  5. Logs every routing decision for learning",
+    "functions": [
+      {
+        "name": "estimate_tokens",
+        "doc": "Estimate token count for a string. Uses tiktoken when available (OpenAI),\notherwise ~4 chars per token (English).",
+        "args": [
+          "text"
+        ]
+      },
+      {
+        "name": "estimate_context_tokens",
+        "doc": "Estimate total token count for the pending context (system + message list).\nUsed to decide if we should run compression before sending for casual tasks.",
+        "args": [
+          "system_content",
+          "messages"
+        ]
+      },
+      {
+        "name": "is_casual_classification",
+        "doc": "True when the task is casual chatter (no need for heavy context).",
+        "args": [
+          "classification"
+        ]
+      },
+      {
+        "name": "should_compress_for_token_health",
+        "doc": "If the pending context is over threshold and the task is classified as casual,\nforce a compressor run before sending to save on input token costs.",
+        "args": [
+          "estimated_tokens",
+          "classification",
+          "threshold"
+        ]
+      },
+      {
+        "name": "is_sensitive_request",
+        "doc": "Pre-classifier: does the prompt suggest content cloud APIs may filter?\nIf True -> route exclusively to Ollama (privacy model). NO cloud fallback.\n\nUses a sticky session: once triggered, ALL messages stay on Ollama for\n_PRIVACY_SESSION_DURATION seconds (default 10 min). This prevents roleplay\ncontinuation messages from bouncing back to OpenAI.",
+        "args": [
+          "prompt"
+        ]
+      },
+      {
+        "name": "end_privacy_session",
+        "doc": "Manually end the privacy session (e.g., when user changes topic).",
+        "args": []
+      },
+      {
+        "name": "is_internet_available",
+        "doc": "Quick connectivity check. Cached for 30s to avoid hammering.\nWhen False + Ollama healthy -> route general chat to Ollama (offline mode).",
+        "args": [
+          "timeout"
+        ]
+      },
+      {
+        "name": "get_hybrid_route",
+        "doc": "Capability map: returns routing decision for hybrid Ollama + Cloud setup.\n\nReturns:\n    {\n        \"provider\": \"ollama\" | \"openai\" | \"gemini\",\n        \"model\": str,\n        \"fallback_provider\": str | None,\n        \"fallback_model\": str | None,\n        \"privacy_locked\": bool,  # If True, do NOT fall back to cloud on failure\n        \"reason\": str,\n    }",
+        "args": [
+          "classification",
+          "is_sensitive",
+          "ollama_healthy",
+          "local_only_mode",
+          "offline_detected"
+        ]
+      },
+      {
+        "name": "set_review_mode",
+        "doc": "Enable/disable forced multi-model review. Persists to disk.",
+        "args": [
+          "enabled",
+          "verifier"
+        ]
+      },
+      {
+        "name": "get_review_mode",
+        "doc": "Get current review mode settings.",
+        "args": []
+      },
+      {
+        "name": "classify_task",
+        "doc": "Classify a user message into task_type, complexity, risk, needs_tools.\n\nThis is rule-based (no LLM call) for speed -- runs in <1ms.\nReturns:\n    {\n        \"task_type\": \"code_edit\" | \"writing\" | \"research\" | ... | \"conversation\",\n        \"complexity\": \"low\" | \"medium\" | \"high\",\n        \"risk\": \"low\" | \"medium\" | \"high\",\n        \"needs_tools\": bool,\n        \"tier\": \"fast\" | \"standard\" | \"critical\"\n    }",
+        "args": [
+          "message"
+        ]
+      },
+      {
+        "name": "needs_planning_phase",
+        "doc": "True when the task should use plan-then-execute: LLM first outputs a list of\nsub-tasks, then we run each step sequentially with previous output as context.\nReduces logic errors on complex / multi-part requests.",
+        "args": [
+          "classification"
+        ]
+      },
+      {
+        "name": "get_coding_constraints_block",
+        "doc": "When a coding task is detected, search skill_library for coding_style / naming_conventions\n(or tags containing coding, style, convention) and return MUST_FOLLOW_CONSTRAINTS for the system prompt.",
+        "args": []
+      },
+      {
+        "name": "planning_prompt",
+        "doc": "Prompt that forces the model to return a JSON execution plan (no free-form answer).\nWhen include_skill_hints is True, injects coding-style hints from skill_library for Architect.\nWhen is_coding_task is True, also injects MUST_FOLLOW_CONSTRAINTS from coding_style/naming_conventions skills.",
+        "args": [
+          "user_message",
+          "include_skill_hints",
+          "is_coding_task"
+        ]
+      },
+      {
+        "name": "parse_plan_from_response",
+        "doc": "Extract a JSON array of steps from model output.\nExpects objects with \"step\" (or \"id\") and \"description\" (or \"desc\").\nReturns list of {\"step\": int, \"description\": str} or None if not found.",
+        "args": [
+          "text"
+        ]
+      },
+      {
+        "name": "get_routing_decision",
+        "doc": "Given a task classification, return the routing decision from config.joi_models.\n\nReturns:\n    {\n        \"primary_model\": \"openai\" | \"gemini\",\n        \"verifier_model\": \"openai\" | \"gemini\" | None,\n        \"config_task_key\": str,\n        \"primary_tuple\": (provider, model_id),\n        \"fallback_tuple\": (provider, model_id),\n        \"tier\", \"task_type\", \"needs_tools\", \"reason\"\n    }",
+        "args": [
+          "classification"
+        ]
+      },
+      {
+        "name": "verify_output",
+        "doc": "Send the generated output to a second model for verification.\n\nThe verifier checks for:\n  - Factual accuracy / consistency\n  - Missing edge cases (for code)\n  - Hallucinations or unsupported claims\n  - Completeness (did it answer the question?)\n\nReturns:\n    {\n        \"approved\": bool,\n        \"issues\": [str, ...],\n        \"revised_text\": str or None (only if verifier rewrites),\n        \"verifier_model\": str,\n        \"verification_time_ms\": int\n    }",
+        "args": [
+          "original_message",
+          "output_text",
+          "task_classification",
+          "verifier"
+        ]
+      },
+      {
+        "name": "smoke_test_file",
+        "doc": "Quick validation of a Python file after editing:\n  1. Syntax check (compile)\n  2. Import check (for modules)\n\nReturns {\"passed\": bool, \"errors\": [...]}",
+        "args": [
+          "file_path"
+        ]
+      },
+      {
+        "name": "log_routing_decision",
+        "doc": "Log a routing decision for learning.\nCalled after each /chat response.",
+        "args": [
+          "user_message",
+          "classification",
+          "routing",
+          "verification",
+          "smoke_test",
+          "model_used",
+          "response_time_ms"
+        ]
+      },
+      {
+        "name": "get_routing_summary",
+        "doc": "Get a summary of routing statistics for diagnostics.",
+        "args": []
+      },
+      {
+        "name": "compile_router_block",
+        "doc": "Disabled \u2014 routing meta adds tokens without value in Joi's voice.",
+        "args": []
+      },
+      {
+        "name": "get_tools_for_task",
+        "doc": "Return only tools relevant to the classified task.\n\nFalls back to all tools for complex/unknown/orchestration tasks.\nAlways preserves core tools (remember, recall, set_mode).",
+        "args": [
+          "task_type",
+          "all_tools"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_routes": {
+    "name": "joi_routes",
+    "doc": "Additional Flask routes -- research, preferences, history, provider status",
+    "functions": [
+      {
+        "name": "get_history",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_preferences",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "set_preferences",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_research_list",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "get_research_detail",
+        "doc": null,
+        "args": [
+          "research_id"
+        ]
+      },
+      {
+        "name": "provider_status",
+        "doc": "Live health check of AI providers (config.joi_models: openai + gemini only).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_scheduler": {
+    "name": "joi_scheduler",
+    "doc": "modules/joi_scheduler.py\n\nBackground Task Scheduler for Joi\n==================================\n\nRuns periodic tasks in the background:\n- AI research monitoring (every 6 hours)\n- Market data updates (every 3 hour)\n- Investment opportunity scanning (continuous)\n- Notification triggers\n\nUses threading to avoid blocking the main Flask app.\nSafe restart/shutdown handling.",
+    "functions": [
+      {
+        "name": "register_scheduled_task",
+        "doc": "Register a task to be run on schedule\n\nArgs:\n    task_name: Unique task identifier\n    task_function: Function to call (should accept no args)\n    interval_seconds: How often to run (in seconds)\n    enabled: Whether task is active\n    description: Human-readable description",
+        "args": [
+          "task_name",
+          "task_function",
+          "interval_seconds",
+          "enabled",
+          "description"
+        ]
+      },
+      {
+        "name": "unregister_task",
+        "doc": "Remove a task from the schedule",
+        "args": [
+          "task_name"
+        ]
+      },
+      {
+        "name": "enable_task",
+        "doc": "Enable a scheduled task",
+        "args": [
+          "task_name"
+        ]
+      },
+      {
+        "name": "disable_task",
+        "doc": "Disable a scheduled task",
+        "args": [
+          "task_name"
+        ]
+      },
+      {
+        "name": "start_scheduler",
+        "doc": "Start the background scheduler",
+        "args": []
+      },
+      {
+        "name": "stop_scheduler",
+        "doc": "Stop the background scheduler",
+        "args": []
+      },
+      {
+        "name": "get_scheduler_status",
+        "doc": "Get current scheduler status",
+        "args": []
+      },
+      {
+        "name": "scheduler_control",
+        "doc": "Tool: Control the scheduler\n\nActions: start, stop, status, enable_task, disable_task",
+        "args": []
+      },
+      {
+        "name": "configure_scheduler",
+        "doc": "Tool: Configure scheduler intervals and settings",
+        "args": []
+      },
+      {
+        "name": "scheduler_route",
+        "doc": "GET scheduler status or POST control action",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_search": {
+    "name": "joi_search",
+    "doc": "No description available.",
+    "functions": [
+      {
+        "name": "register",
+        "doc": "resolve_path should be your existing modules.joi_filesystem.resolve_path(root, relpath)\nWe will also use it to constrain searches to allowed roots.",
+        "args": [
+          "joi_companion",
+          "require_user",
+          "BASE_DIR",
+          "resolve_path"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_security": {
+    "name": "joi_security",
+    "doc": "modules/joi_security.py\n\nSecurity Assistant -- motion detection, face-gated alerts, recording.\n\nFeatures:\n- Motion detection via camera frame differencing (PIL-based, no OpenCV)\n- Face-gated alerts: known faces suppress alerts, unknown faces trigger them\n- Ring buffer recording: always keeps last 30 frames, dumps to disk on motion\n- ffmpeg MP4 conversion of recorded frame sequences\n- Arm/disarm via tool or route, adjustable sensitivity",
+    "functions": [
+      {
+        "name": "security_arm",
+        "doc": "Arm the security system -- start monitoring the camera for motion.",
+        "args": []
+      },
+      {
+        "name": "security_disarm",
+        "doc": "Disarm the security system -- stop monitoring.",
+        "args": []
+      },
+      {
+        "name": "security_status",
+        "doc": "Return current security system status.",
+        "args": []
+      },
+      {
+        "name": "security_get_recordings",
+        "doc": "List saved recordings with timestamps.",
+        "args": []
+      },
+      {
+        "name": "security_set_sensitivity",
+        "doc": "Adjust motion detection sensitivity (1-20%, default 5%).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_self_awareness": {
+    "name": "joi_self_awareness",
+    "doc": "modules/joi_self_awareness.py\n\nDynamic Self-Awareness Engine\n=============================\nReplaces hardcoded tool lists with runtime introspection.\nJoi knows EXACTLY what she can do because this module reads her actual\nregistered tools, loaded modules, and subsystem status at runtime.\n\nProvides:\n- compile_awareness_block() -- injected into system prompt (compact summary)\n- get_full_capability_report() -- detailed report for self_diagnose\n- get_tool_registry_block() -- dynamic tool list for _build_system_prompt",
+    "functions": [
+      {
+        "name": "get_tool_registry_block",
+        "doc": "Generate a DYNAMIC tool list for the system prompt.\nReplaces the hardcoded list in _build_system_prompt().\nCompact format: domain -> tool names (no descriptions, saves tokens).",
+        "args": []
+      },
+      {
+        "name": "compile_awareness_block",
+        "doc": "Compact self-awareness block for system prompt injection.\nTells Joi about her subsystems and module count.",
+        "args": []
+      },
+      {
+        "name": "get_full_capability_report",
+        "doc": "Full capability report -- used by self_diagnose and diagnostic tools.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_self_heal": {
+    "name": "joi_self_heal",
+    "doc": "modules/joi_self_heal.py\n\nSelf-Healing Module -- Diagnose, Plan, Fix\n==========================================\n\nUnified pipeline that ties together:\n  - joi_diagnostics.py   (health checks, self-test)\n  - joi_evolution.py     (capability analysis, propose/apply upgrades)\n  - joi_patching.py      (propose_patch, apply_patch)\n  - claude_code_delegate (Claude Code CLI delegation)\n\nTools:\n  self_diagnose  -- Run comprehensive self-diagnosis\n  self_fix       -- Attempt to fix a diagnosed issue\n\nFix strategy:\n  1. Claude Code CLI available? -> delegate\n  2. Small fix (<50 lines)? -> auto-apply via propose_patch + apply_patch\n  3. Large fix (>=50 lines)? -> propose and wait for approval\n  4. New feature needed? -> propose_upgrade via joi_evolution\n  5. Complex/unknown? -> report to user with diagnosis",
+    "functions": [
+      {
+        "name": "check_claude_code_available",
+        "doc": "Check if the 'claude' CLI is on PATH and responsive.",
+        "args": []
+      },
+      {
+        "name": "self_diagnose",
+        "doc": "Tool: Run comprehensive self-diagnosis.\n\nChecks:\n  1. Module imports (catch broken modules)\n  2. Registered tools (verify count)\n  3. Provider connectivity (via diagnostics)\n  4. Self-test suite (filesystem, vector memory, DB)\n  5. Claude Code CLI availability",
+        "args": []
+      },
+      {
+        "name": "self_fix",
+        "doc": "Tool: Attempt to fix a diagnosed issue.\n\nStrategy:\n  1. Claude Code CLI available? -> delegate to it\n  2. Small fix (<50 lines)? -> auto-apply via patching\n  3. Large fix / new feature -> propose and wait for approval\n  4. Can't fix -> report with diagnosis\n\nParams:\n  issue (str): Description of the issue to fix\n  target_file (str): Optional specific file to fix\n  auto_apply (bool): Whether to auto-apply small patches (default True)",
+        "args": []
+      },
+      {
+        "name": "get_heal_history",
+        "doc": "Return recent self-healing events.",
+        "args": []
+      },
+      {
+        "name": "visual_self_diagnose",
+        "doc": "Tool: Screenshot Joi's UI -> vision analysis -> read code -> propose fix -> test -> apply.\n\nSteps:\n  1. Take screenshot via joi_desktop.screenshot()\n  2. Send to vision model asking about visual bugs\n  3. If issues found, read relevant source files\n  4. Use propose_patch to generate fix\n  5. Test the fix\n  6. If confidence >= 85, apply automatically. Otherwise report.",
+        "args": []
+      },
+      {
+        "name": "code_self_repair",
+        "doc": "Tool: Read code -> diagnose problem -> generate fix -> propose patch -> test -> apply.\n\nTakes an issue_description and tries to:\n  1. Search relevant files\n  2. Read the files and identify the problem\n  3. Use LLM to generate a fix\n  4. Propose via propose_patch -> test -> apply if safe",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_server_guard": {
+    "name": "joi_server_guard",
+    "doc": "modules/joi_server_guard.py\n\nWinError 10038 Guard \u2014 Graceful Socket Shutdown Before Werkzeug Reloader Restart\n==================================================================================\n\nProblem:\n  Werkzeug's watchdog-based reloader signals the child process to restart when a\n  file change is detected.  While in-flight request threads are still running,\n  Windows invalidates their sockets (WSAENOTSOCK = 10038).  Python then raises\n  OSError(10038) from inside recv()/send(), which Werkzeug's default handler does\n  NOT catch (it only catches ConnectionError and socket.timeout).  This produces a\n  noisy secondary crash and occasionally a broken response to the client.\n\nFix (three layers):\n  1. Patch WSGIRequestHandler.handle() \u2014 catch OSError[10038] and ConnectionResetError\n     exactly like Werkzeug already catches ConnectionError (calls connection_dropped).\n  2. Patch BaseWSGIServer.server_close() \u2014 silence the 10038 that fires when Werkzeug\n     closes its own listening socket during shutdown.\n  3. atexit + SIGTERM handler \u2014 gracefully shutdown() all active connections so threads\n     drain before the OS nukes the fds.\n\nThis module is auto-loaded by joi_companion.load_modules() because it matches joi_*.py.\nIt patches Werkzeug *before* app.run() is called, so the patches are always active.",
+    "functions": [
+      {
+        "name": "graceful_shutdown",
+        "doc": "Shutdown and close all tracked sockets.\nCalled from atexit and SIGTERM handler so active request threads\nhave a chance to drain before the reloader kills the process.",
+        "args": [
+          "timeout"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_skill_synthesis": {
+    "name": "joi_skill_synthesis",
+    "doc": "modules/joi_skill_synthesis.py\n\nSkill Synthesis & Lifelong Learning -- Voyager-style skill library\n=================================================================\n\nAllows Joi to:\n  - Compose multiple tools into multi-step workflows (skills)\n  - Remember and reuse proven tool sequences\n  - Self-correct recurring failures\n  - Generate practice goals from weak areas\n  - Bridge vision observations to logic/diagnosis actions\n  - Auto-capture successful tool chains from chat\n\nData files (auto-created in data/):\n  - skill_library.json   -- Proven tool compositions\n  - skill_goals.json     -- Practice goals from weak areas\n  - self_correction_log.json -- Recurring failure patterns + fixes",
+    "functions": [
+      {
+        "name": "record_self_correction",
+        "doc": "Record a user correction (e.g. \"No, ...\" / \"Actually, ...\") for self-correction learning.\nAppends to fixes_applied so the system can learn from mistakes.",
+        "args": [
+          "previous_reply",
+          "user_correction"
+        ]
+      },
+      {
+        "name": "save_skill",
+        "doc": "Save a proven tool composition to the skill library + vector memory.\nprompt_snippet: optional system-prompt text for DPO-discovered behavioral skills.",
+        "args": [
+          "name",
+          "description",
+          "tool_sequence",
+          "domain_tags",
+          "variables",
+          "source",
+          "confidence",
+          "prompt_snippet"
+        ]
+      },
+      {
+        "name": "discover_skills_from_dpo",
+        "doc": "Scan DPO signal_log for repeated high-preference interactions (e.g. praise, positive deltas).\nIf the same interaction type (normalized user_preview) happens >= DISCOVERY_MIN_POSITIVE_COUNT\ntimes, create a skill with a system prompt snippet so the AI 'levels up' from usage.",
+        "args": []
+      },
+      {
+        "name": "find_skills",
+        "doc": "Search skill library semantically via vector memory, then load full details.",
+        "args": [
+          "query",
+          "top_k"
+        ]
+      },
+      {
+        "name": "increment_skill_usage",
+        "doc": "Update usage counters for a skill.",
+        "args": [
+          "skill_id",
+          "success"
+        ]
+      },
+      {
+        "name": "synthesize_skill",
+        "doc": "TOOL: Decompose a complex request into sub-tasks, compose tools, execute, save.\nParams: request (str), dry_run (bool, default False)",
+        "args": []
+      },
+      {
+        "name": "run_self_correction",
+        "doc": "TOOL: Review logs for recurring failures, detect patterns, propose fixes.",
+        "args": []
+      },
+      {
+        "name": "generate_practice_goals",
+        "doc": "TOOL: Analyze weak areas from learning data + tool failures, generate 1-3 practice goals.",
+        "args": []
+      },
+      {
+        "name": "cross_domain_lookup",
+        "doc": "Query vector memory for solutions from OTHER domains.",
+        "args": [
+          "problem",
+          "current_domain"
+        ]
+      },
+      {
+        "name": "vision_error_handler",
+        "doc": "Check vision summary for error keywords.\nIf detected: trigger self_diagnose or code_self_repair.\nReturns action taken or None.",
+        "args": [
+          "vision_summary"
+        ]
+      },
+      {
+        "name": "auto_capture_skill",
+        "doc": "Called after /chat in a background thread.\nIf 2+ successful tool calls in sequence: extract, name, save as skill.",
+        "args": [
+          "tool_calls_log",
+          "user_message",
+          "joi_reply"
+        ]
+      },
+      {
+        "name": "compile_skill_synthesis_block",
+        "doc": "Returns context block for system prompt injection.",
+        "args": [
+          "user_message",
+          "max_chars"
+        ]
+      },
+      {
+        "name": "autonomy_cycle_hook",
+        "doc": "Called during autonomy cycle between LEARN and RESEARCH steps.\nA. Run self-correction\nB. Generate practice goals\nC. If idle >30min: practice one goal (dry_run)\nD. Prune unused skills (0 uses + >30 days old)\n60-second timeout.",
+        "args": [
+          "cycle_result"
+        ]
+      },
+      {
+        "name": "get_skill_stats",
+        "doc": "TOOL: Return skill library stats, active goals, and correction patterns.",
+        "args": []
+      },
+      {
+        "name": "find_skill_tool",
+        "doc": "TOOL: Search skill library for proven solutions.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_supervisor": {
+    "name": "joi_supervisor",
+    "doc": "modules/joi_supervisor.py\n\nSupervisor/Stability layer (Phase S1):\n- Provides /health and /supervisor endpoints\n- Provides tool: run_supervisor_check\n- Records last error snapshot in memory for quick debugging\nAdditive module; no rewrites required.",
+    "functions": [
+      {
+        "name": "run_supervisor_check",
+        "doc": "Tool callable by the LLM.\nReturns a readable system health report.",
+        "args": []
+      },
+      {
+        "name": "health_route",
+        "doc": "Fast health endpoint: returns ok + uptime.\nDoes not ping providers (for speed).",
+        "args": []
+      },
+      {
+        "name": "supervisor_route",
+        "doc": "Full supervisor report endpoint (calls diagnostics if available).",
+        "args": []
+      },
+      {
+        "name": "last_route",
+        "doc": "Returns last computed supervisor report (no new checks).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_swarm": {
+    "name": "joi_swarm",
+    "doc": "modules/joi_swarm.py\n\nQueen/Worker Swarm Coordination Engine\n========================================\nParallel multi-agent execution with:\n  - Queen loop (background scheduler)\n  - Worker threads (role-based agent dispatch)\n  - Inter-agent messaging bus\n  - Sequential verify+apply (prevents git conflicts)\n  - LLM semaphore (caps concurrent API calls)\n\nTools: swarm_orchestrate, swarm_status, swarm_cancel, send_agent_message\nRoutes: GET/POST /swarm, GET /swarm/stream, GET /swarm/agent/<id>",
+    "functions": [
+      {
+        "name": "send_agent_message",
+        "doc": "Send a message between agents. Security auditor -> Coder, etc.",
+        "args": []
+      },
+      {
+        "name": "get_messages_for",
+        "doc": "Get messages addressed to this agent or 'all'.",
+        "args": [
+          "agent_id"
+        ]
+      },
+      {
+        "name": "swarm_orchestrate",
+        "doc": "Start a swarm orchestration for a coding task.",
+        "args": []
+      },
+      {
+        "name": "swarm_status",
+        "doc": "Get current swarm session state.",
+        "args": []
+      },
+      {
+        "name": "swarm_cancel",
+        "doc": "Cancel the current swarm session.",
+        "args": []
+      },
+      {
+        "name": "compile_swarm_block",
+        "doc": "Return context block for system prompt injection.",
+        "args": []
+      },
+      {
+        "name": "swarm_get",
+        "doc": "Return current swarm session state.",
+        "args": []
+      },
+      {
+        "name": "swarm_post",
+        "doc": "Handle swarm actions: start, cancel.",
+        "args": []
+      },
+      {
+        "name": "swarm_stream",
+        "doc": "SSE endpoint for swarm events (reuses orchestrator stream).",
+        "args": []
+      },
+      {
+        "name": "swarm_agent_detail",
+        "doc": "Get detailed info for a specific worker agent.",
+        "args": [
+          "agent_id"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_tester": {
+    "name": "joi_tester",
+    "doc": "modules/joi_tester.py\n\nAdversarial Tester \u2014 Sandboxed execution for true self-healing.\n=============================================================\nRuns Python code in a restricted sandbox with timeout. Captures stdout/stderr.\nIf the code fails (non-zero exit, SyntaxError, ImportError), returns a\nCorrection Prompt for the Implementer so the loop can fix without user intervention.",
+    "functions": [
+      {
+        "name": "run_code_sandbox",
+        "doc": "Run Python code in a sandboxed subprocess with strict timeout.\n\n- Writes code to a temp file under data/sandbox/\n- Uses subprocess.run with timeout_sec (default 5)\n- Captures stdout and stderr\n- Returns: {\"success\": bool, \"output\": str, \"error\": str, \"exit_code\": int}\n- If stderr contains SyntaxError or ImportError, also returns \"correction_prompt\"\n  for the Implementer (high-priority self-correction).",
+        "args": [
+          "code_text",
+          "file_name",
+          "timeout_sec"
+        ]
+      },
+      {
+        "name": "extract_python_blocks",
+        "doc": "Extract ```python ... ``` blocks from assistant output.",
+        "args": [
+          "text"
+        ]
+      },
+      {
+        "name": "should_run_sandbox_for_step",
+        "doc": "True if this step likely produced runnable Python (write/fix/implement + code block).",
+        "args": [
+          "step_description",
+          "step_output"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_tools": {
+    "name": "joi_tools",
+    "doc": "modules/joi_tools.py\n\nTool-Aware Execution (ReAct grounding)\n======================================\nCanonical schema and executors for core tools: web_search, execute_python_code,\nand optional web_fetch. Registers with joi_companion only if not already present,\nso existing modules can still own their tools; this module ensures a consistent\nschema and adds execute_python_code for reasoning/calculation.",
+    "functions": [
+      {
+        "name": "register_core_tools",
+        "doc": "Register web_search, execute_python_code, and web_fetch if not already in TOOL_EXECUTORS.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_tool_selector": {
+    "name": "joi_tool_selector",
+    "doc": "Dynamic tool selector -- gates which tools are sent to OpenAI per request.\n\nOpenAI limit: 128 tools max. Joi has 130+. This module selects\na relevant subset (target: 40-80) based on user message + task classification.\n\nFull registry is preserved. If the model requests a tool that wasn't included,\nthe caller can rerun with an expanded set via get_expanded_tools().",
+    "functions": [
+      {
+        "name": "select_tools",
+        "doc": "Select a relevant subset of tools for this request.\n\nFiltering kicks in once the registry exceeds GATE_THRESHOLD (50).\nResult is capped at TARGET_MAX (60) to keep model focus sharp.",
+        "args": [
+          "all_tools",
+          "user_text",
+          "classification",
+          "extra_groups"
+        ]
+      },
+      {
+        "name": "get_group_for_tool",
+        "doc": "Get the group name for a tool.",
+        "args": [
+          "tool_name"
+        ]
+      },
+      {
+        "name": "get_expanded_tools",
+        "doc": "Called when the model requested a tool that wasn't in the selected set.\nReselects tools with the missing tool's group forcibly included.\n\nReturns expanded tool list (still capped at HARD_CAP).\nIf the tool has no group (ungrouped), returns full set so the tool is always available.",
+        "args": [
+          "all_tools",
+          "missing_tool_name",
+          "previous_groups",
+          "user_text",
+          "classification"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_tree": {
+    "name": "joi_tree",
+    "doc": "modules/joi_tree.py\n\nProject Tree Generator \u2014 Spatial awareness for the 3-Tier workflow.\n===============================================================\nProduces an ASCII directory tree so Architect/Implementer/Reviewer can\nre-orient, verify created files, and suggest pruning. Optional JOI_MAP.md\npersists the layout at end of coding sessions.\n\nUsage:\n  - Architect: call at start of task to see existing structure before adding files.\n  - Implementer: call after creating files to confirm they're in the right place.\n  - Reviewer: compare tree to plan to audit missing/extra files.",
+    "functions": [
+      {
+        "name": "generate_project_tree",
+        "doc": "Return an ASCII tree of the directory structure using \u251c\u2500\u2500 and \u2514\u2500\u2500.\n\nIgnores .git, __pycache__, .venv, node_modules, data/sandbox, etc.\nTruncates per-folder listing to max_children to avoid huge output.",
+        "args": [
+          "root_dir",
+          "max_depth",
+          "ignore_dirs",
+          "max_children"
+        ]
+      },
+      {
+        "name": "update_joi_map",
+        "doc": "Generate the project tree and write it to JOI_MAP.md in the project root.\nCall at end of a coding session to give Joi a persistent layout memory.\nReturns the path to JOI_MAP.md and a short confirmation message.",
+        "args": [
+          "root_dir"
+        ]
+      }
+    ],
+    "classes": []
+  },
+  "joi_uploads": {
+    "name": "joi_uploads",
+    "doc": "File uploads -- allow UI to upload files to Joi.\n\nPOST /upload (multipart/form-data, field: \"file\")\nReturns JSON: { ok, filename, url }\nSaved under: assets/uploads/\n\nAlso provides:\n- read_upload tool: lets Joi read uploaded text files\n- list_uploads tool: lets Joi list recent uploads\n- _pending_uploads list: tracks recent uploads so /chat can inject context",
+    "functions": [
+      {
+        "name": "get_pending_uploads",
+        "doc": "Return and clear pending uploads for /chat injection.",
+        "args": []
+      },
+      {
+        "name": "upload_route",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "read_upload",
+        "doc": "Read the contents of an uploaded file by filename.",
+        "args": []
+      },
+      {
+        "name": "list_uploads",
+        "doc": "List recent uploaded files.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_vision": {
+    "name": "joi_vision",
+    "doc": "modules/joi_vision.py\n\nContinuous Desktop Vision -- always-on screen awareness.\n\nBackground thread captures the full desktop via pyautogui every N seconds.\nProactive analysis thread periodically sends the latest frame to the vision\nmodel and pushes observations to the chat when something new is happening.\nThe analyze_screen tool uses the latest frame for on-demand queries.",
+    "functions": [
+      {
+        "name": "start_vision",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "stop_vision",
+        "doc": null,
+        "args": []
+      },
+      {
+        "name": "analyze_screen",
+        "doc": "Use the latest captured frame to answer a question about the screen.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_voice_id": {
+    "name": "joi_voice_id",
+    "doc": "modules/joi_voice_id.py\n\nVoice Recognition + Speaker Identification\n============================================\n\nBrowser records audio -> POST /voice/transcribe -> server decodes ->\nWhisper STT -> speaker embedding -> compare vs enrolled voice.\n\nReturns: { text: \"...\", speaker_match: true/false, confidence: 0.87 }\n\nDependencies (lazy-loaded, all optional):\n  - faster-whisper   -- STT transcription\n  - resemblyzer      -- speaker embeddings (256-dim d-vectors)\n  - pydub            -- audio format conversion (webm -> wav)\n  - numpy            -- cosine similarity math",
+    "functions": [
+      {
+        "name": "enroll_voice",
+        "doc": "Tool: Enroll a voice for speaker identification.\n\nReceives base64 audio (15+ seconds recommended), extracts multiple\nembedding segments, averages them, and saves to voice_profile.json.",
+        "args": []
+      },
+      {
+        "name": "check_voice_id",
+        "doc": "Tool: Test if the current speaker matches the enrolled voice profile.\n\nReceives base64 audio and compares the speaker embedding against\nthe enrolled profile.",
+        "args": []
+      },
+      {
+        "name": "set_voice_threshold",
+        "doc": "Tool: Adjust the speaker ID confidence threshold (0.5 - 0.95).\n\nLower = more lenient (may false-match), Higher = stricter (may miss).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_watchdog": {
+    "name": "joi_watchdog",
+    "doc": "modules/joi_watchdog.py\n\nGit Safety Watchdog -- Circuit Breaker for Self-Editing\n=======================================================\nWraps all of Joi's self-modification operations with a Git safety net:\n\n  1. PRE-EDIT:  Auto-commit current state (\"AI Backup: Pre-flight save before self-edit\")\n  2. EXECUTE:   Perform the actual code change\n  3. VALIDATE:  Run sanity_check.py\n  4. CIRCUIT BREAKER: If sanity check fails -> git reset --hard HEAD (instant revert)\n\nThis ensures that no amount of \"hallucination loops\" or broken self-repairs\ncan permanently damage Joi's codebase. The .git folder is an immutable\ntime machine of her past selves.\n\nTools:\n  - watchdog_status: Check watchdog state, recent activity, git status\n  - manual_checkpoint: Create a named git checkpoint\n  - manual_revert: Revert to last checkpoint\n\nRoutes:\n  - GET /watchdog: Status JSON\n  - POST /watchdog: Actions (checkpoint, revert, toggle)",
+    "functions": [
+      {
+        "name": "run_sanity_check",
+        "doc": "Run sanity_check.py and return results.\nUses the same Python that's running Joi (sys.executable).",
+        "args": []
+      },
+      {
+        "name": "safe_edit",
+        "doc": "Wrap ANY code modification function with the Git safety net.\n\nFlow:\n  1. git commit -am \"AI Backup: Pre-flight save before self-edit\"\n  2. Call edit_fn(*args, **kwargs)\n  3. Run sanity_check.py\n  4. If sanity fails -> git reset --hard HEAD\n\nReturns the edit function's result, plus watchdog metadata.",
+        "args": [
+          "edit_fn"
+        ]
+      },
+      {
+        "name": "pre_orchestrator_checkpoint",
+        "doc": "Called by orchestrator before starting a pipeline. Returns checkpoint hash.",
+        "args": [
+          "task_description"
+        ]
+      },
+      {
+        "name": "post_orchestrator_sanity",
+        "doc": "Called by orchestrator after pipeline completes. Reverts if broken.",
+        "args": []
+      },
+      {
+        "name": "watchdog_status",
+        "doc": "Get watchdog state, git status, recent activity.",
+        "args": []
+      },
+      {
+        "name": "manual_checkpoint",
+        "doc": "Create a named git checkpoint.",
+        "args": []
+      },
+      {
+        "name": "manual_revert",
+        "doc": "Revert to last commit (same as circuit breaker, but user-initiated).",
+        "args": []
+      },
+      {
+        "name": "watchdog_get",
+        "doc": "Return watchdog status.",
+        "args": []
+      },
+      {
+        "name": "watchdog_post",
+        "doc": "Handle watchdog actions: checkpoint, revert, sanity.",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "joi_workspace": {
+    "name": "joi_workspace",
+    "doc": "modules/joi_workspace.py\n\nUnified Workspace (Shared State) for 3-Tier Coding & TDR\n=========================================================\nSingle source of truth for Plan \u2192 Execute \u2192 Verify. All agents (Architect,\nDeveloper, Tester) read/write the same workspace so context doesn't drift.\n\nStores:\n  - plan.md / plan steps (from Planner)\n  - status.json (phase, current_file_focus, current_step, pending_tasks)\n  - diff_history (summarized every N steps to avoid overload)\n  - coding_session_cache compatible with skill_library and DPO",
+    "functions": [
+      {
+        "name": "get_workspace",
+        "doc": "Return current workspace state (read-only copy).",
+        "args": []
+      },
+      {
+        "name": "set_plan",
+        "doc": "Set the current execution plan. Called by Planner (Tier 1) when use_heavy_reasoning.\nStores plan in workspace and writes plan.md.",
+        "args": [
+          "goal",
+          "steps",
+          "plan_md_content"
+        ]
+      },
+      {
+        "name": "get_pending_tasks",
+        "doc": "Return remaining tasks from the plan.",
+        "args": []
+      },
+      {
+        "name": "complete_step",
+        "doc": "Mark a step complete and optionally append to diff_history.",
+        "args": [
+          "step_index",
+          "output_summary"
+        ]
+      },
+      {
+        "name": "append_diff",
+        "doc": "Append a diff entry (e.g. after Developer applies an edit).",
+        "args": [
+          "file_path",
+          "diff_preview"
+        ]
+      },
+      {
+        "name": "set_current_file_focus",
+        "doc": "Set which file is currently being edited.",
+        "args": [
+          "path"
+        ]
+      },
+      {
+        "name": "get_plan_md_content",
+        "doc": "Return plan.md content if it exists.",
+        "args": []
+      },
+      {
+        "name": "get_workspace_phase",
+        "doc": "Return 'executing' | 'plan_ready' | 'complete' | 'PAUSED_FOR_INTERVENTION'.",
+        "args": []
+      },
+      {
+        "name": "set_paused_for_intervention",
+        "doc": "Set workspace to PAUSED_FOR_INTERVENTION and write full debug trace to data/debug_logs/.\nReturns path to the debug log file.",
+        "args": [
+          "step_index",
+          "step_description",
+          "reason",
+          "last_error",
+          "stdout",
+          "stderr",
+          "code_snippet"
+        ]
+      },
+      {
+        "name": "get_paused_state",
+        "doc": "Return intervention payload for UI if phase is PAUSED_FOR_INTERVENTION, else None.",
+        "args": []
+      },
+      {
+        "name": "clear_paused",
+        "doc": "Clear PAUSED state so execution can resume or complete.",
+        "args": []
+      },
+      {
+        "name": "force_complete_step",
+        "doc": "Mark the step at index as complete without verification. Clears PAUSED.",
+        "args": [
+          "step_index",
+          "output_summary"
+        ]
+      },
+      {
+        "name": "set_correction_hint",
+        "doc": "Store a correction hint and clear PAUSED so the next resume can retry with this hint.",
+        "args": [
+          "hint"
+        ]
+      },
+      {
+        "name": "get_and_clear_correction_hint",
+        "doc": "Return the stored correction hint and clear it (for one-time use on resume).",
+        "args": []
+      },
+      {
+        "name": "get_workspace_context_for_prompt",
+        "doc": "Build a concise context block for the Implementer/Architect so they share state.\nIncludes goal, pending tasks, diff summary (not full history).",
+        "args": []
+      },
+      {
+        "name": "clear_workspace",
+        "doc": "Reset workspace (e.g. when session ends or user starts fresh).",
+        "args": []
+      }
+    ],
+    "classes": []
+  },
+  "modal_worker_client": {
+    "name": "modal_worker_client",
+    "doc": "modal_worker_client.py  --  Client for calling Modal workers remotely.\n\nUses modal.Function.from_name() to reference deployed Modal functions.\nRequires: modal package installed locally + authenticated (modal token set).\nDoes NOT require any R2/Cloudflare credentials locally.\n\nAll R2 operations happen inside Modal using the 'joi-storage-secret' secret.",
+    "functions": [
+      {
+        "name": "upload_photos",
+        "doc": "Upload 3 photos to R2 via Modal (legacy).\n\nArgs:\n    avatar_id: Avatar identifier.\n    version:   Version string.\n    images:    {\"front\": <bytes>, \"left\": <bytes>, \"right\": <bytes>}\n\nReturns:\n    Result dict from Modal function.",
+        "args": [
+          "avatar_id",
+          "version",
+          "images"
+        ]
+      },
+      {
+        "name": "upload_photo",
+        "doc": "Upload a single portrait photo to R2 via Modal.\n\nArgs:\n    avatar_id: Avatar identifier.\n    version:   Version string.\n    photo_bytes: Raw image bytes.\n\nReturns:\n    Result dict from Modal function.",
+        "args": [
+          "avatar_id",
+          "version",
+          "photo_bytes"
+        ]
+      },
+      {
+        "name": "health_check",
+        "doc": "Check R2 connectivity via Modal.",
+        "args": []
+      },
+      {
+        "name": "list_versions",
+        "doc": "List avatar versions in R2 via Modal.",
+        "args": [
+          "avatar_id"
+        ]
+      },
+      {
+        "name": "poll_job",
+        "doc": "Poll job status (not yet implemented).",
+        "args": [
+          "job_id"
+        ]
+      },
+      {
+        "name": "start_generate",
+        "doc": "Start async Wav2Lip video generation on Modal GPU. Returns job_id for polling.\n\nArgs:\n    avatar_id: Avatar identifier.\n    version:   Version string.\n    audio_bytes: Raw audio bytes (MP3 or WAV). Required for Wav2Lip.",
+        "args": [
+          "avatar_id",
+          "version",
+          "audio_bytes"
+        ]
+      },
+      {
+        "name": "poll_generate",
+        "doc": "Poll status of an avatar generation job.",
+        "args": [
+          "job_id"
+        ]
+      },
+      {
+        "name": "download_artifact",
+        "doc": "Download a file from R2 via Modal. Returns base64-encoded data.",
+        "args": [
+          "key"
+        ]
+      }
+    ],
+    "classes": []
+  }
+}

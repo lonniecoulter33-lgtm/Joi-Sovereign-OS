@@ -1,0 +1,11 @@
+{
+  "settings": "Configurações",
+  "about": "Sobre",
+  "windowsPushNotificationsTitle": "Notificações Push do Windows",
+  "windowsPushNotificationsDesc": "Alternar as notificações que você deseja receber",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. Todos os direitos reservados em todo o mundo. Ao usar o BlueStacks, você concorda com nossos",
+  "errorConnectingToService": "Erro ao conectar ao serviço",
+  "unableToFetchCategories": "Não foi possível buscar as categorias. Tente novamente daqui a pouco",
+  "unableToConnect": "Não é possível conectar-se ao servidor do BlueStacks. Tente mais tarde.",
+  "termsOfUse" : "Termos de uso"
+}

@@ -1,0 +1,171 @@
+Cool. Here’s the Cloud Worker Stack Spec v0 for Joi — a tight blueprint you can keep using while we brainstorm (no code, no commitment).
+
+Joi Cloud Worker Stack Spec v0
+Goal
+
+Local Joi is always-on. Cloud is pay-per-use “muscle” for high-cost features (voice/avatar/heavy compute), with strict triggers, budgets, and fallbacks.
+
+1) Modes
+Companion Mode (default)
+
+Local: always running
+
+Cloud: only when prompted/needed (voice speaking, avatar heavy work, optional memory deep recall)
+
+Security Mode (explicit toggle)
+
+Local: continuous monitoring + local recording
+
+Cloud: optional and budgeted (upload clips, run detections, store events)
+
+2) Presence signals (local only, $0 cloud)
+
+Inputs that indicate “Lonnie is here”:
+
+Mic activity (VAD)
+
+Face detection (camera)
+
+Keyboard/mouse activity
+
+Message sent in UI
+
+Manual “I’m here / I’m away” override (recommended)
+
+These signals never call cloud by themselves. They only allow cloud when a real trigger happens.
+
+3) Workers and contracts
+A) Voice Worker (GPU, serverless)
+
+Trigger: Joi is about to speak using premium voice
+Input: text + speech_directive (mood, intensity, pace, laugh, emphasis hints)
+Output: audio stream + timing/viseme stream
+Stop condition: speech ends → job ends immediately
+Fallback: local basic TTS
+Budget rule: hard daily/monthly cap; if exceeded → auto fallback
+
+B) Avatar Worker (GPU, serverless, optional)
+
+Two roles:
+
+Asset generation (new looks, outfit variants, photoreal conversions)
+
+High-end animation assist (if needed)
+
+Trigger: user asks for avatar change OR high-end render is needed
+Output: updated assets / parameters
+Stop condition: render complete
+Fallback: local lightweight avatar (idle + lip sync driven by timing stream)
+
+Important cost saver: idle blinking/breathing stays local, not cloud.
+
+C) Memory Worker (CPU by default, GPU optional)
+
+Split memory into two layers:
+
+Identity Memory (local, sacred)
+
+always available offline
+
+contains Joi’s identity, constraints, “who she is,” your preferences, core goals
+
+Experience Memory (hybrid)
+
+local cache + cloud search optional
+
+cloud only when:
+
+you ask “do you remember…”
+
+long-term recall is required
+
+embeddings batch jobs are scheduled
+
+Fallback: local cache + summaries only
+
+D) Storage (cloud object store)
+
+Use: recordings, screenshots, logs, avatar assets, clip uploads
+Trigger: security mode upload, manual export, or long-term archival
+Cost controls:
+
+store clips/events, not continuous video (unless explicitly enabled)
+
+retention rules (auto delete after X days)
+
+E) Heavy GPU Worker (future)
+
+A general “GPU toolbox” endpoint for later:
+
+video transforms
+
+diffusion-based image edits
+
+batch vision analysis
+
+Trigger: explicit, user-visible actions only
+Fallback: local limited mode or “cannot perform offline”
+
+4) Cloud activation rules (what you asked for)
+
+Cloud should activate only when:
+
+You ask a question / send message AND premium voice is enabled
+
+Joi decides speech output is required AND you are present
+
+Avatar changes are requested
+
+Deep memory recall is requested
+
+Cloud should NOT activate for:
+
+passive monitoring
+
+staying “awake”
+
+camera watching without explicit security mode
+
+local automation tasks (OBS control, DAW control) unless heavy compute is needed
+
+5) “Bill-by-the-second” behavior (no long sessions)
+
+Voice jobs are one-shot per utterance
+
+Avatar jobs are one-shot per request
+
+Memory jobs are one-shot per query or batch
+
+Local “idle animation” bridges the gaps so it still feels alive
+
+Optional: a tiny 10–30s linger window is allowed, but only if it’s truly free/near-free; otherwise keep linger local.
+
+6) Budgets (non-negotiable safety)
+
+$ per day and $ per month caps
+
+If cap hit → automatic fallback (no silent failures)
+
+Every cloud call gets logged with:
+
+which worker
+
+duration
+
+estimated cost
+
+success/fail
+
+7) Cloning Joi to another computer
+
+A “clone” includes:
+
+local shell (UI + permissions + automation adapters)
+
+identity memory (encrypted)
+
+config that points to your cloud workers + storage
+
+local cache
+
+Cloud workers remain shared infrastructure.

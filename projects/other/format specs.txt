@@ -1,0 +1,163 @@
+INTERIOR FORMATTING SPECS (FINAL)
+Trim Size
+
+6 × 9 inches (15.24 × 22.86 cm)
+
+Font & Typography
+Body Text
+
+Font: Garamond (Adobe Garamond Pro or EB Garamond preferred)
+(Alternatives: Minion Pro, Baskerville)
+
+Font Size: 12 pt
+
+Line Spacing (Leading): 15 pt
+(This is critical for page count and readability)
+
+Paragraph Style
+
+First line indent: 0.25"
+
+Paragraph spacing:
+
+Space after paragraph: 6 pt
+
+No extra space before
+
+Alignment: Left-aligned (NOT justified)
+
+Margins (Mirror Pages / Gutter Correct)
+
+Set mirror margins ON.
+
+Inside (Gutter):
+
+0.75"
+
+Outside:
+
+0.5"
+
+Top:
+
+0.75"
+
+Bottom:
+
+0.75"
+
+These margins:
+
+feel airy without waste
+
+prevent spine crowding
+
+support contemplative reading
+
+Chapter Formatting
+Chapter Openers
+
+Each chapter starts on a right-hand (odd) page.
+
+Chapter Title Style:
+
+Font: Same as body, 14 pt
+
+Weight: Regular or Small Caps
+
+Spacing:
+
+2.0" from top of page
+
+24 pt space after title
+
+No header or footer on chapter opening pages
+
+Body Text Start
+
+First paragraph no indent
+
+Subsequent paragraphs indented as above
+
+Running Headers & Page Numbers
+Page Numbers
+
+Bottom center or bottom outside
+
+9 pt font
+
+Start numbering after front matter
+
+No page numbers on:
+
+dedication
+
+chapter opening pages
+
+Headers
+
+Optional, but recommended:
+
+Left pages: The Actor Takes a Bow
+
+Right pages: Chapter title
+
+Font size: 9 pt
+
+Light gray or 70% black
+
+Front Matter Page Count (Typical)
+Section	Pages
+Half title	1
+Blank	1
+Title page	1
+Copyright	1
+Dedication	1
+Blank	1
+Start Chapter One	Right-hand page
+
+Front matter total: 6 pages
+
+Back Matter
+
+Optional blank page at end if needed to maintain pagination
+
+No index needed
+
+No acknowledgments (fits the tone)
+
+Word Count → Page Count Match
+
+With your prose density and these specs:
+
+~260 words/page
+
+108 pages ≈ 28,000 words
+
+This locks your target.
+
+Software-Specific Notes
+Word / Google Docs
+
+Use Styles (Body Text, Chapter Title)
+
+Enable mirror margins
+
+Insert section breaks for chapters
+
+InDesign (Best Option)
+
+Master pages for:
+
+chapter open
+
+body pages
+
+Paragraph styles only (no manual spacing)
+
+Final Check Before Print
+
+✔ Orphans/widows disabled
+✔ No hyphenation
+✔ Chapter starts always on right page
+✔ PDF/X-1a export

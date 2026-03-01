@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joi - Your AI Companion</title>
+<style>
+/* ===== CSS RESET & VARS ===== */
+:root {
+    --primary: #ff00ff;
+    --secondary: #00ffcc;
+    --accent: #9d00ff;
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --panel-bg: rgba(12,12,24,0.92);
+    --input-bg: rgba(255,255,255,0.07);
+    --border: rgba(255,0,255,0.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    background-image: var(--bg-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+
+/* ===== LOGIN ===== */
+#login-screen {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    height:100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+}
+#login-screen.hidden { display:none; }
+.login-box {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    padding: 44px 40px;
+    box-shadow: 0 0 50px rgba(255,0,255,0.35);
+    text-align: center;
+    min-width: 360px;
+}
+.login-box h1 { font-size: 3.2em; color: var(--primary); text-shadow: 0 0 24px var(--primary); margin-bottom: 6px; }
+.login-box .subtitle { color: var(--secondary); font-style: italic; margin-bottom: 28px; }
+.login-box input {
+    width:100%; padding:14px; margin:8px 0;
+    background: var(--input-bg); border: 1px solid var(--secondary);
+    border-radius: 10px; color:#fff; font-size:16px;
+}
+.login-box input::placeholder { color: rgba(255,255,255,0.4); }
+.login-box button {
+    width:100%; padding:14px; margin:8px 0;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border:none; border-radius:10px; color:#fff;
+    font-size:17px; font-weight:600; cursor:pointer; transition: all .25s;
+}
+.login-box button:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(255,0,255,0.5); }
+
+/* ===== APP LAYOUT ===== */
+#app-container { display:none; height:100vh; flex-direction:column; }
+#app-container.active { display:flex; }
+
+/* Header */
+.app-header {
+    background: rgba(0,0,0,0.82); backdrop-filter:blur(10px);
+    padding: 12px 22px;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom: 2px solid var(--primary);
+    box-shadow: 0 3px 18px rgba(255,0,255,0.25);
+    flex-shrink:0;
+}
+.app-header h1 { font-size:1.8em; color:var(--primary); text-shadow:0 0 12px var(--primary); }
+.header-controls { display:flex; gap:10px; flex-wrap:wrap; }
+.header-btn {
+    padding:8px 16px; background: var(--input-bg);
+    border: 1px solid var(--secondary); border-radius:8px;
+    color:#fff; cursor:pointer; font-size:14px; transition: all .2s;
+}
+.header-btn:hover { background: rgba(255,255,255,0.15); transform:translateY(-1px); }
+.header-btn.active-btn { border-color: var(--primary); background: rgba(255,0,255,0.15); }
+
+/* Content wrapper: [left sidebar] [avatar] [chat] [right sidebar] */
+.content-wrapper { display:flex; flex:1; overflow:hidden; }
+
+/* ===== LEFT SIDEBAR — PROJECTS ===== */
+#projects-sidebar {
+    width: 0; overflow:hidden; transition: width .3s ease;
+    background: var(--panel-bg);
+    border-right: 1px solid var(--border);
+    display:flex; flex-direction:column;
+}
+#projects-sidebar.open { width: 260px; }
+.sidebar-header {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+    flex-shrink:0;
+}
+.sidebar-header h3 { color: var(--secondary); font-size:14px; text-transform:uppercase; letter-spacing:.8px; }
+.sidebar-header button { background:none; border:none; color:var(--secondary); cursor:pointer; font-size:18px; }
+#projects-list { flex:1; overflow-y:auto; padding:10px 12px; }
+.project-folder { margin-bottom:8px; }
+.project-folder-name {
+    font-size:13px; font-weight:600; color:var(--secondary);
+    cursor:pointer; padding:5px 8px; border-radius:6px;
+    display:flex; align-items:center; gap:6px;
+    transition: background .15s;
+}
+.project-folder-name:hover { background: rgba(255,255,255,0.06); }
+.project-folder-name .arrow { font-size:10px; transition: transform .2s; }
+.project-folder-name.open .arrow { transform:rotate(90deg); }
+.project-files { padding-left: 20px; max-height:0; overflow:hidden; transition: max-height .3s ease; }
+.project-files.open { max-height: 400px; }
+.project-file {
+    font-size:12px; color: rgba(255,255,255,0.7); padding:3px 6px;
+    border-radius:4px; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    transition: background .15s;
+}
+.project-file:hover { background: rgba(255,255,255,0.08); color:#fff; }
+.scan-btn {
+    margin:10px 12px; padding:7px; width:calc(100% - 24px);
+    background: rgba(0,255,204,0.12); border: 1px solid var(--secondary);
+    border-radius:8px; color: var(--secondary); font-size:13px; cursor:pointer; transition: all .2s;
+}
+.scan-btn:hover { background: rgba(0,255,204,0.22); }
+
+/* ===== AVATAR PANEL ===== */
+#avatar-container {
+    width: 260px; flex-shrink:0;
+    background: rgba(0,0,0,0.55); backdrop-filter:blur(6px);
+    border-right: 2px solid var(--primary);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position: relative; gap: 12px; padding: 20px 0;
+}
+#avatar-visual {
+    width:220px; height:220px; border-radius:50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    box-shadow: 0 0 48px var(--primary);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+    transition: box-shadow .3s;
+}
+#avatar-visual.speaking { animation: pulse .5s ease-in-out infinite; }
+@keyframes pulse {
+    0%,100% { box-shadow:0 0 48px var(--primary); transform:scale(1); }
+    50%     { box-shadow:0 0 78px var(--primary); transform:scale(1.04); }
+}
+#avatar-visual img { position:absolute; width:100%; height:100%; object-fit:cover; border-radius:50%; }
+#avatar-visual canvas { position:absolute; width:100%; height:100%; }
+.avatar-name { color:var(--primary); text-shadow:0 0 10px var(--primary); font-size:1.3em; font-weight:600; }
+
+/* Avatar switcher strip */
+#avatar-switcher {
+    display:flex; gap:6px; flex-wrap:wrap; justify-content:center;
+    max-width:240px; padding:0 8px;
+}
+.avatar-thumb {
+    width:42px; height:42px; border-radius:50%; border:2px solid transparent;
+    cursor:pointer; object-fit:cover; transition: border-color .2s, transform .15s;
+    background: var(--input-bg);
+}
+.avatar-thumb:hover { transform:scale(1.1); }
+.avatar-thumb.current { border-color: var(--primary); box-shadow:0 0 10px var(--primary); }
+
+/* Mic status badge */
+#mic-status {
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+    font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:.5px;
+    text-transform:uppercase; display:flex; align-items:center; gap:5px;
+}
+#mic-status .dot { width:8px; height:8px; border-radius:50%; background:#555; }
+#mic-status.listening .dot { background: var(--secondary); box-shadow: 0 0 8px var(--secondary); animation: blink 1.2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ===== CHAT ===== */
+#chat-container { flex:1; display:flex; flex-direction:column; overflow:hidden; background:rgba(0,0,0,0.3); }
+#chat-log { flex:1; overflow-y:auto; padding:24px 22px; scroll-behavior:smooth; }
+#chat-log::-webkit-scrollbar { width:8px; }
+#chat-log::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); }
+#chat-log::-webkit-scrollbar-thumb { background:var(--primary); border-radius:4px; }
+
+.message { margin-bottom:18px; animation: fadeIn .28s ease-out; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.message-header { font-weight:700; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.message.user .message-header { color:var(--secondary); }
+.message.assistant .message-header { color:var(--primary); }
+.message-content {
+    background: rgba(255,255,255,0.04); padding:12px 16px;
+    border-radius:10px; border-left:3px solid var(--secondary);
+    line-height:1.55; white-space:pre-wrap; word-wrap:break-word; font-size:14.5px;
+}
+.message.assistant .message-content { border-left-color:var(--primary); }
+
+/* File-link pill inside messages */
+.file-link {
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:8px; padding:6px 12px;
+    background:rgba(0,255,204,0.1); border:1px solid var(--secondary);
+    border-radius:20px; color:var(--secondary); font-size:13px;
+    text-decoration:none; cursor:pointer; transition: background .2s;
+}
+.file-link:hover { background:rgba(0,255,204,0.22); }
+
+/* Input bar */
+.input-area {
+    padding:16px 18px; background:rgba(0,0,0,0.78); backdrop-filter:blur(10px);
+    border-top:2px solid var(--primary);
+    display:flex; gap:10px; align-items:flex-end; flex-shrink:0;
+}
+#message-input {
+    flex:1; padding:12px 16px;
+    background: var(--input-bg); border:1px solid var(--secondary);
+    border-radius:10px; color:#fff; font-size:15px;
+    resize:none; min-height:44px; max-height:130px;
+    outline:none; transition: border-color .2s;
+}
+#message-input:focus { border-color: var(--primary); }
+#message-input::placeholder { color:rgba(255,255,255,0.4); }
+.input-btn {
+    padding:12px 18px; min-width:50px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border:none; border-radius:10px; color:#fff;
+    cursor:pointer; font-size:18px; transition: all .2s; flex-shrink:0;
+}
+.input-btn:hover { transform:translateY(-2px); box-shadow:0 5px 18px rgba(255,0,255,0.45); }
+.input-btn:disabled { opacity:.45; cursor:not-allowed; transform:none; box-shadow:none; }
+.input-btn.mic-btn { background: linear-gradient(135deg, #333, #555); }
+.input-btn.mic-btn.active { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+
+/* ===== RIGHT SIDEBAR — HISTORY ===== */
+#history-sidebar {
+    width:0; overflow:hidden; transition: width .3s ease;
+    background: var(--panel-bg);
+    border-left:1px solid var(--border);
+    display:flex; flex-direction:column;
+}
+#history-sidebar.open { width:240px; }
+#history-list { flex:1; overflow-y:auto; padding:10px 10px; }
+.history-item {
+    font-size:12px; padding:7px 10px; border-radius:6px;
+    margin-bottom:4px; cursor:pointer; border-left:3px solid transparent;
+    transition: background .15s, border-color .15s;
+    color: rgba(255,255,255,0.6);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.history-item:hover { background:rgba(255,255,255,0.07); color:#fff; }
+.history-item.user-msg  { border-left-color: var(--secondary); }
+.history-item.joi-msg   { border-left-color: var(--primary); }
+.history-item .hist-time { font-size:10px; color:rgba(255,255,255,0.35); }
+
+/* ===== MODALS ===== */
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1000; align-items:center; justify-content:center; }
+.modal.active { display:flex; }
+.modal-content {
+    background: rgba(18,18,36,0.96); border:2px solid var(--primary);
+    border-radius:16px; padding:28px; max-width:720px; width:90%;
+    max-height:78vh; overflow-y:auto;
+    box-shadow: 0 0 44px rgba(255,0,255,0.4);
+}
+.modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+.modal-header h2 { color:var(--primary); font-size:1.4em; }
+.close-btn { background:none; border:none; color:#fff; font-size:22px; cursor:pointer; }
+.modal-content h3 { color:var(--secondary); margin: 14px 0 6px; font-size:14px; }
+.modal-content p, .modal-content label { font-size:13px; color:rgba(255,255,255,0.7); }
+.modal-content select, .modal-content input[type="color"] {
+    background: var(--input-bg); border:1px solid var(--secondary);
+    border-radius:6px; color:#fff; padding:6px 10px; font-size:14px;
+}
+.modal-content button {
+    margin-top:8px; padding:7px 18px;
+    background: rgba(0,255,204,0.12); border:1px solid var(--secondary);
+    border-radius:8px; color:var(--secondary); cursor:pointer; font-size:13px; transition:background .2s;
+}
+.modal-content button:hover { background: rgba(0,255,204,0.25); }
+
+/* Proposal / research cards */
+.card {
+    background:rgba(255,255,255,0.04); border:1px solid var(--border);
+    border-radius:10px; padding:14px; margin-bottom:12px;
+}
+.card h4 { color:#fff; margin-bottom:4px; }
+.card p { font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:3px; }
+.card .btn-row { margin-top:10px; display:flex; gap:8px; }
+.card .btn-row button { margin-top:0; }
+.btn-approve { background:rgba(46,204,113,0.2)!important; border-color:#2ecc71!important; color:#2ecc71!important; }
+.btn-reject  { background:rgba(231,76,60,0.2)!important; border-color:#e74c3c!important; color:#e74c3c!important; }
+
+/* Toast / status */
+#toast {
+    position:fixed; bottom:24px; right:24px;
+    padding:10px 22px; background:rgba(0,0,0,0.85); border:1px solid var(--primary);
+    border-radius:20px; color:#fff; font-size:13px;
+    opacity:0; transform:translateY(20px); transition: all .3s; pointer-events:none; z-index:2000;
+}
+#toast.show { opacity:1; transform:translateY(0); }
+
+/* hidden file input */
+#image-input { display:none; }
+#file-input { display:none; }
+
+/* ===== UX FIXES: allow copy/paste/select where needed ===== */
+#chat-log, #message-input, textarea, input, pre, code {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+/* Code blocks + copy button */
+pre.joi-code {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    overflow: auto;
+    position: relative;
+}
+pre.joi-code code { white-space: pre; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; }
+.copy-btn {
+    position: absolute;
+    top: 8px; right: 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,255,204,0.4);
+    background: rgba(0,255,204,0.10);
+    color: var(--secondary);
+    cursor: pointer;
+    font-size: 12px;
+}
+.copy-btn:hover { background: rgba(0,255,204,0.20); }
+
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>Joi</h1>
+    <p class="subtitle">Your AI Companion</p>
+    <input type="password" id="password-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')login(false)">
+    <button onclick="login(false)">Login</button>
+    <button onclick="login(true)">Admin Login</button>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div id="app-container">
+  <!-- Header -->
+  <div class="app-header">
+    <h1>Joi</h1>
+    <div class="header-controls">
+      <button class="header-btn" id="projects-toggle" onclick="toggleProjects()">📁 Projects</button>
+      <button class="header-btn" id="history-toggle" onclick="toggleHistory()">🕐 History</button>
+      <button class="header-btn" onclick="showProposals()">📋 Proposals</button>
+      <button class="header-btn" onclick="showResearch()">📚 Research</button>
+      <button class="header-btn" onclick="showSettings()">⚙️ Settings</button>
+      <button class="header-btn" onclick="logout()">🚪 Logout</button>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+
+    <!-- LEFT: Projects sidebar -->
+    <div id="projects-sidebar">
+      <div class="sidebar-header">
+        <h3>📁 Projects</h3>
+        <button onclick="toggleProjects()">✕</button>
+      </div>
+      <button class="scan-btn" onclick="scanProjects()">🔍 Scan &amp; Organise Files</button>
+      <div id="projects-list"><!-- populated by JS --></div>
+    </div>
+
+    <!-- AVATAR -->
+    <div id="avatar-container">
+      <div id="avatar-visual">
+        <img id="avatar-image" style="display:block;" src="/file/project/assets/avatars/avatar.png" alt="Joi avatar">
+        <canvas id="avatar-canvas" style="display:none"></canvas>
+      </div>
+      <div class="avatar-name">Joi</div>
+      <div id="avatar-switcher"><!-- populated by JS --></div>
+      <div id="mic-status"><span class="dot"></span><span id="mic-label">mic off</span></div>
+    </div>
+
+    <!-- CHAT -->
+    <div id="chat-container">
+      <div id="chat-log"></div>
+      <div class="input-area">
+        <textarea id="message-input" placeholder="Type or say something…" rows="1"></textarea>
+        <button class="input-btn mic-btn" id="mic-btn" onclick="toggleMic()" title="Toggle always-on mic">🎤</button>
+        <button class="input-btn" id="upload-btn" title="Upload file">📎</button>
+    <button class="input-btn" id="send-btn" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: History sidebar -->
+    <div id="history-sidebar">
+      <div class="sidebar-header">
+        <h3>🕐 History</h3>
+        <button onclick="toggleHistory()">✕</button>
+      </div>
+      <div id="history-list"><!-- populated by JS --></div>
+    </div>
+
+  </div><!-- .content-wrapper -->
+</div><!-- #app-container -->
+
+<!-- ===== MODALS ===== -->
+<div id="settings-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>⚙️ Settings</h2><button class="close-btn" onclick="closeModal('settings-modal')">✕</button></div>
+    <h3>Background</h3>
+    <input type="file" id="bg-image-input" accept="image/*" style="display:none" onchange="setBgImage(this)">
+    <button onclick="document.getElementById('bg-image-input').click()">Choose Background Image</button>
+    <br>
+    <input type="color" id="bg-color-input" value="#0a0a0a" onchange="setBgColor(this.value)"> <label>Background Color</label>
+    <h3>Voice (Browser Fallback)</h3>
+    <select id="voice-select" onchange="updateVoice()"><option value="">Default</option></select>
+    <br><button onclick="testVoice()">Test Voice</button>
+    <h3>Mic Wake Word</h3>
+    <p>Say <strong>"Hey Joi"</strong> to activate the mic hands-free. Toggle the 🎤 button to start listening.</p>
+  </div>
+</div>
+
+<div id="proposals-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>📋 Code Proposals</h2><button class="close-btn" onclick="closeModal('proposals-modal')">✕</button></div>
+    <div id="proposals-content"></div>
+  </div>
+</div>
+
+<div id="research-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>📚 Research &amp; Notes</h2><button class="close-btn" onclick="closeModal('research-modal')">✕</button></div>
+    <div id="research-content"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+<!-- hidden file input -->
+<input type="file" id="image-input" accept="image/*" onchange="handleImageUpload(this)">
+
+<script>
+// =====================================================================
+// STATE
+// =====================================================================
+let isLoggedIn = false, isAdmin = false;
+let currentImage = null, selectedVoice = null, isSpeaking = false;
+let particles = [];
+let avatarAnimId = null;
+let recognition = null;   // SpeechRecognition instance (persistent)
+let micActive = false;    // is the always-on mic running?
+
+// =====================================================================
+// INIT
+// =====================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    autoResizeTextarea();
+    loadVoices();
+    // restore bg prefs
+    const bg = localStorage.getItem('joi-bg-image');
+    if (bg) document.documentElement.style.setProperty('--bg-image', `url(${bg})`);
+    const col = localStorage.getItem('joi-bg-color');
+    if (col) { document.documentElement.style.setProperty('--bg', col); document.getElementById('bg-color-input').value = col; }
+    if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined)
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+
+
+    // File upload (to /upload)
+    const uploadBtn = document.getElementById('upload-btn');
+    const fileInput = document.getElementById('file-input');
+    if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', async () => {
+            const f = fileInput.files && fileInput.files[0];
+            if (!f) return;
+            const fd = new FormData();
+            fd.append('file', f);
+            try {
+                uploadBtn.disabled = true;
+                const r = await fetch('/upload', { method: 'POST', body: fd });
+                const d = await r.json();
+                if (!d.ok) throw new Error(d.error || 'Upload failed');
+                addMessage('assistant', `Uploaded [${d.filename}](${d.url})`);
+            } catch (e) {
+                toast(e.message || 'Upload failed');
+            } finally {
+                uploadBtn.disabled = false;
+                fileInput.value = '';
+            }
+        });
+    }
+
+});
+
+function autoResizeTextarea() {
+    const ta = document.getElementById('message-input');
+    ta.addEventListener('input', function(){ this.style.height='auto'; this.style.height=this.scrollHeight+'px'; });
+}
+
+// =====================================================================
+// LOGIN / LOGOUT
+// =====================================================================
+async function login(admin = false) {
+    const pw = document.getElementById('password-input').value;
+    if (!pw) return toast('Enter a password');
+    try {
+        const r = await fetch('/login', {method:'POST', headers:{'Content-Type':'application/json'},
+                                         body: JSON.stringify({password:pw, admin})});
+        const d = await r.json();
+        if (d.ok) {
+            isLoggedIn = true; isAdmin = d.admin;
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('app-container').classList.add('active');
+            // load everything
+            await loadAvatar();
+            await loadAvatarSwitcher();
+            await loadHistory();
+            await loadProjects();
+            // initializeAvatar(); // disabled to reduce CPU (particle loop)
+            speak("Hello, Lonnie. I've missed you.");
+        } else { toast(d.error || 'Login failed'); }
+    } catch(e) { toast('Login error: '+e.message); }
+}
+
+async function logout() {
+    try { await fetch('/logout', {method:'POST'}); } catch(e){}
+    location.reload();
+}
+
+// =====================================================================
+// CHAT
+// =====================================================================
+async function sendMessage() {
+    const input = document.getElementById('message-input');
+    const msg = input.value.trim();
+    if (!msg && !currentImage) return;
+
+    addMessage('user', msg, currentImage);
+    input.value = ''; input.style.height = 'auto';
+    const tmpImg = currentImage; currentImage = null;
+
+    const btn = document.getElementById('send-btn');
+    btn.disabled = true; btn.innerHTML = '<span style="font-size:13px">…</span>';
+
+    try {
+        const r = await fetch('/chat', {method:'POST', headers:{'Content-Type':'application/json'},
+                                        body: JSON.stringify({message: msg, image: tmpImg})});
+        const d = await r.json();
+        if (d.ok) {
+            addMessage('assistant', d.reply);
+            speak(d.reply);
+            // refresh sidebars if avatar/project actions happened
+            if (d.reply.toLowerCase().includes('avatar') || d.reply.toLowerCase().includes('appearance'))
+                { await loadAvatar(); await loadAvatarSwitcher(); }
+            if (d.reply.toLowerCase().includes('project') || d.reply.toLowerCase().includes('organised'))
+                await loadProjects();
+            // add to history sidebar live
+            appendHistoryItem({role:'user', content:msg});
+            appendHistoryItem({role:'assistant', content:d.reply});
+        } else { addMessage('assistant', 'Error: '+(d.error||'Unknown')); }
+    } catch(e) { addMessage('assistant', 'Error: '+e.message); }
+    finally { btn.disabled=false; btn.innerHTML='➤'; }
+}
+
+
+function escapeHtml(s){
+    return (s ?? '').toString()
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function renderContent(raw){
+    let s = (raw ?? '').toString();
+
+    // Convert code fences ```lang?\n...\n```
+    s = s.replace(/```([\w+-]+)?\n([\s\S]*?)```/g, (m, lang, code) => {
+        const safe = escapeHtml(code);
+        const label = lang ? `<div style="margin-bottom:6px;opacity:.7;font-size:12px">${escapeHtml(lang)}</div>` : '';
+        return `${label}<pre class="joi-code"><code>${safe}</code></pre>`;
+    });
+
+    // Markdown links to /file/... become download pills
+    s = s.replace(/\[([^\]]+)\]\((\/file\/[^)]+)\)/g, (m, label, href) => {
+        const safeLabel = escapeHtml(label);
+        const safeHref = href.replace(/"/g, '%22');
+        return `<a class="file-link" href="${safeHref}" target="_blank" rel="noopener">📄 ${safeLabel}</a>`;
+    });
+
+    // Plain /file/... urls become download pills too
+    s = s.replace(/(^|\s)(\/file\/[^\s<]+)/g, (m, pre, href) => {
+        const safeHref = href.replace(/"/g, '%22');
+        return `${pre}<a class="file-link" href="${safeHref}" target="_blank" rel="noopener">⬇ Download</a>`;
+    });
+
+    return s;
+}
+
+function addCopyButtons(container){
+    container.querySelectorAll('pre.joi-code').forEach(pre=>{
+        if (pre.dataset.copyReady) return;
+        pre.dataset.copyReady = '1';
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', async () => {
+            const txt = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText;
+            try { await navigator.clipboard.writeText(txt); toast('Copied'); }
+            catch { toast('Copy failed'); }
+        });
+        pre.appendChild(btn);
+    });
+}
+
+function addMessage(role, content, imageData=null) {
+    const log = document.getElementById('chat-log');
+    const wrap = document.createElement('div');
+    wrap.className = 'message '+role;
+
+    const hdr = document.createElement('div');
+    hdr.className = 'message-header';
+    hdr.textContent = role==='user' ? 'Lonnie' : 'Joi';
+
+    const body = document.createElement('div');
+    body.className = 'message-content';
+
+    if (imageData) {
+        const img = document.createElement('img');
+        img.src = imageData;
+        img.style.maxWidth='260px';
+        img.style.borderRadius='10px';
+        img.style.marginBottom='6px';
+        body.appendChild(img);
+        body.appendChild(document.createElement('br'));
+    }
+
+    body.innerHTML += renderContent(content);
+
+    wrap.appendChild(hdr);
+    wrap.appendChild(body);
+    log.appendChild(wrap);
+
+    while (log.children.length > 120) log.removeChild(log.firstChild);
+
+    addCopyButtons(body);
+    log.scrollTop = log.scrollHeight;
+}
+
+
+// =====================================================================
+// TTS + LIP-SYNC
+// =====================================================================
+async function speak(text) {
+    if (!text || isSpeaking) return;
+    isSpeaking = true;
+    document.getElementById('avatar-visual').classList.add('speaking');
+
+    // Prefer server TTS if available; fall back cleanly if endpoint is missing or returns non-JSON.
+    try {
+        const r = await fetch('/tts', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ text })
+        });
+
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        if (!r.ok || !ct.includes('application/json')) throw new Error('TTS endpoint unavailable');
+
+        const d = await r.json();
+        if (d.ok && d.url) {
+            const audio = new Audio(d.url);
+            audio.onplay  = () => startLipSync();
+            audio.onended = () => {
+                stopLipSync();
+                isSpeaking = false;
+                document.getElementById('avatar-visual').classList.remove('speaking');
+            };
+            audio.onerror = () => {
+                stopLipSync();
+                isSpeaking = false;
+                document.getElementById('avatar-visual').classList.remove('speaking');
+                useBrowserTTS(text);
+            };
+            await audio.play();
+            return;
+        }
+        throw new Error('TTS bad payload');
+    } catch (e) {
+        useBrowserTTS(text);
+    }
+}
+
+function useBrowserTTS(text) {
+    const u = new SpeechSynthesisUtterance(text);
+    if (selectedVoice) u.voice = selectedVoice;
+    u.rate=0.95; u.pitch=1.1;
+    u.onstart = () => startLipSync();
+    u.onend   = () => { stopLipSync(); isSpeaking=false; document.getElementById('avatar-visual').classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+}
+
+let lipInterval = null;
+
+function startLipSync() {
+    const vis = document.getElementById('avatar-visual');
+    if (vis) vis.classList.add('speaking');
+}
+function stopLipSync() {
+    const vis = document.getElementById('avatar-visual');
+    if (vis) vis.classList.remove('speaking');
+    const img = document.getElementById('avatar-image');
+    if (img) img.style.transform = 'scale(1)';
+}
+
+// =====================================================================
+// ALWAYS-ON MIC  (wake-word: "hey joi")
+// =====================================================================
+function toggleMic() {
+    if (micActive) { stopMic(); } else { startMic(); }
+}
+
+function startMic() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { toast('Speech recognition not supported in this browser'); return; }
+    recognition = new SR();
+    recognition.continuous = true;
+    recognition.interimResults = false; // lower CPU
+    recognition.lang = 'en-US';
+
+    recognition.onresult = (e) => {
+        let interim='', final='';
+        for (let i=e.resultIndex; i<e.results.length; i++) {
+            if (e.results[i].isFinal) final += e.results[i][0].transcript;
+            else interim += e.results[i][0].transcript;
+        }
+        const full = (final + interim).trim().toLowerCase();
+
+        // Wake-word detection
+        if (full.includes('hey joi') || full.includes('hi joi')) {
+            // strip wake-word, send remainder if present
+            const after = full.replace(/hey joi|hi joi/g,'').trim();
+            if (after.length > 2) {
+                document.getElementById('message-input').value = after;
+                sendMessage();
+            } else {
+                // just wake — put focus and show prompt
+                document.getElementById('message-input').focus();
+                toast('Listening…');
+            }
+            // reset results
+            recognition.stop();
+            setTimeout(() => { if (micActive) recognition.start(); }, 300);
+            return;
+        }
+
+        // If final text came in without wake word while mic is active,
+        // treat as continuous input only if user already woke mic via button
+        if (final.length > 2 && !full.includes('hey joi')) {
+            // do nothing — wait for wake word
+        }
+    };
+
+    recognition.onerror = (e) => {
+        console.warn('Speech error:', e.error);
+        if (e.error === 'no-speech' || e.error === 'aborted') {
+            if (micActive) setTimeout(() => recognition.start(), 500);
+        } else { stopMic(); }
+    };
+    recognition.onend = () => { if (micActive) setTimeout(() => { try { recognition.start(); } catch(e){} }, 900); };
+
+    recognition.start();
+    micActive = true;
+    document.getElementById('mic-btn').classList.add('active');
+    document.getElementById('mic-status').classList.add('listening');
+    document.getElementById('mic-label').textContent = 'listening';
+}
+
+function stopMic() {
+    micActive = false;
+    if (recognition) { try{ recognition.stop(); } catch(e){} recognition = null; }
+    document.getElementById('mic-btn').classList.remove('active');
+    document.getElementById('mic-status').classList.remove('listening');
+    document.getElementById('mic-label').textContent = 'mic off';
+}
+
+// =====================================================================
+// AVATAR
+// =====================================================================
+async function loadAvatar() {
+    const img = document.getElementById('avatar-image');
+    const canvas = document.getElementById('avatar-canvas');
+
+    // Default: embedded avatar image (no server round-trip)
+    img.style.display = 'block';
+    canvas.style.display = 'none';
+
+    if (avatarAnimId) { cancelAnimationFrame(avatarAnimId); avatarAnimId = null; }
+
+    try {
+        const r = await fetch('/avatar');
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        if (!r.ok || !ct.includes('application/json')) return;
+
+        const d = await r.json();
+        if (d.ok && d.url) {
+            img.src = d.url;
+            img.style.display = 'block';
+            canvas.style.display = 'none';
+        }
+    } catch (e) {
+        // keep default
+    }
+}
+
+async function loadAvatarSwitcher() {
+    const container = document.getElementById('avatar-switcher');
+    container.innerHTML = '';
+    try {
+        const r = await fetch('/avatars');
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        if (!r.ok || !ct.includes('application/json')) return;
+
+        const d = await r.json();
+        if (d.ok && d.avatars) {
+            d.avatars.forEach(a => {
+                const img = document.createElement('img');
+                img.className = 'avatar-thumb' + (a.is_current ? ' current' : '');
+                img.src = a.url;
+                img.title = a.name;
+                img.onclick = () => switchAvatar(a.name);
+                container.appendChild(img);
+            });
+        }
+    } catch (e) { /* ignore */ }
+}
+
+async function switchAvatar(name) {
+    try {
+        const r = await fetch('/avatars/switch', {method:'POST', headers:{'Content-Type':'application/json'},
+                                                   body: JSON.stringify({name})});
+        const d = await r.json();
+        if (d.ok) { toast('Switched to '+name); await loadAvatar(); await loadAvatarSwitcher(); }
+        else toast(d.error);
+    } catch(e) { toast(e.message); }
+}
+
+// Particle avatar fallback
+function initializeAvatar() {
+    const canvas = document.getElementById('avatar-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width=220; canvas.height=220;
+    particles = [];
+    for (let i=0;i<50;i++) particles.push({
+        x:Math.random()*220, y:Math.random()*220,
+        vx:(Math.random()-.5)*2, vy:(Math.random()-.5)*2,
+        size:Math.random()*3+1
+    });
+    (function animate(){
+        ctx.fillStyle='rgba(0,0,0,0.1)';
+        ctx.fillRect(0,0,220,220);
+        particles.forEach(p=>{
+            p.x+=p.vx; p.y+=p.vy;
+            if(p.x<0||p.x>220) p.vx*=-1;
+            if(p.y<0||p.y>220) p.vy*=-1;
+            ctx.fillStyle='rgba(255,0,255,0.8)';
+            ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+        });
+        avatarAnimId = requestAnimationFrame(animate);
+    })();
+}
+
+// =====================================================================
+// PROJECTS SIDEBAR
+// =====================================================================
+function toggleProjects() {
+    const sidebar = document.getElementById('projects-sidebar');
+    const btn = document.getElementById('projects-toggle');
+    sidebar.classList.toggle('open');
+    btn.classList.toggle('active-btn');
+}
+
+async function loadProjects() {
+    try {
+        const r = await fetch('/projects');
+        const d = await r.json();
+        const list = document.getElementById('projects-list');
+        list.innerHTML = '';
+        if (d.ok && d.projects) {
+            Object.entries(d.projects).forEach(([folder, files]) => {
+                const div = document.createElement('div');
+                div.className = 'project-folder';
+                div.innerHTML = `
+                  <div class="project-folder-name" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+                    <span class="arrow">▶</span> ${folder} <span style="color:rgba(255,255,255,0.35);font-size:11px">(${files.length})</span>
+                  </div>
+                  <div class="project-files">
+                    ${files.map(f=>`<div class="project-file" onclick="window.open('${f.url}')">📄 ${f.name}</div>`).join('')}
+                  </div>`;
+                list.appendChild(div);
+            });
+            if (Object.keys(d.projects).length === 0)
+                list.innerHTML = '<p style="font-size:12px;color:rgba(255,255,255,0.4);padding:10px">No projects yet. Click Scan.</p>';
+        }
+    } catch(e) {}
+}
+
+async function scanProjects() {
+    toast('Scanning your files…');
+    try {
+        // 1) scan
+        const r1 = await fetch('/projects/scan', {method:'POST', headers:{'Content-Type':'application/json'},
+                                                   body: JSON.stringify({roots:["documents","desktop","downloads","home"]})});
+        const scan = await r1.json();
+        if (!scan.ok) { toast(scan.error); return; }
+        toast(scan.summary);
+
+        // 2) organise
+        const r2 = await fetch('/projects/organise', {method:'POST', headers:{'Content-Type':'application/json'},
+                                                       body: JSON.stringify({categories: scan.categories})});
+        const org = await r2.json();
+        toast(org.message || 'Done!');
+
+        // 3) refresh sidebar
+        await loadProjects();
+    } catch(e) { toast(e.message); }
+}
+
+// =====================================================================
+// HISTORY SIDEBAR
+// =====================================================================
+function toggleHistory() {
+    const sidebar = document.getElementById('history-sidebar');
+    const btn = document.getElementById('history-toggle');
+    sidebar.classList.toggle('open');
+    btn.classList.toggle('active-btn');
+}
+
+async function loadHistory() {
+    try {
+        const r = await fetch('/history?limit=80');
+        const d = await r.json();
+        const list = document.getElementById('history-list');
+        list.innerHTML = '';
+        if (d.ok && d.history) {
+            d.history.forEach(h => {
+                appendHistoryItem(h, list);
+            });
+            list.scrollTop = list.scrollHeight;
+        }
+    } catch(e) {}
+}
+
+function appendHistoryItem(h, container=null) {
+    if (!container) container = document.getElementById('history-list');
+    const div = document.createElement('div');
+    const isUser = h.role === 'user';
+    div.className = 'history-item ' + (isUser ? 'user-msg' : 'joi-msg');
+    const timeStr = h.ts ? new Date(h.ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '';
+    div.innerHTML = `<span class="hist-time">${isUser?'You':'Joi'} ${timeStr}</span><br>${(h.content||'').slice(0,120)}`;
+    div.onclick = () => {
+        // scroll to or highlight — for now just show in input
+        if (isUser) document.getElementById('message-input').value = h.content||'';
+    };
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
+
+// =====================================================================
+// VOICE / SETTINGS
+// =====================================================================
+function loadVoices() {
+    const select = document.getElementById('voice-select');
+    const voices = window.speechSynthesis.getVoices();
+    select.innerHTML = '<option value="">Default</option>';
+    voices.forEach(v => {
+        const o = document.createElement('option');
+        o.value = v.name; o.textContent = `${v.name} (${v.lang})`;
+        select.appendChild(o);
+    });
+    const fem = voices.find(v => v.name.includes('Female')||v.name.includes('Samantha')||v.name.includes('Zira'));
+    if (fem) { selectedVoice=fem; select.value=fem.name; }
+}
+function updateVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    selectedVoice = voices.find(v => v.name === document.getElementById('voice-select').value);
+}
+function testVoice() { isSpeaking=false; speak("Hello, Lonnie. This is how I sound."); }
+
+// =====================================================================
+// IMAGE UPLOAD
+// =====================================================================
+function handleImageUpload(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => { currentImage = e.target.result; toast('Image attached'); };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// =====================================================================
+// BACKGROUND
+// =====================================================================
+function setBgImage(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.documentElement.style.setProperty('--bg-image', `url(${e.target.result})`);
+            localStorage.setItem('joi-bg-image', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function setBgColor(color) {
+    document.documentElement.style.setProperty('--bg', color);
+    localStorage.setItem('joi-bg-color', color);
+}
+
+// =====================================================================
+// MODALS
+// =====================================================================
+function showSettings()  { document.getElementById('settings-modal').classList.add('active'); }
+function closeModal(id)  { document.getElementById(id).classList.remove('active'); }
+
+async function showProposals() {
+    try {
+        const r = await fetch('/proposals');
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        if (!r.ok || !ct.includes('application/json')) {
+            toast('Proposals route is missing (server returned non‑JSON).');
+            return;
+        }
+        const d = await r.json();
+
+        const el = document.getElementById('proposals-content');
+        el.innerHTML = '';
+        if (d.ok && d.proposals && d.proposals.length) {
+            d.proposals.forEach(p => {
+                el.innerHTML += `<div class="card">
+                  <h4>#${p.id} — ${p.summary}</h4>
+                  <p>Status: <strong>${p.status}</strong> | File: ${p.target_file}</p>
+                  ${isAdmin && p.status==='pending' ? `<div class="btn-row">
+                    <button class="btn-approve" onclick="approveProposal(${p.id})">✓ Approve</button>
+                    <button class="btn-reject"  onclick="rejectProposal(${p.id})">✕ Reject</button>
+                  </div>` : ''}
+                </div>`;
+            });
+        } else { el.innerHTML = '<p>No proposals.</p>'; }
+
+        document.getElementById('proposals-modal').classList.add('active');
+    } catch (e) { toast(e.message); }
+}
+
+async function approveProposal(id) {
+    if (!confirm('Approve and apply this code change?')) return;
+    const r = await fetch(`/proposals/${id}/approve`, {method:'POST'});
+    const d = await r.json();
+    toast(d.ok ? 'Approved & applied!' : d.error);
+    showProposals();
+}
+async function rejectProposal(id) {
+    const r = await fetch(`/proposals/${id}/reject`, {method:'POST'});
+    toast('Rejected');
+    showProposals();
+}
+
+async function showResearch() {
+    try {
+        const r = await fetch('/research');
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        if (!r.ok || !ct.includes('application/json')) {
+            toast('Research route is missing (server returned non‑JSON).');
+            return;
+        }
+        const d = await r.json();
+
+        const el = document.getElementById('research-content');
+        el.innerHTML = '';
+        if (d.ok && d.entries && d.entries.length) {
+            d.entries.forEach(e => {
+                el.innerHTML += `<div class="card">
+                  <h4>${e.title}</h4>
+                  <p>Category: ${e.category} | ${new Date(e.ts).toLocaleString()}</p>
+                  <button onclick="viewResearch(${e.id})">📖 Open</button>
+                </div>`;
+            });
+        } else { el.innerHTML = '<p>No research entries.</p>'; }
+
+        document.getElementById('research-modal').classList.add('active');
+    } catch (e) { toast(e.message); }
+}
+
+async function viewResearch(id) {
+    const r = await fetch(`/research/${id}`);
+    const d = await r.json();
+    if (d.ok) {
+        const el = document.getElementById('research-content');
+        el.innerHTML = `<h4>${d.entry.title}</h4><p style="white-space:pre-wrap;font-size:13px;color:rgba(255,255,255,0.8);margin-top:10px">${d.entry.content}</p>`;
+    }
+}
+
+// =====================================================================
+// KEYBOARD
+// =====================================================================
+document.addEventListener('keydown', e => {
+    if (e.key==='Enter' && !e.shiftKey && e.target.id==='message-input') { e.preventDefault(); sendMessage(); }
+    if (e.key==='Escape') { document.querySelectorAll('.modal.active').forEach(m=>m.classList.remove('active')); }
+});
+
+// =====================================================================
+// TOAST
+// =====================================================================
+let toastTimer = null;
+function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg; el.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>

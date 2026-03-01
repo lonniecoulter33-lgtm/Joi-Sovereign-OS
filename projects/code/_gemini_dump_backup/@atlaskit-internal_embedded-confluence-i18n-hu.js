@@ -1,0 +1,3 @@
+"use strict";(global.webpackChunk_loomhq_desktop_monorepo=global.webpackChunk_loomhq_desktop_monorepo||[]).push([[3742],{262159:(d,e,n)=>{n.r(e),n.d(e,{default:()=>o});const o={"embedded-confluence.modal.close-button":"Bez\xE1r\xE1s","embedded-confluence.modal.contract-button":"Szerz\u0151d\xE9s","embedded-confluence.modal.open-in-confluence":"Megnyit\xE1s a Confluence-ben","embedded-confluence.panel.close-button":"Bez\xE1r\xE1s","embedded-confluence.panel.expand-button":"Kibont\xE1s","embedded-confluence.panel.open-in-confluence":"Megnyit\xE1s a Confluence-ben"}}}]);
+
+//# sourceMappingURL=@atlaskit-internal_embedded-confluence-i18n-hu.js.map

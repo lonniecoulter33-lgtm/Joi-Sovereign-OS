@@ -1,0 +1,125 @@
+INGRAMSPARK — FINAL PRINT SPECS
+
+White paperback | 6 × 9 inches | 108 pages
+
+Interior
+
+Trim size: 6 × 9 in
+
+Paper: White (50 lb / 74 gsm)
+
+Ink: Black & white
+
+Binding: Perfect bound
+
+Page count: 108 pages (confirmed)
+
+EXACT SPINE WIDTH (IngramSpark – White Paper)
+
+IngramSpark’s official formula for white paper is:
+
+Page count × 0.002252 in
+
+Calculation
+
+108 × 0.002252 = 0.2432 inches
+
+✅ Lock this spine width:
+
+0.243 in
+
+(Do not round up to 0.25 for Ingram — use their exact value.)
+
+FULL COVER WRAP DIMENSIONS
+
+Including bleed (required by IngramSpark)
+
+Inches
+
+Width:
+Back (6.000) + Spine (0.243) + Front (6.000) + Bleed (0.250)
+= 12.493 in
+
+Height:
+9.000 + 0.125 top + 0.125 bottom
+= 9.250 in
+
+✅ Final cover PDF size
+
+12.493 in × 9.250 in
+
+PIXELS @ 300 DPI (Print-Ready)
+
+Width: 3748 px
+
+Height: 2775 px
+
+Spine: 0.243 in = 73 px
+
+(Spine text is optional at this width — minimalist spine recommended.)
+
+SAFE ZONES (DO NOT VIOLATE)
+
+Keep all text/logos at least 0.25 in inside trim
+
+Spine text:
+
+Minimum readable width ≈ 0.28 in
+
+At 0.243 in, no spine text or very small title only
+
+Barcode:
+
+Reserve ~2.0 × 1.2 in
+
+Back cover, bottom right
+
+Inside trim-safe area
+
+INGRAMSPARK SETUP SETTINGS (IMPORTANT)
+
+When uploading:
+
+Distribution
+
+✅ Global distribution: ON
+
+✅ Returnable: Yes – Destroy (standard, lowest risk)
+
+Wholesale Discount
+
+55% (recommended for Barnes & Noble & libraries)
+
+Minimum acceptable: 40% (but 55% gives real access)
+
+Pricing (example)
+
+Suggested retail: $14.99–$17.99
+
+Philosophy / inquiry sweet spot
+
+Keeps bookstore margins viable
+
+FILES YOU WILL UPLOAD TO INGRAMSPARK
+
+You will need two PDFs:
+
+Interior PDF
+
+6 × 9
+
+108 pages
+
+Embedded fonts
+
+No crop marks
+
+No bleed
+
+Cover PDF
+
+12.493 × 9.250
+
+Includes bleed
+
+Front + spine + back in one file

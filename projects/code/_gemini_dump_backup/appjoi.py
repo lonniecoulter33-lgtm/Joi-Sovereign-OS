@@ -1,0 +1,1 @@
+Add an endpoint /background-image that serves downloads/joi.avif (or returns 404 if missing). Update the HTML/CSS so #log uses background: url('/background-image') center/cover no-repeat;.

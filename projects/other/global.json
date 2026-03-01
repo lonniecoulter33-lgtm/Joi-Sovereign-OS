@@ -1,0 +1,34 @@
+{
+  "openedTabs": [],
+  "selectedTabIndex": null,
+  "currentlyEditingMcpJson": null,
+  "downloadsPanelOpen": false,
+  "lastActiveWindowBounds": {
+    "x": 52,
+    "y": 0,
+    "width": 1190,
+    "height": 676
+  },
+  "discoverModal": {
+    "width": null,
+    "height": null
+  },
+  "searchModelCompatibilityTypesOverride": null,
+  "myModels": {
+    "columnVisibilityVersion": 2,
+    "hiddenColumnKeys": [
+      "format",
+      "capabilities"
+    ]
+  },
+  "themeId": "system",
+  "openedWindowKeys": [
+    "window-1"
+  ],
+  "windowKeyByProjectPathEntries": [
+    {
+      "projectPath": "C:\\Users\\user\\.lmstudio",
+      "windowKey": "window-1"
+    }
+  ]
+}

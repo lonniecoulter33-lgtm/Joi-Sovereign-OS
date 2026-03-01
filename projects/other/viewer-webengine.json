@@ -1,0 +1,76 @@
+{
+  "geometry-of-main_window_geometry": {
+    "frame_geometry": {
+      "height": 510,
+      "width": 426,
+      "x": 320,
+      "y": 66
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 480,
+      "width": 426,
+      "x": 320,
+      "y": 96
+    },
+    "maximized": false,
+    "normal_geometry": {
+      "height": 480,
+      "width": 426,
+      "x": 320,
+      "y": 96
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAFAAAAAQgAAAukAAAI/AAABQAAAAGAAAALpAAACPwAAAAAAAAAABQAAAAFAAAAAYAAAAukAAAI/"
+    },
+    "screen": {
+      "depth": 32,
+      "device_pixel_ratio": 1.5,
+      "geometry_in_logical_pixels": {
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "LGD",
+      "model": "",
+      "name": "\\\\.\\DISPLAY1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 720,
+        "width": 1280
+      },
+      "virtual_geometry": {
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "main_window_state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAIYA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlAD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACXAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOYA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEgD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAM8A////AAABqgAAAeAAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+  },
+  "old_prefs_migrated": true,
+  "session_data": {
+    "controls_help_shown_count": 1,
+    "standalone_font_settings": {},
+    "standalone_misc_settings": {
+      "remember_last_read": true,
+      "remember_window_geometry": false,
+      "save_annotations_in_ebook": true,
+      "singleinstance": false
+    },
+    "standalone_recently_opened": [
+      {
+        "key": "C:\\Users\\user\\Downloads\\9798295548253-Perfect.pdf",
+        "pathtoebook": "C:\\Users\\user\\Downloads\\9798295548253-Perfect.pdf",
+        "timestamp": "2026-01-24T15:19:11.286Z",
+        "title": "9798295548253-Perfect"
+      }
+    ]
+  }
+}

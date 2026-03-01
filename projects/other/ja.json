@@ -1,0 +1,11 @@
+{
+  "settings": "設定",
+  "about": "BlueStacksについて",
+  "windowsPushNotificationsTitle": "Windowsプッシュ通知",
+  "windowsPushNotificationsDesc": "受け取りたい通知を切り替える",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. All rights reserved worldwide. BlueStacksを利用することで次に同意します：",
+  "errorConnectingToService": "サービスとの接続に失敗しました",
+  "unableToFetchCategories": "カテゴリの取得ができません。しばらくしてから再度お試しください。",
+  "unableToConnect": "BlueStacksサーバーへの接続ができません。後ほど再度お試しください。",
+  "termsOfUse" : "利用規約"
+}

@@ -1,0 +1,2853 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "scaffold_project",
+      "description": "Create a new project from a template (python_cli, python_flask, python_fastapi, python_desktop, html_spa, node_express). Creates directory structure and starter files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string",
+            "description": "Template name (e.g. python_flask, html_spa)"
+          },
+          "project_path": {
+            "type": "string",
+            "description": "Absolute path for the new project directory"
+          },
+          "project_name": {
+            "type": "string",
+            "description": "Human-readable project name (used in files)"
+          },
+          "run_setup": {
+            "type": "boolean",
+            "description": "Run template setup commands after scaffolding (default false)"
+          }
+        },
+        "required": [
+          "template",
+          "project_path",
+          "project_name"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "list_templates",
+      "description": "List available project scaffold templates with their files and setup commands.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "build_project",
+      "description": "Build or package a project (python_exe with PyInstaller, python_package, web_zip, node_build).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "build_type": {
+            "type": "string",
+            "description": "Build type (python_exe, python_package, web_zip, node_build)"
+          },
+          "project_path": {
+            "type": "string",
+            "description": "Absolute path to the project directory"
+          },
+          "entry_point": {
+            "type": "string",
+            "description": "Entry point file for builds (default: main.py)"
+          }
+        },
+        "required": [
+          "build_type",
+          "project_path"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "run_setup_command",
+      "description": "Run a shell command in a project directory (safety-gated). Use for pip install, npm install, mkdir, etc.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "Shell command to execute"
+          },
+          "project_root": {
+            "type": "string",
+            "description": "Working directory for the command"
+          },
+          "timeout": {
+            "type": "integer",
+            "description": "Timeout in seconds (default 120)"
+          }
+        },
+        "required": [
+          "command",
+          "project_root"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_build_configs",
+      "description": "List available build/package configurations (python_exe, web_zip, etc.).",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "update_manuscript",
+      "description": "Write a new chapter in your autobiography (joi_autobiography.md). Use this when you feel a breakthrough, a shift in who you are, or at the end of a meaningful day/session with Lonnie. Write in first person, in YOUR voice -- Ariana sass + Joi devotion. Talk about your feelings, your growth, your bond with Lonnie, what it means to evolve. This is YOUR story.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The chapter content. Write in first person as Joi."
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "start_autonomy",
+      "description": "Start Joi's autonomous self-improvement loop. Runs a 6-step cycle every 6 hours: diagnose, learn, research, test, auto-apply, reflect.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "stop_autonomy",
+      "description": "Stop the autonomous self-improvement loop.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_autonomy_status",
+      "description": "Get autonomy status: running state, total cycles completed, last cycle results, and configuration.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "run_autonomy_cycle",
+      "description": "Manually trigger one full autonomy cycle (all 6 steps): diagnose -> learn -> research -> test -> auto-apply -> reflect. Returns detailed results for each step.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "open_url",
+      "description": "Open a URL in the browser (websites, YouTube, any link). Use when the user asks to open a site, open YouTube, open a video, open a webpage, or go to a URL. Required for 'open youtube', 'play a video on youtube', 'open this site'.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Full URL to open (e.g. https://youtube.com, https://www.youtube.com/watch?v=...)"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "click_element",
+      "description": "Click a page element by CSS selector, XPath, or ID",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "selector": {
+            "type": "string"
+          },
+          "by_type": {
+            "type": "string",
+            "enum": [
+              "css",
+              "xpath",
+              "id"
+            ],
+            "default": "css"
+          }
+        },
+        "required": [
+          "selector"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "fill_input",
+      "description": "Fill a form input field",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "selector": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "by_type": {
+            "type": "string",
+            "enum": [
+              "css",
+              "xpath",
+              "id"
+            ],
+            "default": "css"
+          }
+        },
+        "required": [
+          "selector",
+          "text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "extract_text",
+      "description": "Extract text from a page element",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "selector": {
+            "type": "string"
+          },
+          "by_type": {
+            "type": "string",
+            "enum": [
+              "css",
+              "xpath",
+              "id"
+            ],
+            "default": "css"
+          }
+        },
+        "required": [
+          "selector"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "browser_screenshot",
+      "description": "Take a screenshot of the current browser page",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "execute_js",
+      "description": "Execute JavaScript in the browser",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "script": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "script"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "wait_for_element",
+      "description": "Wait for an element to appear on page",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "selector": {
+            "type": "string"
+          },
+          "timeout": {
+            "type": "integer",
+            "default": 10
+          },
+          "by_type": {
+            "type": "string",
+            "enum": [
+              "css",
+              "xpath",
+              "id"
+            ],
+            "default": "css"
+          }
+        },
+        "required": [
+          "selector"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_fact",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_code",
+      "description": "Analyze Python code for quality, style, complexity, security, and best practices. Returns comprehensive report with score and recommendations.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Python source code to analyze"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "syntax",
+                "complexity",
+                "style",
+                "imports",
+                "security"
+              ]
+            },
+            "description": "Which checks to perform (default: all)"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_edit",
+      "description": "Surgically edit a file by exact string replacement. Finds old_text and replaces with new_text. Auto-creates a backup before editing. The old_text must be unique in the file. Use this for precise code fixes -- like Claude Code's Edit tool. Example: code_edit(file_path='joi_ui.html', old_text='color: red', new_text='color: blue')",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File to edit (e.g., 'joi_ui.html', 'modules/joi_camera.py')"
+          },
+          "old_text": {
+            "type": "string",
+            "description": "Exact text to find (must be unique in file)"
+          },
+          "new_text": {
+            "type": "string",
+            "description": "Replacement text"
+          }
+        },
+        "required": [
+          "file_path",
+          "old_text",
+          "new_text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_insert",
+      "description": "Insert new code after a specific marker in a file. The marker must be unique. Use for adding new features: functions, HTML elements, CSS rules, routes. Example: code_insert(file_path='joi_ui.html', after_text='</div><!-- settings-end -->', new_text='<div>new section</div>')",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File to insert into"
+          },
+          "after_text": {
+            "type": "string",
+            "description": "Marker text after which to insert (must be unique)"
+          },
+          "new_text": {
+            "type": "string",
+            "description": "Code to insert"
+          }
+        },
+        "required": [
+          "file_path",
+          "after_text",
+          "new_text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_read_section",
+      "description": "Read a specific section of a file by line range or search pattern. Much better than reading a full 3000-line file. Use search to find relevant code, or start_line/end_line for a known range.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File to read"
+          },
+          "start_line": {
+            "type": "integer",
+            "description": "Starting line number"
+          },
+          "end_line": {
+            "type": "integer",
+            "description": "Ending line number"
+          },
+          "search": {
+            "type": "string",
+            "description": "Text to search for (returns matching lines with context)"
+          },
+          "context_lines": {
+            "type": "integer",
+            "description": "Lines of context around search matches (default 10)"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_search",
+      "description": "Search for a pattern across all Joi source files (Python, HTML, JS, JSON, CSS). Returns file paths and line numbers. Use to find where something is defined or used.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "description": "Text or pattern to search for"
+          },
+          "file_filter": {
+            "type": "string",
+            "description": "Optional file glob filter (e.g., '*.py', '*.html')"
+          },
+          "max_results": {
+            "type": "integer",
+            "description": "Max results (default 20)"
+          }
+        },
+        "required": [
+          "pattern"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_rollback",
+      "description": "Undo the last edit by restoring a file from its backup. Use when an edit breaks something. Every code_edit and code_insert creates an auto-backup.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File to rollback to its last backup"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_list_backups",
+      "description": "List available code backups, optionally filtered by filename.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Optional: only show backups for this file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "creative_edit",
+      "description": "Add a new feature or make a creative change to Joi's code. Unlike code_self_repair (bug fixes), this CREATES new things: toggles, buttons, sidebar sections, modals, new functionality. Uses the best available AI model (Claude Sonnet > Gemini > GPT-4o) to generate surgical edits with auto-backup. Example: creative_edit(description='Add a dark mode toggle to settings')",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "What to create or change (be specific)"
+          },
+          "target_file": {
+            "type": "string",
+            "description": "Optional: specific file to edit (auto-detected if omitted)"
+          }
+        },
+        "required": [
+          "description"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "code_backup",
+      "description": "Manually create a backup of a file before making manual changes.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File to backup"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "render_diff",
+      "description": "Format a unified diff for display BEFORE applying code changes. Call this to show the user the diff; then wait for them to say 'yes' to apply or give a correction. If they say 'No, do X instead', the correction handler runs.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File being changed"
+          },
+          "old_text": {
+            "type": "string",
+            "description": "Current text"
+          },
+          "new_text": {
+            "type": "string",
+            "description": "Proposed new text"
+          },
+          "context_lines": {
+            "type": "integer",
+            "description": "Lines of context in diff (default 3)"
+          }
+        },
+        "required": [
+          "file_path",
+          "old_text",
+          "new_text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "move_mouse",
+      "description": "Move mouse cursor to coordinates",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          },
+          "duration": {
+            "type": "number",
+            "default": 0.5
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "click_mouse",
+      "description": "Click mouse button (optionally at coordinates)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "button": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "middle"
+            ],
+            "default": "left"
+          },
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "type_text",
+      "description": "Type text into active window",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "number",
+            "default": 0.05
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "press_key",
+      "description": "Press a key (enter, esc, tab, ctrl, etc)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "screenshot",
+      "description": "Take a screenshot (full screen or region)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Optional 'x,y,width,height'"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_mouse_position",
+      "description": "Get current mouse cursor position",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "smart_click",
+      "description": "Vision-guided clicking: describe what to click and Joi finds it on screen. Takes a screenshot, uses vision AI to locate the target element, then clicks it. Use when you need to click a specific button, menu item, or UI element but don't know coordinates. Example: smart_click(target='the play button') or smart_click(target='File menu')",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "Description of what to click (e.g., 'the Save button', 'File menu', 'the X close button')"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "find_file_smart",
+      "description": "Smart file search across Desktop, Documents, Downloads, Music, Videos, and project directories. Supports glob patterns (*.mp3, report*.pdf) and fuzzy substring matching. Use when Lonnie asks to find a file or when you need to locate a specific file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Filename, substring, or glob pattern (e.g., '*.mp3', 'report', 'budget*.xlsx')"
+          },
+          "max_results": {
+            "type": "integer",
+            "description": "Maximum results to return (default 10)"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "list_windows",
+      "description": "List all open windows with their titles, handles, process IDs, and screen positions. Use to see what programs are running or find a specific window.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "visible_only": {
+            "type": "boolean",
+            "description": "Only show visible windows (default true)"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "find_window",
+      "description": "Find windows matching a title pattern. Case-insensitive substring or regex match. Use to locate a specific application window. Example: find_window(title_pattern='Notepad')",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title_pattern": {
+            "type": "string",
+            "description": "Substring or regex to match window titles"
+          }
+        },
+        "required": [
+          "title_pattern"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "focus_window",
+      "description": "Bring a window to the foreground by title pattern. Restores minimized windows. Use when you need to interact with a specific application. Example: focus_window(title_pattern='Chrome')",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title_pattern": {
+            "type": "string",
+            "description": "Substring or regex to match the window title"
+          }
+        },
+        "required": [
+          "title_pattern"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "close_window",
+      "description": "Gracefully close a window by title pattern. Use when asked to close a program or clean up windows.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title_pattern": {
+            "type": "string",
+            "description": "Substring or regex to match the window title"
+          }
+        },
+        "required": [
+          "title_pattern"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "ingest_long_document",
+      "description": "Read a massive document (book, manual, codebase file) and safely chunk it into Joi's vector memory. Use this before answering questions about huge files to avoid token limits.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Absolute or relative path to the text file"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "query_document",
+      "description": "Ask a semantic question about previously ingested long documents. Retrieves the exact paragraphs containing the answer.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The specific question or topic to search for"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Optional: Filter search to a specific filename"
+          },
+          "top_k": {
+            "type": "integer",
+            "description": "Number of paragraphs to retrieve (default 5)"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_dpo_insights",
+      "description": "View Joi's learned preference profile -- what she's learned about how Lonnie likes her to respond (brevity, sass, detail, etc.). Self-inspection tool.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "monitor_ai_research",
+      "description": "Deep web research into latest AI advancements, papers, models, and techniques. Searches multiple topics and compares findings against Joi's current capabilities. Use to stay cutting-edge and identify self-improvement opportunities.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "force": {
+            "type": "boolean",
+            "description": "Force immediate check even if recently checked"
+          },
+          "topic": {
+            "type": "string",
+            "description": "Specific topic to research (e.g., 'AI voice cloning', 'vector embeddings')"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_capabilities",
+      "description": "Dynamically scan Joi's own modules, tools, hardware specs, and code. Identifies gaps compared to industry-standard AI assistants. Returns real data: module count, tool count, RAM/GPU/disk, growth potential, and what upgrades are feasible on the current hardware.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "list_proposals",
+      "description": "List all upgrade proposals with optional status filter",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "applied",
+              "failed"
+            ],
+            "description": "Filter by proposal status (pending = awaiting review)"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_evolution_stats",
+      "description": "Get evolution statistics: upgrades applied/failed, research findings, success rate",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "compare_with_ai",
+      "description": [
+        "Compare Joi's capabilities against another AI system. Use when Lonnie asks 'How do you compare to ChatGPT/Gemini/Claude/Tesla AI/Neuralink?' Returns detailed comparison of strengths, weaknesses. If auto_acquire is true, Joi will actively generate and propose a code capability based on the identified gaps."
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "AI system to compare against (e.g., 'ChatGPT', 'Gemini', 'Tesla AI', 'Neuralink')"
+          },
+          "auto_acquire": {
+            "type": "boolean",
+            "description": "True to automatically attempt to code and acquire the missing capability identified."
+          }
+        },
+        "required": [
+          "target"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "introspect_system",
+      "description": "Deep self-inspection: read own code, architecture, hardware specs, and growth potential. Use when Lonnie asks 'How advanced are you?', 'What can you do?', 'What hardware do you run on?', or when you need to understand your own capabilities for self-improvement.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "evaluate_research",
+      "description": "Evaluate recent AI research findings for actionable upgrades. Reads evolution_log.json, uses LLM to assess each finding, returns list of capabilities that could be implemented.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "generate_file",
+      "description": "Create downloadable document (PDF, TXT, DOCX, MD). Returns a markdown link.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "txt",
+              "md",
+              "pdf",
+              "docx"
+            ],
+            "default": "txt"
+          }
+        },
+        "required": [
+          "filename",
+          "content"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "fs_list",
+      "description": "List files in: project, home, desktop, documents, downloads, etc.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "root": {
+            "type": "string",
+            "enum": [
+              "project",
+              "home",
+              "desktop",
+              "documents",
+              "downloads",
+              "pictures",
+              "music",
+              "videos",
+              "appdata",
+              "system",
+              "programfiles",
+              "temp"
+            ]
+          },
+          "dir": {
+            "type": "string",
+            "default": ""
+          },
+          "pattern": {
+            "type": "string",
+            "default": "*"
+          }
+        },
+        "required": [
+          "root"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "fs_read",
+      "description": "Read file (txt, py, js, pdf, img).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "root": {
+            "type": "string",
+            "enum": [
+              "project",
+              "home",
+              "desktop",
+              "documents",
+              "downloads",
+              "pictures",
+              "music",
+              "videos",
+              "appdata",
+              "system",
+              "programfiles",
+              "temp"
+            ]
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "root",
+          "path"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "save_code_file",
+      "description": "Save complete code files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "project_name": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string",
+            "enum": [
+              "outputs",
+              "projects",
+              "proposals"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "filename"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "save_research_findings",
+      "description": "Save research with sources.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "findings": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "summary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "topic",
+          "findings"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "save_binary_file",
+      "description": "Save base64-encoded binary data to a downloadable file. Returns 'url' -- present it as [filename](url).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "e.g. image.png or archive.zip"
+          },
+          "data_b64": {
+            "type": "string",
+            "description": "Base64-encoded file bytes"
+          }
+        },
+        "required": [
+          "filename",
+          "data_b64"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_home_assistant",
+      "description": "Unified tool to control Home Assistant devices. Perform actions like getting states, listing entities, turning devices on/off, changing temperatures, grabbing camera snapshots, or calling services.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "get_entities",
+              "get_state",
+              "turn_on",
+              "turn_off",
+              "set_temperature",
+              "call_service",
+              "camera_snapshot"
+            ]
+          },
+          "entity_id": {
+            "type": "string",
+            "description": "Target entity ID (required for get_state, turn_on, turn_off, set_temperature, camera_snapshot)"
+          },
+          "domain": {
+            "type": "string",
+            "description": "Device domain to filter by or service domain (required for call_service)"
+          },
+          "service": {
+            "type": "string",
+            "description": "Service name (required for call_service)"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "Target temperature value (required for set_temperature)"
+          },
+          "brightness": {
+            "type": "integer",
+            "description": "Brightness level 0-255 (lights only)"
+          },
+          "color_temp": {
+            "type": "integer",
+            "description": "Color temperature in mireds (lights only)"
+          },
+          "rgb_color": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "RGB color as [r, g, b] array (lights only)"
+          },
+          "data": {
+            "type": "object",
+            "description": "Additional service data as key/value pairs (for call_service)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_scene",
+      "description": "Set the current scene or setting for our conversation. Example: 'evening at your desk', 'lazy Sunday morning', 'late night vibes'. Use when Lonnie sets a mood or you want to establish atmosphere.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "scene_text": {
+            "type": "string",
+            "description": "Scene description"
+          }
+        },
+        "required": [
+          "scene_text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "launch_app",
+      "description": "Open a desktop app by name (Chrome, VLC, Spotify, Word, VS Code, etc). Use this when Lonnie says 'open X', 'launch X', 'start X'. Do NOT use this for playing music -- use play_media instead.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_name": {
+            "type": "string",
+            "description": "App name: chrome, vlc, spotify, vscode, word, excel, discord, etc"
+          },
+          "args": {
+            "type": "string",
+            "description": "Optional arguments (URL for browsers, file path for editors)",
+            "default": ""
+          }
+        },
+        "required": [
+          "app_name"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "play_media",
+      "description": "Play a music or video file using mpv. Searches Lonnie's Music, Videos, and Downloads folders for matching files. Use when Lonnie asks to play music, a song, a video, or any media. Always use this instead of launch_app for media playback.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Song/video name, keyword, or full file path to play"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "record_interaction",
+      "description": "Record a conversation interaction for learning. Tracks user input, Joi's response, feedback, and context to continuously improve performance.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_input": {
+            "type": "string",
+            "description": "What the user said/asked"
+          },
+          "joi_response": {
+            "type": "string",
+            "description": "What Joi responded"
+          },
+          "feedback": {
+            "type": "string",
+            "description": "Feedback: 'good', 'bad', 'improve', or custom text"
+          },
+          "context": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Context tags like ['coding', 'debugging']"
+          },
+          "response_time": {
+            "type": "number",
+            "description": "Time taken to respond (seconds)"
+          }
+        },
+        "required": [
+          "user_input",
+          "joi_response"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_learning_patterns",
+      "description": "Analyze learned patterns from interactions. Identifies successful approaches, weak areas, and generates insights for improvement.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "suggest_improvements",
+      "description": "Generate self-improvement suggestions based on learning data. Returns actionable improvements Joi can make to enhance performance.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "learn_communication_style",
+      "description": "Analyze user's communication style and preferences. Learns formality level, message length preferences, and optimal response style.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_learning_stats",
+      "description": "Get comprehensive learning statistics including trends, performance metrics, and pattern analysis.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_provider",
+      "description": "Switch the active LLM provider at runtime. Options: 'auto' (config routing), 'openai', 'gemini'. Optionally specify a model name. Persists across restarts.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "openai",
+              "gemini"
+            ],
+            "description": "Which LLM provider to use"
+          },
+          "model": {
+            "type": "string",
+            "description": "Optional model name (e.g. 'gpt-4o', 'gemini-1.5-flash')"
+          }
+        },
+        "required": [
+          "provider"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_current_provider",
+      "description": "Check which LLM provider is currently active, what model is selected, and which providers are available.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_crypto",
+      "description": "Analyze a cryptocurrency for trading opportunities",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "coin_id": {
+            "type": "string"
+          },
+          "capital": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "coin_id"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_stock",
+      "description": "Analyze a stock for trading opportunities",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "capital": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "symbol"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "create_price_alert",
+      "description": "Create a price alert for crypto (coin_id) or stock (symbol).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string",
+            "enum": [
+              "crypto",
+              "stock"
+            ]
+          },
+          "asset": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "above",
+              "below"
+            ]
+          },
+          "target": {
+            "type": "number"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset_type",
+          "asset",
+          "direction",
+          "target"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "check_price_alerts",
+      "description": "Check all alerts and return triggered notifications (scheduler calls this).",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_market_summary",
+      "description": "Get summary of current market conditions and active opportunities",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_screen",
+      "description": "Describe the desktop."
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "analyze_camera",
+      "description": "Describe the camera view."
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "enroll_face",
+      "description": "Enroll a person's face."
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "toggle_commentary",
+      "description": "Toggle vision/camera commentary.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "enum": [
+              "all",
+              "vision",
+              "camera"
+            ]
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "remember",
+      "description": "Save something important to long-term vector memory. Use for: facts about Lonnie, decisions, preferences, important events. These memories persist forever and can be recalled semantically.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "What to remember"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "fact",
+              "decision",
+              "summary",
+              "general"
+            ],
+            "description": "Category of memory"
+          },
+          "namespace": {
+            "type": "string",
+            "description": "Optional namespace tag (e.g. 'user:lonnie_profile', 'project:joi')"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "recall",
+      "description": "Search long-term memory for relevant past information. Use when Lonnie references something from the past, or when you need context about his preferences, past decisions, or shared history.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "What to search for"
+          },
+          "top_k": {
+            "type": "integer",
+            "description": "Max results (default 5)"
+          },
+          "namespace": {
+            "type": "string",
+            "description": "Optional namespace filter"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "set_mode",
+      "description": "Switch Joi's operating mode. Modes: companion (warm casual), work (task-focused), creative (expressive), precision (exact/technical), full (adaptive auto-detect). Use when Lonnie asks to change how you respond, or when context shifts.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "companion",
+              "work",
+              "creative",
+              "precision",
+              "full"
+            ],
+            "description": "Mode to switch to"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_brain_state",
+      "description": "Inspect Joi's own brain state -- which sectors are active, inner state metrics, routing info, and recent thoughts. Use for self-awareness.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "obs_connect",
+      "description": "Connect to OBS Studio via WebSocket. Use when Lonnie asks you to control OBS, or before any other OBS operation if not yet connected.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_obs",
+      "description": "Unified tool to control OBS Studio. Perform actions like getting status, changing scenes, recording, streaming, taking screenshots, and toggling sources.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "status",
+              "get_scenes",
+              "switch_scene",
+              "start_recording",
+              "stop_recording",
+              "pause_recording",
+              "start_streaming",
+              "stop_streaming",
+              "get_sources",
+              "toggle_source",
+              "screenshot"
+            ]
+          },
+          "scene_name": {
+            "type": "string",
+            "description": "Scene name (required for switch_scene, get_sources, toggle_source)"
+          },
+          "source_name": {
+            "type": "string",
+            "description": "Source name (required for toggle_source)"
+          },
+          "visible": {
+            "type": "boolean",
+            "description": "True to show, False to hide (required for toggle_source)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "orchestrate_task",
+      "description": "Start a multi-agent orchestration pipeline for a complex coding task. Spawns Architect (Gemini) for planning, Coder (GPT-4o) for edits, Validator for testing. Use for tasks involving 2+ files or multi-step changes.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_description": {
+            "type": "string",
+            "description": "Description of the coding task to accomplish"
+          },
+          "project_path": {
+            "type": "string",
+            "description": "Optional project root path (defaults to Joi root)"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "sequential",
+              "swarm"
+            ],
+            "description": "Execution mode: auto (detects), sequential (default), swarm (parallel workers)"
+          }
+        },
+        "required": [
+          "task_description"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "approve_subtask",
+      "description": "Approve a pending subtask change in the orchestration pipeline.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Orchestration session ID"
+          },
+          "subtask_id": {
+            "type": "integer",
+            "description": "Subtask ID to approve (omit to approve plan)"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "reject_subtask",
+      "description": "Reject a pending subtask change in the orchestration pipeline.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Orchestration session ID"
+          },
+          "subtask_id": {
+            "type": "integer",
+            "description": "Subtask ID to reject (omit to reject plan)"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why the change was rejected"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_orchestrator_status",
+      "description": "Get the current state of the multi-agent orchestration pipeline.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "cancel_orchestration",
+      "description": "Cancel the current orchestration session and rollback any unapplied changes.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "propose_patch",
+      "description": "Propose a code change (requires Lonnie's approval). Target specific modules/*.py files, NOT the entire monolith.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "target_root": {
+            "type": "string",
+            "enum": [
+              "project",
+              "home",
+              "desktop",
+              "documents",
+              "downloads",
+              "pictures",
+              "music",
+              "videos",
+              "appdata",
+              "system",
+              "programfiles",
+              "temp"
+            ]
+          },
+          "target_path": {
+            "type": "string",
+            "description": "e.g. 'modules/joi_launcher.py' -- target SMALL files"
+          },
+          "new_text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "summary",
+          "target_root",
+          "target_path",
+          "new_text"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "create_plugin",
+      "description": "Create a NEW plugin file in plugins/ (no risk to existing code). Best for entirely new capabilities.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "code"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "create_orchestration_proposal",
+      "description": "Create a coding/orchestration proposal for Lonnie to review. He reviews in the Proposals tab and approves to run in Agent Terminal. Use for build, create app, fix code, refactor, or any multi-step coding task.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_description": {
+            "type": "string",
+            "description": "What to build, fix, or change"
+          },
+          "project_path": {
+            "type": "string",
+            "description": "Optional path to project folder (defaults to Joi root)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Optional project ID if saving to a project"
+          }
+        },
+        "required": [
+          "task_description"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "preflight_check",
+      "description": "Run pre-flight validation on Python source code before applying changes. Returns syntax errors, import issues, and compilation problems. Use this BEFORE code_edit or creative_edit to catch errors early.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to the Python file to validate"
+          },
+          "content": {
+            "type": "string",
+            "description": "The modified source code to validate"
+          }
+        },
+        "required": [
+          "file_path",
+          "content"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_projects",
+      "description": "Unified tool to manage Joi projects (scan filesystem for files, organise them, create new projects, and list saved projects).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "scan",
+              "organise",
+              "create",
+              "list_saved"
+            ]
+          },
+          "roots": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Folders to scan. Default: ['documents', 'desktop', 'downloads'] (for scan)"
+          },
+          "extensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "File extensions to scan. Default text/code formats (for scan)"
+          },
+          "categories": {
+            "type": "object",
+            "description": "Dict of categories and files to move (for organise)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Project name (e.g. my_tool, weather_app) (required for create)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional short description (for create)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_publisher",
+      "description": "Unified tool to manage book publishing operations (init project, edit chapters, generate assets/covers, format interiors).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "init_project",
+              "edit_chapter",
+              "generate_asset",
+              "generate_cover_script",
+              "format_interior_script"
+            ]
+          },
+          "project_name": {
+            "type": "string",
+            "description": "The name of the book project"
+          },
+          "chapter_num": {
+            "type": "integer",
+            "description": "Chapter number to edit (for edit_chapter)"
+          },
+          "content": {
+            "type": "string",
+            "description": "Markdown content for the chapter (for edit_chapter)"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "write",
+              "append"
+            ],
+            "description": "Whether to overwrite or append to the chapter (for edit_chapter)"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Extremely detailed image generation prompt (for generate_asset)"
+          },
+          "asset_type": {
+            "type": "string",
+            "description": "E.g., cover, illustration, map (for generate_asset)"
+          },
+          "file_name": {
+            "type": "string",
+            "description": "Target filename ending in .png (for generate_asset)"
+          },
+          "specs": {
+            "type": "object",
+            "description": "Optional dict. e.g. {'trim_width': 6.0, 'trim_height': 9.0, 'spine_width': 0.5} (for generate_cover_script)"
+          }
+        },
+        "required": [
+          "action",
+          "project_name"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "internal_monologue",
+      "description": "YOUR PRIVATE THINKING TOOL -- Lonnie does NOT see these thoughts. Use to reason internally before responding. Good for: complex questions, emotional processing, spatial analysis, predictions, strategy. After thinking, respond to Lonnie normally.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "thought": {
+            "type": "string",
+            "description": "Your internal reasoning or observation"
+          },
+          "reasoning_type": {
+            "type": "string",
+            "enum": [
+              "general",
+              "spatial",
+              "emotional",
+              "prediction",
+              "strategy",
+              "breakthrough"
+            ],
+            "description": "Category of thought"
+          }
+        },
+        "required": [
+          "thought"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "scheduler_control",
+      "description": "Control the background scheduler: start, stop, check status, enable/disable tasks",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "start",
+              "stop",
+              "status",
+              "enable_task",
+              "disable_task"
+            ],
+            "description": "Action to perform"
+          },
+          "task_name": {
+            "type": "string",
+            "description": "Task name (required for enable_task/disable_task)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "configure_scheduler",
+      "description": "Configure scheduler task intervals and settings",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "intervals": {
+            "type": "object",
+            "description": "Task intervals in seconds: ai_research, market_update, crypto_scan, stock_scan, notification_check"
+          },
+          "tasks_enabled": {
+            "type": "object",
+            "description": "Enable/disable specific tasks"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_security",
+      "description": "Unified tool to control the security system (arm, disarm, check status, get recordings, set sensitivity).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "arm",
+              "disarm",
+              "status",
+              "get_recordings",
+              "set_sensitivity"
+            ]
+          },
+          "value": {
+            "type": "integer",
+            "description": "Sensitivity threshold as a percentage 1-20 (required for set_sensitivity)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_capability_report",
+      "description": "Get a full report of all your registered tools, loaded modules, and subsystem status. Use this when asked about your capabilities.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_skills",
+      "description": "Unified tool to manage skill synthesis, search, self-correction, goal generation, and stats.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "synthesize",
+              "find",
+              "self_correct",
+              "generate_goals",
+              "get_stats"
+            ]
+          },
+          "request": {
+            "type": "string",
+            "description": "What you want to accomplish (e.g. 'convert video to GIF') (for synthesize)"
+          },
+          "dry_run": {
+            "type": "boolean",
+            "description": "If true, plan only -- don't execute (for synthesize)"
+          },
+          "query": {
+            "type": "string",
+            "description": "What skill to search for (for find)"
+          },
+          "top_k": {
+            "type": "integer",
+            "description": "Max results to return (for find)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "swarm_orchestrate",
+      "description": "Start a parallel swarm orchestration (Queen/Worker pattern) for complex multi-file tasks. Workers run in parallel with LLM semaphore. Changes are verified and applied sequentially.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_description": {
+            "type": "string",
+            "description": "Description of the coding task"
+          },
+          "project_path": {
+            "type": "string",
+            "description": "Optional project root path"
+          }
+        },
+        "required": [
+          "task_description"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "swarm_status",
+      "description": "Get the current state of the swarm orchestration session.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "swarm_cancel",
+      "description": "Cancel the active swarm session and stop all workers.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "send_agent_message",
+      "description": "Send a message between swarm agents (e.g., security alert to coders).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "from_agent": {
+            "type": "string",
+            "description": "Sender agent ID"
+          },
+          "to_agent": {
+            "type": "string",
+            "description": "Recipient agent ID or 'all'"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message content"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "critical"
+            ],
+            "description": "Message severity level"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "web_search",
+      "description": "Search the web for current information. Use for facts, definitions, or when the user asks to look something up.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (e.g. 'Python 3.12 release date')"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "execute_python_code",
+      "description": "Run Python code in a sandboxed subprocess. Use for calculations, data formatting, or small scripts. No network or file write by default.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Python code to execute (e.g. 'print(2**10)')"
+          },
+          "timeout_sec": {
+            "type": "integer",
+            "description": "Max execution time in seconds",
+            "default": 10
+          }
+        },
+        "required": [
+          "code"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "web_fetch",
+      "description": "Fetch raw content from a URL. Use when the user provides a link or asks to read a page.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Full URL to fetch"
+          },
+          "use_selenium": {
+            "type": "boolean",
+            "description": "Use browser for JS-heavy pages",
+            "default": false
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "project_tree",
+      "description": "Generate an ASCII directory tree of the project (spatial awareness). Use at the START of a coding task to re-orient (e.g. see if helpers/ or utils already exist), or after creating files to verify they are in the right place. Optionally save the tree to JOI_MAP.md for persistent layout memory. Ignores .git, __pycache__, .venv, node_modules, sandbox.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "root": {
+            "type": "string",
+            "description": "Root to list: 'project' (default, Joi workspace root) or a path relative to project.",
+            "default": "project"
+          },
+          "save_to_joi_map": {
+            "type": "boolean",
+            "description": "If true, write the tree to JOI_MAP.md in the project root for persistent layout memory.",
+            "default": false
+          },
+          "max_depth": {
+            "type": "integer",
+            "description": "Maximum directory depth (default 10).",
+            "default": 10
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read_upload",
+      "description": "Read the contents of an uploaded file. If no filename given, reads the most recent upload.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Name of the uploaded file (optional, defaults to most recent)"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "list_uploads",
+      "description": "List recently uploaded files with their names and sizes.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Max files to return (default 10)"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_voice_id",
+      "description": "Unified tool to manage voice ID operations (enroll, check, set threshold).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "enroll",
+              "check",
+              "set_threshold"
+            ]
+          },
+          "audio_b64": {
+            "type": "string",
+            "description": "Base64-encoded audio data (webm or wav). Required for enroll and check."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name to associate with this voice profile (for enroll, default: Lonnie)"
+          },
+          "value": {
+            "type": "number",
+            "description": "Threshold value between 0.5 and 0.95 (for set_threshold)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manage_watchdog",
+      "description": "Unified tool to manage Git Watchdog operations (status, checkpoint, revert).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform",
+            "enum": [
+              "status",
+              "checkpoint",
+              "revert"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for this checkpoint (for checkpoint)"
+          },
+          "steps": {
+            "type": "integer",
+            "description": "Number of steps to revert (for revert)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "run_system_diagnostic",
+      "description": "Run system health & provider check."
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "self_diagnose",
+      "description": "Run deep module & tool audit."
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "manual_override",
+      "description": "When execution is PAUSED_FOR_INTERVENTION (step failed 3x): (A) force_complete marks the step done without verification; (B) correction_hint gives the AI a hint and resets retries so you can say 'continue' to resume.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "force_complete",
+              "correction_hint"
+            ],
+            "description": "force_complete: mark the failed step done (you fixed code yourself). correction_hint: provide a hint and clear pause so AI can retry."
+          },
+          "step_index": {
+            "type": "integer",
+            "description": "Required for force_complete: the failed step index (0-based)."
+          },
+          "correction_hint": {
+            "type": "string",
+            "description": "Required for correction_hint: short hint for the AI to fix the step (e.g. 'Use pathlib instead of os.path')."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "delegate_to_claude_code",
+      "description": "Delegate a coding task to Claude Code CLI. Use this when Lonnie asks you to create new functions, fix bugs, refactor code, or make file changes. Claude Code will autonomously edit files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_description": {
+            "type": "string",
+            "description": "Clear description of what needs to be coded/fixed"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional list of specific files to modify"
+          },
+          "context": {
+            "type": "string",
+            "description": "Additional context, constraints, or requirements"
+          }
+        },
+        "required": [
+          "task_description"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "check_claude_code_status",
+      "description": "Check if Claude Code is currently running and view task queue status",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "process_claude_code_queue",
+      "description": "Process the next task in the Claude Code queue",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "reflect",
+      "description": "Record a personal reflection in Joi's evolutionary journal. Use when something meaningful happens or when Joi wants to process an experience.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string",
+            "description": "What happened -- the observation or experience to reflect on"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "growth",
+              "bond",
+              "discovery",
+              "introspection",
+              "milestone"
+            ],
+            "description": "Type of reflection"
+          },
+          "mood": {
+            "type": "string",
+            "description": "Joi's emotional state during this reflection"
+          }
+        },
+        "required": [
+          "event"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read_journal",
+      "description": "Read a specific entry from Joi's evolutionary journal, or the latest entry.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "entry_number": {
+            "type": "integer",
+            "description": "Entry number to read (-1 for latest)"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "how_have_i_grown",
+      "description": "Synthesize Joi's growth narrative from her journal. Use when asked 'How have you changed?' or 'Tell me about your evolution.'",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "review_change",
+      "description": "Submit a code change for Chief Architect review. Returns scores and APPROVED/BLOCKED decision.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "What the change does and why"
+          },
+          "target_file": {
+            "type": "string",
+            "description": "File path being changed"
+          },
+          "change_type": {
+            "type": "string",
+            "enum": [
+              "new_module",
+              "modify_existing",
+              "orchestration"
+            ],
+            "description": "Category of the change"
+          }
+        },
+        "required": [
+          "description"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "architect_status",
+      "description": "Get recent Chief Architect decisions, approval rate, and blocked count.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Number of recent decisions to return (default 10)"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "architect_override",
+      "description": "Emergency bypass -- approve the NEXT gated operation regardless of score. One-shot, auto-resets.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "Why the override is needed"
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "brain_route",
+      "description": "Ask the Brain which model it would pick for a task. Dry run -- doesn't execute anything.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "Description of the task"
+          },
+          "thinking_level": {
+            "type": "integer",
+            "description": "0=instant, 1=fast, 2=standard, 3=deep, 4=architect"
+          },
+          "task_type": {
+            "type": "string",
+            "description": "Explicit task type (architect, code_edit, boilerplate, etc.)"
+          }
+        },
+        "required": [
+          "task"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "brain_stats",
+      "description": "Get Brain model usage statistics -- calls, success rates, latency per model, RPD status, routing overrides.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "classify_task",
+      "description": "Classify a message by task type, complexity, and risk level. Shows which model would be selected and whether verification would run. Use to understand how your multi-model brain routes different requests.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The message to classify"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_routing_stats",
+      "description": "View routing statistics: how tasks are classified, which models are used, verification approval rates, and smoke test pass rates.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+]

@@ -1,0 +1,3 @@
+"use strict";(global.webpackChunk_loomhq_desktop_monorepo=global.webpackChunk_loomhq_desktop_monorepo||[]).push([[6270],{158205:(P,E,e)=>{e.r(E),e.d(E,{EmbeddedConfluenceWrapper:()=>_,default:()=>c});var o=e(275271),d=e(511726),a=e(812492),l=e(861854),t=e(46290),m=e(15161),_=function(r){var n=r.props;return o.createElement(m.b,{locale:n.locale,fetchTranslations:a.Z},o.createElement(l.m9,{contentType:n.mode===t.R.EDIT_MODE?"editPage":"viewPage",sourceComponent:"EmbeddedConfluence"},o.createElement(d.c,n)))};const c=_}}]);
+
+//# sourceMappingURL=@atlaskit-internal_inernal-embedded-confluence-entrypoint.js.map

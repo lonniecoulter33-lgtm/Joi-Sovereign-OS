@@ -1,0 +1,11 @@
+{
+  "settings": "Pengaturan",
+  "about": "Tentang",
+  "windowsPushNotificationsTitle": "Push Notifikasi Windows",
+  "windowsPushNotificationsDesc": "Alihkan pemberitahuan yang ingin Anda terima",
+  "aboutPageDesc": "© 2023 BlueStacks  now.gg, Inc. Semua hak dilindungi undang-undang di seluruh dunia. Dengan menggunakan BlueStacks, Anda setuju dengan kami",
+  "errorConnectingToService": "Terjadi kesalahan saat menyambung ke layanan",
+  "unableToFetchCategories": "Tidak dapat mengambil kategori, coba beberapa saat lagi",
+  "unableToConnect": "Tidak dapat terhubung ke Server BlueStacks. Coba lagi nanti.",
+  "termsOfUse" : "Syarat Penggunaan"
+}

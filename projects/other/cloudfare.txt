@@ -1,0 +1,29 @@
+Exactly. Now that your Cloudflare keys are securely stored in a Modal Secret named joi-storage-secret, the "bridge" is built
+
+
+
+
+Joi-cloud-access was successfully created   joi-storage-secret
+Summary:
+Permissions:
+Allows the ability to read, write, and list objects in specific buckets.
+
+Buckets:
+All R2 buckets on this account
+Use this token for authenticating against the Cloudflare API:
+Token value   CLOUDFLARE_API_TOKEN
+rIXciCPGaJdBWAfyFLBQhrXAn0F84w2_3a8qWP4R
+Click to copy
+
+Use the following credentials for S3 clients:
+Access Key ID      CLOUDFLARE_ACCESS_KEY_ID
+69dcd27f04ff0fc848161d91f2eac780
+Click to copy
+
+Secret Access Key     CLOUDFLARE_SECRET_ACCESS_KEY
+d0d456c0de31164c7fe7ba3f8409de27f4bdbaa26692b229c1586e8ac083d859
+Click to copy
+
+Use jurisdiction-specific endpoints for S3 clients:
+DefaultEuropean Union (EU)       CLOUDFLARE_R2_ENDPOINT
+https://9c9c931962d369481af67273a6ef4f26.r2.cloudflarestorage.com

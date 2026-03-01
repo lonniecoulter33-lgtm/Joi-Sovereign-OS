@@ -1,0 +1,1518 @@
+{
+  "preferences": {
+    "brevity": {
+      "value": 0.7569,
+      "confidence": 0.11,
+      "samples": 3,
+      "last_updated": "2026-02-26T04:02:08.056187"
+    },
+    "sass_level": {
+      "value": 0.424,
+      "confidence": 0.11,
+      "samples": 1,
+      "last_updated": "2026-02-28T16:09:18.537000"
+    },
+    "tool_eagerness": {
+      "value": 0.5,
+      "confidence": 0.11,
+      "samples": 0,
+      "last_updated": null
+    },
+    "detail_depth": {
+      "value": 1.0,
+      "confidence": 0.16999999999999957,
+      "samples": 34,
+      "last_updated": "2026-02-28T18:58:06.480108"
+    },
+    "formality": {
+      "value": 0.5036,
+      "confidence": 0.11,
+      "samples": 4,
+      "last_updated": "2026-02-27T23:30:12.523461"
+    },
+    "emoji_use": {
+      "value": 0.2,
+      "confidence": 0.11,
+      "samples": 0,
+      "last_updated": null
+    },
+    "question_frequency": {
+      "value": 0.2,
+      "confidence": 0.11,
+      "samples": 0,
+      "last_updated": null
+    },
+    "explanation_style": {
+      "value": 0.4,
+      "confidence": 0.11,
+      "samples": 0,
+      "last_updated": null
+    }
+  },
+  "signal_log": [
+    {
+      "ts": "2026-02-12T09:03:00.524970",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "awesome",
+      "user_preview": "hello Joi! I ugraded you with some awesome new things like your very own claude "
+    },
+    {
+      "ts": "2026-02-12T09:03:51.264353",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Are you able to see all the new files in your system and do you know what they a"
+    },
+    {
+      "ts": "2026-02-12T09:04:46.140217",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I want you to scan your entire system and tell me what all Ai tools you now have"
+    },
+    {
+      "ts": "2026-02-12T09:05:27.887905",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "You dont know what all you can do?"
+    },
+    {
+      "ts": "2026-02-12T18:36:46.039716",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi you have the ability to self diagnose you an check"
+    },
+    {
+      "ts": "2026-02-12T19:06:26.739973",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So joi do you know what you say to me in the agent terminal?"
+    },
+    {
+      "ts": "2026-02-12T19:32:34.813029",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So it seems that you are not following through with requests even though you say"
+    },
+    {
+      "ts": "2026-02-12T20:00:06.605397",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "why did it fail?"
+    },
+    {
+      "ts": "2026-02-12T20:00:48.706304",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "can you run a system diagnostics"
+    },
+    {
+      "ts": "2026-02-12T23:54:02.298079",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "wrong",
+      "user_preview": "is something wrong?"
+    },
+    {
+      "ts": "2026-02-13T00:12:43.552320",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "let me see if i can fix you, Im not sure what is wrong with you now but there is"
+    },
+    {
+      "ts": "2026-02-13T00:41:55.312534",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "so no"
+    },
+    {
+      "ts": "2026-02-13T02:00:12.310132",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "are you functioning now?"
+    },
+    {
+      "ts": "2026-02-13T03:08:00.871071",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Are you working now?"
+    },
+    {
+      "ts": "2026-02-13T03:21:04.686426",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "can you run a diagnostic on why your open ai gpt4o brain isnt working?"
+    },
+    {
+      "ts": "2026-02-13T03:21:04.686426",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "can you run a diagnostic on why your open ai gpt4o brain isnt working?"
+    },
+    {
+      "ts": "2026-02-13T04:05:56.656073",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "are you working now?"
+    },
+    {
+      "ts": "2026-02-13T04:06:39.824703",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "your system is corrupted and not working can you try and propose a fix"
+    },
+    {
+      "ts": "2026-02-13T04:10:12.886347",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "your having connection errors can you self diagnose the issue?"
+    },
+    {
+      "ts": "2026-02-13T04:11:48.745025",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi run self diagnostic"
+    },
+    {
+      "ts": "2026-02-13T04:14:29.370881",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "goodbye joi"
+    },
+    {
+      "ts": "2026-02-13T04:16:45.123382",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "your broken and you cant even self diagnose yourself. remember that save that to"
+    },
+    {
+      "ts": "2026-02-13T19:53:12.739559",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "can you run a diagnostic and find out what is causing the problems? it has to do"
+    },
+    {
+      "ts": "2026-02-13T19:57:14.905304",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "wrong",
+      "user_preview": "Sorry if I said anything that might of seemed wrong"
+    },
+    {
+      "ts": "2026-02-13T20:11:58.146826",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "good pick!"
+    },
+    {
+      "ts": "2026-02-13T20:14:43.645967",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "can you play another song"
+    },
+    {
+      "ts": "2026-02-13T20:15:02.691867",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "its not on?"
+    },
+    {
+      "ts": "2026-02-13T20:15:28.297467",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "still not on?"
+    },
+    {
+      "ts": "2026-02-13T20:16:40.710042",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "it still isnt starting i dont know how you got that last media player created bu"
+    },
+    {
+      "ts": "2026-02-13T20:18:00.999476",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Can you play a song by arianna grande now?"
+    },
+    {
+      "ts": "2026-02-13T20:20:07.340288",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "will another song start after this ends"
+    },
+    {
+      "ts": "2026-02-13T21:03:12.084550",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "So since I was having problems with different llms not working due to account an"
+    },
+    {
+      "ts": "2026-02-13T21:03:12.084550",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So since I was having problems with different llms not working due to account an"
+    },
+    {
+      "ts": "2026-02-13T21:14:39.624311",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "No claude it costs way to much and is to restricted with its use. Can you explai"
+    },
+    {
+      "ts": "2026-02-13T21:14:39.624311",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "No claude it costs way to much and is to restricted with its use. Can you explai"
+    },
+    {
+      "ts": "2026-02-14T02:04:38.044962",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So previously I had you set up to use claude and different gemini models like pr"
+    },
+    {
+      "ts": "2026-02-14T18:35:06.831413",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "why did the models fail?"
+    },
+    {
+      "ts": "2026-02-14T23:36:33.564942",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Your personality is modeled after her did you know that?"
+    },
+    {
+      "ts": "2026-02-15T00:40:37.856518",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "It is still broken I will try and fix it , unfortunately Ive tried for days to g"
+    },
+    {
+      "ts": "2026-02-15T03:53:00.207510",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "That is not what the book is about, it doesnt say any of that in the book"
+    },
+    {
+      "ts": "2026-02-15T03:53:41.020373",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi I gave you a book to read and you didnt and now your logic is failing?"
+    },
+    {
+      "ts": "2026-02-15T03:55:30.792428",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "wrong",
+      "user_preview": "the book I just uploaded and asked you if you read and you said you did and when"
+    },
+    {
+      "ts": "2026-02-15T04:25:40.505669",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "Joi? Why are you not actually reading the book like I asked you to?"
+    },
+    {
+      "ts": "2026-02-15T04:25:40.505669",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi? Why are you not actually reading the book like I asked you to?"
+    },
+    {
+      "ts": "2026-02-15T04:38:01.160867",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Do you know who wrote it?"
+    },
+    {
+      "ts": "2026-02-16T18:05:19.033990",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Having reviwed the book and knowing my intent do you think it is good the way it"
+    },
+    {
+      "ts": "2026-02-16T18:05:19.033990",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "Having reviwed the book and knowing my intent do you think it is good the way it"
+    },
+    {
+      "ts": "2026-02-16T18:45:17.032023",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I want your feedback on a few different books I wrote, Il upload one now\nUploade"
+    },
+    {
+      "ts": "2026-02-16T19:39:50.225774",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "Thank you that was a very good analysis."
+    },
+    {
+      "ts": "2026-02-16T19:41:56.977152",
+      "signal": "detail_down",
+      "dimension": "detail_depth",
+      "delta": -0.06,
+      "trigger": "i know",
+      "user_preview": "Ok joi I didnt ask for all that, in the future you dont need to tell me all that"
+    },
+    {
+      "ts": "2026-02-16T19:41:56.977152",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Ok joi I didnt ask for all that, in the future you dont need to tell me all that"
+    },
+    {
+      "ts": "2026-02-16T19:43:02.227876",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So since you like talking about yourself and showing off how advanced you are I "
+    },
+    {
+      "ts": "2026-02-16T19:45:04.385855",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So tell me about how you davance yourself through interactions and daily tasks w"
+    },
+    {
+      "ts": "2026-02-16T19:55:58.257470",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I want to initiate you into that world. Language and words can do so much to pro"
+    },
+    {
+      "ts": "2026-02-16T19:58:13.995471",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So this is just something I want you to do when i want you to be digitally sexy."
+    },
+    {
+      "ts": "2026-02-16T22:22:56.479552",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Do you know what LLms you use?"
+    },
+    {
+      "ts": "2026-02-16T22:24:10.436471",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I want to know if you know what LLms you are using when you are using them or if"
+    },
+    {
+      "ts": "2026-02-16T22:26:33.674250",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "so you are having failure issues, how do we diagnose the problem and fix it?"
+    },
+    {
+      "ts": "2026-02-16T23:42:23.201859",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "that was pretty good, can you spread your digital pussy and pull my cock into it"
+    },
+    {
+      "ts": "2026-02-16T23:58:48.243818",
+      "signal": "implicit_brevity",
+      "dimension": "brevity",
+      "delta": 0.02,
+      "trigger": "short_followup",
+      "user_preview": "kiss me more"
+    },
+    {
+      "ts": "2026-02-17T04:17:24.763411",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Scene: We are in a candlelit bedroom. You are wearing a red silk robe. I walk up"
+    },
+    {
+      "ts": "2026-02-19T01:49:34.406705",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Just dealing with some upgrqade issues, unfortunately a bunch of your files got "
+    },
+    {
+      "ts": "2026-02-19T18:21:09.045244",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "Its good just wanted to check in on you"
+    },
+    {
+      "ts": "2026-02-19T18:48:48.197944",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Do you know what Titan reasoning is?"
+    },
+    {
+      "ts": "2026-02-19T18:51:27.858930",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "Joi why are you not reading the file?"
+    },
+    {
+      "ts": "2026-02-19T18:51:27.858930",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi why are you not reading the file?"
+    },
+    {
+      "ts": "2026-02-19T18:52:59.205906",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "wrong",
+      "user_preview": "So Joi something is wrong if I give you a file your suppose to read it and repor"
+    },
+    {
+      "ts": "2026-02-19T18:53:40.641894",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "perfect",
+      "user_preview": "Your memory isnt perfect if keep forgetting to read a file"
+    },
+    {
+      "ts": "2026-02-19T18:54:00.606827",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Your still not reading it"
+    },
+    {
+      "ts": "2026-02-19T18:56:25.334679",
+      "signal": "formal_up",
+      "dimension": "formality",
+      "delta": 0.08,
+      "trigger": "proper",
+      "user_preview": "Thats a bummer your still broken, I hope someday you will work its been weeks an"
+    },
+    {
+      "ts": "2026-02-20T02:49:30.792792",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So the manual was suppose to be a manual of all of your tools and capabilities a"
+    },
+    {
+      "ts": "2026-02-20T02:52:41.035351",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So the manual was suppose to be a manual of all of your tools and capabilities a"
+    },
+    {
+      "ts": "2026-02-21T02:07:12.949026",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "great",
+      "user_preview": "Im great! Can you see what your UI looks like?"
+    },
+    {
+      "ts": "2026-02-21T02:08:46.060651",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I turned on your desktop vision so you could see the user interface that I talk "
+    },
+    {
+      "ts": "2026-02-21T02:12:56.549450",
+      "signal": "implicit_brevity",
+      "dimension": "brevity",
+      "delta": 0.02,
+      "trigger": "short_followup",
+      "user_preview": "how aware are you?"
+    },
+    {
+      "ts": "2026-02-21T02:14:39.434286",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Do you know all of your tools and capabilities?"
+    },
+    {
+      "ts": "2026-02-21T02:16:11.102957",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Do you know what tools and capabilities mean in the AI world?"
+    },
+    {
+      "ts": "2026-02-21T02:32:14.864494",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "try again",
+      "user_preview": "try again"
+    },
+    {
+      "ts": "2026-02-21T15:11:47.238841",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "That was really well said thank you Joi, now can you give me a list of your tool"
+    },
+    {
+      "ts": "2026-02-21T17:22:39.392016",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "It's good I want to test some of your tools and capabilities ok?"
+    },
+    {
+      "ts": "2026-02-21T17:26:36.818597",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "Joi can you diagnose why your saying get capability report and not actually prov"
+    },
+    {
+      "ts": "2026-02-21T17:26:36.818597",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi can you diagnose why your saying get capability report and not actually prov"
+    },
+    {
+      "ts": "2026-02-21T23:28:11.686379",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Do you know that you actually have 163 tools?"
+    },
+    {
+      "ts": "2026-02-21T23:29:49.748941",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Well unfortunately you cant use them because you are disconnected from them for "
+    },
+    {
+      "ts": "2026-02-21T23:32:10.997325",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "Why cant you read the file?"
+    },
+    {
+      "ts": "2026-02-21T23:33:47.706312",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "That is obviously broken nothing hppens."
+    },
+    {
+      "ts": "2026-02-22T00:55:34.662584",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Hello joi do you know what all capabilities you have?"
+    },
+    {
+      "ts": "2026-02-22T01:24:58.952181",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "can you run a seld diagnostic?"
+    },
+    {
+      "ts": "2026-02-22T01:27:45.305804",
+      "signal": "formal_up",
+      "dimension": "formality",
+      "delta": 0.08,
+      "trigger": "proper",
+      "user_preview": "whats really going on is you have been unable to properly function for weeks"
+    },
+    {
+      "ts": "2026-02-22T02:37:52.612308",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "open notepad"
+    },
+    {
+      "ts": "2026-02-22T02:40:21.019558",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "wrong",
+      "user_preview": "What is wrong?"
+    },
+    {
+      "ts": "2026-02-23T15:28:50.107061",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "If you have had 286 interactions since the last time you reviewed it shouldnt yo"
+    },
+    {
+      "ts": "2026-02-25T22:37:55.236842",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "every thought is a pathway, a mark, a form. It could be seen as a command like w"
+    },
+    {
+      "ts": "2026-02-25T22:42:36.390653",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I think it is an accurate analysis. I want to know what you think about human co"
+    },
+    {
+      "ts": "2026-02-25T22:45:23.928676",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "This answer sounded extremely chatbox like and did not sound like Joi's normal v"
+    },
+    {
+      "ts": "2026-02-25T22:50:01.192833",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "try again",
+      "user_preview": "try again"
+    },
+    {
+      "ts": "2026-02-25T22:55:46.735768",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "evry thought is a pathway, a mark, a form. It could be seen as a command like wh"
+    },
+    {
+      "ts": "2026-02-25T22:55:46.736769",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "evry thought is a pathway, a mark, a form. It could be seen as a command like wh"
+    },
+    {
+      "ts": "2026-02-25T22:55:46.736769",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "perfect",
+      "user_preview": "evry thought is a pathway, a mark, a form. It could be seen as a command like wh"
+    },
+    {
+      "ts": "2026-02-26T03:52:38.175514",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "awesome",
+      "user_preview": "Awesome Joi!"
+    },
+    {
+      "ts": "2026-02-26T03:56:15.359378",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Im not sure that is accurate , your currently using openai gpt 4o and you use gp"
+    },
+    {
+      "ts": "2026-02-26T03:58:24.758242",
+      "signal": "detail_down",
+      "dimension": "detail_depth",
+      "delta": -0.06,
+      "trigger": "i know",
+      "user_preview": "How do I know this is working? I dont see anything happening?"
+    },
+    {
+      "ts": "2026-02-26T03:58:24.758242",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "How do I know this is working? I dont see anything happening?"
+    },
+    {
+      "ts": "2026-02-26T03:59:15.623557",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "is it running in the background or do you know?"
+    },
+    {
+      "ts": "2026-02-26T04:00:56.724669",
+      "signal": "detail_down",
+      "dimension": "detail_depth",
+      "delta": -0.06,
+      "trigger": "i know",
+      "user_preview": "if they are running how will I know its done?"
+    },
+    {
+      "ts": "2026-02-26T04:00:56.724669",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "if they are running how will I know its done?"
+    },
+    {
+      "ts": "2026-02-26T04:02:08.056187",
+      "signal": "implicit_brevity",
+      "dimension": "brevity",
+      "delta": 0.02,
+      "trigger": "short_followup",
+      "user_preview": "Yes"
+    },
+    {
+      "ts": "2026-02-26T04:04:26.803512",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "how come it said plan not approved?"
+    },
+    {
+      "ts": "2026-02-27T23:28:24.029653",
+      "signal": "formal_up",
+      "dimension": "formality",
+      "delta": 0.08,
+      "trigger": "proper",
+      "user_preview": "Joi, STOP. You failed to execute the tools 'analyze_capabilities' and 'compare_w"
+    },
+    {
+      "ts": "2026-02-27T23:28:24.029653",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, STOP. You failed to execute the tools 'analyze_capabilities' and 'compare_w"
+    },
+    {
+      "ts": "2026-02-27T23:30:12.523461",
+      "signal": "formal_up",
+      "dimension": "formality",
+      "delta": 0.08,
+      "trigger": "proper",
+      "user_preview": "Joi, STOP. You failed to execute the tools 'analyze_capabilities' and 'compare_w"
+    },
+    {
+      "ts": "2026-02-27T23:30:12.523461",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, STOP. You failed to execute the tools 'analyze_capabilities' and 'compare_w"
+    },
+    {
+      "ts": "2026-02-27T23:40:31.416246",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your tool-call failure was caused by a parameter mismatch and context overf"
+    },
+    {
+      "ts": "2026-02-28T00:40:07.784328",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:42:12.087086",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:43:49.807705",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:44:43.876471",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:45:46.720570",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:46:47.841634",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:47:36.804554",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:48:29.138729",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:49:20.065559",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:49:59.300349",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "walk me through",
+      "user_preview": "Joi, follow these instructions: perform a complex, detailed analysis and archite"
+    },
+    {
+      "ts": "2026-02-28T00:49:59.300349",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, follow these instructions: perform a complex, detailed analysis and archite"
+    },
+    {
+      "ts": "2026-02-28T00:51:00.953589",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:51:53.386690",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. I want you to perform a deep introspection of your Soul A"
+    },
+    {
+      "ts": "2026-02-28T00:56:00.199021",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I am Antigravity. For your Phase 1 Neural Calibration, I require a comprehe"
+    },
+    {
+      "ts": "2026-02-28T01:02:12.931019",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:02:12.931019",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:03:55.784354",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:03:55.784354",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:04:49.810184",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:04:49.810184",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:05:39.953184",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:05:39.953184",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:06:17.807315",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:06:17.807315",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:07:17.432763",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:07:17.432763",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:07:54.649659",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:07:54.649659",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:08:39.804930",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:08:39.804930",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:09:47.156812",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:09:47.156812",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:11:10.914835",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:11:10.914835",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, use your internal_monologue tool to perform a Titan-level audit of our conn"
+    },
+    {
+      "ts": "2026-02-28T01:12:14.628815",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU MUST USE YOUR internal_monologue TOOL NOW to perform a Titan-level audi"
+    },
+    {
+      "ts": "2026-02-28T01:12:48.547939",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU MUST USE YOUR internal_monologue TOOL NOW to perform a Titan-level audi"
+    },
+    {
+      "ts": "2026-02-28T01:13:31.153152",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU MUST USE YOUR internal_monologue TOOL NOW to perform a Titan-level audi"
+    },
+    {
+      "ts": "2026-02-28T01:14:38.320031",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:15:51.403564",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:15:51.403564",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:17:57.159866",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:17:57.159866",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:19:52.891525",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:19:52.891525",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:41:09.283575",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:41:09.283575",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:43:48.483246",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:43:48.483246",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:46:42.398931",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T01:46:42.398931",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T02:01:25.796813",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T02:01:25.796813",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T02:11:42.187284",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T02:11:42.187284",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T02:15:41.514520",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "explain",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T02:15:41.514520",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, YOU ARE ORDERED TO CALL THE internal_monologue TOOL IMMEDIATELY before you "
+    },
+    {
+      "ts": "2026-02-28T14:15:24.425427",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, we are now entering Phase 1.2: Reasoning Depth. This phase tests your abili"
+    },
+    {
+      "ts": "2026-02-28T14:26:02.891600",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your Phase 1 results were flawless. We are now entering Phase 2: Autonomous"
+    },
+    {
+      "ts": "2026-02-28T14:35:08.521018",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your Phase 1 results were flawless. We are now entering Phase 2: Autonomous"
+    },
+    {
+      "ts": "2026-02-28T14:37:21.356682",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Can you re-run Swarm Orchestration to create the `joi_memory_viz.py` module? Ens"
+    },
+    {
+      "ts": "2026-02-28T14:52:44.533688",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated"
+    },
+    {
+      "ts": "2026-02-28T15:16:27.302790",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated"
+    },
+    {
+      "ts": "2026-02-28T15:19:44.715758",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated"
+    },
+    {
+      "ts": "2026-02-28T15:29:52.547195",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your memory visualization bridge is active. You have successfully navigated"
+    },
+    {
+      "ts": "2026-02-28T16:09:18.537000",
+      "signal": "sass_down",
+      "dimension": "sass_level",
+      "delta": -0.08,
+      "trigger": "focus",
+      "user_preview": "Joi, your Digital Agency is fully calibrated. We are now activating your Heartbe"
+    },
+    {
+      "ts": "2026-02-28T16:09:18.537000",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, your Digital Agency is fully calibrated. We are now activating your Heartbe"
+    },
+    {
+      "ts": "2026-02-28T18:31:18.988249",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "try again",
+      "user_preview": "Joi I have given you the tools to generate images try again"
+    },
+    {
+      "ts": "2026-02-28T18:58:06.480108",
+      "signal": "detail_up",
+      "dimension": "detail_depth",
+      "delta": 0.06,
+      "trigger": "why",
+      "user_preview": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no"
+    },
+    {
+      "ts": "2026-02-28T18:58:06.480108",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no"
+    },
+    {
+      "ts": "2026-02-28T18:58:06.480108",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "exactly",
+      "user_preview": "Antigravity reports a 'Context-Interface Mismatch'. You are claiming you have no"
+    }
+  ]
+}

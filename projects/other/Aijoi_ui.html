@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Joi</title>
+  <style>
+    :root{
+      --bg:#0b0e14; --panel:#111827; --panel2:#0f172a; --text:#e5e7eb; --muted:#94a3b8;
+      --accent:#8b5cf6; --accent2:#ec4899; --line:rgba(255,255,255,.08);
+      --good:#22c55e; --bad:#ef4444;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); background:radial-gradient(1200px 800px at 20% 0%, rgba(139,92,246,.25), transparent 55%),
+             radial-gradient(900px 700px at 80% 10%, rgba(236,72,153,.18), transparent 60%),
+             var(--bg);
+      font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      overflow:hidden;
+    }
+    a{color:inherit}
+    .app{height:100%; display:grid; grid-template-columns: 320px 1fr; gap:12px; padding:12px;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+          border:1px solid var(--line); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+          overflow:hidden; min-height:0;}
+    .sidebar{display:flex; flex-direction:column; min-height:0;}
+    .sideTop{padding:12px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px;}
+    .brand{font-weight:700; letter-spacing:.4px}
+    .pill{font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid var(--line); color:var(--muted)}
+    .pill.ok{color:#bbf7d0; border-color:rgba(34,197,94,.35); background:rgba(34,197,94,.08)}
+    .pill.bad{color:#fecaca; border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.08)}
+    .sideBody{display:flex; flex-direction:column; min-height:0;}
+    .tabs{display:flex; gap:6px; padding:10px 10px 0 10px;}
+    .tab{flex:1; padding:8px 10px; border-radius:12px; border:1px solid var(--line);
+         background:rgba(255,255,255,.03); color:var(--muted); cursor:pointer; text-align:center; user-select:none}
+    .tab.active{color:var(--text); border-color:rgba(139,92,246,.45); background:rgba(139,92,246,.10)}
+    .pane{padding:10px; min-height:0; overflow:auto;}
+    .list{display:flex; flex-direction:column; gap:6px;}
+    .item{padding:10px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.03);
+          cursor:pointer; user-select:none}
+    .item:hover{background:rgba(255,255,255,.05)}
+    .item.active{border-color:rgba(236,72,153,.45); background:rgba(236,72,153,.08)}
+    .item small{display:block; color:var(--muted); margin-top:3px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+    .fileItem{padding:8px 10px; border-radius:10px; border:1px dashed rgba(255,255,255,.10); background:rgba(0,0,0,.12);
+              cursor:pointer}
+    .fileItem:hover{background:rgba(0,0,0,.18)}
+    .main{display:flex; flex-direction:column; min-height:0;}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px; border-bottom:1px solid var(--line)}
+    .avatarRow{display:flex; align-items:center; gap:12px; min-width:0;}
+    .avatar{
+      width:44px; height:44px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 10px 30px rgba(0,0,0,.35); background:rgba(255,255,255,.03); flex:0 0 auto;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+    .status{display:flex; flex-direction:column; min-width:0;}
+    .status b{font-size:14px}
+    .status span{font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+    .controls{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .btn{
+      padding:8px 10px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.03);
+      color:var(--text); cursor:pointer; user-select:none
+    }
+    .btn:hover{background:rgba(255,255,255,.05)}
+    .btn.primary{border-color:rgba(139,92,246,.45); background:rgba(139,92,246,.15)}
+    .btn.danger{border-color:rgba(239,68,68,.45); background:rgba(239,68,68,.10)}
+    .toggle{display:flex; align-items:center; gap:6px; color:var(--muted); font-size:12px; user-select:none}
+    .toggle input{accent-color:var(--accent)}
+    .chatWrap{flex:1; min-height:0; overflow:auto; padding:14px; display:flex; flex-direction:column; gap:10px;}
+    .msg{max-width:900px; padding:10px 12px; border-radius:14px; border:1px solid var(--line); background:rgba(255,255,255,.03)}
+    .msg.user{align-self:flex-end; background:rgba(139,92,246,.10); border-color:rgba(139,92,246,.35)}
+    .msg.assistant{align-self:flex-start; background:rgba(236,72,153,.08); border-color:rgba(236,72,153,.30)}
+    .meta{display:flex; justify-content:space-between; gap:10px; margin-bottom:6px; color:var(--muted); font-size:12px}
+    .msg pre{white-space:pre-wrap; word-wrap:break-word; margin:0}
+    .row{display:flex; gap:10px; padding:12px; border-top:1px solid var(--line); align-items:flex-end}
+    textarea{
+      flex:1; min-height:44px; max-height:160px; resize:vertical; border-radius:14px;
+      border:1px solid var(--line); background:rgba(0,0,0,.20); color:var(--text);
+      padding:10px 12px; outline:none;
+    }
+    textarea:focus{border-color:rgba(139,92,246,.55); box-shadow:0 0 0 3px rgba(139,92,246,.15)}
+    .mini{display:flex; gap:8px; align-items:center}
+    .hint{color:var(--muted); font-size:12px; padding:0 12px 10px 12px}
+    .loginOverlay{
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.55); backdrop-filter: blur(6px); z-index:9999;
+    }
+    .loginCard{width:min(520px, 92vw); padding:18px; border-radius:18px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(17,24,39,.96), rgba(15,23,42,.96));
+      box-shadow:0 30px 100px rgba(0,0,0,.55);
+    }
+    .loginCard h2{margin:0 0 10px 0}
+    .loginGrid{display:grid; grid-template-columns:1fr 120px; gap:10px; align-items:center}
+    .loginCard input{
+      width:100%; padding:10px 12px; border-radius:14px; border:1px solid var(--line);
+      background:rgba(0,0,0,.18); color:var(--text); outline:none;
+    }
+    .loginCard input:focus{border-color:rgba(236,72,153,.55); box-shadow:0 0 0 3px rgba(236,72,153,.14)}
+    .toast{position:fixed; bottom:14px; left:14px; z-index:99999; padding:10px 12px; border-radius:14px;
+      border:1px solid var(--line); background:rgba(17,24,39,.92); color:var(--text); max-width:min(520px, 92vw);
+      box-shadow:0 20px 60px rgba(0,0,0,.5); display:none}
+    .toast.show{display:block}
+    .drop{
+      border:1px dashed rgba(255,255,255,.25);
+      background:rgba(0,0,0,.16);
+      padding:10px; border-radius:14px; text-align:center; color:var(--muted); font-size:12px;
+      margin:10px 10px 0 10px;
+    }
+    .drop.drag{border-color:rgba(34,197,94,.55); background:rgba(34,197,94,.08); color:#bbf7d0}
+  </style>
+</head>
+<body>
+  <div class="loginOverlay" id="loginOverlay">
+    <div class="loginCard">
+      <h2>Login</h2>
+      <div class="loginGrid">
+        <input id="password" type="password" placeholder="Password"/>
+        <div class="toggle"><input id="admin" type="checkbox"/> admin</div>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:12px">
+        <div class="btn primary" id="loginBtn">Log in</div>
+        <div class="btn" id="clearBtn">Clear</div>
+      </div>
+      <div style="margin-top:10px; color:var(--muted); font-size:12px">
+        Tip: if clicks don’t work, do a hard refresh (Ctrl+Shift+R).
+      </div>
+    </div>
+  </div>
+
+  <div class="app">
+    <div class="card sidebar">
+      <div class="sideTop">
+        <div class="brand">JOI</div>
+        <div class="pill" id="pill">disconnected</div>
+      </div>
+
+      <div class="drop" id="dropzone">
+        Drag & drop a file here to upload (or use the Upload button).
+      </div>
+
+      <div class="sideBody">
+        <div class="tabs">
+          <div class="tab active" data-tab="projects">Projects</div>
+          <div class="tab" data-tab="avatars">Avatars</div>
+          <div class="tab" data-tab="tools">Tools</div>
+        </div>
+        <div class="pane" id="pane-projects"></div>
+        <div class="pane" id="pane-avatars" style="display:none"></div>
+        <div class="pane" id="pane-tools" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="card main">
+      <div class="topbar">
+        <div class="avatarRow">
+          <div class="avatar"><img id="avatarImg" alt="avatar"/></div>
+          <div class="status">
+            <b id="title">Joi</b>
+            <span id="subtitle">Ready.</span>
+          </div>
+        </div>
+        <div class="controls">
+          <label class="toggle"><input id="autoSpeak" type="checkbox"/> auto-speak</label>
+          <div class="btn" id="copyLast">Copy last reply</div>
+          <div class="btn" id="uploadBtn">Upload file</div>
+          <div class="btn danger" id="logoutBtn">Logout</div>
+        </div>
+      </div>
+
+      <div class="chatWrap" id="chat"></div>
+
+      <div class="row">
+        <textarea id="box" placeholder="Type… (Shift+Enter for newline)"></textarea>
+        <div class="mini">
+          <div class="btn primary" id="sendBtn">Send</div>
+        </div>
+      </div>
+      <div class="hint" id="hint"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const pill = $("#pill");
+  const toast = $("#toast");
+  const chat = $("#chat");
+  const hint = $("#hint");
+  const overlay = $("#loginOverlay");
+  const password = $("#password");
+  const admin = $("#admin");
+  const avatarImg = $("#avatarImg");
+  const subtitle = $("#subtitle");
+  const autoSpeak = $("#autoSpeak");
+
+  let lastAssistantText = "";
+  let selectedProject = null;
+  let pendingUploadFile = null;
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3200);
+  }
+
+  async function api(path, opts={}){
+    const res = await fetch(path, {
+      credentials: "include",
+      headers: opts.body instanceof FormData ? undefined : {"Content-Type":"application/json"},
+      ...opts
+    });
+    return {res, data: await safeJson(res)};
+  }
+
+  async function safeJson(res){
+    const ct = (res.headers.get("content-type")||"").toLowerCase();
+    if(ct.includes("application/json")){
+      try { return await res.json(); } catch { return null; }
+    }
+    // try parse anyway (some endpoints forget header)
+    try { return JSON.parse(await res.text()); } catch { return null; }
+  }
+
+  function setConnected(ok){
+    pill.textContent = ok ? "connected" : "disconnected";
+    pill.className = "pill " + (ok ? "ok" : "bad");
+  }
+
+  function addMsg(role, text, meta=""){
+    const el = document.createElement("div");
+    el.className = "msg " + (role === "user" ? "user" : "assistant");
+    const m = document.createElement("div");
+    m.className = "meta";
+    m.innerHTML = `<span>${role}</span><span>${meta}</span>`;
+    const pre = document.createElement("pre");
+    pre.textContent = text || "";
+    el.appendChild(m); el.appendChild(pre);
+    chat.appendChild(el);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  async function refreshHistory(){
+    const {res, data} = await api("/history?limit=80", {method:"GET"});
+    if(!res.ok || !data || !data.ok){ return; }
+    chat.innerHTML = "";
+    for(const m of (data.messages || [])){
+      addMsg(m.role, m.content || "", "");
+      if(m.role === "assistant") lastAssistantText = m.content || lastAssistantText;
+    }
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  async function refreshAvatar(){
+    // /avatar returns {ok:true, url:"/file/..."} in your current server logs
+    const {res, data} = await api("/avatar", {method:"GET"});
+    if(res.ok && data && data.ok && data.url){
+      avatarImg.src = data.url;
+    } else {
+      avatarImg.src = "/file/project/assets/avatars/avatar.png";
+    }
+  }
+
+  function renderProjects(data){
+    const pane = $("#pane-projects");
+    pane.innerHTML = "";
+    const wrap = document.createElement("div");
+    wrap.className = "list";
+
+    (data.projects || []).forEach(p => {
+      const row = document.createElement("div");
+      row.className = "item" + (selectedProject === p.name ? " active" : "");
+      row.innerHTML = `<b>${escapeHtml(p.name || "project")}</b><small>${escapeHtml(p.path || "")}</small>`;
+      row.onclick = () => {
+        selectedProject = p.name;
+        renderProjects(data);
+        renderProjectFiles(p);
+      };
+      wrap.appendChild(row);
+    });
+
+    const filesBox = document.createElement("div");
+    filesBox.id = "projectFiles";
+    filesBox.style.marginTop = "10px";
+    wrap.appendChild(filesBox);
+
+    pane.appendChild(wrap);
+
+    // If a project was previously selected, show its files again
+    if(selectedProject){
+      const proj = (data.projects||[]).find(x => x.name === selectedProject);
+      if(proj) renderProjectFiles(proj);
+    }
+  }
+
+  function renderProjectFiles(proj){
+    const filesBox = $("#projectFiles");
+    if(!filesBox) return;
+
+    filesBox.innerHTML = "";
+    const title = document.createElement("div");
+    title.style.color = "var(--muted)";
+    title.style.fontSize = "12px";
+    title.style.margin = "10px 2px 6px 2px";
+    title.textContent = "Files (click to open):";
+    filesBox.appendChild(title);
+
+    const list = document.createElement("div");
+    list.className = "list";
+
+    const files = (proj.files || proj.items || []);
+    if(!files.length){
+      const empty = document.createElement("div");
+      empty.style.color = "var(--muted)";
+      empty.style.fontSize = "12px";
+      empty.textContent = "No files reported by /projects for this project.";
+      list.appendChild(empty);
+    } else {
+      files.slice(0, 200).forEach(f => {
+        const path = typeof f === "string" ? f : (f.path || f.relpath || f.name || "");
+        const it = document.createElement("div");
+        it.className = "fileItem";
+        it.textContent = path;
+        it.onclick = () => {
+          // Try open via /file/project/<relpath> first
+          const rel = path.replace(/^project[\\/]/, "");
+          window.open("/file/project/" + encodeURI(rel), "_blank");
+        };
+        list.appendChild(it);
+      });
+    }
+
+    filesBox.appendChild(list);
+  }
+
+  async function refreshProjects(){
+    const {res, data} = await api("/projects", {method:"GET"});
+    if(res.ok && data && data.ok){
+      renderProjects(data);
+    } else {
+      $("#pane-projects").innerHTML = `<div style="color:var(--muted); font-size:12px">Couldn’t load /projects. (${res.status})</div>`;
+    }
+  }
+
+  async function refreshAvatars(){
+    const pane = $("#pane-avatars");
+    pane.innerHTML = "";
+    const {res, data} = await api("/avatars", {method:"GET"});
+    if(!res.ok || !data || !data.ok){
+      pane.innerHTML = `<div style="color:var(--muted); font-size:12px">Couldn’t load /avatars. (${res.status})</div>`;
+      return;
+    }
+    const wrap = document.createElement("div");
+    wrap.className = "list";
+    (data.avatars || []).forEach(a => {
+      const row = document.createElement("div");
+      row.className = "item";
+      row.innerHTML = `<b>${escapeHtml(a.name || "avatar")}</b><small>${escapeHtml(a.url || "")}</small>`;
+      row.onclick = async () => {
+        // Some servers support POST /avatar {name} or {url}. If not, you can just keep using avatar.png in assets.
+        const payload = a.name ? {name:a.name} : {url:a.url};
+        const out = await api("/avatar", {method:"POST", body: JSON.stringify(payload)});
+        if(out.res.ok){
+          showToast("Avatar updated.");
+          refreshAvatar();
+        } else {
+          showToast("Avatar set endpoint not available on this build.");
+        }
+      };
+      wrap.appendChild(row);
+    });
+    pane.appendChild(wrap);
+  }
+
+  function renderToolsPane(){
+    const pane = $("#pane-tools");
+    pane.innerHTML = `
+      <div style="color:var(--muted); font-size:12px; margin-bottom:8px">
+        Quick actions:
+      </div>
+      <div class="list">
+        <div class="item" id="btn-refresh">Refresh sidebar + history</div>
+        <div class="item" id="btn-open-project">Open project folder</div>
+        <div class="item" id="btn-help">Help</div>
+      </div>
+      <div style="margin-top:10px; color:var(--muted); font-size:12px; line-height:1.5">
+        Upload: uses <code>/upload</code> then falls back to <code>/uploads</code>. If your backend uses a different route,
+        tell me what you see in your CMD logs when you click Upload.
+      </div>
+    `;
+    $("#btn-refresh").onclick = async () => { await boot(); showToast("Refreshed."); };
+    $("#btn-open-project").onclick = () => window.open("/file/project/", "_blank");
+    $("#btn-help").onclick = () => showToast("Shift+Enter = newline. Enable auto-speak if /tts is working.");
+  }
+
+  function escapeHtml(s){
+    return String(s||"").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function login(){
+    const pwd = password.value || "";
+    const {res, data} = await api("/login", {method:"POST", body: JSON.stringify({password: pwd, admin: admin.checked})});
+    if(res.ok && data && data.ok){
+      overlay.style.display = "none";
+      showToast("Logged in.");
+      await boot();
+    } else {
+      showToast((data && data.error) ? data.error : "Login failed.");
+    }
+  }
+
+  async function logout(){
+    await api("/logout", {method:"POST", body: JSON.stringify({})});
+    overlay.style.display = "flex";
+    setConnected(false);
+    showToast("Logged out.");
+  }
+
+  async function tryUpload(file){
+    // You may have /upload (POST multipart) OR /uploads. We'll try both.
+    const fd = new FormData();
+    fd.append("file", file);
+    // Optional: give backend hints for where to store it
+    if(selectedProject) fd.append("project", selectedProject);
+    fd.append("root", "project");
+
+    let out = await fetch("/upload", {method:"POST", credentials:"include", body: fd});
+    if(!out.ok){
+      out = await fetch("/uploads", {method:"POST", credentials:"include", body: fd});
+    }
+    if(out.ok){
+      showToast("Uploaded: " + file.name);
+      await refreshProjects();
+      return true;
+    }
+    showToast("Upload failed (" + out.status + "). Check CMD logs for the exact route.");
+    return false;
+  }
+
+  async function speak(text){
+    try{
+      const {res, data} = await api("/tts", {method:"POST", body: JSON.stringify({text})});
+      // Some servers return {ok:true, url:"/file/...mp3"}; others return raw bytes.
+      if(res.ok && data && data.ok && data.url){
+        const audio = new Audio(data.url);
+        audio.play().catch(()=>{});
+        return;
+      }
+      // If not JSON, try raw blob
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const audio = new Audio(url);
+      audio.play().catch(()=>{});
+    }catch(e){
+      // no-op
+    }
+  }
+
+  async function send(){
+    const box = $("#box");
+    const text = box.value.trim();
+    if(!text && !pendingUploadFile){
+      return;
+    }
+    if(pendingUploadFile){
+      await tryUpload(pendingUploadFile);
+      pendingUploadFile = null;
+    }
+    if(!text) return;
+
+    addMsg("user", text, "");
+    box.value = "";
+    subtitle.textContent = "Thinking…";
+
+    const {res, data} = await api("/chat", {method:"POST", body: JSON.stringify({message: text})});
+    if(res.ok && data && data.ok){
+      const reply = data.reply || "";
+      lastAssistantText = reply;
+      addMsg("assistant", reply, "");
+      subtitle.textContent = "Ready.";
+      if(autoSpeak.checked && reply) speak(reply);
+    } else {
+      addMsg("assistant", (data && data.error) ? data.error : "Chat error.", "error");
+      subtitle.textContent = "Error.";
+    }
+  }
+
+  function wireUI(){
+    $("#loginBtn").onclick = login;
+    $("#clearBtn").onclick = () => { password.value=""; admin.checked=false; };
+    $("#logoutBtn").onclick = logout;
+    $("#sendBtn").onclick = send;
+    $("#copyLast").onclick = async () => {
+      if(!lastAssistantText){ showToast("No reply yet."); return; }
+      await navigator.clipboard.writeText(lastAssistantText);
+      showToast("Copied.");
+    };
+    $("#uploadBtn").onclick = () => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.onchange = () => {
+        const f = input.files && input.files[0];
+        if(f){ pendingUploadFile = f; showToast("Selected: " + f.name + " (Send to upload)"); }
+      };
+      input.click();
+    };
+    $("#box").addEventListener("keydown", (e) => {
+      if(e.key === "Enter" && !e.shiftKey){
+        e.preventDefault();
+        send();
+      }
+    });
+
+    // Tabs
+    document.querySelectorAll(".tab").forEach(t => {
+      t.onclick = async () => {
+        document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+        t.classList.add("active");
+        const name = t.getAttribute("data-tab");
+        ["projects","avatars","tools"].forEach(n => {
+          $("#pane-"+n).style.display = (n===name) ? "block" : "none";
+        });
+        if(name==="avatars") await refreshAvatars();
+        if(name==="tools") renderToolsPane();
+      };
+    });
+
+    // Drag & drop
+    const dz = $("#dropzone");
+    ["dragenter","dragover"].forEach(ev => dz.addEventListener(ev, (e)=>{e.preventDefault(); dz.classList.add("drag");}));
+    ["dragleave","drop"].forEach(ev => dz.addEventListener(ev, (e)=>{e.preventDefault(); dz.classList.remove("drag");}));
+    dz.addEventListener("drop", (e)=>{
+      const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if(f){ pendingUploadFile = f; showToast("Dropped: " + f.name + " (Send to upload)"); }
+    });
+  }
+
+  async function boot(){
+    try{
+      await refreshAvatar();
+      await refreshHistory();
+      await refreshProjects();
+      setConnected(true);
+      hint.textContent = "";
+    }catch(e){
+      setConnected(false);
+      hint.textContent = "Backend not reachable yet.";
+    }
+  }
+
+  wireUI();
+
+  // Try to see if we're already logged in: hit /history; if 401 show login overlay.
+  (async ()=>{
+    const out = await api("/history?limit=1", {method:"GET"});
+    if(out.res.status === 401 || (out.data && out.data.ok === False)){
+      overlay.style.display = "flex";
+      setConnected(false);
+      return;
+    }
+    overlay.style.display = "none";
+    await boot();
+  })();
+})();
+</script>
+</body>
+</html>

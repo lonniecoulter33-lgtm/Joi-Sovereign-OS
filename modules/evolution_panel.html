@@ -1,0 +1,521 @@
+<!-- 
+  Evolution Panel Component
+  Add this to your joi_ui.html or create as separate include
+  
+  This provides a visual interface for:
+  - Viewing evolution stats
+  - Listing proposals
+  - Reviewing and approving upgrades
+  - Monitoring research findings
+-->
+
+<style>
+/* Evolution Panel Styles */
+.evolution-panel {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    width: 400px;
+    max-height: 80vh;
+    background: rgba(10, 10, 30, 0.95);
+    border: 1px solid rgba(100, 200, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+}
+
+.evolution-panel.visible {
+    display: block;
+}
+
+.evolution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+}
+
+.evolution-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #64d8ff;
+}
+
+.evolution-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.evolution-close:hover {
+    color: #ff6464;
+}
+
+.evolution-stats {
+    background: rgba(20, 20, 50, 0.5);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.stat-label {
+    font-size: 14px;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: #64d8ff;
+}
+
+.stat-value.success {
+    color: #64ff64;
+}
+
+.stat-value.warning {
+    color: #ffaa64;
+}
+
+.evolution-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #64d8ff;
+    margin-bottom: 10px;
+}
+
+.proposal-card {
+    background: rgba(30, 30, 60, 0.6);
+    border: 1px solid rgba(100, 200, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.proposal-card:hover {
+    border-color: rgba(100, 200, 255, 0.5);
+    background: rgba(40, 40, 70, 0.7);
+}
+
+.proposal-card.pending {
+    border-left: 4px solid #ffaa64;
+}
+
+.proposal-card.applied {
+    border-left: 4px solid #64ff64;
+}
+
+.proposal-card.failed {
+    border-left: 4px solid #ff6464;
+}
+
+.proposal-title {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.proposal-desc {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 8px;
+}
+
+.proposal-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #888;
+}
+
+.proposal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.proposal-btn {
+    flex: 1;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.proposal-btn.approve {
+    background: #64ff64;
+    color: #000;
+}
+
+.proposal-btn.approve:hover {
+    background: #50dd50;
+}
+
+.proposal-btn.dry-run {
+    background: #64d8ff;
+    color: #000;
+}
+
+.proposal-btn.dry-run:hover {
+    background: #50c8ee;
+}
+
+.proposal-btn.download {
+    background: #aa64ff;
+    color: #fff;
+}
+
+.proposal-btn.download:hover {
+    background: #9950ee;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 10px;
+    background: rgba(100, 200, 255, 0.2);
+    border: 1px solid rgba(100, 200, 255, 0.4);
+    border-radius: 6px;
+    color: #64d8ff;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: rgba(100, 200, 255, 0.3);
+    border-color: rgba(100, 200, 255, 0.6);
+}
+
+.evolution-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(100, 200, 255, 0.2);
+    border: 2px solid rgba(100, 200, 255, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s;
+}
+
+.evolution-toggle:hover {
+    background: rgba(100, 200, 255, 0.4);
+    border-color: rgba(100, 200, 255, 0.6);
+    transform: scale(1.1);
+}
+
+.evolution-toggle::before {
+    content: '⚡';
+    font-size: 24px;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #ff6464;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+}
+</style>
+
+<!-- Evolution Toggle Button -->
+<div class="evolution-toggle" id="evolutionToggle">
+    <div class="notification-badge" id="proposalBadge" style="display: none;">0</div>
+</div>
+
+<!-- Evolution Panel -->
+<div class="evolution-panel" id="evolutionPanel">
+    <div class="evolution-header">
+        <div class="evolution-title">🧬 Evolution System</div>
+        <button class="evolution-close" onclick="closeEvolutionPanel()">×</button>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="evolution-stats" id="evolutionStats">
+        <div class="stat-row">
+            <span class="stat-label">Upgrades Applied:</span>
+            <span class="stat-value success" id="statApplied">-</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Success Rate:</span>
+            <span class="stat-value" id="statSuccess">-</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Pending Proposals:</span>
+            <span class="stat-value warning" id="statPending">-</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Research Findings:</span>
+            <span class="stat-value" id="statResearch">-</span>
+        </div>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="evolution-section">
+        <div class="section-title">Quick Actions</div>
+        <div class="action-buttons">
+            <button class="action-btn" onclick="checkResearch()">🔍 Research</button>
+            <button class="action-btn" onclick="analyzeCapabilities()">📊 Analyze</button>
+        </div>
+    </div>
+
+    <!-- Proposals Section -->
+    <div class="evolution-section">
+        <div class="section-title">Recent Proposals</div>
+        <div id="proposalsList">
+            <div style="color: #888; text-align: center; padding: 20px;">
+                Loading proposals...
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Evolution Panel Management
+let evolutionPanelVisible = false;
+let currentProposals = [];
+
+// Toggle panel
+document.getElementById('evolutionToggle').addEventListener('click', function() {
+    evolutionPanelVisible = !evolutionPanelVisible;
+    const panel = document.getElementById('evolutionPanel');
+    
+    if (evolutionPanelVisible) {
+        panel.classList.add('visible');
+        loadEvolutionData();
+    } else {
+        panel.classList.remove('visible');
+    }
+});
+
+function closeEvolutionPanel() {
+    evolutionPanelVisible = false;
+    document.getElementById('evolutionPanel').classList.remove('visible');
+}
+
+// Load evolution stats and proposals
+async function loadEvolutionData() {
+    try {
+        // Load stats
+        const statsResponse = await fetch('/evolution', {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        });
+        const stats = await statsResponse.json();
+        
+        if (stats.ok) {
+            updateStats(stats.stats);
+        }
+        
+        // Load proposals
+        const proposalsResponse = await fetch('/evolution', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({action: 'list_proposals'})
+        });
+        const proposalsData = await proposalsResponse.json();
+        
+        if (proposalsData.ok) {
+            currentProposals = proposalsData.proposals;
+            updateProposalsList(currentProposals);
+            updateBadge(currentProposals.filter(p => p.status === 'pending_review').length);
+        }
+        
+    } catch (error) {
+        console.error('Failed to load evolution data:', error);
+    }
+}
+
+// Update stats display
+function updateStats(stats) {
+    document.getElementById('statApplied').textContent = stats.total_upgrades_applied || 0;
+    document.getElementById('statSuccess').textContent = (stats.success_rate || 0).toFixed(1) + '%';
+    document.getElementById('statPending').textContent = 
+        currentProposals.filter(p => p.status === 'pending_review').length;
+    document.getElementById('statResearch').textContent = stats.total_research_findings || 0;
+    
+    // Color code success rate
+    const successEl = document.getElementById('statSuccess');
+    const rate = stats.success_rate || 0;
+    if (rate >= 90) {
+        successEl.className = 'stat-value success';
+    } else if (rate >= 70) {
+        successEl.className = 'stat-value warning';
+    } else {
+        successEl.className = 'stat-value';
+    }
+}
+
+// Update proposals list
+function updateProposalsList(proposals) {
+    const container = document.getElementById('proposalsList');
+    
+    if (proposals.length === 0) {
+        container.innerHTML = `
+            <div style="color: #888; text-align: center; padding: 20px;">
+                No proposals yet.<br>
+                Ask Joi to analyze capabilities!
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = proposals.slice(0, 10).map(proposal => `
+        <div class="proposal-card ${proposal.status || 'pending'}" 
+             onclick="viewProposal('${proposal.proposal_id}')">
+            <div class="proposal-title">${proposal.capability}</div>
+            <div class="proposal-desc">${proposal.description.substring(0, 80)}...</div>
+            <div class="proposal-meta">
+                <span>${proposal.upgrade_type || 'new_module'}</span>
+                <span>${formatDate(proposal.created)}</span>
+            </div>
+            ${proposal.status === 'pending_review' ? `
+                <div class="proposal-actions" onclick="event.stopPropagation()">
+                    <button class="proposal-btn dry-run" 
+                            onclick="dryRunProposal('${proposal.proposal_id}')">
+                        Dry Run
+                    </button>
+                    <button class="proposal-btn approve" 
+                            onclick="approveProposal('${proposal.proposal_id}')">
+                        Apply
+                    </button>
+                    <button class="proposal-btn download" 
+                            onclick="downloadProposal('${proposal.proposal_id}')">
+                        Download
+                    </button>
+                </div>
+            ` : ''}
+        </div>
+    `).join('');
+}
+
+// Update notification badge
+function updateBadge(count) {
+    const badge = document.getElementById('proposalBadge');
+    if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = 'flex';
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
+// Format timestamp
+function formatDate(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    if (diffMins < 1) return 'just now';
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffDays < 7) return `${diffDays}d ago`;
+    return date.toLocaleDateString();
+}
+
+// Action handlers
+async function checkResearch() {
+    sendMessage('Check for new AI research and tell me about any relevant advancements');
+    closeEvolutionPanel();
+}
+
+async function analyzeCapabilities() {
+    sendMessage('Analyze your capabilities and propose upgrades for any gaps you find');
+    closeEvolutionPanel();
+}
+
+async function viewProposal(proposalId) {
+    sendMessage(`Tell me about proposal ${proposalId} and show me what it does`);
+    closeEvolutionPanel();
+}
+
+async function dryRunProposal(proposalId) {
+    sendMessage(`Run a dry-run test for proposal ${proposalId} and show me the results`);
+}
+
+async function approveProposal(proposalId) {
+    if (confirm('Apply this upgrade? Joi will create backups and auto-rollback on failure.')) {
+        sendMessage(`Apply proposal ${proposalId} with my approval`);
+    }
+}
+
+async function downloadProposal(proposalId) {
+    // Find proposal in current list
+    const proposal = currentProposals.find(p => p.proposal_id === proposalId);
+    if (!proposal) return;
+    
+    // Download the proposal file
+    window.open(`/proposals/${proposalId}_${proposal.target_file}`, '_blank');
+}
+
+// Auto-refresh every 30 seconds if panel is visible
+setInterval(() => {
+    if (evolutionPanelVisible) {
+        loadEvolutionData();
+    }
+}, 30000);
+
+// Initial badge update
+setTimeout(() => {
+    fetch('/evolution', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: 'list_proposals', status: 'pending_review'})
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.ok) {
+            updateBadge(data.total_proposals);
+        }
+    })
+    .catch(err => console.error('Failed to check proposals:', err));
+}, 2000);
+</script>

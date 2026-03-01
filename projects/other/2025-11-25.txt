@@ -1,0 +1,32 @@
+
+13:11:10 2025-11-25:
+System.Net.Http.HttpRequestException: net_http_client_execution_error ---> System.Exception: The text associated with this error code could not be found.
+
+The server name or address could not be resolved
+
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at SharedLibrary!<BaseAddress>+0x4d5c60
+   at SharedLibrary!<BaseAddress>+0x4d5be8
+   at SharedLibrary!<BaseAddress>+0x4d5ba7
+   at MaxxAudioProForDell2019!<BaseAddress>+0x3951e9
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at SharedLibrary!<BaseAddress>+0x4d5c60
+   at SharedLibrary!<BaseAddress>+0x4d5be8
+   at SharedLibrary!<BaseAddress>+0x4d5ba7
+   at MaxxAudioProForDell2019!<BaseAddress>+0x39003f
+   Exception_EndOfInnerExceptionStack
+   at MaxxAudioProForDell2019!<BaseAddress>+0x3900fc
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at SharedLibrary!<BaseAddress>+0x4d5c60
+   at SharedLibrary!<BaseAddress>+0x4d5be8
+   at SharedLibrary!<BaseAddress>+0x4d5ba7
+   at MaxxAudioProForDell2019!<BaseAddress>+0x2f04c4
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at SharedLibrary!<BaseAddress>+0x4d5c60
+   at SharedLibrary!<BaseAddress>+0x4d5be8
+   at SharedLibrary!<BaseAddress>+0x4d5ba7
+   at MaxxAudioProForDell2019!<BaseAddress>+0x2ee591
+-------------------------------

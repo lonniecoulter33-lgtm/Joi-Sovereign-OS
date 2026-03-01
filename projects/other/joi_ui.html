@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joi Chat</title>
+    <style>
+        /* Add your styles here */
+        #chat-box { position: fixed; bottom: 20px; left: 20px; }
+    </style>
+</head>
+<body>
+    <div id="chat-box">
+        <input id="user-input" type="text" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+    </div>
+    <script>
+        // Add your JavaScript here to handle input
+        document.getElementById('send-button').onclick = function() {
+            let userInput = document.getElementById('user-input').value;
+            // Send input to backend for processing
+        };
+    </script>
+</body>
+</html>

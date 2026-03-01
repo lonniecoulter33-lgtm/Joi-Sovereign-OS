@@ -1,0 +1,23 @@
+{
+  "globalPredictionConfig": {
+    "fields": []
+  },
+  "selectedConversation": "Empty Folder/1770087789505.conversation.json",
+  "newChatConversationIdentifier": null,
+  "selectedConversationHistory": [
+    "Empty Folder/1770085381706.conversation.json",
+    "Empty Folder/1770087789505.conversation.json"
+  ],
+  "selectedConversationHistoryIndex": 1,
+  "selectedPredictionProcessorIdentifier": "lmstudio:simplePredictionProcessor",
+  "viewMode": "markdown",
+  "fontSize": "medium",
+  "fontWeight": "normal",
+  "conversationFontSizeIndex": 6,
+  "messageStyle": "bubble",
+  "selectedDirectory": "Empty Folder",
+  "expandedDirectories": [
+    "",
+    "Empty Folder"
+  ]
+}

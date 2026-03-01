@@ -1,0 +1,18 @@
+# Core Dependencies
+flask>=3.0.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# Web Access
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Optional: Advanced Web Scraping
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+
+# Optional: PDF Support
+pypdf>=3.17.0
+
+# Optional: Image Processing
+Pillow>=10.0.0

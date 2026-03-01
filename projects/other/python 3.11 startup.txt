@@ -1,0 +1,4 @@
+venv311\Scripts\activate
+
+
+pip install selenium webdriver-manager pyautogui pillow psutil google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2

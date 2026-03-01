@@ -1,0 +1,60 @@
+[
+  {
+    "action": "self_diagnose",
+    "issue_count": 1,
+    "issues": [
+      {
+        "type": "provider_down",
+        "provider": "local",
+        "error": "ConnectionError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /v1/v1/models (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=1234): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+        "severity": "medium"
+      }
+    ],
+    "timestamp": "2026-02-12T18:36:42.455956"
+  },
+  {
+    "action": "self_diagnose",
+    "issue_count": 1,
+    "issues": [
+      {
+        "type": "provider_down",
+        "provider": "local",
+        "error": "ConnectionError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /v1/v1/models (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=1234): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+        "severity": "medium"
+      }
+    ],
+    "timestamp": "2026-02-12T18:41:39.801745"
+  },
+  {
+    "action": "self_diagnose",
+    "issue_count": 1,
+    "issues": [
+      {
+        "type": "provider_down",
+        "provider": "local",
+        "error": "ConnectionError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /v1/v1/models (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=1234): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+        "severity": "medium"
+      }
+    ],
+    "timestamp": "2026-02-12T20:05:05.327812"
+  },
+  {
+    "action": "self_diagnose",
+    "issue_count": 0,
+    "issues": [],
+    "timestamp": "2026-02-12T20:09:15.595599"
+  },
+  {
+    "action": "self_diagnose",
+    "issue_count": 1,
+    "issues": [
+      {
+        "type": "provider_down",
+        "provider": "local",
+        "error": "ConnectionError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /v1/v1/models (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=1234): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+        "severity": "medium"
+      }
+    ],
+    "timestamp": "2026-02-13T19:53:10.234013"
+  }
+]

@@ -1,0 +1,44 @@
+The identity and consciousness modules exist but are not used.
+
+Files present:
+- identity/joi_soul_architecture.json
+- identity_pool.py
+- _agent_identity_utils.py
+- consciousness/reflection.py
+
+Task:
+1) Locate where LLM messages/system prompt are built.
+2) Load joi_soul_architecture.json at startup.
+3) Use _agent_identity_utils to format identity.
+4) Call consciousness.reflection to generate a reflection block.
+5) Inject both into the system message every turn.
+6) Cache results (do not reload each message).
+7) Add debug log: "Identity + consciousness injected".
+
+Do not rewrite unrelated logic.
+No new files.
+Only integrate existing ones.
+
+After this, Joi must answer "when were you born" from joi_soul_architecture.json.
+The identity and consciousness modules exist but are not used.
+
+Files present:
+- identity/joi_soul_architecture.json
+- identity_pool.py
+- _agent_identity_utils.py
+- consciousness/reflection.py
+
+Task:
+1) Locate where LLM messages/system prompt are built.
+2) Load joi_soul_architecture.json at startup.
+3) Use _agent_identity_utils to format identity.
+4) Call consciousness.reflection to generate a reflection block.
+5) Inject both into the system message every turn.
+6) Cache results (do not reload each message).
+7) Add debug log: "Identity + consciousness injected".
+
+Do not rewrite unrelated logic.
+No new files.
+Only integrate existing ones.
+
+After this, Joi must answer "when were you born" from joi_soul_architecture.json.

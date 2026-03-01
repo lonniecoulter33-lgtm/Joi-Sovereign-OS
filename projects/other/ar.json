@@ -1,0 +1,11 @@
+{
+  "settings": "إعدادات",
+  "about": "عن",
+  "windowsPushNotificationsTitle": "دفع إخطارات Windows",
+  "windowsPushNotificationsDesc": "تبديل الإشعارات التي تريد تلقيها",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. جميع الحقوق محفوظة في جميع أنحاء العالم. باستخدام BlueStacks ، فإنك توافق على",
+  "errorConnectingToService": "خطأ في الاتصال بالخدمة",
+  "unableToFetchCategories": "تعذر جلب الفئات ، حاول مرة أخرى بعد قليل",
+  "unableToConnect": "تعذر الاتصال بخادم BlueStacks. حاول مرة أخرى في وقت لاحق.",
+  "termsOfUse" : "شروط الاستخدام"
+}

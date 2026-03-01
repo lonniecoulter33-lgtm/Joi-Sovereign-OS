@@ -1,0 +1,165 @@
+{
+  "name": "hello?",
+  "pinned": false,
+  "createdAt": 1770087789506,
+  "preset": "",
+  "tokenCount": 23,
+  "userLastMessagedAt": 1770087791836,
+  "systemPrompt": "",
+  "messages": [
+    {
+      "versions": [
+        {
+          "type": "singleStep",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "hello?"
+            }
+          ]
+        }
+      ],
+      "currentlySelected": 0
+    },
+    {
+      "versions": [
+        {
+          "type": "multiStep",
+          "role": "assistant",
+          "steps": [
+            {
+              "type": "contentBlock",
+              "stepIdentifier": "1770087807365-0.4152835043034566",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Hi there! How can I help you today?",
+                  "fromDraftModel": false,
+                  "tokensCount": 10,
+                  "isStructural": false
+                }
+              ],
+              "defaultShouldIncludeInContext": true,
+              "shouldIncludeInContext": true,
+              "genInfo": {
+                "indexedModelIdentifier": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+                "identifier": "mistral-7b",
+                "loadModelConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.load.llama.cpuThreadPoolSize",
+                      "value": 3
+                    },
+                    {
+                      "key": "llm.load.contextLength",
+                      "value": 4096
+                    },
+                    {
+                      "key": "llm.load.llama.flashAttention",
+                      "value": true
+                    },
+                    {
+                      "key": "llm.load.llama.acceleration.offloadRatio",
+                      "value": 1
+                    }
+                  ]
+                },
+                "predictionConfig": {
+                  "fields": [
+                    {
+                      "key": "llm.prediction.promptTemplate",
+                      "value": {
+                        "type": "manual",
+                        "manualPromptTemplate": {
+                          "beforeSystem": "",
+                          "afterSystem": "\n\n",
+                          "beforeUser": "### Instruction:\n",
+                          "afterUser": "\n\n",
+                          "beforeAssistant": "### Response:\n",
+                          "afterAssistant": "\n\n"
+                        },
+                        "stopStrings": [
+                          "### Instruction:"
+                        ]
+                      }
+                    },
+                    {
+                      "key": "llm.prediction.llama.cpuThreads",
+                      "value": 3
+                    },
+                    {
+                      "key": "llm.prediction.tools",
+                      "value": {
+                        "type": "none"
+                      }
+                    }
+                  ]
+                },
+                "stats": {
+                  "stopReason": "eosFound",
+                  "tokensPerSecond": 2.435878811928897,
+                  "numGpuLayers": -1,
+                  "timeToFirstTokenSec": 12.031,
+                  "totalTimeSec": 3.701,
+                  "promptTokensCount": 14,
+                  "predictedTokensCount": 11,
+                  "totalTokensCount": 25
+                }
+              }
+            },
+            {
+              "type": "debugInfoBlock",
+              "stepIdentifier": "1770087808540-0.8374974319688017",
+              "debugInfo": "Conversation naming technique: 'hardcoded'"
+            }
+          ],
+          "senderInfo": {
+            "senderName": "mistral-7b"
+          }
+        }
+      ],
+      "currentlySelected": 0
+    }
+  ],
+  "usePerChatPredictionConfig": true,
+  "perChatPredictionConfig": {
+    "fields": []
+  },
+  "clientInput": "",
+  "clientInputFiles": [],
+  "userFilesSizeBytes": 0,
+  "lastUsedModel": {
+    "identifier": "mistral-7b",
+    "indexedModelIdentifier": "local/mistral-7b/mistral-7b-instruct-v0.1.Q4_K_S.gguf",
+    "instanceLoadTimeConfig": {
+      "fields": [
+        {
+          "key": "llm.load.llama.cpuThreadPoolSize",
+          "value": 3
+        },
+        {
+          "key": "llm.load.contextLength",
+          "value": 4096
+        },
+        {
+          "key": "llm.load.llama.flashAttention",
+          "value": true
+        },
+        {
+          "key": "llm.load.llama.acceleration.offloadRatio",
+          "value": 1
+        }
+      ]
+    },
+    "instanceOperationTimeConfig": {
+      "fields": []
+    }
+  },
+  "notes": [],
+  "plugins": [],
+  "pluginConfigs": {},
+  "disabledPluginTools": [],
+  "looseFiles": [],
+  "assistantLastMessagedAt": 1770087808545
+}

@@ -1,0 +1,69 @@
+{
+  "projectIdentifier": "default-project-identifier",
+  "windowBounds": {
+    "x": 52,
+    "y": 0,
+    "width": 1190,
+    "height": 676
+  },
+  "plugins": {
+    "selectedPluginIdentifier": null,
+    "pluginsConfigTopPanelSizePercent": 25,
+    "pluginsConfigBottomPanelSizePercent": 0,
+    "pluginConfigNeedsPulsate": false
+  },
+  "chat": {
+    "pluginsPopoverIsOpen": false,
+    "pluginsPopoverChatIdentifier": null,
+    "settingsPanelIsOpen": false,
+    "chatsPanelIsOpen": true,
+    "activeToolSidebarTab": "model",
+    "activeConversationIdentifier": "Empty Folder/1770087789505.conversation.json",
+    "expandedSidebarPlugins": [],
+    "pluginOrderPriorities": [],
+    "pluginFilterSearchTerm": "",
+    "pluginDropupFilterSearchTerm": "",
+    "chatSidebarWidth": null,
+    "settingsSidebarWidth": 345,
+    "terminalWidth": 600,
+    "openedTabsPerChatIdentifier": {},
+    "selectedTabPerChatIdentifier": {},
+    "additionalShortcutPluginIdentifiersPerChatIdentifier": {},
+    "syncedChatInputEnabled": false,
+    "syncedChatSendOnlyEnabled": false
+  },
+  "missionControl": {
+    "resizableLeftPanelSizePercent": 40
+  },
+  "settings": {
+    "activeSettingsNavOption": "general"
+  },
+  "developer": {
+    "logsPanelSize": 30,
+    "detailsPanelSize": 25,
+    "panelGroupSize": 400,
+    "isDetailsPanelCollapsed": false
+  },
+  "modelLoading": {
+    "sortType": "recent",
+    "sortReversed": false
+  },
+  "modelLoaderShowAdvancedSettings": false,
+  "expandedKvConfigSections": [
+    "modelInfoCardSection",
+    "virtualModelSection",
+    "apiUsageSection",
+    "basicLoadParams"
+  ],
+  "tabLayouts": {
+    "chat": {
+      "type": "pane",
+      "id": "root",
+      "tabs": [
+        "conversation:Empty Folder/1770087789505.conversation.json"
+      ],
+      "active": 0,
+      "previewIndex": null
+    }
+  }
+}

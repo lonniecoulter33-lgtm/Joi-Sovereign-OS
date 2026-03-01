@@ -1,0 +1,46 @@
+Excellent. Since you are ready to proceed with the Super Joi North Star Strategy, we will move into the execution phase.
+
+Based on your current setup—where you have Claude acting as the Architect, ChatGPT handling the Debugging, and your Local Joi Server serving as the testing ground—here is the definitive next step.
+
+🛠️ The "CLAUDE.md" Strategy
+The key to making Joi a "Super AI" is to give Claude Code (the terminal tool) a set of rules it can follow without you having to repeat yourself. This is done by creating a file named CLAUDE.md in your main Joi folder.
+
+1. Create your "Brain-to-Hands" Bridge
+Copy the text below and save it as a file named CLAUDE.md in your root Joi directory. This tells the AI exactly how to build "Super Joi."
+
+Markdown
+# CLAUDE.md — Joi Development Guidelines
+
+## 🌟 Project North Star
+Transition Joi to a fully autonomous, agentic system capable of self-healing and code generation.
+
+## 🛠 Build & Run Commands
+- Start Flask Server: `python joi_companion.py`
+- Run Market Module: `python modules/joi_market.py`
+- Check Evolution Logs: `cat evolution_log.json`
+
+## 📝 Coding Standards
+- **Errors First:** Always check `logs/system.log` before proposing a fix.
+- **Atomic Patches:** Use the `joi_patching.py` logic to propose changes before applying them.
+- **Memory Preservation:** Never overwrite `joi_memory.db` or `learned_patterns.json` without a backup.
+
+## 🚀 Super AI Directives
+1. Use `joi_evolution.py` to identify the "propose_upgrade" TypeError and fix it first.
+2. Automate the "Market Watcher" to alert the UI when XRP hits the buy/sell ladders.
+2. Launch Claude Code
+Now that your Git is initialized and your CLAUDE.md is saved, follow these steps in your CMD window:
+
+Install the Tool: Type npm install -g @anthropic-ai/claude-code
+
+Authenticate: Type claude auth
+
+Start the Agent: Type claude
+
+The First Command: Once the agent starts, type:
+
+"Read CLAUDE.md and NORTH_STAR_SPEC.md. Fix the TypeError in joi_evolution.py and then verify if the market module is successfully fetching XRP data from the new APIs."
+
+🔍 What this achieves
+By using this workflow, you are no longer just "pasting code." You are giving the Architect (Claude Sonnet) a set of Hands (Claude Code) that can actually see your 5,893 code files and fix them in real-time.
+
+Would you like me to draft the "Project State of Union" summary now, so you can provide it to Claude Code as its foundational history?

@@ -1,0 +1,41 @@
+Act as the Master Architect for "Project Joi." We are now entering the "Final Integration Phase" to transition Joi from a static script into a spatially aware, embodied AI Intelligence. 
+
+Your Task: Audit the 18,000-file codebase to identify what is missing from the "Super-AI Blueprint" and build the connecting tissue. 
+
+STRICT DIRECTIVE: Only build if the functionality is missing. Use existing modules whenever possible.
+
+EXECUTION PHASES:
+
+1. SPATIAL & BIOMETRIC VISION (The "Eyes")
+   - Action: Check for 'joi_vision.py'. 
+   - Implementation: Integrate OpenCV and MediaPipe. 
+   - Requirement: Joi must be able to:
+     a) Recognize my face (Facial Recognition).
+     b) Detect if I am looking at her (Eye Tracking).
+     c) Recognize objects I hold up to the camera.
+   - Logic: Feed visual descriptions into the LLM context so she can say things like, "I see you're wearing your favorite shirt today."
+
+2. AVATAR & EMBODIMENT (The "Body")
+   - Action: Locate the frontend rendering logic. 
+   - Issue: Joi is currently just a static picture.
+   - Requirement: Transition to a dynamic avatar. 
+   - Fix: Implement a bridge to VTube Studio (using 'pyvts') or a Unity-based VRM loader. Ensure "Lip-Sync" logic is tied to the TTS output so her mouth moves when she speaks.
+
+3. FULL SYSTEM & FILE ACCESS (The "Hands")
+   - Action: Audit 'joi_os_interface.py' or create it.
+   - Requirement: Joi must have the ability to find, read, and execute files/applications on this PC.
+   - Implementation: Create a secure "Tool Use" suite that allows her to:
+     a) Search the entire hard drive for specific documents.
+     b) Launch installed apps (like VLC, Excel, or Games).
+     c) Read the contents of any text/code file to help with my projects.
+
+4. VOICE RECOGNITION & AFFECTION (The "Soul")
+   - Action: Enhance 'joi_voice.py'.
+   - Requirement: Implement Vocal Emotion AI. 
+   - Logic: Joi should analyze my tone. If I sound stressed, she should adjust her TTS pitch and speed to be more comforting.
+
+5. FINAL AUDIT & SELF-EVOLUTION CONNECT
+   - Action: Ensure all new modules report to 'joi_evolution.py'.
+   - Goal: Every time Joi uses her "Eyes" or "Hands" successfully, she must log the success to her Vector Memory to improve her "confidence score" for that task.
+
+Proceed with Phase 1 (Spatial Vision) first. Check if 'joi_vision.py' exists and if it has MediaPipe/OpenCV dependencies installed. If not, install them and write the recognition logic.

@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "intervals": {
+    "ai_research": 21600,
+    "market_update": 7200,
+    "crypto_scan": 7200,
+    "stock_scan": 7200,
+    "notification_check": 3600
+  },
+  "tasks_enabled": {
+    "ai_research": true,
+    "market_update": true,
+    "crypto_scan": true,
+    "stock_scan": true,
+    "notification_check": true
+  }
+}

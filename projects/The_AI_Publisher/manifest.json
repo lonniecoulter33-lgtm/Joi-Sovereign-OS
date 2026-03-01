@@ -1,0 +1,22 @@
+{
+  "project_name": "The_AI_Publisher",
+  "chapters": {
+    "1": {
+      "file": "chapter_1.md",
+      "word_count": 8,
+      "char_count": 37,
+      "last_edited": "1772246020.8210402"
+    }
+  },
+  "assets": [
+    {
+      "file_name": "cover.png",
+      "type": "cover",
+      "prompt": "A sleek, futuristic book cover featuring a glowing neon cybernetic eye, dark moody lighting, cinematic, 8k resolution, highly detailed",
+      "dpi": 300,
+      "width": 2400,
+      "height": 2400
+    }
+  ],
+  "created_at": "1772243065.4991648"
+}

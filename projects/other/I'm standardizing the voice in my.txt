@@ -1,0 +1,25 @@
+I'm standardizing the voice in my Kundalini manual. Please rewrite this section following these rules EXACTLY:
+
+VOICE: Technical-scholarly (like a lab manual meets academic text)
+
+PERSPECTIVE:
+- "You" for direct instructions to practitioner
+- "The practitioner" or "one" for general descriptions
+- "The texts describe" for traditional content
+
+TONE:
+- Authoritative but not authoritarian
+- Respectful toward tradition, not worshipful
+- Precise without being pedantic
+
+DEVOTIONAL CONTENT:
+- Frame as traditional, not required
+- Example: "Classical texts include the prayer [X]. Practitioners may incorporate this or proceed directly to the technique."
+
+AVOID:
+- Excessive passive voice
+- Overly poetic language (unless quoting sources)
+- Inconsistent addressing of reader (don't switch between "you" and "one")
+
+
+Please rewrite maintaining all technical accuracy but in consistent voice. I dont want to summarize or shorten the chapter lengths, no removal of procedures or techniques. All methods and step by step guides are to remain only slight re wording where inconsistencies are.

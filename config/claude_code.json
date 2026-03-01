@@ -1,0 +1,8 @@
+{
+  "claude_code": {
+    "auto_approve": false,
+    "max_timeout": 300,
+    "notification_enabled": true,
+    "cli_command": "claude"
+  }
+}

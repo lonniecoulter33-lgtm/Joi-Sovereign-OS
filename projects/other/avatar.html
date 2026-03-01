@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Joi</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+    width:  260px;
+    height: 300px;
+    overflow: hidden;
+    background: transparent;
+    /* The entire window is transparent */
+}
+
+/* Draggable title bar — invisible strip at top */
+.drag-region {
+    -webkit-app-region: drag;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 30px;
+    z-index: 10;
+}
+
+/* Main container — centres everything, no background */
+.container {
+    width:  100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Allow mouse through transparent parts */
+    -webkit-app-region: no-drag;
+}
+
+/* ── AVATAR CIRCLE ── */
+.avatar-ring {
+    width:  200px;
+    height: 200px;
+    border-radius: 50%;
+    /* Glowing magenta border */
+    border: 3px solid rgba(255, 0, 255, 0.7);
+    box-shadow:
+        0  0  18px rgba(255, 0, 255, 0.5),
+        0  0  50px rgba(255, 0, 255, 0.25);
+    background: linear-gradient(135deg, rgba(26,26,46,0.92), rgba(15,15,30,0.95));
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.avatar-ring:hover {
+    box-shadow:
+        0  0  28px rgba(255, 0, 255, 0.7),
+        0  0  70px rgba(255, 0, 255, 0.35);
+    transform: scale(1.04);
+}
+
+.avatar-ring.speaking {
+    animation: pulse 0.5s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 18px rgba(255,0,255,0.5), 0 0 50px rgba(255,0,255,0.25); transform: scale(1);    }
+    50%      { box-shadow: 0 0 40px rgba(255,0,255,0.8), 0 0 80px rgba(255,0,255,0.4);  transform: scale(1.06); }
+}
+
+/* Avatar image fills the circle */
+.avatar-ring img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;                          /* hidden until loaded */
+}
+.avatar-ring img.loaded { display: block; }
+
+/* Particle canvas fallback (when no image) */
+.avatar-ring canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ── NAME TAG ── */
+.name-tag {
+    color: rgba(255, 0, 255, 0.9);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    user-select: none;
+    -webkit-app-region: no-drag;
+}
+
+/* ── CHAT INDICATOR (subtle pulse when chat is open) ── */
+.chat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00ffcc;
+    box-shadow: 0 0 8px #00ffcc;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.chat-dot.active { opacity: 1; }
+
+/* ── CLOSE BUTTON (top-right, only on hover) ── */
+.close-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,0,255,0.4);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 20;
+    -webkit-app-region: no-drag;
+}
+.container:hover .close-btn { opacity: 1; }
+.close-btn:hover { background: rgba(180,0,0,0.7); }
+</style>
+</head>
+<body>
+
+<!-- Invisible drag handle at the very top -->
+<div class="drag-region"></div>
+
+<div class="container">
+    <!-- Close button -->
+    <button class="close-btn" id="close-btn" title="Hide Joi">✕</button>
+
+    <!-- The circle -->
+    <div class="avatar-ring" id="avatar-ring">
+        <img  id="avatar-img" src="" alt="Joi">
+        <canvas id="avatar-canvas" width="200" height="200"></canvas>
+    </div>
+
+    <!-- Name -->
+    <div class="name-tag">Joi</div>
+
+    <!-- Small green dot when chat window is open -->
+    <div class="chat-dot" id="chat-dot"></div>
+</div>
+
+<script>
+// ── IPC bridge (injected by preload.js) ──────────────────────────────────
+const joi = window.joiElectron || {
+    avatarClicked: () => {},
+    openChat:      () => {},
+    closeChat:     () => {}
+};
+
+let chatOpen = false;
+
+// ── CLICK HANDLER ─────────────────────────────────────────────────────────
+document.getElementById('avatar-ring').addEventListener('click', () => {
+    chatOpen = !chatOpen;
+    joi.avatarClicked();
+    document.getElementById('chat-dot').classList.toggle('active', chatOpen);
+});
+
+// ── CLOSE BUTTON ──────────────────────────────────────────────────────────
+document.getElementById('close-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Tell Electron to hide this window via require (nodeIntegration is on)
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.send('hide-avatar');
+});
+
+// ── LOAD AVATAR FROM FLASK ────────────────────────────────────────────────
+async function loadAvatar() {
+    try {
+        const r = await fetch('http://127.0.0.1:5001/avatar');
+        const d = await r.json();
+        const img    = document.getElementById('avatar-img');
+        const canvas = document.getElementById('avatar-canvas');
+        if (d.ok && d.url) {
+            img.src = 'http://127.0.0.1:5001' + d.url;
+            img.onload = () => {
+                img.classList.add('loaded');
+                canvas.style.display = 'none';
+            };
+        } else {
+            // No custom avatar — run particle animation
+            startParticles();
+        }
+    } catch(e) {
+        console.warn('Could not reach Flask for avatar:', e.message);
+        startParticles();
+    }
+}
+
+// ── PARTICLE FALLBACK ─────────────────────────────────────────────────────
+function startParticles() {
+    const canvas = document.getElementById('avatar-canvas');
+    const ctx    = canvas.getContext('2d');
+    canvas.width  = 200;
+    canvas.height = 200;
+
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+        particles.push({
+            x:    Math.random() * 200,
+            y:    Math.random() * 200,
+            vx:   (Math.random() - 0.5) * 1.8,
+            vy:   (Math.random() - 0.5) * 1.8,
+            size: Math.random() * 2.5 + 0.8,
+            hue:  Math.random() * 60 + 270          // purple-magenta range
+        });
+    }
+
+    function animate() {
+        ctx.fillStyle = 'rgba(10, 10, 20, 0.18)';
+        ctx.fillRect(0, 0, 200, 200);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > 200) p.vx *= -1;
+            if (p.y < 0 || p.y > 200) p.vy *= -1;
+
+            ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, 0.85)`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+loadAvatar();
+
+// Poll avatar every 30 s in case it changes
+setInterval(loadAvatar, 30000);
+</script>
+</body>
+</html>

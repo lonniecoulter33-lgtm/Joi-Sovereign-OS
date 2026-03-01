@@ -1,0 +1,21 @@
+{
+  "cpu": {
+    "architecture": "x86_64",
+    "instruction_set_extensions": [
+      "AVX2"
+    ]
+  },
+  "domains": [
+    "openaiInputOutputProcessing"
+  ],
+  "extension_type": "framework",
+  "framework": "harmony",
+  "manifest_version": "4",
+  "name": "harmony-win-x86_64-avx2",
+  "platform": "win",
+  "vendor_lib_package_names": [
+    "_amphibian/app-harmony-win-x86@7",
+    "_amphibian/cpython3.11-win-x86@6"
+  ],
+  "version": "0.3.6"
+}

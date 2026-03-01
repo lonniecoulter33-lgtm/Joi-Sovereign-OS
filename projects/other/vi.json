@@ -1,0 +1,11 @@
+{
+  "settings": "Cài đặt",
+  "about": "Thông tin",
+  "windowsPushNotificationsTitle": "Thông báo đẩy của Windows",
+  "windowsPushNotificationsDesc": "Chuyển đổi thông báo bạn muốn nhận",
+  "aboutPageDesc": "© 2023 BlueStacks by now.gg, Inc. Bảo lưu mọi quyền trên toàn thế giới. Bằng cách sử dụng BlueStacks, bạn đồng ý với chúng tôi",
+  "errorConnectingToService": "Lỗi kết nối với dịch vụ",
+  "unableToFetchCategories": "Không thể tìm nạp danh mục, hãy thử lại sau",
+  "unableToConnect": "Không thể kết nối với Máy chủ BlueStacks. Thử lại sau.",
+  "termsOfUse" : "Điều khoản sử dụng"
+}

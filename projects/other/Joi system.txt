@@ -1,0 +1,226 @@
+Joi/                                    ← your new clean folder
+├── .env                                ← updated with LM Studio + Claude vars
+├── joi_memory.db                       ← copy from old folder if it exists
+│
+├── joi_companion.py                    ← thin core (~180 lines). Starts Flask,
+│                                          imports modules, runs conversation loop
+├── joi_ui.html                         ← updated UI (Phase 2 additions)
+│
+├── modules/
+│   ├── __init__.py                     ← empty
+│   ├── joi_db.py                       ← database layer (connect, init, schema)
+│   ├── joi_memory.py                   ← messages, facts, prefs, learning log
+│   ├── joi_llm.py                      ← THE BRAIN ROUTER. Decides which AI does what
+│   ├── joi_filesystem.py              ← fs_list, fs_read, fs_write, fs_search
+│   ├── joi_web.py                      ← web_search, web_fetch
+│   ├── joi_avatar.py                   ← avatars, voice, TTS
+│   ├── joi_files.py                    ← generate PDF/DOCX/TXT/MD
+│   ├── joi_projects.py                 ← scan, organise, list projects
+│   ├── joi_patching.py                 ← propose/apply code patches
+│   └── joi_launcher.py                 ← Phase 2: open desktop apps (NEW)
+│
+├── assets/
+│   ├── avatars/
+│   ├── audio/
+│   ├── files/
+│   └── videos/
+├── projects/
+└── backups/
+
+
+
+┌─────────────────────────────────────────────────────────────┐
+│  MISTRAL 7B (LM Studio — local, free, unlimited, fast)     │
+│  USE FOR:                                                   │
+│    • Everyday chat and conversation                         │
+│    • Quick questions and answers                            │
+│    • Planning and outlining                                 │
+│    • Code explanation and debugging                         │
+│    • Assembling / combining text chunks                     │
+│    • Anything that doesn't need elite-level writing         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLAUDE (Anthropic free tier — via API)                     │
+│  USE FOR:                                                   │
+│    • Writing book chapters (in small chunks)                │
+│    • High-quality prose and creative writing                │
+│    • Deep research summaries                                │
+│    • Anything where prose quality matters most              │
+│  RULES:                                                     │
+│    • Never send more than ~400 words of output per request  │
+│    • Joi checks remaining budget before routing here        │
+│    • Falls back to Mistral if limit is close                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  OPENAI (GPT-4o / DALL-E — paid, but only for what needs it)│
+│  USE FOR:                                                   │
+│    • DALL-E image generation (nothing else can do this)     │
+│    • Tool-call decisions IF Mistral fails (safety net)      │
+│    • Vision / image analysis                                │
+│  NOT USED FOR:                                              │
+│    • Writing (Claude does it better)                        │
+│    • Chat (Mistral is free and fast enough)                 │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  EDGE TTS (Microsoft — free, already working)               │
+│  USE FOR:                                                   │
+│    • All voice / speech synthesis                           │
+│    • Stay on this, it's free and good                       │
+└─────────────────────────────────────────────────────────────┘
+
+
+  Mistral 7B local        → Speed. It's instant. No internet needed.
+                             Basic chat, quick answers, planning.
+
+  Gemini 1.5 Flash (free) → Research and summarization. 
+                             It can read HUGE amounts of text at once.
+                             Translation. Multimodal (text + image input).
+                             Rate limited but the limits reset daily.
+
+  GPT-4o (your key)       → Tool calling / function decisions.
+                             Complex reasoning. Image generation (DALL-E).
+                             It's the most reliable at picking the right tool.
+
+  GPT-4o-mini (same key)  → Everything GPT-4o does but 16x CHEAPER.
+                             Seriously — we should be using this instead of
+                             GPT-4o for most things. Same key, just different
+                             model name. This alone will cut your OpenAI bill
+                             dramatically.
+
+  Claude (free tier)      → Writing. Prose quality. Book content.
+                             The best at natural, human-sounding text.
+
+  Edge TTS (free)         → Voice. Already working. Keep it.
+
+
+┌──────────────────────────────────────────────────────────────────┐
+│  LAYER 1: MISTRAL 7B LOCAL (LM Studio)                          │
+│  Cost: FREE | Speed: instant | Internet: no                     │
+│  ─────────────────────────────────────────────────────────────── │
+│  • Everyday chat ("how are you", "what time is it")             │
+│  • Quick questions with short answers                           │
+│  • Planning and outlining before big tasks                      │
+│  • Assembling chunks of text together                           │
+│  • Anything where "good enough" is fine                         │
+│  • First attempt at everything — other AIs are backup only      │
+└──────────────────────────────────────────────────────────────────┘
+                              │ fails or needs more
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  LAYER 2: FREE APIs (Gemini + Claude + Edge)                    │
+│  Cost: FREE | Speed: 1-3 seconds | Internet: yes                │
+│  ─────────────────────────────────────────────────────────────── │
+│  GEMINI 1.5 Flash:                                              │
+│    • Research — reading and summarizing big documents           │
+│    • Translation                                                │
+│    • Analysing images you send it                               │
+│    • Anything that needs a huge context window                  │
+│                                                                  │
+│  CLAUDE (free tier, chunked):                                   │
+│    • Writing book chapters (small chunks, never hits limit)     │
+│    • High-quality creative prose                                │
+│    • Research reports                                           │
+│                                                                  │
+│  EDGE TTS:                                                      │
+│    • All voice synthesis                                        │
+└──────────────────────────────────────────────────────────────────┘
+                              │ needs paid capability
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  LAYER 3: OPENAI PAID (your existing key)                       │
+│  Cost: pay-per-use | Speed: 1-2 seconds | Internet: yes         │
+│  ─────────────────────────────────────────────────────────────── │
+│  GPT-4o-MINI (use this for almost everything paid):             │
+│    • Tool-call decisions when Mistral fails                     │
+│    • Complex reasoning Mistral can't handle                     │
+│    • Fallback for any layer above that fails                    │
+│                                                                  │
+│  GPT-4o (only escalate here when mini fails):                   │
+│    • Very complex multi-step reasoning                          │
+│    • Last resort fallback                                       │
+│                                                                  │
+│  DALL-E 3 (no alternative — only option for image gen):         │
+
+
+          │
+│    • Any image creation requests                                │
+└──────────────────────────────────────────────────────────────────┘
+
+YOUR CURRENT MODEL:
+  mistral-7b-instruct-v0.1.Q4_K_S
+  └── v0.1 = first release, weakest instruction following
+  └── Q4_K_S = 4-bit small = ~3.7GB, fastest, lowest quality
+
+DIRECT UPGRADES (same download size, better performance):
+  mistral-7b-instruct-v0.3.Q4_K_M  ← v0.3 is much better at following
+                                       instructions. Q4_K_M is ~4.2GB,
+                                       slightly bigger but noticeably smarter.
+                                       BEST EASY UPGRADE.
+
+BETTER MODELS (if your PC can handle ~4-5GB models):
+  llama-3.1-8b-instruct.Q4_K_M     ← Meta's model. Better at tool calling
+                                       than Mistral. Better at writing too.
+                                       This is what I'd actually recommend.
+
+  qwen2.5-7b-instruct.Q4_K_M       ← Strong at structured output and
+                                       following complex instructions.
+                                       Good alternative.
+
+  phi-3.5-mini-instruct.Q4_K_M     ← Only 3.8B parameters but surprisingly
+                                       capable. Smallest, fastest option
+                                       if your PC is slower.
+
+RULE OF THUMB FOR QUANTIZATION:
+  Q4_K_S = smallest, fastest, weakest    (what you have now)
+  Q4_K_M = slightly bigger, noticeably better  ← sweet spot
+  Q5_K_M = bigger still, best quality at ~5GB
+  Q8_0   = near-perfect quality, ~8GB, needs good RAM
+
+
+1. BETTER MODEL FILES (what we just covered)
+   └── Upgrade from v0.1 to v0.3, or switch to Llama 3.1
+       This is the single biggest improvement. Do this first.
+
+2. SYSTEM PROMPT ENGINEERING  
+   └── We write a really strong, detailed system prompt specifically
+       for Mistral. Different models respond to instructions differently.
+       A prompt tuned for Mistral makes it perform 30-40% better at tasks.
+       We build this into joi_llm.py.
+
+3. FEW-SHOT EXAMPLES
+   └── When Joi sends a request to Mistral, she includes 2-3 examples
+       of "here's what a good response looks like." This teaches the model
+       the quality bar without any training. We can do this automatically.
+
+4. OLLAMA (alternative to LM Studio)
+   └── Free, open source, runs models locally same as LM Studio.
+       Slightly more control. You can run multiple models simultaneously.
+       Worth looking into later but LM Studio is fine for now.
+
+5. LONG-TERM: FINE-TUNING
+   └── If you ever get a machine with a decent GPU (even a 3060/4060),
+       you can fine-tune a model on your own writing style using tools
+       like "llama.cpp" or "Hugging Face." That literally teaches the
+       model to write like YOU. That's the endgame for a truly personal AI.
+       Not now, but it's the roadmap.
+
+1. Get your Gemini API key (free, takes 2 minutes at aistudio.google.com)
+
+2. We build joi_llm.py — the central router that:
+     • Tries Mistral first for everything
+     • Routes writing to Claude in safe chunks
+     • Routes research/summarization to Gemini
+     • Falls back to GPT-4o-mini (not 4o) for tool decisions
+     • Only uses full GPT-4o for DALL-E
+     • Tracks which AI worked best for what, and learns from it
+
+3. We update .env with:
+     • LM_STUDIO_URL + model name
+     • GEMINI_API_KEY
+     • Switch default model from gpt-4o to gpt-4o-mini
+
+4. The modular split + Phase 2 app launcher on top of that
+

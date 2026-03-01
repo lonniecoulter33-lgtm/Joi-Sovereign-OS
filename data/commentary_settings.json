@@ -1,0 +1,7 @@
+{
+  "vision_commentary": true,
+  "camera_commentary": true,
+  "global_mute": false,
+  "vision_min_interval": 217,
+  "camera_min_interval": 177
+}
