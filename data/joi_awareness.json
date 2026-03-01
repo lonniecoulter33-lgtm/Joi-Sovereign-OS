@@ -3,7 +3,14 @@
     "category": "AUTONOMY",
     "content": "Autonomy cycle: weak areas: about, just, chat, 126 tools online",
     "source": "autonomy_log",
-    "ts": 1772361322.1852396,
+    "ts": 1772402162.6837513,
     "ttl_sec": 7200
+  },
+  {
+    "category": "SCREEN",
+    "content": "Visual input active",
+    "source": "vision_direct",
+    "ts": 1772402875.8656704,
+    "ttl_sec": 1800
   }
 ]

@@ -19,6 +19,9 @@ import json
 import threading
 import time
 import traceback
+import subprocess
+import tempfile
+import ast
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List
@@ -41,6 +44,32 @@ def _load_autonomy_log() -> List[Dict[str, Any]]:
     except Exception:
         pass
     return []
+
+
+def _pre_apply_smoke_test(code_text: str) -> tuple[bool, str]:
+    """v8.0 CI/CD Pre-Flight Gate. Compiles code in an isolated subprocess to catch fatal errors."""
+    try:
+        # Fast AST check first
+        ast.parse(code_text)
+        
+        # Subprocess compile check
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as f:
+            f.write(code_text)
+            temp_path = f.name
+            
+        cmd = ["python", "-c", f"import py_compile; py_compile.compile(r'{temp_path}', doraise=True)"]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+        
+        Path(temp_path).unlink(missing_ok=True)
+        
+        if result.returncode != 0:
+            return False, f"Compile Error:\n{result.stderr.strip()}"
+            
+        return True, "Passed"
+    except SyntaxError as e:
+        return False, f"AST Syntax Error: {e}"
+    except Exception as e:
+        return False, f"Smoke test failed: {e}"
 
 
 def _save_autonomy_log(log: List[Dict[str, Any]]):
@@ -265,10 +294,23 @@ def run_cycle() -> Dict[str, Any]:
                                     continue
                             # ─────────────────────────────────────────────
 
+                            # ─────────────────────────────────────────────
+
+                            # ── CI/CD PRE-FLIGHT GATE (v8.0) ──────────────
+                            code_text = code_path.read_text(encoding="utf-8")
+                            passed_smoke, smoke_msg = _pre_apply_smoke_test(code_text)
+                            if not passed_smoke:
+                                meta["status"] = "failed_smoke_test"
+                                meta["smoke_test_error"] = smoke_msg
+                                meta_path.write_text(json.dumps(meta, indent=2))
+                                print(f"    [CI/CD] BLOCKED {pid} by Pre-Flight Smoke Test:\n{smoke_msg}")
+                                continue
+                            # ─────────────────────────────────────────────
+
                             from modules.joi_evolution import _create_backup
                             backup = _create_backup(target) if target.exists() else None
                             target.parent.mkdir(parents=True, exist_ok=True)
-                            target.write_text(code_path.read_text())
+                            target.write_text(code_text, encoding="utf-8")
                             applied.append(pid)
                             meta["status"] = "applied_by_autonomy"
                             meta_path.write_text(json.dumps(meta, indent=2))

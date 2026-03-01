@@ -135,9 +135,9 @@ def _process_motion(frame_b64: str):
     faces_identified: List[str] = []
     owner_present = False
 
-    # Lazy import from joi_camera
+    # Lazy import from joi_media
     try:
-        from modules.joi_camera import _identify_faces_encoding, _face_db
+        from modules.joi_media import _identify_faces_encoding, _face_db
         faces_identified = _identify_faces_encoding(frame_b64)
     except ImportError:
         pass  # face recognition unavailable
@@ -192,13 +192,13 @@ def _process_motion(frame_b64: str):
         f"Recording started."
     )
     try:
-        from modules.joi_camera import _camera_proactive_queue, _lock as _cam_lock
+        from modules.joi_media import _camera_proactive_queue, _media_lock as _cam_lock
         with _cam_lock:
             _camera_proactive_queue.append(alert_msg)
             if len(_camera_proactive_queue) > 10:
                 _camera_proactive_queue.pop(0)
     except ImportError:
-        pass  # camera module not loaded
+        pass  # media module not loaded
     except Exception as e:
         print(f"  [joi_security] proactive push error: {e}")
 
@@ -332,10 +332,10 @@ def _security_monitor_loop():
     print("  [joi_security] monitoring thread started")
     while _armed:
         try:
-            # Grab latest frame from joi_camera
+            # Grab latest frame from joi_media
             frame_b64 = None
             try:
-                from modules.joi_camera import _latest_camera_b64
+                from modules.joi_media import _latest_camera_b64
                 frame_b64 = _latest_camera_b64
             except ImportError:
                 pass

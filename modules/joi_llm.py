@@ -1582,10 +1582,15 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
     # ══════════════════════════════════════════════════════════════════
     # STEP 3: PRIMARY GENERATION (config.joi_models)
     # ══════════════════════════════════════════════════════════════════
-    # Tool loop requires OpenAI. Non-tool can use Gemini (chat) or OpenAI (fallback).
-    use_local = False  # Config uses openai/gemini only
-    _model_used = "openai:" + OPENAI_TOOL_MODEL
+    # Tool loop requires provider with tools (OpenAI or Gemini Paid).
+    # Honor the router's decision unless actuation is forced (which already forces OpenAI in STEP 1.5)
+    _primary_provider = routing.get("primary_provider", "openai")
+    if _RUNTIME_PROVIDER != "auto":
+        _primary_provider = _RUNTIME_PROVIDER
+
+    _model_used = f"{_primary_provider}:{OPENAI_TOOL_MODEL}" # label fallback
     iteration = 0
+    max_iterations = 15  # Increased from 5 to handle complex tasks
 
     # Emit LLM sending event for neuro brain map
     try:
@@ -1597,13 +1602,28 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
 
     while iteration < max_iterations:
         iteration += 1
+        max_tokens = _llm_params.get("max_tokens", 4000)
         try:
+            # Determine which call function to use based on provider
+            if _primary_provider == "openai":
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or OPENAI_TOOL_MODEL, llm_params=_llm_params)
+                _model_used = f"openai:{(_RUNTIME_MODEL or OPENAI_TOOL_MODEL)}"
+            elif _primary_provider == "gemini":
+                # For tool use, Gemini needs a specific call pattern (handled in _call_gemini_tools or similar if implemented)
+                # Fallback to OpenAI if Gemini tool path not ready, or implement here:
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or OPENAI_TOOL_MODEL, llm_params=_llm_params)
+                _model_used = f"openai:{(_RUNTIME_MODEL or OPENAI_TOOL_MODEL)}"
+                print(f"  [ROUTER] Gemini tool-path redirecting to OpenAI (standard tool loop architecture)")
+            else:
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or OPENAI_TOOL_MODEL, llm_params=_llm_params)
+
             # Force tool call on first turn when user asked to play/open something (avoids "I wish I could" text-only reply)
             _require_tool = _actuation_intent and iteration == 1 and tools
-            response = _call_openai(
-                messages, tools=tools, max_tokens=MAX_OUTPUT_TOKENS, llm_params=_llm_params,
-                tool_choice="required" if _require_tool else "auto",
-            )
+            if not response and _require_tool:
+                response = _call_openai(
+                    messages, tools=tools, max_tokens=MAX_OUTPUT_TOKENS, llm_params=_llm_params,
+                    tool_choice="required"
+                )
 
             if response is None:
                 # ── OLLAMA FIRST FALLBACK DISABLED ──

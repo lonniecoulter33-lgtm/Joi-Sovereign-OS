@@ -1899,6 +1899,706 @@
         "source": "chat_loop",
         "task_type": "conversation"
       }
+    },
+    {
+      "ts": 1772365108.5514007,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365108.5986557,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365108.668613,
+      "tool": "swarm_cancel",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365108.7066443,
+      "tool": "swarm_cancel",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365108.7435446,
+      "tool": "generate_file",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365108.7823236,
+      "tool": "generate_file",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365220.486463,
+      "tool": "launch_app",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772365220.537905,
+      "tool": "launch_app",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772365875.55727,
+      "tool": "remember",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365875.6431487,
+      "tool": "remember",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365875.6930711,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772365875.7586484,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402185.465274,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402185.578492,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402247.147939,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402247.1953738,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402636.3592622,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402636.417163,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402636.4739172,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402636.5250103,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402892.4645944,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402892.7528222,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402892.7957919,
+      "tool": "analyze_screen",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402892.835553,
+      "tool": "analyze_screen",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402979.8874931,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772402979.9534726,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403038.3382523,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403038.3901284,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403146.5133283,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403146.5678585,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403146.6486218,
+      "tool": "fs_list",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403146.7711432,
+      "tool": "fs_list",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403146.834642,
+      "tool": "fs_read",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772403146.8946764,
+      "tool": "fs_read",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408757.1666887,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408757.2525306,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408890.9303818,
+      "tool": "analyze_camera",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408890.9821124,
+      "tool": "analyze_camera",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408937.7260356,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408937.7748158,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408966.1516466,
+      "tool": "play_media",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408966.413764,
+      "tool": "play_media",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408993.2087705,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772408993.267814,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409067.4717171,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "memory"
+      }
+    },
+    {
+      "ts": 1772409067.604956,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "memory"
+      }
+    },
+    {
+      "ts": 1772409182.4385035,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.5513606,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.624479,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.7578647,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.8288386,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.8772829,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.9353616,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409182.9935918,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.0417998,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.1030238,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.159563,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.2173793,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.275551,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.331556,
+      "tool": "code_search",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.382269,
+      "tool": "fs_list",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.4376543,
+      "tool": "fs_list",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.4872887,
+      "tool": "run_sandbox_comparison",
+      "success": false,
+      "outcome": "failure",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.5455067,
+      "tool": "run_sandbox_comparison",
+      "success": false,
+      "outcome": "failure",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.604807,
+      "tool": "fs_read",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409183.6645064,
+      "tool": "fs_read",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409311.4012716,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409311.5082657,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409311.5703273,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409311.6349962,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
     }
   ],
   "tool_stats": {
@@ -1908,13 +2608,13 @@
       "failures": 0
     },
     "analyze_screen": {
-      "calls": 4,
-      "successes": 4,
+      "calls": 6,
+      "successes": 6,
       "failures": 0
     },
     "recall": {
-      "calls": 13,
-      "successes": 13,
+      "calls": 15,
+      "successes": 15,
       "failures": 0
     },
     "list_known_faces": {
@@ -1928,13 +2628,13 @@
       "failures": 0
     },
     "analyze_camera": {
-      "calls": 1,
-      "successes": 1,
+      "calls": 3,
+      "successes": 3,
       "failures": 0
     },
     "remember": {
-      "calls": 8,
-      "successes": 8,
+      "calls": 10,
+      "successes": 10,
       "failures": 0
     },
     "acquire_capability": {
@@ -1948,8 +2648,8 @@
       "failures": 1
     },
     "internal_monologue": {
-      "calls": 27,
-      "successes": 27,
+      "calls": 55,
+      "successes": 55,
       "failures": 0
     },
     "monitor_ai_research": {
@@ -1958,8 +2658,8 @@
       "failures": 0
     },
     "fs_read": {
-      "calls": 4,
-      "successes": 4,
+      "calls": 8,
+      "successes": 8,
       "failures": 0
     },
     "orchestrate_task": {
@@ -2008,13 +2708,13 @@
       "failures": 0
     },
     "play_media": {
-      "calls": 3,
-      "successes": 3,
+      "calls": 5,
+      "successes": 5,
       "failures": 0
     },
     "launch_app": {
-      "calls": 2,
-      "successes": 2,
+      "calls": 4,
+      "successes": 4,
       "failures": 0
     },
     "open_url": {
@@ -2033,8 +2733,8 @@
       "failures": 0
     },
     "get_capability_report": {
-      "calls": 3,
-      "successes": 3,
+      "calls": 9,
+      "successes": 9,
       "failures": 0
     },
     "check_claude_code_status": {
@@ -2098,8 +2798,8 @@
       "failures": 0
     },
     "generate_file": {
-      "calls": 4,
-      "successes": 4,
+      "calls": 6,
+      "successes": 6,
       "failures": 0
     },
     "ingest_long_document": {
@@ -2116,6 +2816,26 @@
       "calls": 2,
       "successes": 2,
       "failures": 0
+    },
+    "swarm_cancel": {
+      "calls": 2,
+      "successes": 2,
+      "failures": 0
+    },
+    "fs_list": {
+      "calls": 4,
+      "successes": 4,
+      "failures": 0
+    },
+    "code_search": {
+      "calls": 10,
+      "successes": 10,
+      "failures": 0
+    },
+    "run_sandbox_comparison": {
+      "calls": 2,
+      "successes": 0,
+      "failures": 2
     }
   },
   "model_stats": {
@@ -2451,7 +3171,7 @@
       "tier": 2
     },
     "openai:gpt-5-mini": {
-      "calls": 4,
+      "calls": 26,
       "task_types": {
         "capability_query": {
           "count": 1,
@@ -2459,12 +3179,22 @@
           "verified_fail": 0
         },
         "conversation": {
-          "count": 3,
+          "count": 23,
+          "verified_ok": 0,
+          "verified_fail": 0
+        },
+        "system_control": {
+          "count": 1,
+          "verified_ok": 0,
+          "verified_fail": 0
+        },
+        "memory": {
+          "count": 1,
           "verified_ok": 0,
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 36513
+      "avg_response_ms": 23921
     },
     "brain:OpenAI gpt-5": {
       "calls": 6,

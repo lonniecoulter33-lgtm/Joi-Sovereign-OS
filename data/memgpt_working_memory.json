@@ -1,14 +1,5 @@
 {
-  "slots": [
-    {
-      "text": "[Compressed context] Previous conversation (summary unavailable): what was your last journal entry?; Tell me who created you and about your astrology; what are my kids names; Joi can you generate an Image of what you think you look like?; Joi I have given you the tools to generate images try again",
-      "type": "compression",
-      "source": "joi_compressor",
-      "added_turn": 538,
-      "message_count": 40,
-      "created_at": "2026-03-01T04:17:22.124114"
-    }
-  ],
-  "turn_counter": 542,
+  "slots": [],
+  "turn_counter": 575,
   "session_id": "20260212_0903"
 }

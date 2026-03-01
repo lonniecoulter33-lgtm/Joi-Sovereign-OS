@@ -3334,5 +3334,685 @@
     "completion_tokens": 120,
     "total_tokens": 459,
     "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:37:17.963918",
+    "model": "gpt-5",
+    "prompt_tokens": 920,
+    "completion_tokens": 4000,
+    "total_tokens": 4920,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:37:36.083209",
+    "model": "gpt-5",
+    "prompt_tokens": 894,
+    "completion_tokens": 4000,
+    "total_tokens": 4894,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:37:59.761552",
+    "model": "o4-mini",
+    "prompt_tokens": 894,
+    "completion_tokens": 3903,
+    "total_tokens": 4797,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:02.883843",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 920,
+    "completion_tokens": 4000,
+    "total_tokens": 4920,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:22.431741",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11824,
+    "completion_tokens": 1022,
+    "total_tokens": 12846,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:23.503267",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11924,
+    "completion_tokens": 14,
+    "total_tokens": 11938,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:27.088229",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11968,
+    "completion_tokens": 220,
+    "total_tokens": 12188,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:28.231249",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12282,
+    "completion_tokens": 21,
+    "total_tokens": 12303,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:48.655541",
+    "model": "gpt-5-nano",
+    "prompt_tokens": 920,
+    "completion_tokens": 4000,
+    "total_tokens": 4920,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:38:58.600841",
+    "model": "gpt-4.1",
+    "prompt_tokens": 921,
+    "completion_tokens": 1152,
+    "total_tokens": 2073,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:40:05.503090",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11484,
+    "completion_tokens": 871,
+    "total_tokens": 12355,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:40:20.205534",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11558,
+    "completion_tokens": 866,
+    "total_tokens": 12424,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:51:04.946345",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11267,
+    "completion_tokens": 1081,
+    "total_tokens": 12348,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:51:13.754735",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11364,
+    "completion_tokens": 523,
+    "total_tokens": 11887,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T04:51:15.123507",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11477,
+    "completion_tokens": 21,
+    "total_tokens": 11498,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T05:09:00.735867",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10442,
+    "completion_tokens": 795,
+    "total_tokens": 11237,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T14:56:23.047808",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10308,
+    "completion_tokens": 1209,
+    "total_tokens": 11517,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T14:56:25.277369",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10403,
+    "completion_tokens": 23,
+    "total_tokens": 10426,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T14:57:16.272850",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 9956,
+    "completion_tokens": 682,
+    "total_tokens": 10638,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T14:57:26.818448",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10100,
+    "completion_tokens": 882,
+    "total_tokens": 10982,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:03:42.732612",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12342,
+    "completion_tokens": 469,
+    "total_tokens": 12811,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:03:54.197569",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12941,
+    "completion_tokens": 782,
+    "total_tokens": 13723,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:03:55.836334",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 13057,
+    "completion_tokens": 23,
+    "total_tokens": 13080,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:06:30.295889",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10806,
+    "completion_tokens": 550,
+    "total_tokens": 11356,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:08:05.489937",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10110,
+    "completion_tokens": 575,
+    "total_tokens": 10685,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:08:06.715603",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10211,
+    "completion_tokens": 14,
+    "total_tokens": 10225,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:08:12.042131",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10372,
+    "completion_tokens": 30,
+    "total_tokens": 10402,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:08:49.312594",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10257,
+    "completion_tokens": 288,
+    "total_tokens": 10545,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:09:37.437063",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10204,
+    "completion_tokens": 724,
+    "total_tokens": 10928,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:09:39.593698",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10326,
+    "completion_tokens": 66,
+    "total_tokens": 10392,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:10:35.912708",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10216,
+    "completion_tokens": 958,
+    "total_tokens": 11174,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:10:37.959272",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10316,
+    "completion_tokens": 22,
+    "total_tokens": 10338,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:11:52.294390",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11821,
+    "completion_tokens": 784,
+    "total_tokens": 12605,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:11:54.041406",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11939,
+    "completion_tokens": 23,
+    "total_tokens": 11962,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:12:08.990451",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12226,
+    "completion_tokens": 1001,
+    "total_tokens": 13227,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:12:26.089989",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12749,
+    "completion_tokens": 1206,
+    "total_tokens": 13955,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:13:42.379835",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11131,
+    "completion_tokens": 672,
+    "total_tokens": 11803,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:13:56.101127",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11189,
+    "completion_tokens": 729,
+    "total_tokens": 11918,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:13:58.047101",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11316,
+    "completion_tokens": 23,
+    "total_tokens": 11339,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:05.318103",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11412,
+    "completion_tokens": 288,
+    "total_tokens": 11700,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:07.162176",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11511,
+    "completion_tokens": 25,
+    "total_tokens": 11536,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:27.956403",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10662,
+    "completion_tokens": 890,
+    "total_tokens": 11552,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:29.498197",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10758,
+    "completion_tokens": 22,
+    "total_tokens": 10780,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:37.679043",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10812,
+    "completion_tokens": 539,
+    "total_tokens": 11351,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:39.316748",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10906,
+    "completion_tokens": 26,
+    "total_tokens": 10932,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:40.856590",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10968,
+    "completion_tokens": 23,
+    "total_tokens": 10991,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:14:59.511879",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10608,
+    "completion_tokens": 836,
+    "total_tokens": 11444,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:01.025203",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10714,
+    "completion_tokens": 22,
+    "total_tokens": 10736,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:02.356304",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10768,
+    "completion_tokens": 26,
+    "total_tokens": 10794,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:11.572034",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10829,
+    "completion_tokens": 605,
+    "total_tokens": 11434,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:17.205439",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11116,
+    "completion_tokens": 347,
+    "total_tokens": 11463,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:33.898469",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10256,
+    "completion_tokens": 829,
+    "total_tokens": 11085,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:35.431881",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10355,
+    "completion_tokens": 23,
+    "total_tokens": 10378,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:36.866872",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10451,
+    "completion_tokens": 26,
+    "total_tokens": 10477,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:38.191139",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10509,
+    "completion_tokens": 27,
+    "total_tokens": 10536,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:15:39.496521",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10569,
+    "completion_tokens": 27,
+    "total_tokens": 10596,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:17:15.065955",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10031,
+    "completion_tokens": 439,
+    "total_tokens": 10470,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:17:16.392511",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10124,
+    "completion_tokens": 22,
+    "total_tokens": 10146,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:17:22.931733",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10178,
+    "completion_tokens": 347,
+    "total_tokens": 10525,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:17:30.643687",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10272,
+    "completion_tokens": 544,
+    "total_tokens": 10816,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T15:17:38.921847",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10371,
+    "completion_tokens": 607,
+    "total_tokens": 10978,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:45:54.968409",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10200,
+    "completion_tokens": 1745,
+    "total_tokens": 11945,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:45:56.982464",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10319,
+    "completion_tokens": 32,
+    "total_tokens": 10351,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:47:13.401067",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11356,
+    "completion_tokens": 997,
+    "total_tokens": 12353,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:47:53.210838",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10010,
+    "completion_tokens": 404,
+    "total_tokens": 10414,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:48:10.711085",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10094,
+    "completion_tokens": 1256,
+    "total_tokens": 11350,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:48:55.161391",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 9959,
+    "completion_tokens": 714,
+    "total_tokens": 10673,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:48:56.589389",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10071,
+    "completion_tokens": 31,
+    "total_tokens": 10102,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:49:23.124038",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11239,
+    "completion_tokens": 479,
+    "total_tokens": 11718,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:49:25.671654",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11335,
+    "completion_tokens": 22,
+    "total_tokens": 11357,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:49:50.463606",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 9941,
+    "completion_tokens": 1019,
+    "total_tokens": 10960,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:49:52.222633",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10038,
+    "completion_tokens": 18,
+    "total_tokens": 10056,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:50:51.895556",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12138,
+    "completion_tokens": 350,
+    "total_tokens": 12488,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:51:07.045120",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12216,
+    "completion_tokens": 1157,
+    "total_tokens": 13373,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:52:01.013785",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11387,
+    "completion_tokens": 711,
+    "total_tokens": 12098,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:52:06.438642",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11496,
+    "completion_tokens": 277,
+    "total_tokens": 11773,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:52:16.783154",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12095,
+    "completion_tokens": 605,
+    "total_tokens": 12700,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:52:31.218176",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12378,
+    "completion_tokens": 977,
+    "total_tokens": 13355,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:52:47.706669",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 13070,
+    "completion_tokens": 1065,
+    "total_tokens": 14135,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:53:02.044025",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 13593,
+    "completion_tokens": 1144,
+    "total_tokens": 14737,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:54:55.505008",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11300,
+    "completion_tokens": 1365,
+    "total_tokens": 12665,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:55:09.118599",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11899,
+    "completion_tokens": 1050,
+    "total_tokens": 12949,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:55:10.963465",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12027,
+    "completion_tokens": 61,
+    "total_tokens": 12088,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:56:48.653152",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 11928,
+    "completion_tokens": 876,
+    "total_tokens": 12804,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T16:57:05.241700",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 12074,
+    "completion_tokens": 1136,
+    "total_tokens": 13210,
+    "task": "chat"
   }
 ]

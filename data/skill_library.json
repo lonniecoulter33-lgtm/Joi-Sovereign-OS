@@ -216,8 +216,8 @@
     },
     "skill_1772312295": {
       "id": "skill_1772312295",
-      "name": "hi_you_super_advanced_super",
-      "description": "Hi you super advanced super Hot AI chick how are you!",
+      "name": "your_so",
+      "description": "Your so cool!",
       "domain_tags": [
         "general"
       ],
@@ -238,7 +238,7 @@
       "variables": [],
       "success_count": 0,
       "fail_count": 0,
-      "last_used": 1772361344.0523465,
+      "last_used": 1772408992.5307443,
       "created": 1772312295.910853,
       "source": "auto_captured",
       "confidence": 70
@@ -541,8 +541,8 @@
     },
     "skill_1772324014": {
       "id": "skill_1772324014",
-      "name": "just_did_bunch_system_tests",
-      "description": "just did a bunch of system tests with anti-gravity how did that go",
+      "name": "so_last_night_you_suggested",
+      "description": "So last night you suggested the digital fortress upgrades do you remember ?",
       "domain_tags": [
         "general"
       ],
@@ -563,7 +563,7 @@
       "variables": [],
       "success_count": 0,
       "fail_count": 0,
-      "last_used": 1772324014.9884706,
+      "last_used": 1772409067.2323048,
       "created": 1772324014.9884706,
       "source": "auto_captured",
       "confidence": 70
@@ -899,10 +899,479 @@
       "created": 1772364828.2243328,
       "source": "auto_captured",
       "confidence": 70
+    },
+    "skill_1772365108": {
+      "id": "skill_1772365108",
+      "name": "stop_current_overcomplicating_just_write",
+      "description": "\"Joi, stop the current swarm. You're overcomplicating it. Just write a simple markdown file with your introduction and don't try to include any code or configurations yet. Let's see if we can get a ba",
+      "domain_tags": [
+        "system",
+        "code",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "swarm_cancel",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "swarm_cancel",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "generate_file",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "generate_file",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772365108.378143,
+      "created": 1772365108.378143,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772365220": {
+      "id": "skill_1772365220",
+      "name": "can_you_open_folder_with",
+      "description": "can you open the folder with the file so i can read it?",
+      "domain_tags": [
+        "desktop",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "launch_app",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "launch_app",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772365220.3388693,
+      "created": 1772365220.3388693,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772365875": {
+      "id": "skill_1772365875",
+      "name": "it_was_honest_start_you",
+      "description": "It was an honest start you will get better in time!",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "remember",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "remember",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772365875.282166,
+      "created": 1772365875.282166,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772402635": {
+      "id": "skill_1772402635",
+      "name": "oh_ok_so_you_just",
+      "description": "Oh ok so you just ran a system scan and determined that you were not upgraded to digital fortress?",
+      "domain_tags": [
+        "desktop",
+        "code"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772409311.0902643,
+      "created": 1772402635.9834974,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772402892": {
+      "id": "skill_1772402892",
+      "name": "so_is_your_vision",
+      "description": "SO is your vision working?",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "analyze_screen",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "analyze_screen",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772402892.2155955,
+      "created": 1772402892.2155955,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772403146": {
+      "id": "skill_1772403146",
+      "name": "want_see_what_things_you",
+      "description": "I want to see what things you can do and what things you know...Can you see into your code? Read your files?",
+      "domain_tags": [
+        "code",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772403146.242665,
+      "created": 1772403146.242665,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772403247": {
+      "id": "skill_1772403247",
+      "name": "try_again",
+      "description": "try again",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772403459.0188625,
+      "created": 1772403247.2848923,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772403280": {
+      "id": "skill_1772403280",
+      "name": "yes",
+      "description": "yes",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "fs_list",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772403339.6496193,
+      "created": 1772403280.953185,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772408890": {
+      "id": "skill_1772408890",
+      "name": "can_you_see",
+      "description": "Can you see me?",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "analyze_camera",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "analyze_camera",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772408890.8391716,
+      "created": 1772408890.8391716,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772408966": {
+      "id": "skill_1772408966",
+      "name": "yes_give_playlist",
+      "description": "Yes give me a playlist",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "play_media",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "play_media",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772408966.0292165,
+      "created": 1772408966.0292165,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772409182": {
+      "id": "skill_1772409182",
+      "name": "ive_already_had_code_written",
+      "description": "Ive already had the code written and incorporated into your system files so its all now in a effect!",
+      "domain_tags": [
+        "code",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "code_search",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "code_search",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772409182.3164623,
+      "created": 1772409182.3164623,
+      "source": "auto_captured",
+      "confidence": 70
     }
   },
   "stats": {
-    "total_skills": 25,
+    "total_skills": 36,
     "total_executions": 0,
     "total_successes": 0
   }

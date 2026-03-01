@@ -20,7 +20,7 @@
     },
     "detail_depth": {
       "value": 1.0,
-      "confidence": 0.17999999999999955,
+      "confidence": 0.10999999999999951,
       "samples": 35,
       "last_updated": "2026-03-01T04:31:48.558287"
     },
@@ -1529,6 +1529,94 @@
       "delta": 0,
       "trigger": "no",
       "user_preview": "Joi that failed do you know why?"
+    },
+    {
+      "ts": "2026-03-01T14:56:25.473714",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Good afternoon Joi!"
+    },
+    {
+      "ts": "2026-03-01T14:56:25.473714",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "Good afternoon Joi!"
+    },
+    {
+      "ts": "2026-03-01T14:57:26.961029",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "What does error tilt is not defined mean?"
+    },
+    {
+      "ts": "2026-03-01T15:03:55.985635",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I am applyig a fix now to the tilt error and then I will restart your program an"
+    },
+    {
+      "ts": "2026-03-01T15:08:49.432437",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Not as cute as you!"
+    },
+    {
+      "ts": "2026-03-01T15:10:38.084792",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "Good answer"
+    },
+    {
+      "ts": "2026-03-01T15:12:26.280188",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I want to see what things you can do and what things you know...Can you see into"
+    },
+    {
+      "ts": "2026-03-01T15:14:07.286939",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "wrong",
+      "user_preview": "That is the wrong folder I want you to look into the project folder AI Joi can y"
+    },
+    {
+      "ts": "2026-03-01T15:17:39.018862",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "try again",
+      "user_preview": "try again"
+    },
+    {
+      "ts": "2026-03-01T16:53:02.304772",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Ive already had the code written and incorporated into your system files so its "
+    },
+    {
+      "ts": "2026-03-01T16:55:11.100395",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Oh ok so you just ran a system scan and determined that you were not upgraded to"
     }
   ]
 }

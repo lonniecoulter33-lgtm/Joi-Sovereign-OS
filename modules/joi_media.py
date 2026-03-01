@@ -192,6 +192,40 @@ def enroll_face(**params) -> Dict[str, Any]:
     _save_face_db()
     return {"ok": True, "message": f"Enrolled {name}"}
 
+def _identify_faces_encoding(frame_b64: str) -> List[str]:
+    """Identify faces in a base64 frame against the face database."""
+    if not HAVE_FACE_REC:
+        return []
+    try:
+        img_data = base64.b64decode(frame_b64)
+        img = face_recognition.load_image_file(io.BytesIO(img_data))
+        encodings = face_recognition.face_encodings(img)
+        if not encodings:
+            return []
+            
+        known_encodings = []
+        known_names = []
+        for name, data in _face_db.get("people", {}).items():
+            for enc in data.get("encodings", []):
+                known_encodings.append(np.array(enc))
+                known_names.append(name)
+        
+        if not known_encodings:
+            return ["unknown"] * len(encodings)
+            
+        results = []
+        for face_enc in encodings:
+            matches = face_recognition.compare_faces(known_encodings, face_enc, tolerance=0.6)
+            name = "unknown"
+            if True in matches:
+                first_match_index = matches.index(True)
+                name = known_names[first_match_index]
+            results.append(name)
+        return results
+    except Exception as e:
+        print(f"  [joi_media] face identification error: {e}")
+        return []
+
 def analyze_camera(**params) -> Dict[str, Any]:
     from modules.joi_auth import require_user
     require_user()
@@ -288,6 +322,17 @@ def avatars_switch_route():
 # ── Routes ───────────────────────────────────────────────────────────────────
 def vision_start_route(): return jsonify(start_vision())
 def vision_stop_route(): return jsonify(stop_vision())
+
+def camera_start_route():
+    global _camera_active
+    _camera_active = True
+    return jsonify({"ok": True, "message": "Camera backend active"})
+
+def camera_stop_route():
+    global _camera_active
+    _camera_active = False
+    return jsonify({"ok": True, "message": "Camera backend stopped"})
+
 def camera_frame_route():
     global _latest_camera_b64, _latest_camera_ts
     data = flask_req.get_json() or {}
@@ -297,6 +342,13 @@ def camera_frame_route():
             _latest_camera_b64 = b64
             _latest_camera_ts = time.time()
     return jsonify({"ok": True})
+
+def camera_proactive_route():
+    global _camera_proactive_queue
+    with _media_lock:
+        msgs = list(_camera_proactive_queue)
+        _camera_proactive_queue.clear()
+    return jsonify({"ok": True, "messages": msgs})
 
 def tts_route():
     data = flask_req.get_json() or {}
@@ -316,6 +368,9 @@ joi_companion.register_tool({"type": "function", "function": {"name": "enroll_fa
 
 joi_companion.register_route("/vision/start", ["POST"], vision_start_route, "vision_start")
 joi_companion.register_route("/vision/stop", ["POST"], vision_stop_route, "vision_stop")
+joi_companion.register_route("/camera/start", ["POST"], camera_start_route, "camera_start")
+joi_companion.register_route("/camera/stop", ["POST"], camera_stop_route, "camera_stop")
+joi_companion.register_route("/camera/proactive", ["GET"], camera_proactive_route, "camera_proactive")
 def get_current_avatar_route():
     avatar_path = get_preference("avatar_image")
     avatar_name = get_preference("avatar_name", "default")

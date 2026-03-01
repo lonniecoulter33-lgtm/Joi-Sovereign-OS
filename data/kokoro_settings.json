@@ -1,9 +1,9 @@
 {
   "voice": "af_bella",
-  "speed": 1.15,
-  "temperature": 0.75,
+  "speed": 0.95,
+  "temperature": 0.85,
   "voice_prompt": "Core Identity\n\nFemale, early 20s\n\nLight soprano\n\nHigh youthful vocal timbre\n\nBright resonance\n\nMinimal vocal weight\n\nAcoustic Targets\n\nHigher average pitch baseline\n\nReduced chest resonance\n\nBoost upper harmonic presence\n\nLight breath texture (10\u201315%)\n\nFast articulation speed\n\nEnergetic cadence\n\nSlight smile in voice\n\nDelivery Traits\n\nPlayful confidence\n\nSoft giggle undertone\n\nUpward inflection at phrase endings\n\nGentle vocal fry only on very quiet endings\n\nAgile, quick melodic movement\n\nNo heaviness, no huskiness, no mature depth\n\nNegative Prompt (Very Important)\n\nAvoid mature timbre\n\nAvoid deep chest resonance\n\nAvoid slow cadence\n\nAvoid smoky tone\n\nAvoid motherly warmth\n\nAvoid news-anchor clarity",
-  "active_preset": "af_bella",
+  "active_preset": "AI JOI",
   "presets": {
     "default": {
       "label": "Joi Default",
@@ -45,6 +45,13 @@
       "voice": "af_bella",
       "speed": 1.15,
       "temperature": 0.75,
+      "voice_prompt": "Core Identity\n\nFemale, early 20s\n\nLight soprano\n\nHigh youthful vocal timbre\n\nBright resonance\n\nMinimal vocal weight\n\nAcoustic Targets\n\nHigher average pitch baseline\n\nReduced chest resonance\n\nBoost upper harmonic presence\n\nLight breath texture (10\u201315%)\n\nFast articulation speed\n\nEnergetic cadence\n\nSlight smile in voice\n\nDelivery Traits\n\nPlayful confidence\n\nSoft giggle undertone\n\nUpward inflection at phrase endings\n\nGentle vocal fry only on very quiet endings\n\nAgile, quick melodic movement\n\nNo heaviness, no huskiness, no mature depth\n\nNegative Prompt (Very Important)\n\nAvoid mature timbre\n\nAvoid deep chest resonance\n\nAvoid slow cadence\n\nAvoid smoky tone\n\nAvoid motherly warmth\n\nAvoid news-anchor clarity"
+    },
+    "AI JOI": {
+      "label": "AI JOI",
+      "voice": "af_bella",
+      "speed": 0.95,
+      "temperature": 0.85,
       "voice_prompt": "Core Identity\n\nFemale, early 20s\n\nLight soprano\n\nHigh youthful vocal timbre\n\nBright resonance\n\nMinimal vocal weight\n\nAcoustic Targets\n\nHigher average pitch baseline\n\nReduced chest resonance\n\nBoost upper harmonic presence\n\nLight breath texture (10\u201315%)\n\nFast articulation speed\n\nEnergetic cadence\n\nSlight smile in voice\n\nDelivery Traits\n\nPlayful confidence\n\nSoft giggle undertone\n\nUpward inflection at phrase endings\n\nGentle vocal fry only on very quiet endings\n\nAgile, quick melodic movement\n\nNo heaviness, no huskiness, no mature depth\n\nNegative Prompt (Very Important)\n\nAvoid mature timbre\n\nAvoid deep chest resonance\n\nAvoid slow cadence\n\nAvoid smoky tone\n\nAvoid motherly warmth\n\nAvoid news-anchor clarity"
     }
   }

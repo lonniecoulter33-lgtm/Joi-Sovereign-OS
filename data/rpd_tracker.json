@@ -2,8 +2,9 @@
   "date": "2026-03-01",
   "usage": {
     "openai-architect": 7,
-    "openai-reasoning": 4,
-    "openai-vision": 27
+    "openai-reasoning": 5,
+    "openai-vision": 28,
+    "openai-long_context": 1
   },
   "exhausted": []
 }

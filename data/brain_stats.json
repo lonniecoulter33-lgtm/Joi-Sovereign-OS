@@ -77,11 +77,11 @@
     "avg_ms": 4072
   },
   "openai-coding": {
-    "calls": 211,
+    "calls": 212,
     "successes": 179,
-    "failures": 32,
-    "total_ms": 917052,
-    "avg_ms": 4346
+    "failures": 33,
+    "total_ms": 992636,
+    "avg_ms": 4682
   },
   "gemini-general": {
     "calls": 45,
@@ -126,39 +126,39 @@
     "avg_ms": 3
   },
   "openai-architect": {
-    "calls": 111,
+    "calls": 112,
     "successes": 33,
-    "failures": 78,
-    "total_ms": 2482185,
-    "avg_ms": 22362
+    "failures": 79,
+    "total_ms": 2548487,
+    "avg_ms": 22754
   },
   "openai-reasoning": {
-    "calls": 78,
-    "successes": 11,
+    "calls": 79,
+    "successes": 12,
     "failures": 67,
-    "total_ms": 209039,
-    "avg_ms": 2679
+    "total_ms": 232718,
+    "avg_ms": 2945
   },
   "openai-worker": {
-    "calls": 25,
+    "calls": 26,
     "successes": 0,
-    "failures": 25,
-    "total_ms": 6964,
-    "avg_ms": 278
+    "failures": 26,
+    "total_ms": 51869,
+    "avg_ms": 1994
   },
   "openai-fast": {
-    "calls": 25,
+    "calls": 26,
     "successes": 0,
-    "failures": 25,
-    "total_ms": 4394,
-    "avg_ms": 175
+    "failures": 26,
+    "total_ms": 50156,
+    "avg_ms": 1929
   },
   "openai-long_context": {
-    "calls": 25,
-    "successes": 13,
+    "calls": 26,
+    "successes": 14,
     "failures": 12,
-    "total_ms": 41850,
-    "avg_ms": 1674
+    "total_ms": 51781,
+    "avg_ms": 1991
   },
   "gemini-primary": {
     "calls": 52,
@@ -175,11 +175,11 @@
     "avg_ms": 638
   },
   "openai-vision": {
-    "calls": 39,
-    "successes": 27,
+    "calls": 40,
+    "successes": 28,
     "failures": 12,
-    "total_ms": 80002,
-    "avg_ms": 2051
+    "total_ms": 85154,
+    "avg_ms": 2128
   },
   "openai-vision_fast": {
     "calls": 12,

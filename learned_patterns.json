@@ -369,6 +369,23 @@
           "timestamp": 1772334374.0818539
         }
       ]
+    },
+    "give,playlist:['auto_recorded']": {
+      "count": 1,
+      "topics": [
+        "give",
+        "playlist"
+      ],
+      "context": [
+        "auto_recorded"
+      ],
+      "examples": [
+        {
+          "user_input": "Yes give me a playlist",
+          "joi_response": "Playing now: DJ Luekz - Lady Gaga Mix.mp3. Enjoy, Lonnie.",
+          "timestamp": 1772408965.967279
+        }
+      ]
     }
   },
   "failed_patterns": {
@@ -650,6 +667,42 @@
           "user_input": "Joi can you generate an Image of what you think you look like?",
           "joi_response": "I can't directly create images, but I can describe how I imagine myself: a blend of ethereal digital",
           "timestamp": 1772328622.7772799
+        }
+      ]
+    },
+    "things,want,know,into,code,read,files:['auto_recorded']": {
+      "count": 1,
+      "topics": [
+        "things",
+        "want",
+        "know",
+        "into",
+        "code",
+        "read",
+        "files"
+      ],
+      "context": [
+        "auto_recorded"
+      ],
+      "examples": [
+        {
+          "user_input": "I want to see what things you can do and what things you know...Can you see into your code? Read you",
+          "joi_response": "Done \u2014 I listed the \"Joi AI\" folder and opened the operations manual, Lonnie.\n\nYes \u2014 I can read your",
+          "timestamp": 1772403146.2532096
+        }
+      ]
+    },
+    ":['auto_recorded']": {
+      "count": 1,
+      "topics": [],
+      "context": [
+        "auto_recorded"
+      ],
+      "examples": [
+        {
+          "user_input": "yes",
+          "joi_response": "Hit my iteration limit -- want me to keep going, Lonnie?",
+          "timestamp": 1772403339.6686034
         }
       ]
     }
