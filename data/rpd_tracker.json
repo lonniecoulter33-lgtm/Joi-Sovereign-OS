@@ -1,12 +1,13 @@
 {
   "date": "2026-03-01",
   "usage": {
-    "openai-architect": 16,
-    "openai-reasoning": 8,
+    "openai-architect": 18,
+    "openai-reasoning": 11,
     "openai-vision": 48,
-    "openai-long_context": 1,
-    "openai-worker": 1,
-    "gemini-standard": 1
+    "openai-long_context": 2,
+    "openai-worker": 4,
+    "gemini-standard": 9,
+    "gemini-emergency": 1
   },
   "exhausted": []
 }

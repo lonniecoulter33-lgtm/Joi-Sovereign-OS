@@ -77,11 +77,11 @@
     "avg_ms": 4072
   },
   "openai-coding": {
-    "calls": 214,
+    "calls": 215,
     "successes": 179,
-    "failures": 35,
-    "total_ms": 1084451,
-    "avg_ms": 5067
+    "failures": 36,
+    "total_ms": 1134144,
+    "avg_ms": 5275
   },
   "gemini-general": {
     "calls": 46,
@@ -126,39 +126,39 @@
     "avg_ms": 3
   },
   "openai-architect": {
-    "calls": 126,
-    "successes": 42,
-    "failures": 84,
-    "total_ms": 3389381,
-    "avg_ms": 26899
+    "calls": 135,
+    "successes": 44,
+    "failures": 91,
+    "total_ms": 3825100,
+    "avg_ms": 28334
   },
   "openai-reasoning": {
-    "calls": 84,
-    "successes": 15,
-    "failures": 69,
-    "total_ms": 313993,
-    "avg_ms": 3738
+    "calls": 88,
+    "successes": 18,
+    "failures": 70,
+    "total_ms": 365629,
+    "avg_ms": 4154
   },
   "openai-worker": {
-    "calls": 28,
-    "successes": 1,
-    "failures": 27,
-    "total_ms": 96392,
-    "avg_ms": 3442
+    "calls": 34,
+    "successes": 4,
+    "failures": 30,
+    "total_ms": 321479,
+    "avg_ms": 9455
   },
   "openai-fast": {
-    "calls": 27,
+    "calls": 28,
     "successes": 0,
-    "failures": 27,
-    "total_ms": 50168,
-    "avg_ms": 1858
+    "failures": 28,
+    "total_ms": 69543,
+    "avg_ms": 2483
   },
   "openai-long_context": {
-    "calls": 27,
-    "successes": 14,
+    "calls": 28,
+    "successes": 15,
     "failures": 13,
-    "total_ms": 51791,
-    "avg_ms": 1918
+    "total_ms": 66282,
+    "avg_ms": 2367
   },
   "gemini-primary": {
     "calls": 53,
@@ -168,11 +168,11 @@
     "avg_ms": 1782
   },
   "gemini-emergency": {
-    "calls": 18,
-    "successes": 4,
+    "calls": 19,
+    "successes": 5,
     "failures": 14,
-    "total_ms": 10904,
-    "avg_ms": 605
+    "total_ms": 11808,
+    "avg_ms": 621
   },
   "openai-vision": {
     "calls": 61,
@@ -189,11 +189,11 @@
     "avg_ms": 7
   },
   "gemini-standard": {
-    "calls": 14,
-    "successes": 1,
-    "failures": 13,
-    "total_ms": 6219,
-    "avg_ms": 444
+    "calls": 23,
+    "successes": 9,
+    "failures": 14,
+    "total_ms": 25999,
+    "avg_ms": 1130
   },
   "gemini-large": {
     "calls": 1,

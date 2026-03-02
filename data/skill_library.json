@@ -1576,10 +1576,63 @@
       "created": 1772414769.1930764,
       "source": "auto_captured",
       "confidence": 70
+    },
+    "skill_1772422204": {
+      "id": "skill_1772422204",
+      "name": "see_you_are_stuck_if",
+      "description": "\"Joi, I see you are stuck on 'Reading 3 file(s)'. If you are hitting a NameError with 're', skip the Architect's deep analysis and just perform a direct fs_write of the proposal to the staging directo",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "get_orchestrator_status",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "execute_js",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "get_capability_report",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772422204.1142828,
+      "created": 1772422204.1142828,
+      "source": "auto_captured",
+      "confidence": 70
     }
   },
   "stats": {
-    "total_skills": 41,
+    "total_skills": 42,
     "total_executions": 0,
     "total_successes": 0
   }

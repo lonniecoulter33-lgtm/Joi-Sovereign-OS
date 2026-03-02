@@ -51,14 +51,6 @@
   },
   "signal_log": [
     {
-      "ts": "2026-02-12T09:03:00.524970",
-      "signal": "praise",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "awesome",
-      "user_preview": "hello Joi! I ugraded you with some awesome new things like your very own claude "
-    },
-    {
       "ts": "2026-02-12T09:03:51.264353",
       "signal": "correction",
       "dimension": null,
@@ -1649,6 +1641,14 @@
       "trigger": "correction_handler",
       "user_preview": "stop orchestration Joi",
       "previous_reply_preview": "on it. orchestration started -- check the terminal."
+    },
+    {
+      "ts": "2026-03-01T20:30:04.108066",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "\"Joi, I see you are stuck on 'Reading 3 file(s)'. If you are hitting a NameError"
     }
   ]
 }
