@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771042226.647241,
-      "datetime": "2026-02-13T21:10:26.647241",
-      "message_preview": "the terminal isnt resonding",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 75644
-    },
-    {
       "ts": 1771042227.1247392,
       "datetime": "2026-02-13T21:10:27.124739",
       "message_preview": "are you testing it?",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "brain:Gemini gemini-2.5-flash",
       "response_time_ms": 19625
+    },
+    {
+      "ts": 1772432050.5658202,
+      "datetime": "2026-03-01T23:14:10.565820",
+      "message_preview": "\"Joi, IGNORE the previous 'Sanity Check' failure. I have manually verified that src/middleware exist",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "medium",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 17526
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 102,
+    "gemini": 103,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 550,
+    "conversation": 551,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6525,7 +6525,7 @@
   },
   "tier_counts": {
     "fast": 348,
-    "standard": 302,
+    "standard": 303,
     "critical": 57
   },
   "verification_results": {

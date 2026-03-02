@@ -5110,5 +5110,29 @@
     "completion_tokens": 915,
     "total_tokens": 9944,
     "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T23:14:21.119506",
+    "model": "gpt-5",
+    "prompt_tokens": 851,
+    "completion_tokens": 800,
+    "total_tokens": 1651,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T23:14:26.475801",
+    "model": "gpt-5-nano",
+    "prompt_tokens": 851,
+    "completion_tokens": 800,
+    "total_tokens": 1651,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T23:14:28.471779",
+    "model": "gpt-4.1",
+    "prompt_tokens": 852,
+    "completion_tokens": 107,
+    "total_tokens": 959,
+    "task": "chat"
   }
 ]

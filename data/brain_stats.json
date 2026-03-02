@@ -77,11 +77,11 @@
     "avg_ms": 4072
   },
   "openai-coding": {
-    "calls": 216,
+    "calls": 217,
     "successes": 179,
-    "failures": 37,
-    "total_ms": 1271540,
-    "avg_ms": 5886
+    "failures": 38,
+    "total_ms": 1295032,
+    "avg_ms": 5967
   },
   "gemini-general": {
     "calls": 46,
@@ -147,18 +147,18 @@
     "avg_ms": 18092
   },
   "openai-fast": {
-    "calls": 29,
+    "calls": 30,
     "successes": 0,
-    "failures": 29,
-    "total_ms": 94198,
-    "avg_ms": 3248
+    "failures": 30,
+    "total_ms": 99542,
+    "avg_ms": 3318
   },
   "openai-long_context": {
-    "calls": 29,
-    "successes": 16,
+    "calls": 30,
+    "successes": 17,
     "failures": 13,
-    "total_ms": 80228,
-    "avg_ms": 2766
+    "total_ms": 82226,
+    "avg_ms": 2740
   },
   "gemini-primary": {
     "calls": 53,
@@ -189,11 +189,11 @@
     "avg_ms": 7
   },
   "gemini-standard": {
-    "calls": 32,
-    "successes": 18,
+    "calls": 33,
+    "successes": 19,
     "failures": 14,
-    "total_ms": 43694,
-    "avg_ms": 1365
+    "total_ms": 45769,
+    "avg_ms": 1386
   },
   "gemini-large": {
     "calls": 1,
