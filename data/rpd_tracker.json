@@ -1,7 +1,7 @@
 {
   "date": "2026-03-01",
   "usage": {
-    "openai-architect": 34,
+    "openai-architect": 36,
     "openai-reasoning": 16,
     "openai-vision": 48,
     "openai-long_context": 4,
