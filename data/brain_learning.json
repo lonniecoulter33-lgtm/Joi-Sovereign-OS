@@ -3,13 +3,6 @@
     "model": "gemini-primary",
     "task_type": "general",
     "success": true,
-    "latency_ms": 1538,
-    "timestamp": 1771748392.6548464
-  },
-  {
-    "model": "gemini-primary",
-    "task_type": "general",
-    "success": true,
     "latency_ms": 1797,
     "timestamp": 1771748413.2507026
   },
@@ -3498,5 +3491,12 @@
     "success": true,
     "latency_ms": 71625,
     "timestamp": 1772417133.1693668
+  },
+  {
+    "model": "openai-vision",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 2117,
+    "timestamp": 1772418693.386777
   }
 ]
