@@ -2448,6 +2448,94 @@
       "success": true,
       "duration_seconds": 0.002,
       "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772422690.5878675,
+      "datetime": "2026-03-01T20:38:10.587867",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "market_update",
+      "timestamp": 1772422704.2816646,
+      "datetime": "2026-03-01T20:38:24.281664",
+      "success": true,
+      "duration_seconds": 13.647,
+      "result_summary": "Market update: updated"
+    },
+    {
+      "task": "crypto_scan",
+      "timestamp": 1772422712.316385,
+      "datetime": "2026-03-01T20:38:32.316385",
+      "success": true,
+      "duration_seconds": 7.977,
+      "result_summary": "Crypto scan: 0 opportunities"
+    },
+    {
+      "task": "stock_scan",
+      "timestamp": 1772422721.652675,
+      "datetime": "2026-03-01T20:38:41.652674",
+      "success": true,
+      "duration_seconds": 9.21,
+      "result_summary": "Stock scan: 3 opportunities"
+    },
+    {
+      "task": "notification_check",
+      "timestamp": 1772422721.8897605,
+      "datetime": "2026-03-01T20:38:41.889760",
+      "success": true,
+      "duration_seconds": 0.068,
+      "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "notification_check",
+      "timestamp": 1772426322.130184,
+      "datetime": "2026-03-01T21:38:42.130183",
+      "success": true,
+      "duration_seconds": 0.001,
+      "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772428669.9867365,
+      "datetime": "2026-03-01T22:17:49.986736",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
+    },
+    {
+      "task": "market_update",
+      "timestamp": 1772428685.1202495,
+      "datetime": "2026-03-01T22:18:05.120249",
+      "success": true,
+      "duration_seconds": 15.1,
+      "result_summary": "Market update: updated"
+    },
+    {
+      "task": "crypto_scan",
+      "timestamp": 1772428693.544904,
+      "datetime": "2026-03-01T22:18:13.544903",
+      "success": true,
+      "duration_seconds": 8.364,
+      "result_summary": "Crypto scan: 0 opportunities"
+    },
+    {
+      "task": "stock_scan",
+      "timestamp": 1772428703.516254,
+      "datetime": "2026-03-01T22:18:23.516254",
+      "success": true,
+      "duration_seconds": 9.894,
+      "result_summary": "Stock scan: 3 opportunities"
+    },
+    {
+      "task": "notification_check",
+      "timestamp": 1772428703.566375,
+      "datetime": "2026-03-01T22:18:23.566374",
+      "success": true,
+      "duration_seconds": 0.004,
+      "result_summary": "Notifications: 0 sent"
     }
   ],
   "errors": []

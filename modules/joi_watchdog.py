@@ -39,6 +39,8 @@ from flask import jsonify, request as flask_req
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
+STAGING_DIR = BASE_DIR / "staging"
+STAGING_DIR.mkdir(exist_ok=True)
 WATCHDOG_LOG_PATH = DATA_DIR / "watchdog_log.json"
 SANITY_CHECK_PATH = BASE_DIR / "sanity_check.py"
 
@@ -603,6 +605,58 @@ def post_orchestrator_sanity(modified_files: Optional[List[str]] = None) -> Dict
             "message": "Post-orchestration sanity FAILED -- reverted to pre-orchestration state",
             "detail": detail,
         }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# STAGING GATEWAY (Requirement 4)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def validate_and_apply_to_live(file_path: str, content: str) -> Dict[str, Any]:
+    """
+    Staging & Pre-Commit Safety Bridge.
+    1. Write content to /staging/[filename]
+    2. Run joi_staging_validator.py
+    3. If passed: fs_write to live + git commit
+    4. If failed: return error to agent
+    """
+    from modules.joi_staging_validator import validate_staging_file
+    
+    p = Path(file_path)
+    staging_path = STAGING_DIR / p.name
+    
+    # 1. Write to Staging
+    try:
+        staging_path.write_text(content, encoding="utf-8")
+    except Exception as e:
+        return {"passed": False, "errors": [f"Failed to write to staging: {e}"], "suggestions": []}
+        
+    # 2. Validate
+    result = validate_staging_file(str(staging_path))
+    
+    if result["passed"]:
+        # 3. Apply to Live
+        try:
+            # Check for changes using git auto-commit before writing
+            _git_auto_commit(f"AI Backup: Before applying {p.name}")
+            
+            p.write_text(content, encoding="utf-8")
+            
+            # Post-write commit
+            _git_auto_commit(f"AI Update: Applied {p.name} (Staging passed)")
+            
+            # Cleanup staging
+            if staging_path.exists():
+                staging_path.unlink()
+                
+            return {"passed": True, "errors": [], "suggestions": []}
+        except Exception as e:
+            return {"passed": False, "errors": [f"Failed to write to live file: {e}"], "suggestions": []}
+    else:
+        # 4. Failed: Return error to Coder
+        # Keep staging file for debugging if needed (or delete if too much clutter)
+        return result
+
+
 
 
 # ══════════════════════════════════════════════════════════════════════════════

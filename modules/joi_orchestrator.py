@@ -14,10 +14,12 @@ Core engine for the Claude Code-style multi-agent pipeline:
   - Routes: GET/POST /orchestrator, GET /orchestrator/stream, POST /orchestrator/chat
 """
 
+import ast
 import hashlib
 import json
 import os
 import queue
+import re
 import threading
 import time
 import traceback
@@ -39,12 +41,80 @@ HEARTBEAT_INTERVAL = 300 # seconds
 AUTO_APPROVE_THRESHOLD = 3  # auto-approve plan if <= N subtasks
 MAX_RECOVERY_ATTEMPTS = 2   # self-healing: up to 2 retries with analyzed revised task (3 total runs)
 
+# ── JOI Laws (populated by _init_from_joi_md at import time) ─────────────────
+_joi_laws: Dict[str, Any] = {}
+
+# ── Loop-detection history (last 5 task hashes) ──────────────────────────────
+_task_history: List[str] = []
+
 # ══════════════════════════════════════════════════════════════════════════════
 # SESSION STATE
 # ══════════════════════════════════════════════════════════════════════════════
 
 _current_session: Optional[Dict] = None
 _session_lock = threading.Lock()
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# JOI.md INIT
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _init_from_joi_md():
+    """
+    Read JOI.md from project root and parse environment laws.
+    Creates staging/ dir if missing. Broadcasts init event.
+    Called once at module import time.
+    """
+    global _joi_laws
+    joi_md_path = BASE_DIR / "JOI.md"
+
+    # Ensure staging dir exists
+    staging_dir = BASE_DIR / "staging"
+    staging_dir.mkdir(exist_ok=True)
+
+    if not joi_md_path.exists():
+        _joi_laws = {
+            "python_exe": str(BASE_DIR / "venv311" / "Scripts" / "python.exe"),
+            "port": 5001,
+            "staging_dir": str(staging_dir),
+        }
+        return
+
+    try:
+        text = joi_md_path.read_text(encoding="utf-8")
+        laws: Dict[str, Any] = {}
+
+        # Parse Python path
+        m = re.search(r"Python:\s*venv311\s*\(([^)]+)\)", text)
+        if m:
+            laws["python_exe"] = m.group(1).strip()
+
+        # Parse port
+        m = re.search(r"Flask port:\s*(\d+)", text)
+        if m:
+            laws["port"] = int(m.group(1))
+
+        # Parse staging dir
+        m = re.search(r"Staging dir:\s*([^\n(]+)", text)
+        if m:
+            laws["staging_dir"] = str(BASE_DIR / m.group(1).strip().rstrip("/"))
+
+        laws["staging_dir"] = str(staging_dir)
+        laws["raw"] = text
+        _joi_laws = laws
+
+        try:
+            from modules.joi_orchestrator import _broadcast
+            _broadcast({"type": "info", "message": "JOI CODE initialized. Laws loaded from JOI.md."})
+        except Exception:
+            pass
+    except Exception as e:
+        print(f"  [ORCH] JOI.md load failed: {e}")
+        _joi_laws = {}
+
+
+# Initialize on import
+_init_from_joi_md()
 
 
 def _new_session(task: str) -> Dict:
@@ -209,15 +279,15 @@ def _maybe_recovery_retry(project_path: Optional[str]) -> bool:
     if not revised or "IMPOSSIBLE" in revised.upper().strip():
         return False
 
-    # ── Loop-detection guard ──────────────────────────────────────────────────
-    # Hash the revised task text; if it matches the last attempt, we'd be
-    # running the exact same plan again → abort to avoid an infinite retry loop.
+    # ── Loop-detection guard (full history of last 5 hashes) ─────────────────
+    # Hash the revised task text; if it matches ANY of the last 5 attempts,
+    # we'd be running the same plan again → abort to prevent infinite loop.
     _task_hash = hashlib.md5(revised.strip().lower().encode()).hexdigest()[:12]
-    if _current_session.get("last_task_hash") == _task_hash:
+    if _task_hash in _task_history[-5:]:
         _broadcast({
             "type": "error",
             "message": (
-                "[LOOP GUARD] Revised task is identical to the previous attempt "
+                "[LOOP GUARD] Revised task is identical to a previous attempt "
                 f"(hash={_task_hash}). Aborting recovery to prevent infinite loop."
             ),
         })
@@ -225,6 +295,9 @@ def _maybe_recovery_retry(project_path: Optional[str]) -> bool:
             _current_session["phase"] = "FAILED"
         _save_state()
         return False
+    _task_history.append(_task_hash)
+    if len(_task_history) > 20:
+        del _task_history[:-20]
     # ─────────────────────────────────────────────────────────────────────────
 
     with _session_lock:
@@ -234,7 +307,7 @@ def _maybe_recovery_retry(project_path: Optional[str]) -> bool:
         _current_session["phase"] = "PLAN"
         _current_session["plan_summary"] = ""
         _current_session["risk_assessment"] = ""
-        _current_session["last_task_hash"] = _task_hash  # store for next iteration
+        _current_session["last_task_hash"] = _task_hash  # keep for state serialization
     _save_state()
     _broadcast({
         "type": "recovery_retry",
@@ -248,61 +321,11 @@ def _maybe_recovery_retry(project_path: Optional[str]) -> bool:
 
 def _check_subtask_already_done(subtask: Dict, project_root: str) -> bool:
     """
-    Check if the code change described by this subtask already exists in the target file.
-    Returns True if the change appears to be already present.
+    Idempotency check disabled — removed false-positive keyword heuristic.
+    The coder agent handles idempotency: if it returns {"already_done": True},
+    trust that. Keyword matching (e.g. "logging" in a comment) caused false positives
+    that silently skipped real work.
     """
-    try:
-        from config.joi_context import ENABLE_FILE_CHECK_GUARD
-        if not ENABLE_FILE_CHECK_GUARD:
-            return False
-    except ImportError:
-        pass
-
-    files = subtask.get("files", [])
-    if not files:
-        return False
-
-    target_path = files[0]
-    if not Path(target_path).is_absolute():
-        target_path = str(Path(project_root) / target_path)
-
-    if not Path(target_path).exists():
-        return False
-
-    # Get keywords to check (description + acceptance criteria)
-    desc = subtask.get("description", "").lower()
-    acc = subtask.get("acceptance_criteria", "").lower()
-    content = ""
-    try:
-        with open(target_path, "r", encoding="utf-8", errors="ignore") as f:
-            content = f.read().lower()
-    except Exception:
-        return False
-
-    # Very basic heuristic: if specific unique keywords from the task are in the file
-    # and the task is a simple "Add X" or "Create Y", it might be done.
-    # We refine this by looking for code-like snippets in the description.
-    
-    # 1. Extract potential code snippets (things in backticks or long CamelCase/snake_case)
-    matches = re.findall(r'`([^`]+)`|([a-zA-Z_][a-zA-Z0-9_]{5,})', desc + " " + acc)
-    snippets = [m[0] or m[1] for m in matches if (m[0] or m[1])]
-    
-    # Filter out common words
-    common = {"function", "variable", "implement", "create", "module", "subtask", "description"}
-    snippets = [s for s in snippets if s.lower() not in common]
-
-    if not snippets:
-        return False
-
-    # If all non-common snippets are found, it's likely already done
-    found_count = 0
-    for s in snippets:
-        if s.lower() in content:
-            found_count += 1
-    
-    if found_count == len(snippets) and len(snippets) > 1:
-        return True
-        
     return False
 
 
@@ -685,45 +708,80 @@ def _execute_specialist(st: Dict, project_root: str, joi_ctx: Any) -> Dict:
 
 
 def _run_coder_loop(st: Dict, project_root: str, joi_ctx: Any) -> bool:
-    """Run the coder attempt/validation loop."""
-    from modules.joi_agents import call_coder, call_validator, preview_changes, preview_new_file
+    """
+    Run the coder attempt/validation loop.
+    Uses streaming run_command() for test commands (real-time output).
+    Already-done check is delegated to the coder agent (no keyword heuristic).
+    """
+    from modules.joi_agents import call_coder, preview_changes, preview_new_file
+    from modules.joi_code_executor import run_command as _run_cmd
+
     st_files = st.get("files", [])
     target_path = st_files[0] if st_files else ""
     if target_path and not Path(target_path).is_absolute():
         target_path = str(Path(project_root) / target_path)
 
-    is_new_file = target_path and not Path(target_path).exists()
-    file_content = Path(target_path).read_text(encoding="utf-8", errors="ignore") if target_path and not is_new_file else ""
+    is_new_file = bool(target_path and not Path(target_path).exists())
+    # Read up to 100KB (increased from 50KB)
+    if target_path and not is_new_file:
+        try:
+            raw = Path(target_path).read_bytes()
+            file_content = raw[:102400].decode("utf-8", errors="ignore")
+        except Exception:
+            file_content = ""
+    else:
+        file_content = ""
+
+    _broadcast({"type": "reading_files", "files": [target_path] if target_path else []})
 
     error_feedback = None
     for attempt in range(MAX_RETRIES):
-        _broadcast({"type": "agent_thinking", "agent": "CODER", "message": f"Attempt {attempt+1}..."})
+        _broadcast({"type": "agent_thinking", "agent": "CODER", "message": f"Attempt {attempt+1}/{MAX_RETRIES}..."})
         coder_result = call_coder(st, file_content, joi_ctx, error_feedback)
+
+        # Explicit error propagation — no bare-except swallowing
+        if coder_result is None:
+            error_feedback = "CODER agent returned None (empty response)"
+            _broadcast({"type": "error", "agent": "CODER", "message": error_feedback})
+            continue
+
         if coder_result.get("error"):
             error_feedback = coder_result["error"]
+            _broadcast({"type": "error", "agent": "CODER", "message": f"Coder error: {error_feedback}"})
             continue
-        
+
+        # Trust coder's idempotency signal
+        if coder_result.get("already_done"):
+            _broadcast({"type": "info", "message": f"Coder reports subtask #{st.get('id')} already done"})
+            st["changes"] = []
+            return True
+
         changes = coder_result.get("changes", [])
         if not changes:
-            error_feedback = "No changes generated"
+            error_feedback = "No changes generated by coder"
             continue
 
         preview = preview_new_file(changes, target_path) if is_new_file else preview_changes(target_path, changes)
         if not preview["valid"]:
-            error_feedback = f"Clean apply failed: {preview.get('errors')}"
+            error_feedback = f"Preview/apply failed: {preview.get('errors')}"
             continue
 
-        # Validation
+        # Validation using streaming run_command (real-time output in terminal)
         test_cmd = st.get("test_command", "")
         if test_cmd:
-            val_result = call_validator(test_cmd, project_root)
-            if not val_result["passed"]:
-                error_feedback = f"Validation failed: {val_result.get('stderr')}"
+            _broadcast({"type": "validation_running", "command": test_cmd})
+            val_result = _run_cmd(test_cmd, cwd=project_root, timeout=120, broadcast_fn=_broadcast)
+            if not val_result["ok"]:
+                error_feedback = f"Validation failed (exit {val_result['returncode']}): {val_result['stderr'][:500]}"
+                _broadcast({"type": "validation_failed", "command": test_cmd,
+                            "stderr": val_result["stderr"][:500]})
                 continue
-        
+            _broadcast({"type": "validation_passed", "command": test_cmd})
+
         st["changes"] = changes
         st["preview"] = {"diff": preview.get("diff"), "modified": preview.get("modified")}
         return True
+
     return False
 
 
@@ -842,51 +900,74 @@ def reject_subtask_gate(subtask_id: int, reason: str = ""):
 # ── Apply Changes (uses code_edit with backup) ───────────────────────────────
 
 def _apply_changes(file_path: str, changes: List[Dict]) -> bool:
-    """Apply changes to disk (auto-backup + rollback on failure).
-    Supports new-file creation: if file doesn't exist and a change has old_text="" + new_text, writes the file.
-    Uses _apply_changes_direct for existing files to avoid Flask request context issues.
     """
-    from modules.joi_agents import validate_python_file
+    Apply changes to disk — ALL files go through staging + py_compile + watchdog.
+    Supports new-file creation (change with empty old_text) and existing file edits.
+    """
+    from modules.joi_code_executor import stage_and_verify, apply_staged
 
     p = Path(file_path)
     is_new = not p.exists()
 
-    # ── New file creation ──
-    if is_new and len(changes) == 1:
+    # ── Build full new content ──────────────────────────────────────────────
+    if is_new:
+        if len(changes) != 1:
+            _broadcast({"type": "error", "message": f"New file requires exactly one change: {file_path}"})
+            return False
         old = (changes[0].get("old_text") or "").strip()
-        new = changes[0].get("new_text") or ""
-        if old == "" and new.strip():
-            try:
-                p.parent.mkdir(parents=True, exist_ok=True)
-                p.write_text(new, encoding="utf-8")
-                _broadcast({"type": "info", "message": f"Created new file: {file_path}"})
-                # Fall through to post-apply smoke test below
-            except Exception as e:
-                _broadcast({"type": "error", "message": f"New file creation failed: {e}"})
-                return False
-        else:
-            _broadcast({"type": "error", "message": "New file requires one change with empty old_text"})
+        new_content = changes[0].get("new_text") or ""
+        if old != "" or not new_content.strip():
+            _broadcast({"type": "error", "message": "New file change must have empty old_text and non-empty new_text"})
             return False
-    elif is_new:
-        _broadcast({"type": "error", "message": f"File does not exist and multiple changes provided: {file_path}"})
-        return False
     else:
-        # ── Existing file edit ──
-        # Always use _apply_changes_direct to avoid code_edit's _require_user()
-        # which calls request.cookies and fails in background pipeline threads
-        # (no Flask request context available).
-        return _apply_changes_direct(file_path, changes)
-
-    # Post-apply smoke test for new files (existing files handled in _apply_changes_direct)
-    if file_path.endswith(".py"):
-        val = validate_python_file(file_path)
-        if not val.get("passed"):
-            _broadcast({"type": "error", "message": "Post-apply smoke test failed -- rolling back"})
-            try:
-                p.unlink(missing_ok=True)
-            except Exception:
-                pass
+        # Apply patch to existing file
+        try:
+            original = p.read_text(encoding="utf-8")
+        except Exception as e:
+            _broadcast({"type": "error", "message": f"Cannot read {file_path}: {e}"})
             return False
+
+        new_content = original
+        for change in changes:
+            old = change.get("old_text", "")
+            new = change.get("new_text", "")
+            if old and old in new_content:
+                new_content = new_content.replace(old, new, 1)
+            elif old:
+                _broadcast({"type": "error", "message": f"old_text not found in {p.name}"})
+                return False
+
+    # ── Stage + verify ──────────────────────────────────────────────────────
+    stage_result = stage_and_verify(new_content, file_path, broadcast_fn=_broadcast)
+
+    if not stage_result["ok"]:
+        errors = stage_result.get("errors", [])
+        _broadcast({
+            "type": "compile_error" if any("py_compile" in e for e in errors) else "error",
+            "message": f"Staging failed: {'; '.join(errors)}",
+            "file": file_path,
+        })
+        # Try diagnostic mode (one self-healing attempt)
+        fixed = _diagnostic_mode(
+            error="; ".join(errors),
+            staged_content=new_content,
+            target_path=file_path,
+        )
+        if fixed:
+            stage_result2 = stage_and_verify(fixed, file_path, broadcast_fn=_broadcast)
+            if stage_result2["ok"]:
+                result = apply_staged(stage_result2["staging_path"], file_path)
+                if result["ok"]:
+                    return True
+        _broadcast({"type": "error", "message": f"Staging failed after diagnostic attempt: {file_path}"})
+        return False
+
+    # ── Apply staged file to live ──────────────────────────────────────────
+    result = apply_staged(stage_result["staging_path"], file_path)
+    if not result["ok"]:
+        errors = result.get("errors", [])
+        _broadcast({"type": "error", "message": f"Apply failed: {'; '.join(errors[:3])}"})
+        return False
 
     return True
 
@@ -918,43 +999,85 @@ def _apply_changes_direct(file_path: str, changes: List[Dict]) -> bool:
                             "message": f"Apply failed: old_text not found in {p.name}"})
                 return False
 
-        # ── PRE-FLIGHT VALIDATION (before writing to disk) ──────────
+        # ── STAGING GATEWAY (Requirement 4) ─────────────────────────
         try:
-            from modules.joi_preflight import preflight_validate
-            pf = preflight_validate(file_path, original, modified)
-            if not pf["passed"]:
-                error_msgs = "; ".join(pf["errors"][:3])
-                _broadcast({"type": "error", "agent": "PREFLIGHT",
-                            "message": f"[PREFLIGHT] Blocked: {error_msgs}"})
-                p.write_text(original, encoding="utf-8")
+            from modules.joi_watchdog import validate_and_apply_to_live
+            gateway_result = validate_and_apply_to_live(file_path, modified)
+            
+            if not gateway_result["passed"]:
+                error_msgs = "; ".join(gateway_result["errors"][:3])
+                suggestions = "; ".join(gateway_result.get("suggestions", [])[:3])
+                msg = f"[STAGING] Blocked: {error_msgs}"
+                if suggestions:
+                    msg += f" | Suggestions: {suggestions}"
+                    
+                _broadcast({"type": "error", "agent": "WATCHDOG", "message": msg})
                 return False
-            if pf.get("warnings"):
-                for w in pf["warnings"][:3]:
-                    _broadcast({"type": "warning", "agent": "PREFLIGHT",
-                                "message": f"[PREFLIGHT] {w}"})
-            _broadcast({"type": "info", "agent": "PREFLIGHT",
-                        "message": f"[PREFLIGHT] {p.name} passed all validation stages"})
+                
+            _broadcast({"type": "info", "agent": "WATCHDOG",
+                        "message": f"[STAGING] {p.name} passed validation and was applied to live"})
+            return True
+            
         except ImportError:
-            pass  # preflight module not available — continue without it
-        except Exception as pf_err:
-            _broadcast({"type": "info",
-                        "message": f"[PREFLIGHT] Skipped: {pf_err}"})
-
-        p.write_text(modified, encoding="utf-8")
-
-        # Post-apply smoke test for Python files (defense in depth)
-        if file_path.endswith(".py"):
-            val = validate_python_file(file_path)
-            if not val.get("passed"):
-                _broadcast({"type": "error",
-                            "message": "Post-apply smoke test failed -- rolling back"})
-                p.write_text(original, encoding="utf-8")
-                return False
-
-        return True
+            # Fallback if watchdog isn't available
+            p.write_text(modified, encoding="utf-8")
+            _broadcast({"type": "warning", "message": "Watchdog gateway not found, applied directly."})
+            return True
+        except Exception as e:
+            _broadcast({"type": "error", "message": f"Watchdog gateway error: {e}"})
+            return False
     except Exception as e:
         print(f"  [ORCH] Direct apply failed: {e}")
         return False
+
+
+# ── Diagnostic Mode (self-healing compile failures) ──────────────────────────
+
+def _diagnostic_mode(error: str, staged_content: str, target_path: str) -> Optional[str]:
+    """
+    Analyze a compile/test error and ask the LLM to produce corrected code.
+    Returns the corrected content string if successful, or None to escalate.
+    """
+    _broadcast({"type": "diagnostic_mode", "error": error,
+                "message": "DIAGNOSTIC MODE — Analyzing failure and repairing in staging..."})
+
+    prompt = (
+        f"A Python file failed to compile. Fix the syntax/logic error.\n\n"
+        f"FILE: {target_path}\n\n"
+        f"ERROR:\n{error[:1000]}\n\n"
+        f"CURRENT FILE CONTENT:\n```python\n{staged_content[:4000]}\n```\n\n"
+        "Reply with ONLY the corrected Python file content, no explanation, no markdown fences."
+    )
+
+    corrected = None
+    try:
+        from modules.joi_brain import brain
+        result = brain.think(
+            task="Fix Python syntax error",
+            prompt=prompt,
+            system_prompt="You are a Python expert. Output only the corrected file content.",
+            thinking_level=1,
+            max_tokens=4000,
+        )
+        text = (result.get("text") or "").strip() if result.get("ok") else ""
+        if text:
+            # Strip accidental markdown fences
+            if text.startswith("```python"):
+                text = text[9:]
+            if text.startswith("```"):
+                text = text[3:]
+            if text.endswith("```"):
+                text = text[:-3]
+            corrected = text.strip()
+    except Exception as e:
+        _broadcast({"type": "info", "message": f"[DIAGNOSTIC] LLM call failed: {e}"})
+
+    if not corrected:
+        _broadcast({"type": "error", "message": "[DIAGNOSTIC] Could not auto-repair. Escalating to user."})
+        return None
+
+    _broadcast({"type": "info", "message": "[DIAGNOSTIC] Repaired code generated — verifying..."})
+    return corrected
 
 
 # ── Helper: Guess Relevant Files ──────────────────────────────────────────────
@@ -986,7 +1109,6 @@ def _guess_relevant_files(task: str, project_root: str) -> List[str]:
         candidates.append(main)
 
     # Check for file mentions in the task (e.g. "joi_llm.py", "modules/joi_brain.py")
-    import re
     file_mentions = re.findall(r'[\w/\\]+\.(?:py|html|js|json|css|md)', task)
     for fm in file_mentions:
         # Try registry first (strip path prefix + extension)
@@ -1214,7 +1336,7 @@ def compile_orchestrator_block() -> str:
         "  User asks status of task  -> get_orchestrator_status()\n"
         "  User says cancel/stop     -> cancel_orchestration()\n"
         "\n"
-        "The Agent Terminal tab shows real-time progress. Lonnie can see diffs and approve changes.\n"
+        "The JOI CODE tab shows real-time progress. Lonnie can see diffs and approve changes.\n"
         "Self-healing: if a run fails, the pipeline analyzes the failure and retries with a revised approach (up to 2 retries).\n"
         "For separate apps/projects (not Joi's code): use orchestrate_task(task_description='...', project_path='C:\\\\path\\\\to\\\\project').\n"
     )

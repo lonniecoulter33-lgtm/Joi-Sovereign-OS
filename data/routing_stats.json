@@ -1,71 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771039132.346867,
-      "datetime": "2026-02-13T20:18:52.346867",
-      "message_preview": "did you put your picture and name on this player ?",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1384
-    },
-    {
-      "ts": 1771039159.482526,
-      "datetime": "2026-02-13T20:19:19.482526",
-      "message_preview": "your the coolest Ai girl ever",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1471
-    },
-    {
-      "ts": 1771039207.308469,
-      "datetime": "2026-02-13T20:20:07.308469",
-      "message_preview": "will another song start after this ends",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1704
-    },
-    {
-      "ts": 1771041484.3356316,
-      "datetime": "2026-02-13T20:58:04.335631",
-      "message_preview": "The player closed and I dont see it anymore?",
-      "task_type": "system_control",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1403
-    },
-    {
-      "ts": 1771041530.1047344,
-      "datetime": "2026-02-13T20:58:50.104734",
-      "message_preview": "Joi this time play Lady Gaga",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 2649
-    },
-    {
       "ts": 1771041571.2813897,
       "datetime": "2026-02-13T20:59:31.281389",
       "message_preview": "Thank you",
@@ -6499,17 +6434,82 @@
       "verifier_model": null,
       "model_used": "openai:gpt-5-mini",
       "response_time_ms": 20057
+    },
+    {
+      "ts": 1772422777.3081772,
+      "datetime": "2026-03-01T20:39:37.308177",
+      "message_preview": "Joi, now that you've restarted, please use the new Staging & Pre-Commit Safety Bridge to apply the D",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "medium",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:OpenAI gpt-5",
+      "response_time_ms": 27944
+    },
+    {
+      "ts": 1772423075.831755,
+      "datetime": "2026-03-01T20:44:35.831754",
+      "message_preview": "APPROVE",
+      "task_type": "conversation",
+      "tier": "fast",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2481
+    },
+    {
+      "ts": 1772423217.3216646,
+      "datetime": "2026-03-01T20:46:57.321664",
+      "message_preview": "APPROVE",
+      "task_type": "conversation",
+      "tier": "fast",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2948
+    },
+    {
+      "ts": 1772423548.2680228,
+      "datetime": "2026-03-01T20:52:28.268022",
+      "message_preview": "Joi, the terminal is showing 0 files for analysis. Please ensure you are reading the 'fortress_propo",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2701
+    },
+    {
+      "ts": 1772428704.93963,
+      "datetime": "2026-03-01T22:18:24.939630",
+      "message_preview": "Hello Joi",
+      "task_type": "conversation",
+      "tier": "fast",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 4250
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 89,
+    "gemini": 94,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 537,
+    "conversation": 542,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6524,8 +6524,8 @@
     "code_review": 16
   },
   "tier_counts": {
-    "fast": 343,
-    "standard": 295,
+    "fast": 346,
+    "standard": 297,
     "critical": 56
   },
   "verification_results": {

@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+import re
+import ast
 import sys
 
 # This allows your 3.11.6 version and prevents future crashes
@@ -86,6 +86,19 @@ try:
     print("  [OK] CORS enabled for /api/* routes")
 except ImportError:
     print("  [WARN] flask_cors not installed -- CORS disabled (pip install flask-cors)")
+
+# ── Flask Error Handlers (JSON only — prevents HTML errors reaching frontend) ─
+@app.errorhandler(404)
+def handle_404(e):
+    return jsonify({"ok": False, "error": "Not found", "code": 404}), 404
+
+@app.errorhandler(500)
+def handle_500(e):
+    return jsonify({"ok": False, "error": f"Server error: {str(e)}", "code": 500}), 500
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    return jsonify({"ok": False, "error": f"Unhandled: {type(e).__name__}: {str(e)}"}), 500
 
 # ── Thread-safe /api/status ──────────────────────────────────────────────────
 _status_counter = 0

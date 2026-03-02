@@ -240,6 +240,66 @@
       "response_time": null,
       "input_length": 249,
       "response_length": 56
+    },
+    {
+      "id": "auto_1772422777278",
+      "timestamp": 1772422777.2788026,
+      "datetime": "2026-03-01T20:39:37.278802",
+      "user_input": "Joi, now that you've restarted, please use the new Staging & Pre-Commit Safety Bridge to apply the Digital Fortress upgrade from the proposal (fortress_proposal_20260301_182741.json). Make sure to fix any missing imports in the staging area first.",
+      "joi_response": "[orchestrate_task] Use Staging & Pre-Commit Safety Bridge to apply Digital Fortress upgrade from fortress_proposal_20260301_182741.json. First audit the staging area for missing imports and auto-fix (notably add `import re` in the orchestration script and any touched modules). Apply the proposal only in staging/feature branch via the bridge, respecting the watchdog allowlist. Run lint, type-checks, and tests in staging. Generate a unified diff and concise changelog (no commit), surface any watch",
+      "feedback": null,
+      "context": [
+        "auto_recorded"
+      ],
+      "topics": [
+        "staging",
+        "restarted",
+        "please",
+        "commit",
+        "safety",
+        "bridge",
+        "apply",
+        "digital",
+        "fortress",
+        "upgrade"
+      ],
+      "response_time": null,
+      "input_length": 247,
+      "response_length": 500
+    },
+    {
+      "id": "auto_1772423075840",
+      "timestamp": 1772423075.84022,
+      "datetime": "2026-03-01T20:44:35.840220",
+      "user_input": "APPROVE",
+      "joi_response": "Understood. Applying the Digital Fortress upgrade now.",
+      "feedback": null,
+      "context": [
+        "auto_recorded"
+      ],
+      "topics": [
+        "approve"
+      ],
+      "response_time": null,
+      "input_length": 7,
+      "response_length": 54
+    },
+    {
+      "id": "auto_1772428705018",
+      "timestamp": 1772428705.0187676,
+      "datetime": "2026-03-01T22:18:25.018767",
+      "user_input": "Hello Joi",
+      "joi_response": "Hey there, Lonnie! What's the tea?",
+      "feedback": null,
+      "context": [
+        "auto_recorded"
+      ],
+      "topics": [
+        "hello"
+      ],
+      "response_time": null,
+      "input_length": 9,
+      "response_length": 34
     }
   ],
   "feedback_summary": {
@@ -289,12 +349,12 @@
       "negative_feedback": 0
     },
     "digital": {
-      "count": 2,
+      "count": 3,
       "positive_feedback": 0,
       "negative_feedback": 1
     },
     "fortress": {
-      "count": 2,
+      "count": 3,
       "positive_feedback": 0,
       "negative_feedback": 1
     },
@@ -469,6 +529,56 @@
       "negative_feedback": 0
     },
     "analysis": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "staging": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "restarted": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "please": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "commit": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "safety": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "bridge": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "apply": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "upgrade": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "approve": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "hello": {
       "count": 1,
       "positive_feedback": 0,
       "negative_feedback": 0

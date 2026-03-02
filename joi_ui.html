@@ -2237,6 +2237,99 @@
             border-radius: 2px;
         }
 
+        /* JOI CODE — Bash Output Panel */
+        .term-bash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 12px;
+            font-size: 10px;
+            font-family: 'Courier New', monospace;
+            color: rgba(0, 255, 65, 0.5);
+            border-top: 1px solid rgba(0, 255, 65, 0.15);
+            cursor: pointer;
+            user-select: none;
+        }
+        .term-bash-header:hover {
+            background: rgba(0, 255, 65, 0.05);
+        }
+        .term-bash-output {
+            max-height: 180px;
+            overflow-y: auto;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+            background: #0a0a00;
+            border-top: 1px solid rgba(0, 255, 65, 0.2);
+            padding: 4px 12px;
+        }
+        .bash-line {
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .bash-stdout {
+            color: rgba(0, 255, 65, 0.6);
+        }
+        .bash-stderr {
+            color: #ffb300;
+        }
+
+        /* JOI CODE — Permission Gate */
+        .term-permission-gate {
+            position: relative;
+            z-index: 10;
+            margin: 6px 8px;
+            border: 1px solid #ffb300;
+            border-radius: 4px;
+            background: rgba(15, 10, 0, 0.95);
+            padding: 8px 12px;
+        }
+        .perm-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ffb300;
+            margin-bottom: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .perm-cmd {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 179, 0, 0.3);
+            border-radius: 3px;
+            padding: 4px 8px;
+            margin: 4px 0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .perm-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .perm-allow {
+            background: rgba(0, 200, 80, 0.15);
+            border: 1px solid rgba(0, 200, 80, 0.5);
+            color: #00c850;
+            padding: 3px 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .perm-allow:hover { background: rgba(0, 200, 80, 0.3); }
+        .perm-deny {
+            background: rgba(255, 60, 60, 0.1);
+            border: 1px solid rgba(255, 60, 60, 0.4);
+            color: #ff4040;
+            padding: 3px 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .perm-deny:hover { background: rgba(255, 60, 60, 0.25); }
+
         /* Terminal line types */
         .term-line {
             margin-bottom: 2px;
@@ -4541,7 +4634,7 @@
             <div id="terminal-dock">
                 <div class="term-header">
                     <div class="term-header-left">
-                        <span class="term-header-title">AGENT TERMINAL</span>
+                        <span class="term-header-title">JOI CODE</span>
                         <span class="term-agent-count" id="term-agent-count">0</span>
                         <span class="term-phase-badge term-phase-IDLE" id="term-phase-badge">IDLE</span>
                     </div>
@@ -4554,11 +4647,25 @@
                 <div class="term-progress">
                     <div class="term-progress-bar" id="term-progress-bar"></div>
                 </div>
-                <!-- Sequential output (default) -->
-                <div class="term-output" id="term-output">
-                    <div class="term-line term-info">Agent Terminal ready. Use orchestrate_task or the sidebar to start.
+                <!-- Permission Gate (shown when risky command needs approval) -->
+                <div class="term-permission-gate" id="term-permission-gate" style="display:none;">
+                    <div class="perm-title">&#9888; PERMISSION REQUIRED</div>
+                    <pre class="perm-cmd" id="perm-cmd-display"></pre>
+                    <div class="perm-buttons">
+                        <button class="perm-allow" onclick="joicodePermit(true)">ALLOW</button>
+                        <button class="perm-deny" onclick="joicodePermit(false)">DENY</button>
                     </div>
                 </div>
+                <!-- Sequential output (default) -->
+                <div class="term-output" id="term-output">
+                    <div class="term-line term-info">JOI CODE ready. Atomic staging enabled. Type a task to begin.</div>
+                </div>
+                <!-- Bash Output Stream (real-time stdout/stderr) -->
+                <div class="term-bash-header" onclick="toggleBashPanel()">
+                    <span>&#9654; BASH OUTPUT</span>
+                    <span id="bash-line-count">0 lines</span>
+                </div>
+                <div class="term-bash-output" id="term-bash-output" style="display:none;"></div>
                 <!-- Swarm 3-pane grid (hidden by default) -->
                 <div class="swarm-grid" id="swarm-grid" style="display:none;">
                     <div class="swarm-hive" id="swarm-hive">
@@ -7127,7 +7234,7 @@
         }
 
         // ══════════════════════════════════════════════════════════════════
-        // AGENT TERMINAL DOCK — Multi-Agent Orchestration UI
+        // JOI CODE DOCK — Multi-Agent Orchestration UI
         // ══════════════════════════════════════════════════════════════════
 
         let _termDockOpen = false;
@@ -7313,12 +7420,85 @@
                     }
                     break;
 
+                case 'bash_stdout':
+                    appendBashLine(event.line || '', 'bash-stdout');
+                    break;
+                case 'bash_stderr':
+                    appendBashLine(event.line || '', 'bash-stderr');
+                    break;
+                case 'compile_check':
+                    appendTermLine(
+                        '\uD83D\uDD0D py_compile: ' + (event.passed ? '\u2713 OK' : '\u2717 ' + (event.error || 'FAILED')),
+                        event.passed ? 'term-success' : 'term-error'
+                    );
+                    break;
+                case 'compile_error':
+                    appendTermLine('\u26A0 COMPILE ERROR: ' + (event.message || event.error || ''), 'term-error');
+                    break;
+                case 'diagnostic_mode':
+                    appendTermLine('\uD83D\uDD27 DIAGNOSTIC MODE \u2014 Analyzing failure and repairing in staging...', 'term-info');
+                    break;
+                case 'staged':
+                    appendTermLine('\uD83D\uDCE6 Staged: ' + (event.file || ''), 'term-info');
+                    break;
+                case 'reading_files':
+                    if (event.files && event.files.length) {
+                        appendTermLine('\uD83D\uDCC2 Reading: ' + event.files.join(', '), 'term-info');
+                    }
+                    break;
+                case 'permission_request':
+                    showPermissionGate(event.command || event.message || '');
+                    break;
+
                 default:
                     if (event.message) appendTermLine(event.message, 'term-info');
             }
 
             // Auto-scroll
             out.scrollTop = out.scrollHeight;
+        }
+
+        // ── Bash Output Panel ──────────────────────────────────────────────
+        let _bashLineCount = 0;
+
+        function appendBashLine(text, cssClass) {
+            const panel = document.getElementById('term-bash-output');
+            if (!panel) return;
+            _bashLineCount++;
+            const el = document.createElement('div');
+            el.className = 'bash-line ' + (cssClass || '');
+            el.textContent = text;
+            panel.appendChild(el);
+            panel.scrollTop = panel.scrollHeight;
+            const counter = document.getElementById('bash-line-count');
+            if (counter) counter.textContent = _bashLineCount + ' lines';
+            // Auto-show panel on first line
+            if (_bashLineCount === 1) panel.style.display = 'block';
+        }
+
+        function toggleBashPanel() {
+            const panel = document.getElementById('term-bash-output');
+            if (!panel) return;
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // ── Permission Gate ────────────────────────────────────────────────
+        function showPermissionGate(cmd) {
+            const gate = document.getElementById('term-permission-gate');
+            const display = document.getElementById('perm-cmd-display');
+            if (!gate || !display) return;
+            display.textContent = cmd;
+            gate.style.display = 'block';
+        }
+
+        async function joicodePermit(allow) {
+            const gate = document.getElementById('term-permission-gate');
+            if (gate) gate.style.display = 'none';
+            try {
+                await fetch('/joicode/permission/' + (allow ? 'approve' : 'reject'), { method: 'POST' });
+            } catch (e) {
+                console.error('joicodePermit error:', e);
+            }
         }
 
         function appendTermLine(text, className) {

@@ -51,14 +51,6 @@
   },
   "signal_log": [
     {
-      "ts": "2026-02-12T09:03:51.264353",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "Are you able to see all the new files in your system and do you know what they a"
-    },
-    {
       "ts": "2026-02-12T09:04:46.140217",
       "signal": "correction",
       "dimension": null,
@@ -1649,6 +1641,14 @@
       "delta": 0,
       "trigger": "no",
       "user_preview": "\"Joi, I see you are stuck on 'Reading 3 file(s)'. If you are hitting a NameError"
+    },
+    {
+      "ts": "2026-03-01T20:39:37.310195",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, now that you've restarted, please use the new Staging & Pre-Commit Safety B"
     }
   ]
 }
