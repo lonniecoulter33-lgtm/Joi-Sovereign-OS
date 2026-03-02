@@ -1,47 +1,5 @@
 [
   {
-    "model": "openai-coding",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 601,
-    "timestamp": 1771753220.89611
-  },
-  {
-    "model": "gemini-primary",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 284,
-    "timestamp": 1771753612.5123932
-  },
-  {
-    "model": "openai-architect",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 98,
-    "timestamp": 1771753612.6617448
-  },
-  {
-    "model": "openai-reasoning",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 244,
-    "timestamp": 1771753612.9568782
-  },
-  {
-    "model": "openai-coding",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 756,
-    "timestamp": 1771753613.7572463
-  },
-  {
-    "model": "openai-architect",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 102,
-    "timestamp": 1771753644.4621153
-  },
-  {
     "model": "openai-reasoning",
     "task_type": "general",
     "success": false,
@@ -3498,5 +3456,47 @@
     "success": true,
     "latency_ms": 5089,
     "timestamp": 1772430835.8907888
+  },
+  {
+    "model": "gemini-standard",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 1689,
+    "timestamp": 1772430862.4225261
+  },
+  {
+    "model": "gemini-standard",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 2026,
+    "timestamp": 1772430886.4195518
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "architecture",
+    "success": false,
+    "latency_ms": 65364,
+    "timestamp": 1772430902.3581643
+  },
+  {
+    "model": "openai-worker",
+    "task_type": "architecture",
+    "success": true,
+    "latency_ms": 70901,
+    "timestamp": 1772430973.2788
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "general",
+    "success": false,
+    "latency_ms": 44535,
+    "timestamp": 1772431052.6034658
+  },
+  {
+    "model": "openai-worker",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 27514,
+    "timestamp": 1772431080.1365278
   }
 ]

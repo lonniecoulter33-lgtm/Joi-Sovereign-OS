@@ -3250,10 +3250,10 @@
       "avg_response_ms": 3774
     },
     "brain:Gemini gemini-2.5-flash": {
-      "calls": 34,
+      "calls": 36,
       "task_types": {
         "conversation": {
-          "count": 23,
+          "count": 25,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -3278,7 +3278,7 @@
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 3544,
+      "avg_response_ms": 3749,
       "tier": 1
     },
     "brain:Gemini gemini-2.5-flash-lite": {
