@@ -592,6 +592,21 @@
       "stock_provider": "finnhub",
       "timestamp": 1772428685.0721793,
       "datetime": "2026-03-01T22:18:05.072179"
+    },
+    {
+      "kind": "market_update",
+      "crypto_updated": 3,
+      "stocks_updated": 7,
+      "crypto_failed": [
+        "cardano",
+        "solana",
+        "dogecoin",
+        "shiba-inu"
+      ],
+      "stocks_failed": [],
+      "stock_provider": "finnhub",
+      "timestamp": 1772430013.798492,
+      "datetime": "2026-03-01T22:40:13.798491"
     }
   ],
   "trades": [],
@@ -3760,6 +3775,83 @@
       "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
       "timestamp": 1772428693.4659212,
       "datetime": "2026-03-01T22:18:13.465921"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "cardano",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430001.8370585,
+      "datetime": "2026-03-01T22:40:01.837058"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "solana",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430002.9234908,
+      "datetime": "2026-03-01T22:40:02.923490"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "dogecoin",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430004.0312989,
+      "datetime": "2026-03-01T22:40:04.031298"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "shiba-inu",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430005.0794394,
+      "datetime": "2026-03-01T22:40:05.079439"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "bitcoin",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430015.1064873,
+      "datetime": "2026-03-01T22:40:15.106487"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "ethereum",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430016.4453802,
+      "datetime": "2026-03-01T22:40:16.445380"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "ripple",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430017.6012764,
+      "datetime": "2026-03-01T22:40:17.601276"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "cardano",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430018.7626135,
+      "datetime": "2026-03-01T22:40:18.762613"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "solana",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430020.1390123,
+      "datetime": "2026-03-01T22:40:20.139012"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "dogecoin",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430021.411866,
+      "datetime": "2026-03-01T22:40:21.411865"
+    },
+    {
+      "where": "fetch_crypto_price",
+      "asset": "shiba-inu",
+      "error": "HTTP 429 from https://api.coingecko.com/api/v3/simple/price | CT=application/json | body='{\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'",
+      "timestamp": 1772430022.714276,
+      "datetime": "2026-03-01T22:40:22.714276"
     }
   ]
 }

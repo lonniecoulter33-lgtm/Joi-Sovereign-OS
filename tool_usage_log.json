@@ -3367,7 +3367,7 @@
       "avg_response_ms": 24109
     },
     "brain:OpenAI gpt-5": {
-      "calls": 7,
+      "calls": 8,
       "task_types": {
         "architecture": {
           "count": 5,
@@ -3380,12 +3380,12 @@
           "verified_fail": 0
         },
         "conversation": {
-          "count": 1,
+          "count": 2,
           "verified_ok": 0,
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 75955,
+      "avg_response_ms": 75211,
       "tier": 1
     }
   }

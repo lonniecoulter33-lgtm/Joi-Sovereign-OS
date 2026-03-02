@@ -4758,5 +4758,45 @@
     "completion_tokens": 814,
     "total_tokens": 14426,
     "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T22:36:07.291383",
+    "model": "gpt-5",
+    "prompt_tokens": 2276,
+    "completion_tokens": 3285,
+    "total_tokens": 5561,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T22:36:15.279125",
+    "model": "gpt-5",
+    "prompt_tokens": 42650,
+    "completion_tokens": 4000,
+    "total_tokens": 46650,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T22:36:59.310464",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 42650,
+    "completion_tokens": 3000,
+    "total_tokens": 45650,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T22:38:01.361658",
+    "model": "gpt-5",
+    "prompt_tokens": 471,
+    "completion_tokens": 3000,
+    "total_tokens": 3471,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T22:41:01.306162",
+    "model": "gpt-5",
+    "prompt_tokens": 410,
+    "completion_tokens": 672,
+    "total_tokens": 1082,
+    "task": "chat"
   }
 ]

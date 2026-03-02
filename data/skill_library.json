@@ -344,8 +344,8 @@
     },
     "skill_1772313962": {
       "id": "skill_1772313962",
-      "name": "can_you_swarm_orchestration_create",
-      "description": "Can you re-run Swarm Orchestration to create the `joi_memory_viz.py` module? Ensure that the generated code is completely free of syntax errors and uses the correct `joi_companion` imports so it does ",
+      "name": "new_engine_is_please_start",
+      "description": "\"Joi, the new 'Joi Code' engine is verified. Please start a fresh orchestration. Use the Atomic Staging bridge to apply the Digital Fortress upgrade from proposals/fortress_proposal_20260301_182741.js",
       "domain_tags": [
         "code",
         "memory",
@@ -368,7 +368,7 @@
       "variables": [],
       "success_count": 0,
       "fail_count": 0,
-      "last_used": 1772314641.3556228,
+      "last_used": 1772429767.5355427,
       "created": 1772313962.8916004,
       "source": "auto_captured",
       "confidence": 70
