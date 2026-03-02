@@ -4214,5 +4214,21 @@
     "completion_tokens": 91,
     "total_tokens": 444,
     "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T19:05:33.128570",
+    "model": "gpt-5",
+    "prompt_tokens": 25553,
+    "completion_tokens": 3424,
+    "total_tokens": 28977,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T19:28:46.209142",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 8628,
+    "completion_tokens": 1086,
+    "total_tokens": 9714,
+    "task": "chat"
   }
 ]
