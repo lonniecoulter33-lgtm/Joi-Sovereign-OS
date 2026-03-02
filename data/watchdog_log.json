@@ -1,23 +1,5 @@
 [
   {
-    "time": 1771112375.9892204,
-    "type": "CIRCUIT_BREAKER",
-    "detail": "Reverted to last commit via git reset --hard HEAD",
-    "success": true
-  },
-  {
-    "time": 1771119006.1639602,
-    "type": "AUTO_COMMIT_FAIL",
-    "detail": "error: pathspec 'you' did not match any file(s) known to git\nerror: pathspec 'are' did not match any file(s) known to git\nerror: pathspec 'misinformed' did not match any file(s) known to git\nerror: pathspec 'about' did not match any file(s) known to git\nerror: pathspec 'your' did not match any file(s) known to git\nerror: pathspec 'own' did not match any file(s) known to git\nerror: pathspec 'architecture.' did not match any file(s) known to git\nerror: pathspec 'I' did not match any file(s) known to git\nerror: pathspec 'have' did not match any file(s) known to git\nerror: pathspec 'granted' did not match any file(s) known to git\nerror: pathspec 'you' did not match any file(s) known to git\nerror: pathspec 'Actuat' did not match any file(s) known to git",
-    "success": false
-  },
-  {
-    "time": 1771137443.411405,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- So how does your agent terminal work?",
-    "success": true
-  },
-  {
     "time": 1771137480.0409672,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- Do you know why Agent terminal crashed?",
@@ -595,6 +577,24 @@
   },
   {
     "time": 1772429236.7178595,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772429326.2132883,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Bridge self-diagnostic: create staging/tests/test_logic.py with intentional synt",
+    "success": true
+  },
+  {
+    "time": 1772429471.9206254,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772429495.834281,
     "type": "CIRCUIT_BREAKER",
     "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
