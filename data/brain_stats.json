@@ -189,11 +189,11 @@
     "avg_ms": 7
   },
   "gemini-standard": {
-    "calls": 35,
-    "successes": 21,
+    "calls": 36,
+    "successes": 22,
     "failures": 14,
-    "total_ms": 51395,
-    "avg_ms": 1468
+    "total_ms": 53230,
+    "avg_ms": 1478
   },
   "gemini-large": {
     "calls": 1,

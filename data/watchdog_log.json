@@ -1,23 +1,5 @@
 [
   {
-    "time": 1771141491.0134583,
-    "type": "EDIT_EXCEPTION",
-    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
-    "success": false
-  },
-  {
-    "time": 1771141491.37464,
-    "type": "CIRCUIT_BREAKER",
-    "detail": "Reverted to last commit via git reset --hard HEAD",
-    "success": true
-  },
-  {
-    "time": 1771141613.175192,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
-    "success": true
-  },
-  {
     "time": 1771141776.9183106,
     "type": "AUTO_COMMIT",
     "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
@@ -597,6 +579,24 @@
     "time": 1772432333.145302,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Before applying fortress.js",
+    "success": true
+  },
+  {
+    "time": 1772432356.380833,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Before applying fortress.js",
+    "success": true
+  },
+  {
+    "time": 1772432363.9353874,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772432387.2765653,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
   }
 ]

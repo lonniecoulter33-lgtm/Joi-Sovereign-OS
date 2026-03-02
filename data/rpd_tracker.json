@@ -6,7 +6,7 @@
     "openai-vision": 48,
     "openai-long_context": 4,
     "openai-worker": 12,
-    "gemini-standard": 21,
+    "gemini-standard": 22,
     "gemini-emergency": 1
   },
   "exhausted": []

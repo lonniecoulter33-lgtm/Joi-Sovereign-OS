@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771042282.5284796,
-      "datetime": "2026-02-13T21:11:22.528479",
-      "message_preview": "You were not resonding and the system froze until i closed Lmstudio",
-      "task_type": "system_control",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 14966
-    },
-    {
       "ts": 1771042307.1709855,
       "datetime": "2026-02-13T21:11:47.170985",
       "message_preview": "ok",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "brain:Gemini gemini-2.5-flash",
       "response_time_ms": 3963
+    },
+    {
+      "ts": 1772432432.7903771,
+      "datetime": "2026-03-01T23:20:32.790377",
+      "message_preview": "\"Joi, the path is synced and the 'Ghost' folder is gone. Finish the Digital Fortress now\u2014Subtasks #2",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2504
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 105,
+    "gemini": 106,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 553,
+    "conversation": 554,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6525,7 +6525,7 @@
   },
   "tier_counts": {
     "fast": 348,
-    "standard": 304,
+    "standard": 305,
     "critical": 58
   },
   "verification_results": {
