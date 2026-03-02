@@ -1,11 +1,5 @@
 [
   {
-    "time": 1771551025.8751094,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-flight save before self-edit",
-    "success": true
-  },
-  {
     "time": 1771551025.975296,
     "type": "EDIT_EXCEPTION",
     "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
@@ -597,6 +591,12 @@
     "time": 1772432931.0492074,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Before applying fortress.js",
+    "success": true
+  },
+  {
+    "time": 1772433079.707581,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
     "success": true
   }
 ]
