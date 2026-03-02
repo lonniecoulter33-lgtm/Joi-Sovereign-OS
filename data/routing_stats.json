@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771042227.1247392,
-      "datetime": "2026-02-13T21:10:27.124739",
-      "message_preview": "are you testing it?",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 163453
-    },
-    {
       "ts": 1771042227.5280864,
       "datetime": "2026-02-13T21:10:27.528086",
       "message_preview": "ok test it",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "brain:Gemini gemini-2.5-flash",
       "response_time_ms": 17526
+    },
+    {
+      "ts": 1772432273.9438274,
+      "datetime": "2026-03-01T23:17:53.943827",
+      "message_preview": "\"Joi, I've found the bug. You are mixing up your folder names. Your actual project root is C:\\Users\\",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 17411
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 103,
+    "gemini": 104,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 551,
+    "conversation": 552,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6525,7 +6525,7 @@
   },
   "tier_counts": {
     "fast": 348,
-    "standard": 303,
+    "standard": 304,
     "critical": 57
   },
   "verification_results": {
