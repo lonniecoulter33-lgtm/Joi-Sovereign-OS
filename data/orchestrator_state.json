@@ -15,7 +15,7 @@
       "template": "",
       "test_command": "node -e \"require('./src/middleware/fortress.js'); console.log('OK')\"",
       "acceptance_criteria": "File created at src/middleware/fortress.js using CommonJS. Requiring it (node -e) does not throw. Exports an object with keys 'middleware' (function), 'koaMiddleware' (async function), and 'router' (an Express Router). The router defines GET /status/fo returning JSON { status: 'ok', fortress: true }.",
-      "status": "applying",
+      "status": "failed",
       "retries": 0,
       "changes": [
         {
@@ -45,7 +45,7 @@
       "template": "",
       "test_command": "node -e \"require('./src/server.js'); console.log('server.js required OK')\"",
       "acceptance_criteria": "src/server.js is modified to require('./src/middleware/fortress.js') (or equivalent) and to call app.use(fortress.middleware) (or app.use(fortress)) as early as possible after app is created and before other routes. The router is mounted with app.use('/', fortress.router). Requiring src/server.js does not throw. If previously not exporting the app, the file now exports the Express app via module.exports = app (preserving existing behavior if it already exported).",
-      "status": "pending",
+      "status": "failed",
       "retries": 0,
       "changes": [],
       "validation": {}
@@ -65,7 +65,7 @@
       "template": "",
       "test_command": "npx jest --runTestsByPath test/test_fortress.test.js --colors",
       "acceptance_criteria": "test/test_fortress.test.js exists and running 'npx jest --runTestsByPath test/test_fortress.test.js' executes the test file. The tests include two scenarios: default (no FORTRESS_HSTS) asserting required security headers exist, and with process.env.FORTRESS_HSTS='true' asserting Strict-Transport-Security header exists. Tests pass against the app exported from src/server.js (or by requiring server.js).",
-      "status": "pending",
+      "status": "failed",
       "retries": 0,
       "changes": [],
       "validation": {}

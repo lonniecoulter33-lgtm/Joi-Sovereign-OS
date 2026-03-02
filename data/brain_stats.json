@@ -140,11 +140,11 @@
     "avg_ms": 4815
   },
   "openai-worker": {
-    "calls": 46,
-    "successes": 11,
+    "calls": 47,
+    "successes": 12,
     "failures": 35,
-    "total_ms": 855016,
-    "avg_ms": 18587
+    "total_ms": 894381,
+    "avg_ms": 19029
   },
   "openai-fast": {
     "calls": 30,
