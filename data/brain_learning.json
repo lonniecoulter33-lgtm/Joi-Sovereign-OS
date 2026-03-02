@@ -1,19 +1,5 @@
 [
   {
-    "model": "openai-reasoning",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 97,
-    "timestamp": 1771753644.6106577
-  },
-  {
-    "model": "openai-coding",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 714,
-    "timestamp": 1771753645.3805776
-  },
-  {
     "model": "openai-architect",
     "task_type": "general",
     "success": false,
@@ -3498,5 +3484,19 @@
     "success": true,
     "latency_ms": 27514,
     "timestamp": 1772431080.1365278
+  },
+  {
+    "model": "gemini-standard",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 1862,
+    "timestamp": 1772431132.8284514
+  },
+  {
+    "model": "gemini-standard",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 2065,
+    "timestamp": 1772431636.5024235
   }
 ]

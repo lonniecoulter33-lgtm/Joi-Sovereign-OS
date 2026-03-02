@@ -1,32 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771041935.6849205,
-      "datetime": "2026-02-13T21:05:35.684920",
-      "message_preview": "SO can you send a message through Lm studio and test your connection to it?",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1373
-    },
-    {
-      "ts": 1771041966.1850588,
-      "datetime": "2026-02-13T21:06:06.185058",
-      "message_preview": "Can you test the connection to lmstudio",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 2236
-    },
-    {
       "ts": 1771041998.1191475,
       "datetime": "2026-02-13T21:06:38.119147",
       "message_preview": "it is mistral 7b and not 7b:2",
@@ -6499,17 +6473,43 @@
       "verifier_model": null,
       "model_used": "brain:Gemini gemini-2.5-flash",
       "response_time_ms": 2717
+    },
+    {
+      "ts": 1772431132.8765016,
+      "datetime": "2026-03-01T22:58:52.876501",
+      "message_preview": "yes",
+      "task_type": "conversation",
+      "tier": "fast",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2611
+    },
+    {
+      "ts": 1772431636.5690887,
+      "datetime": "2026-03-01T23:07:16.569088",
+      "message_preview": "Joi, the directory 'src/middleware' is now confirmed to exist (exit 0). Please bypass the previous f",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2699
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 98,
+    "gemini": 100,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 546,
+    "conversation": 548,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6524,8 +6524,8 @@
     "code_review": 16
   },
   "tier_counts": {
-    "fast": 347,
-    "standard": 299,
+    "fast": 348,
+    "standard": 300,
     "critical": 57
   },
   "verification_results": {

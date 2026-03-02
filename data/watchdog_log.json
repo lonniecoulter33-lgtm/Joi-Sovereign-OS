@@ -1,17 +1,5 @@
 [
   {
-    "time": 1771112375.2566876,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-flight save before self-edit",
-    "success": true
-  },
-  {
-    "time": 1771112375.32083,
-    "type": "EDIT_EXCEPTION",
-    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
-    "success": false
-  },
-  {
     "time": 1771112375.9892204,
     "type": "CIRCUIT_BREAKER",
     "detail": "Reverted to last commit via git reset --hard HEAD",
@@ -597,6 +585,18 @@
     "time": 1772430836.7710161,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- Create the src/middleware directory if it doesn\u2019t exist, then add src/middleware",
+    "success": true
+  },
+  {
+    "time": 1772431096.4062388,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Before applying fortress.js",
+    "success": true
+  },
+  {
+    "time": 1772431127.1006532,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
   }
 ]
