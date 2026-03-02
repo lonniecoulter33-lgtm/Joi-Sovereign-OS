@@ -1,40 +1,5 @@
 [
   {
-    "model": "openai-architect",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 91,
-    "timestamp": 1771754562.6592848
-  },
-  {
-    "model": "openai-reasoning",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 278,
-    "timestamp": 1771754562.9897673
-  },
-  {
-    "model": "openai-coding",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 588,
-    "timestamp": 1771754563.6281655
-  },
-  {
-    "model": "gemini-primary",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 228,
-    "timestamp": 1771757086.249522
-  },
-  {
-    "model": "openai-architect",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 89,
-    "timestamp": 1771757086.3796012
-  },
-  {
     "model": "openai-reasoning",
     "task_type": "general",
     "success": false,
@@ -3498,5 +3463,40 @@
     "success": true,
     "latency_ms": 2065,
     "timestamp": 1772431636.5024235
+  },
+  {
+    "model": "gemini-standard",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 1965,
+    "timestamp": 1772431755.1448538
+  },
+  {
+    "model": "gemini-standard",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 1927,
+    "timestamp": 1772431809.196912
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "architecture",
+    "success": false,
+    "latency_ms": 69434,
+    "timestamp": 1772431823.3990161
+  },
+  {
+    "model": "openai-worker",
+    "task_type": "architecture",
+    "success": true,
+    "latency_ms": 48092,
+    "timestamp": 1772431871.5165138
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 20961,
+    "timestamp": 1772431925.7551084
   }
 ]
