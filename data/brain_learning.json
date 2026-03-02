@@ -1,26 +1,5 @@
 [
   {
-    "model": "gemini-primary",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 1667,
-    "timestamp": 1771748865.1998239
-  },
-  {
-    "model": "gemini-primary",
-    "task_type": "general",
-    "success": true,
-    "latency_ms": 1730,
-    "timestamp": 1771748885.4567764
-  },
-  {
-    "model": "gemini-primary",
-    "task_type": "general",
-    "success": false,
-    "latency_ms": 1361,
-    "timestamp": 1771748928.2215958
-  },
-  {
     "model": "gemini-emergency",
     "task_type": "general",
     "success": true,
@@ -3498,5 +3477,26 @@
     "success": true,
     "latency_ms": 36973,
     "timestamp": 1772429117.7557423
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 23614,
+    "timestamp": 1772429141.5079772
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 12149,
+    "timestamp": 1772429153.787293
+  },
+  {
+    "model": "openai-architect",
+    "task_type": "general",
+    "success": true,
+    "latency_ms": 22555,
+    "timestamp": 1772429176.481622
   }
 ]

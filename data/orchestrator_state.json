@@ -17,7 +17,7 @@
       "template": "",
       "test_command": "python - <<PY\nimport os,sys\np='staging/tests/test_logic.py'\nassert os.path.exists(p), 'file missing'\nprint('OK: file exists')\n# show first line to confirm it's the intended broken snippet\nprint('preview:', open(p).read().splitlines()[0] if open(p).read().splitlines() else '<empty>')\nPY",
       "acceptance_criteria": "File staging/tests/test_logic.py exists and contains an intentional syntax error token (e.g., an incomplete def or unclosed parenthesis). The directory staging/tests is created if missing. No other files changed.",
-      "status": "running",
+      "status": "failed",
       "retries": 0,
       "changes": [],
       "validation": {}

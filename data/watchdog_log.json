@@ -1,23 +1,5 @@
 [
   {
-    "time": 1771038183.4393651,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
-    "success": true
-  },
-  {
-    "time": 1771038275.950757,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- Reroute agents to use only Flash 2.5 and OpenAI GPT-4o for orchestration tasks, ",
-    "success": true
-  },
-  {
-    "time": 1771038286.4096,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
-    "success": true
-  },
-  {
     "time": 1771038322.3581114,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- Reroute agents to use only Flash 2.5 and OpenAI GPT-4o for orchestration tasks, ",
@@ -597,6 +579,24 @@
     "time": 1772429010.197677,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- Self-diagnostic: Create a dummy file with a deliberate syntax error in staging a",
+    "success": true
+  },
+  {
+    "time": 1772429119.745845,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-flight save before self-edit",
+    "success": true
+  },
+  {
+    "time": 1772429119.937714,
+    "type": "EDIT_EXCEPTION",
+    "detail": "'reasoning'",
+    "success": false
+  },
+  {
+    "time": 1772429120.7922623,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
   }
 ]
