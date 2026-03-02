@@ -15,15 +15,38 @@
       "template": "",
       "test_command": "node -e \"const m=require('./src/middleware/fortress.js'); if(typeof m.expressFortress!=='function') throw new Error('expressFortress missing'); if(typeof m.koaFortress!=='function') throw new Error('koaFortress missing'); if(!m.router || typeof m.router.get!=='function') throw new Error('router missing or invalid'); console.log('ok');\"",
       "acceptance_criteria": "src/middleware/fortress.js exists and uses CommonJS exports. Exports: expressFortress(req,res,next) that sets common security headers and, if process.env.FORTRESS_HSTS==='true', adds Strict-Transport-Security; koaFortress(ctx,next) that sets the same headers; router is an Express Router with a GET /status/fo route returning HTTP 200 and JSON { status: 'ok', fortress: true }.",
-      "status": "pending",
+      "status": "applying",
       "retries": 0,
-      "changes": [],
-      "validation": {}
+      "changes": [
+        {
+          "file_path": "src/middleware/fortress.js",
+          "old_text": "function fortressExpress(req, res, next) {",
+          "new_text": "function expressFortress(req, res, next) {",
+          "explanation": "Rename to match required export name expressFortress"
+        },
+        {
+          "file_path": "src/middleware/fortress.js",
+          "old_text": "async function fortressKoa(ctx, next) {",
+          "new_text": "async function koaFortress(ctx, next) {",
+          "explanation": "Rename to match required export name koaFortress"
+        },
+        {
+          "file_path": "src/middleware/fortress.js",
+          "old_text": "module.exports = { fortressExpress, fortressKoa, router };",
+          "new_text": "module.exports = { expressFortress, koaFortress, router };",
+          "explanation": "Export the renamed middleware functions with the required names"
+        }
+      ],
+      "validation": {},
+      "preview": {
+        "diff": "--- --- C:\\Users\\user\\Desktop\\Joi AI\\src\\middleware\\fortress.js\n+++ +++ C:\\Users\\user\\Desktop\\Joi AI\\src\\middleware\\fortress.js (modified)\n@@ -17,7 +17,7 @@\n   }\n\n };\n\n \n\n-function fortressExpress(req, res, next) {\n\n+function expressFortress(req, res, next) {\n\n   setHeaders((name, value) => {\n\n     if (typeof res.set === 'function') {\n\n       res.set(name, value);\n\n@@ -28,7 +28,7 @@\n   next();\n\n }\n\n \n\n-async function fortressKoa(ctx, next) {\n\n+async function koaFortress(ctx, next) {\n\n   setHeaders((name, value) => {\n\n     if (ctx && typeof ctx.set === 'function') {\n\n       ctx.set(name, value);\n\n@@ -43,4 +43,4 @@\n   res.status(200).json({ status: 'ok', fortress: true });\n\n });\n\n \n\n-module.exports = { fortressExpress, fortressKoa, router };\n\n+module.exports = { expressFortress, koaFortress, router };\n",
+        "modified": "'use strict';\n\nconst express = require('express');\n\nconst setHeaders = (setter) => {\n  setter('X-Content-Type-Options', 'nosniff');\n  setter('X-Frame-Options', 'DENY');\n  setter('Referrer-Policy', 'no-referrer');\n  setter('X-Permitted-Cross-Domain-Policies', 'none');\n  setter('X-DNS-Prefetch-Control', 'off');\n  setter('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');\n  setter('Cross-Origin-Opener-Policy', 'same-origin');\n  setter('Cross-Origin-Resource-Policy', 'same-origin');\n  setter('X-XSS-Protection', '0');\n  if (process.env.FORTRESS_HSTS === 'true') {\n    setter('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');\n  }\n};\n\nfunction expressFortress(req, res, next) {\n  setHeaders((name, value) => {\n    if (typeof res.set === 'function') {\n      res.set(name, value);\n    } else if (typeof res.setHeader === 'function') {\n      res.setHeader(name, value);\n    }\n  });\n  next();\n}\n\nasync function koaFortress(ctx, next) {\n  setHeaders((name, value) => {\n    if (ctx && typeof ctx.set === 'function') {\n      ctx.set(name, value);\n    }\n  });\n  await next();\n}\n\nconst router = express.Router();\n\nrouter.get('/status/fo', (req, res) => {\n  res.status(200).json({ status: 'ok', fortress: true });\n});\n\nmodule.exports = { expressFortress, koaFortress, router };\n"
+      }
     }
   ],
   "plan_summary": "Ensure the src/middleware directory exists via a setup command, then add a new CommonJS module at src/middleware/fortress.js exporting: (1) an Express security middleware, (2) a Koa security middleware, and (3) an Express Router with GET /status/fo endpoint.",
   "risk_assessment": "Low \u2014 Main risks are missing Node/Express installation in the environment or shell quoting differences. Global setup commands mitigate directory creation and dependency issues.",
-  "agent_count": 7,
+  "agent_count": 8,
   "recovery_attempt": 3,
   "continuation_count": 0,
   "created_at": 1772432048.1465833,

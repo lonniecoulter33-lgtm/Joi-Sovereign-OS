@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771042227.5280864,
-      "datetime": "2026-02-13T21:10:27.528086",
-      "message_preview": "ok test it",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 214855
-    },
-    {
       "ts": 1771042282.5284796,
       "datetime": "2026-02-13T21:11:22.528479",
       "message_preview": "You were not resonding and the system froze until i closed Lmstudio",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "brain:Gemini gemini-2.5-flash",
       "response_time_ms": 17411
+    },
+    {
+      "ts": 1772432351.8526132,
+      "datetime": "2026-03-01T23:19:11.852613",
+      "message_preview": "\"Joi, I have permanently deleted the Joi AI directory to prevent any further pathing confusion. From",
+      "task_type": "conversation",
+      "tier": "critical",
+      "complexity": "low",
+      "risk": "high",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 3963
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 104,
+    "gemini": 105,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 552,
+    "conversation": 553,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6526,7 +6526,7 @@
   "tier_counts": {
     "fast": 348,
     "standard": 304,
-    "critical": 57
+    "critical": 58
   },
   "verification_results": {
     "approved": 1,
