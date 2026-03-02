@@ -1,23 +1,5 @@
 [
   {
-    "time": 1771112308.147226,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- nevermind I guess we still need to work on your programming a bit to be able to ",
-    "success": true
-  },
-  {
-    "time": 1771112375.2566876,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-flight save before self-edit",
-    "success": true
-  },
-  {
-    "time": 1771112375.32083,
-    "type": "EDIT_EXCEPTION",
-    "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
-    "success": false
-  },
-  {
     "time": 1771112375.9892204,
     "type": "CIRCUIT_BREAKER",
     "detail": "Reverted to last commit via git reset --hard HEAD",
@@ -595,6 +577,24 @@
   },
   {
     "time": 1772429207.5680041,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772429231.855468,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Create only a focused local test: ensure staging/tests/ exists and write a singl",
+    "success": true
+  },
+  {
+    "time": 1772429235.9328566,
+    "type": "SANITY_FAILED",
+    "detail": "Sanity check failed -- reverting to a662955",
+    "success": false
+  },
+  {
+    "time": 1772429236.7178595,
     "type": "CIRCUIT_BREAKER",
     "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
