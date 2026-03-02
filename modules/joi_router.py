@@ -738,29 +738,25 @@ def _classification_to_config_task_key(classification: Dict[str, Any]) -> str:
     return "chat"
 
 
-def get_routing_decision(classification: Dict[str, Any]) -> Dict[str, Any]:
+def get_routing_decision(classification: Dict[str, Any], current_mode: str = "full") -> Dict[str, Any]:
     """
-    Given a task classification, return the routing decision from config.joi_models.
-
-    Returns:
-        {
-            "primary_model": "openai" | "gemini",
-            "verifier_model": "openai" | "gemini" | None,
-            "config_task_key": str,
-            "primary_tuple": (provider, model_id),
-            "fallback_tuple": (provider, model_id),
-            "tier", "task_type", "needs_tools", "reason"
-        }
+    Given a task classification and operating mode, return the routing decision.
     """
     task_type = classification.get("task_type", "conversation")
     tier = classification.get("tier", "fast")
     needs_tools = classification.get("needs_tools", False)
 
     task_key = _classification_to_config_task_key(classification)
-    _default_route = {"primary": ("openai", OPENAI_MODELS["general"]), "fallback": ("gemini", GEMINI_MODELS["general"])}
+    
+    # Mode-based overrides: force flagship models for work/precision/creative
+    if current_mode in ("work", "precision", "creative") and task_key == "chat":
+        task_key = "planning" if current_mode == "precision" else "coding"
+
+    _default_route = {"primary": ("openai", OPENAI_MODELS.get("general", "gpt-5-mini")), "fallback": ("gemini", GEMINI_MODELS.get("general", "gemini-2.5-flash"))}
     route = TASK_MODEL_ROUTING.get(task_key) or TASK_MODEL_ROUTING.get("chat") or _default_route
-    primary_tuple = route.get("primary", ("openai", OPENAI_MODELS["general"]))
-    fallback_tuple = route.get("fallback", ("openai", OPENAI_MODELS["general"]))
+    
+    primary_tuple = route.get("primary", _default_route["primary"])
+    fallback_tuple = route.get("fallback", _default_route["fallback"])
 
     primary = primary_tuple[0]  # "openai" or "gemini"
     primary_model_id = primary_tuple[1] if len(primary_tuple) > 1 else None
@@ -770,7 +766,7 @@ def get_routing_decision(classification: Dict[str, Any]) -> Dict[str, Any]:
     verifier_model_id = None
     if tier in ("standard", "critical") and task_type in ("writing", "research", "code_edit", "code_review", "architecture"):
         verifier = "gemini"
-        verifier_model_id = GEMINI_MODELS.get("reasoning", "gemini-1.5-pro")
+        verifier_model_id = GEMINI_MODELS.get("reasoning", "gemini-2.5-pro")
 
     try:
         from modules.joi_llm import HAVE_GEMINI, client as openai_client
@@ -780,9 +776,9 @@ def get_routing_decision(classification: Dict[str, Any]) -> Dict[str, Any]:
 
     if verifier == "gemini" and not HAVE_GEMINI and openai_client:
         verifier = "openai"
-        verifier_model_id = OPENAI_MODELS.get("coding", "gpt-4o")
+        verifier_model_id = OPENAI_MODELS.get("coding", "gpt-5")
 
-    reason = f"{task_type}/{tier} -> config={task_key} primary={primary}"
+    reason = f"{task_type}/{tier} (mode={current_mode}) -> config={task_key} primary={primary}"
     if verifier:
         reason += f", verify={verifier}"
 

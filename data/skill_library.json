@@ -1368,10 +1368,189 @@
       "created": 1772409182.3164623,
       "source": "auto_captured",
       "confidence": 70
+    },
+    "skill_1772409856": {
+      "id": "skill_1772409856",
+      "name": "am_not_sure_what_is",
+      "description": "I am not sure what is wrong but everytime you try to use the agent terminal it fails, I will have to try and rewrite that so you can actually create code and apply it since the agent terminal is const",
+      "domain_tags": [
+        "desktop",
+        "code",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "orchestrate_task",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "orchestrate_task",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772409856.5775607,
+      "created": 1772409856.5775607,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772409907": {
+      "id": "skill_1772409907",
+      "name": "thats_good_idea",
+      "description": "thats a good idea",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "create_orchestration_proposal",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "create_orchestration_proposal",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772409907.2888186,
+      "created": 1772409907.2888186,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772410062": {
+      "id": "skill_1772410062",
+      "name": "cant_read_proposal_can_you",
+      "description": "I cant read the proposal can you open the folder where it is so i can review it?",
+      "domain_tags": [
+        "desktop",
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "list_proposals",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "list_proposals",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "launch_app",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "launch_app",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772410062.0585651,
+      "created": 1772410062.0585651,
+      "source": "auto_captured",
+      "confidence": 70
+    },
+    "skill_1772413357": {
+      "id": "skill_1772413357",
+      "name": "proposal_was_not_there_joi",
+      "description": "the proposal was not in there Joi",
+      "domain_tags": [
+        "filesystem"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "list_proposals",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "list_proposals",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        },
+        {
+          "step": 3,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 3 of auto-captured workflow"
+        },
+        {
+          "step": 4,
+          "tool": "internal_monologue",
+          "params_template": {},
+          "purpose": "Step 4 of auto-captured workflow"
+        },
+        {
+          "step": 5,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 5 of auto-captured workflow"
+        },
+        {
+          "step": 6,
+          "tool": "fs_read",
+          "params_template": {},
+          "purpose": "Step 6 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772413357.2891703,
+      "created": 1772413357.2891703,
+      "source": "auto_captured",
+      "confidence": 70
     }
   },
   "stats": {
-    "total_skills": 36,
+    "total_skills": 40,
     "total_executions": 0,
     "total_successes": 0
   }

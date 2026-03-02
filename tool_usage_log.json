@@ -2599,6 +2599,146 @@
         "source": "chat_loop",
         "task_type": "conversation"
       }
+    },
+    {
+      "ts": 1772409856.8543062,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "orchestration"
+      }
+    },
+    {
+      "ts": 1772409857.010898,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "orchestration"
+      }
+    },
+    {
+      "ts": 1772409857.2191756,
+      "tool": "orchestrate_task",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "orchestration"
+      }
+    },
+    {
+      "ts": 1772409857.3488827,
+      "tool": "orchestrate_task",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "orchestration"
+      }
+    },
+    {
+      "ts": 1772409907.7535489,
+      "tool": "create_orchestration_proposal",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772409907.922166,
+      "tool": "create_orchestration_proposal",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772410062.1932201,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410062.750967,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410063.2560394,
+      "tool": "list_proposals",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410064.1578393,
+      "tool": "list_proposals",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410064.4106688,
+      "tool": "launch_app",
+      "success": false,
+      "outcome": "failure",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410065.1101418,
+      "tool": "launch_app",
+      "success": false,
+      "outcome": "failure",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410065.2415338,
+      "tool": "launch_app",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
+    },
+    {
+      "ts": 1772410065.395471,
+      "tool": "launch_app",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_control"
+      }
     }
   ],
   "tool_stats": {
@@ -2648,8 +2788,8 @@
       "failures": 1
     },
     "internal_monologue": {
-      "calls": 55,
-      "successes": 55,
+      "calls": 59,
+      "successes": 59,
       "failures": 0
     },
     "monitor_ai_research": {
@@ -2663,8 +2803,8 @@
       "failures": 0
     },
     "orchestrate_task": {
-      "calls": 25,
-      "successes": 24,
+      "calls": 27,
+      "successes": 26,
       "failures": 1
     },
     "self_diagnose": {
@@ -2713,9 +2853,9 @@
       "failures": 0
     },
     "launch_app": {
-      "calls": 4,
-      "successes": 4,
-      "failures": 0
+      "calls": 8,
+      "successes": 6,
+      "failures": 2
     },
     "open_url": {
       "calls": 2,
@@ -2808,8 +2948,8 @@
       "failures": 2
     },
     "create_orchestration_proposal": {
-      "calls": 2,
-      "successes": 2,
+      "calls": 4,
+      "successes": 4,
       "failures": 0
     },
     "run_proposal_simulation": {
@@ -2836,6 +2976,11 @@
       "calls": 2,
       "successes": 0,
       "failures": 2
+    },
+    "list_proposals": {
+      "calls": 2,
+      "successes": 2,
+      "failures": 0
     }
   },
   "model_stats": {
@@ -3171,7 +3316,7 @@
       "tier": 2
     },
     "openai:gpt-5-mini": {
-      "calls": 26,
+      "calls": 29,
       "task_types": {
         "capability_query": {
           "count": 1,
@@ -3179,12 +3324,12 @@
           "verified_fail": 0
         },
         "conversation": {
-          "count": 23,
+          "count": 24,
           "verified_ok": 0,
           "verified_fail": 0
         },
         "system_control": {
-          "count": 1,
+          "count": 2,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -3192,9 +3337,14 @@
           "count": 1,
           "verified_ok": 0,
           "verified_fail": 0
+        },
+        "orchestration": {
+          "count": 1,
+          "verified_ok": 0,
+          "verified_fail": 0
         }
       },
-      "avg_response_ms": 23921
+      "avg_response_ms": 24249
     },
     "brain:OpenAI gpt-5": {
       "calls": 6,

@@ -20,7 +20,7 @@
     },
     "detail_depth": {
       "value": 1.0,
-      "confidence": 0.10999999999999951,
+      "confidence": 0.1,
       "samples": 35,
       "last_updated": "2026-03-01T04:31:48.558287"
     },
@@ -1617,6 +1617,30 @@
       "delta": 0,
       "trigger": "no",
       "user_preview": "Oh ok so you just ran a system scan and determined that you were not upgraded to"
+    },
+    {
+      "ts": "2026-03-01T17:04:16.588323",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "I am not sure what is wrong but everytime you try to use the agent terminal it f"
+    },
+    {
+      "ts": "2026-03-01T17:05:06.984415",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "good",
+      "user_preview": "thats a good idea"
+    },
+    {
+      "ts": "2026-03-01T18:02:37.201538",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "the proposal was not in there Joi"
     }
   ]
 }

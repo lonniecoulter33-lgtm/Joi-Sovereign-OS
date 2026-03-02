@@ -1584,11 +1584,17 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
     # ══════════════════════════════════════════════════════════════════
     # Tool loop requires provider with tools (OpenAI or Gemini Paid).
     # Honor the router's decision unless actuation is forced (which already forces OpenAI in STEP 1.5)
-    _primary_provider = routing.get("primary_provider", "openai")
+    _primary_provider = routing.get("primary_model", "openai")  # Corrected key from joi_router
+    _primary_model_id = routing.get("primary_model_id") or OPENAI_TOOL_MODEL
+
     if _RUNTIME_PROVIDER != "auto":
         _primary_provider = _RUNTIME_PROVIDER
 
-    _model_used = f"{_primary_provider}:{OPENAI_TOOL_MODEL}" # label fallback
+    # If mode has a forced model, honor it
+    if _llm_params.get("model") and _llm_params["model"] != "auto":
+        _primary_model_id = _llm_params["model"]
+
+    _model_used = f"{_primary_provider}:{_primary_model_id}"
     iteration = 0
     max_iterations = 15  # Increased from 5 to handle complex tasks
 
@@ -1606,16 +1612,16 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
         try:
             # Determine which call function to use based on provider
             if _primary_provider == "openai":
-                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or OPENAI_TOOL_MODEL, llm_params=_llm_params)
-                _model_used = f"openai:{(_RUNTIME_MODEL or OPENAI_TOOL_MODEL)}"
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or _primary_model_id, llm_params=_llm_params)
+                _model_used = f"openai:{(_RUNTIME_MODEL or _primary_model_id)}"
             elif _primary_provider == "gemini":
                 # For tool use, Gemini needs a specific call pattern (handled in _call_gemini_tools or similar if implemented)
                 # Fallback to OpenAI if Gemini tool path not ready, or implement here:
-                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or OPENAI_TOOL_MODEL, llm_params=_llm_params)
-                _model_used = f"openai:{(_RUNTIME_MODEL or OPENAI_TOOL_MODEL)}"
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or _primary_model_id, llm_params=_llm_params)
+                _model_used = f"openai:{(_RUNTIME_MODEL or _primary_model_id)}"
                 print(f"  [ROUTER] Gemini tool-path redirecting to OpenAI (standard tool loop architecture)")
             else:
-                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or OPENAI_TOOL_MODEL, llm_params=_llm_params)
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or _primary_model_id, llm_params=_llm_params)
 
             # Force tool call on first turn when user asked to play/open something (avoids "I wish I could" text-only reply)
             _require_tool = _actuation_intent and iteration == 1 and tools

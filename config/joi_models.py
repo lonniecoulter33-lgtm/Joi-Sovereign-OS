@@ -200,7 +200,7 @@ AGENT_MODEL_MAP = {
         "fallback": ("openai", "o4-mini"),
     },
     "coder_agent": {
-        "model":    ("openai", "gpt-4o"),       # gpt-5-codex-mini returns 404
+        "model":    ("openai", "gpt-5"),
         "fallback": ("openai", "gpt-5-mini"),
     },
     "validator_agent": {
@@ -223,7 +223,7 @@ AGENT_MODEL_MAP = {
     },
     "security_agent": {
         "model":    ("openai", "o4-mini"),
-        "fallback": ("openai", "gpt-4o"),   # gpt-5-codex-mini returns 404
+        "fallback": ("openai", "gpt-5"),
     },
     "vision_agent": {
         "model":    ("openai", "gpt-4o"),
@@ -238,7 +238,7 @@ AGENT_MODEL_MAP = {
         "fallback": ("gemini", "gemini-2.5-flash"),
     },
     "doc_agent": {
-        "model":    ("openai", "gpt-4o"),       # gpt-5-codex-mini returns 404
+        "model":    ("openai", "gpt-5"),
         "fallback": ("openai", "gpt-5-mini"),
     },
 }

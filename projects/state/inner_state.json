@@ -1,20 +1,20 @@
 {
   "version": "1.0",
-  "last_updated": 1772409311.0472927,
+  "last_updated": 1772413356.6896758,
   "mood": "playful",
-  "energy": 0.75,
+  "energy": 0.736,
   "stress": 0.094,
   "trust": 0.7,
   "closeness": 0.35,
   "curiosity": 0.895,
   "sass": 0.706,
   "warmth": 0.862,
-  "conversation_arc": "deepening",
+  "conversation_arc": "steady",
   "scene": "candlelit bedroom, soft music playing in the background",
-  "last_interaction_ts": 1772409311.0472927,
+  "last_interaction_ts": 1772413356.6896758,
   "last_user_affect": "calm",
-  "last_joi_affect": "excited",
+  "last_joi_affect": "playful",
   "relationship_stage": "bonding",
   "inside_jokes": [],
-  "recent_vibe": "excited"
+  "recent_vibe": "playful"
 }

@@ -1,45 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771038956.3225043,
-      "datetime": "2026-02-13T20:15:56.322504",
-      "message_preview": "maybe play the las song again",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1524
-    },
-    {
-      "ts": 1771039000.6785192,
-      "datetime": "2026-02-13T20:16:40.678519",
-      "message_preview": "it still isnt starting i dont know how you got that last media player created but now it isnt workin",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 3433
-    },
-    {
-      "ts": 1771039034.763171,
-      "datetime": "2026-02-13T20:17:14.763171",
-      "message_preview": "but it did work you started it already and renamed it Joi Player",
-      "task_type": "code_edit",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 2778
-    },
-    {
       "ts": 1771039080.9439523,
       "datetime": "2026-02-13T20:18:00.943952",
       "message_preview": "Can you play a song by arianna grande now?",
@@ -6499,23 +6460,62 @@
       "verifier_model": null,
       "model_used": "openai:gpt-5-mini",
       "response_time_ms": 31925
+    },
+    {
+      "ts": 1772409856.5032647,
+      "datetime": "2026-03-01T17:04:16.503264",
+      "message_preview": "I am not sure what is wrong but everytime you try to use the agent terminal it fails, I will have to",
+      "task_type": "orchestration",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 24922
+    },
+    {
+      "ts": 1772409906.753992,
+      "datetime": "2026-03-01T17:05:06.753992",
+      "message_preview": "thats a good idea",
+      "task_type": "conversation",
+      "tier": "fast",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 20028
+    },
+    {
+      "ts": 1772410061.8116155,
+      "datetime": "2026-03-01T17:07:41.811615",
+      "message_preview": "I cant read the proposal can you open the folder where it is so i can review it?",
+      "task_type": "system_control",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 36366
     }
   ],
   "model_usage": {
-    "openai": 572,
+    "openai": 575,
     "claude": 1,
     "gemini": 89,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 535,
-    "system_control": 42,
+    "conversation": 536,
+    "system_control": 43,
     "research": 15,
     "memory": 8,
     "writing": 1,
     "architecture": 42,
-    "orchestration": 9,
+    "orchestration": 10,
     "code_edit": 5,
     "system_admin": 5,
     "capability_query": 5,
@@ -6524,8 +6524,8 @@
     "code_review": 16
   },
   "tier_counts": {
-    "fast": 342,
-    "standard": 292,
+    "fast": 343,
+    "standard": 294,
     "critical": 56
   },
   "verification_results": {

@@ -33,7 +33,7 @@ try:
     from config.joi_models import OPENAI_MODELS, GEMINI_MODELS, AGENT_MODEL_MAP
 except ImportError:
     OPENAI_MODELS = {
-        "architect": "gpt-5", "reasoning": "o4-mini", "coding": "gpt-4o",
+        "architect": "gpt-5", "reasoning": "o4-mini", "coding": "gpt-5",
         "worker": "gpt-5-mini", "fast": "gpt-5-nano", "long_context": "gpt-4.1-mini",
         "vision": "gpt-4o", "vision_fast": "gpt-4o-mini", "fallback": "gpt-5-mini",
     }

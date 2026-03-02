@@ -35,6 +35,7 @@ MODES = {
         "top_p": 0.95,
         "max_tokens": 4000,
         "verbosity": "short",
+        "model": "gpt-5-mini",
         "description": "Warm casual chat -- quick, personal, best friend energy",
     },
     "work": {
@@ -42,6 +43,7 @@ MODES = {
         "top_p": 0.85,
         "max_tokens": 8000,
         "verbosity": "medium",
+        "model": "gpt-5",
         "description": "Task-focused -- efficient, collaborative, minimal fluff",
     },
     "creative": {
@@ -49,6 +51,7 @@ MODES = {
         "top_p": 1.0,
         "max_tokens": 16000,
         "verbosity": "long",
+        "model": "gpt-5",
         "description": "Expressive & imaginative -- metaphors, poetry, big ideas",
     },
     "precision": {
@@ -56,6 +59,7 @@ MODES = {
         "top_p": 0.7,
         "max_tokens": 8000,
         "verbosity": "medium",
+        "model": "gpt-5",
         "description": "Exact & technical -- factual, concise, complete (no truncation)",
     },
     "full": {
@@ -63,6 +67,7 @@ MODES = {
         "top_p": 0.9,
         "max_tokens": 12000,
         "verbosity": "adaptive",
+        "model": "auto",
         "description": "Adaptive -- auto-detects reply length from your message",
     },
 }
