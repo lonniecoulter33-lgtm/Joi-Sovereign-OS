@@ -5,7 +5,7 @@
     "openai-reasoning": 12,
     "openai-vision": 48,
     "openai-long_context": 3,
-    "openai-worker": 6,
+    "openai-worker": 7,
     "gemini-standard": 13,
     "gemini-emergency": 1
   },

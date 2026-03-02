@@ -1,17 +1,5 @@
 [
   {
-    "time": 1771038322.3581114,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- Reroute agents to use only Flash 2.5 and OpenAI GPT-4o for orchestration tasks, ",
-    "success": true
-  },
-  {
-    "time": 1771038461.766996,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
-    "success": true
-  },
-  {
     "time": 1771112308.147226,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- nevermind I guess we still need to work on your programming a bit to be able to ",
@@ -595,6 +583,18 @@
   },
   {
     "time": 1772429120.7922623,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772429205.7361798,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-flight save before self-edit",
+    "success": true
+  },
+  {
+    "time": 1772429207.5680041,
     "type": "CIRCUIT_BREAKER",
     "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true

@@ -126,11 +126,11 @@
     "avg_ms": 3
   },
   "openai-architect": {
-    "calls": 148,
+    "calls": 149,
     "successes": 53,
-    "failures": 95,
-    "total_ms": 4335519,
-    "avg_ms": 29294
+    "failures": 96,
+    "total_ms": 4349613,
+    "avg_ms": 29192
   },
   "openai-reasoning": {
     "calls": 90,
@@ -140,11 +140,11 @@
     "avg_ms": 4649
   },
   "openai-worker": {
-    "calls": 38,
-    "successes": 6,
+    "calls": 39,
+    "successes": 7,
     "failures": 32,
-    "total_ms": 496908,
-    "avg_ms": 13076
+    "total_ms": 506086,
+    "avg_ms": 12976
   },
   "openai-fast": {
     "calls": 29,
