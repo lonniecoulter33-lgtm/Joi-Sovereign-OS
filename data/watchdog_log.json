@@ -1,23 +1,5 @@
 [
   {
-    "time": 1771140868.6636157,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
-    "success": true
-  },
-  {
-    "time": 1771141327.447606,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- Your suppose to be digging into the bugs of why agent terminal wasnt working , w",
-    "success": true
-  },
-  {
-    "time": 1771141430.9654906,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-flight save before self-edit",
-    "success": true
-  },
-  {
     "time": 1771141431.119433,
     "type": "EDIT_EXCEPTION",
     "detail": "Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for\ninformation about how to avoid this problem.",
@@ -597,6 +579,24 @@
     "time": 1772432193.427013,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Before applying fortress.js",
+    "success": true
+  },
+  {
+    "time": 1772432201.600145,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Before applying fortress.js",
+    "success": true
+  },
+  {
+    "time": 1772432224.4012914,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772432232.3260329,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
   }
 ]
