@@ -2584,6 +2584,14 @@
       "success": true,
       "duration_seconds": 0.001,
       "result_summary": "Notifications: 0 sent"
+    },
+    {
+      "task": "ai_research",
+      "timestamp": 1772433076.8183417,
+      "datetime": "2026-03-01T23:31:16.818341",
+      "success": true,
+      "duration_seconds": 0.0,
+      "result_summary": "AI research check failed: Working outside of request context.\n\nThis typically means that you attempted to use functionality that needed\nan active HTTP request. Consult the documentation on testing for"
     }
   ],
   "errors": []

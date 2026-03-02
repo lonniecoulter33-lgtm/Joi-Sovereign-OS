@@ -15,7 +15,7 @@
       "template": "",
       "test_command": "node -e \"const m=require('./src/middleware/fortress.js'); if(!m||typeof m.expressMiddleware!=='function'||typeof m.koaMiddleware!=='function'||!m.router){console.error('exports missing'); process.exit(1);} console.log('ok');\"",
       "acceptance_criteria": "src/middleware/fortress.js exists and is valid CommonJS; exports include expressMiddleware, koaMiddleware, and router. expressMiddleware sets CSP, X-Frame-Options, Referrer-Policy, X-Content-Type-Options, COOP, COEP, and sets Strict-Transport-Security only when process.env.FORTRESS_HSTS==='true'. koaMiddleware mirrors headers and awaits next(). router handles GET /status/fo with JSON { status: 'ok', fortress: true }.",
-      "status": "applying",
+      "status": "applied",
       "retries": 0,
       "changes": [
         {
@@ -45,7 +45,7 @@
       "template": "",
       "test_command": "npm test",
       "acceptance_criteria": "src/server.js requires Express and creates/uses an Express app. It requires ./middleware/fortress.js and calls app.use(expressMiddleware) and app.use(router). Route GET /status/fo responds with JSON { status: 'ok', fortress: true }. The server does not automatically start on require (listens only if run directly) and npm test passes.",
-      "status": "pending",
+      "status": "failed",
       "retries": 0,
       "changes": [],
       "validation": {}
@@ -53,7 +53,7 @@
   ],
   "plan_summary": "Add a security middleware module for Express and Koa, then wire it into the Express server. Create src/middleware/fortress.js exporting expressMiddleware, koaMiddleware, and an Express router with /status/fo. Update src/server.js to use Express, apply the middleware, and mount the router. Ensure the middleware directory exists and run npm tests.",
   "risk_assessment": "Medium -- Potential mismatches with existing server.js (ESM vs CommonJS) or different app structure might require careful integration. Starting the server during tests could cause hangs; ensure listen is gated behind require.main check. Missing Express dependency could fail tests if not already installed.",
-  "agent_count": 2,
+  "agent_count": 3,
   "recovery_attempt": 0,
   "continuation_count": 0,
   "created_at": 1772432682.7543173,
