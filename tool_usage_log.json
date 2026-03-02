@@ -2739,6 +2739,26 @@
         "source": "chat_loop",
         "task_type": "system_control"
       }
+    },
+    {
+      "ts": 1772414769.247507,
+      "tool": "cancel_orchestration",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772414769.4645557,
+      "tool": "cancel_orchestration",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
     }
   ],
   "tool_stats": {
@@ -2898,8 +2918,8 @@
       "failures": 5
     },
     "cancel_orchestration": {
-      "calls": 2,
-      "successes": 2,
+      "calls": 4,
+      "successes": 4,
       "failures": 0
     },
     "reject_subtask": {
@@ -3316,7 +3336,7 @@
       "tier": 2
     },
     "openai:gpt-5-mini": {
-      "calls": 29,
+      "calls": 30,
       "task_types": {
         "capability_query": {
           "count": 1,
@@ -3324,7 +3344,7 @@
           "verified_fail": 0
         },
         "conversation": {
-          "count": 24,
+          "count": 25,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -3344,7 +3364,7 @@
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 24249
+      "avg_response_ms": 24109
     },
     "brain:OpenAI gpt-5": {
       "calls": 6,

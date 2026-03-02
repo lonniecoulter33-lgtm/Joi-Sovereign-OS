@@ -4174,5 +4174,37 @@
     "completion_tokens": 867,
     "total_tokens": 1298,
     "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T18:25:55.570783",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10615,
+    "completion_tokens": 341,
+    "total_tokens": 10956,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T18:26:08.881154",
+    "model": "gpt-5-mini",
+    "prompt_tokens": 10661,
+    "completion_tokens": 530,
+    "total_tokens": 11191,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T18:26:28.647465",
+    "model": "gpt-5",
+    "prompt_tokens": 24320,
+    "completion_tokens": 2675,
+    "total_tokens": 26995,
+    "task": "chat"
+  },
+  {
+    "timestamp": "2026-03-01T18:27:43.808684",
+    "model": "gpt-5",
+    "prompt_tokens": 430,
+    "completion_tokens": 990,
+    "total_tokens": 1420,
+    "task": "chat"
   }
 ]

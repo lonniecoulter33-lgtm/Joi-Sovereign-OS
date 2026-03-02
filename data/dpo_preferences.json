@@ -4,49 +4,49 @@
       "value": 0.7569,
       "confidence": 0.1,
       "samples": 3,
-      "last_updated": "2026-02-26T04:02:08.056187"
+      "last_updated": "2026-03-01T18:25:48.200940"
     },
     "sass_level": {
       "value": 0.424,
       "confidence": 0.1,
       "samples": 1,
-      "last_updated": "2026-02-28T16:09:18.537000"
+      "last_updated": "2026-03-01T18:25:48.202032"
     },
     "tool_eagerness": {
       "value": 0.5,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": null
+      "last_updated": "2026-03-01T18:25:48.202032"
     },
     "detail_depth": {
       "value": 1.0,
       "confidence": 0.1,
       "samples": 35,
-      "last_updated": "2026-03-01T04:31:48.558287"
+      "last_updated": "2026-03-01T18:25:48.202032"
     },
     "formality": {
       "value": 0.5036,
       "confidence": 0.1,
       "samples": 4,
-      "last_updated": "2026-02-27T23:30:12.523461"
+      "last_updated": "2026-03-01T18:25:48.202032"
     },
     "emoji_use": {
       "value": 0.2,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": null
+      "last_updated": "2026-03-01T18:25:48.202032"
     },
     "question_frequency": {
       "value": 0.2,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": null
+      "last_updated": "2026-03-01T18:25:48.202032"
     },
     "explanation_style": {
       "value": 0.4,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": null
+      "last_updated": "2026-03-01T18:25:48.202032"
     }
   },
   "signal_log": [
@@ -1641,6 +1641,14 @@
       "delta": 0,
       "trigger": "no",
       "user_preview": "the proposal was not in there Joi"
+    },
+    {
+      "ts": "2026-03-01T18:25:48.202032",
+      "signal": "user_correction",
+      "dimension": null,
+      "trigger": "correction_handler",
+      "user_preview": "stop orchestration Joi",
+      "previous_reply_preview": "on it. orchestration started -- check the terminal."
     }
   ]
 }

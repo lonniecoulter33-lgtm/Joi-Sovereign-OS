@@ -196,6 +196,24 @@
       "response_time": null,
       "input_length": 33,
       "response_length": 91
+    },
+    {
+      "id": "auto_1772414769166",
+      "timestamp": 1772414769.1660147,
+      "datetime": "2026-03-01T18:26:09.166014",
+      "user_input": "stop orchestration Joi",
+      "joi_response": "Done \u2014 orchestration cancelled, Lonnie.",
+      "feedback": null,
+      "context": [
+        "auto_recorded"
+      ],
+      "topics": [
+        "stop",
+        "orchestration"
+      ],
+      "response_time": null,
+      "input_length": 22,
+      "response_length": 39
     }
   ],
   "feedback_summary": {
@@ -370,6 +388,16 @@
       "negative_feedback": 0
     },
     "there": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "stop": {
+      "count": 1,
+      "positive_feedback": 0,
+      "negative_feedback": 0
+    },
+    "orchestration": {
       "count": 1,
       "positive_feedback": 0,
       "negative_feedback": 0

@@ -126,11 +126,11 @@
     "avg_ms": 3
   },
   "openai-architect": {
-    "calls": 118,
-    "successes": 35,
+    "calls": 120,
+    "successes": 37,
     "failures": 83,
-    "total_ms": 2898437,
-    "avg_ms": 24563
+    "total_ms": 2987786,
+    "avg_ms": 24898
   },
   "openai-reasoning": {
     "calls": 83,

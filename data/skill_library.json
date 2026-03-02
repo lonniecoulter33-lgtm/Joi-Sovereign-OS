@@ -1547,10 +1547,39 @@
       "created": 1772413357.2891703,
       "source": "auto_captured",
       "confidence": 70
+    },
+    "skill_1772414769": {
+      "id": "skill_1772414769",
+      "name": "stop_orchestration_joi",
+      "description": "stop orchestration Joi",
+      "domain_tags": [
+        "general"
+      ],
+      "tool_sequence": [
+        {
+          "step": 1,
+          "tool": "cancel_orchestration",
+          "params_template": {},
+          "purpose": "Step 1 of auto-captured workflow"
+        },
+        {
+          "step": 2,
+          "tool": "cancel_orchestration",
+          "params_template": {},
+          "purpose": "Step 2 of auto-captured workflow"
+        }
+      ],
+      "variables": [],
+      "success_count": 0,
+      "fail_count": 0,
+      "last_used": 1772414769.1930764,
+      "created": 1772414769.1930764,
+      "source": "auto_captured",
+      "confidence": 70
     }
   },
   "stats": {
-    "total_skills": 40,
+    "total_skills": 41,
     "total_executions": 0,
     "total_successes": 0
   }

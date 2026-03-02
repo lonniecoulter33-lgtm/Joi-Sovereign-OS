@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771039080.9439523,
-      "datetime": "2026-02-13T20:18:00.943952",
-      "message_preview": "Can you play a song by arianna grande now?",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 4918
-    },
-    {
       "ts": 1771039132.346867,
       "datetime": "2026-02-13T20:18:52.346867",
       "message_preview": "did you put your picture and name on this player ?",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "openai:gpt-5-mini",
       "response_time_ms": 36366
+    },
+    {
+      "ts": 1772414769.0277371,
+      "datetime": "2026-03-01T18:26:09.027737",
+      "message_preview": "stop orchestration Joi",
+      "task_type": "conversation",
+      "tier": "standard",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "openai",
+      "verifier_model": null,
+      "model_used": "openai:gpt-5-mini",
+      "response_time_ms": 20057
     }
   ],
   "model_usage": {
-    "openai": 575,
+    "openai": 576,
     "claude": 1,
     "gemini": 89,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 536,
+    "conversation": 537,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6525,7 +6525,7 @@
   },
   "tier_counts": {
     "fast": 343,
-    "standard": 294,
+    "standard": 295,
     "critical": 56
   },
   "verification_results": {

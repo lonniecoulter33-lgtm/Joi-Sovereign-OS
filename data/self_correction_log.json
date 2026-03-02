@@ -14,6 +14,13 @@
       }
     }
   ],
-  "fixes_applied": [],
-  "last_review": "2026-02-28T16:09:27.689897"
+  "fixes_applied": [
+    {
+      "ts": "2026-03-01T18:25:48.216278",
+      "type": "user_correction",
+      "previous_reply": "on it. orchestration started -- check the terminal.",
+      "user_correction": "stop orchestration Joi"
+    }
+  ],
+  "last_review": "2026-03-01T18:25:48.216278"
 }
