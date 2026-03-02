@@ -1,19 +1,6 @@
 {
   "decisions": [
     {
-      "ts": 1771041571.2813897,
-      "datetime": "2026-02-13T20:59:31.281389",
-      "message_preview": "Thank you",
-      "task_type": "conversation",
-      "tier": "fast",
-      "complexity": "low",
-      "risk": "low",
-      "primary_model": "openai",
-      "verifier_model": null,
-      "model_used": "openai:gpt-4o",
-      "response_time_ms": 1442
-    },
-    {
       "ts": 1771041792.0365,
       "datetime": "2026-02-13T21:03:12.036500",
       "message_preview": "So since I was having problems with different llms not working due to account and token limits I wan",
@@ -6499,17 +6486,30 @@
       "verifier_model": null,
       "model_used": "brain:Gemini gemini-2.5-flash",
       "response_time_ms": 4250
+    },
+    {
+      "ts": 1772429678.377348,
+      "datetime": "2026-03-01T22:34:38.377347",
+      "message_preview": "Joi cancel this",
+      "task_type": "conversation",
+      "tier": "fast",
+      "complexity": "low",
+      "risk": "low",
+      "primary_model": "gemini",
+      "verifier_model": null,
+      "model_used": "brain:Gemini gemini-2.5-flash",
+      "response_time_ms": 2261
     }
   ],
   "model_usage": {
     "openai": 576,
     "claude": 1,
-    "gemini": 94,
+    "gemini": 95,
     "ollama": 12,
     "dynamic_router": 16
   },
   "task_type_counts": {
-    "conversation": 542,
+    "conversation": 543,
     "system_control": 43,
     "research": 15,
     "memory": 8,
@@ -6524,7 +6524,7 @@
     "code_review": 16
   },
   "tier_counts": {
-    "fast": 346,
+    "fast": 347,
     "standard": 297,
     "critical": 56
   },

@@ -1,23 +1,5 @@
 [
   {
-    "time": 1771137746.8697255,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- ok well im going to see if i can fix your agent terminal and i will restart you ",
-    "success": true
-  },
-  {
-    "time": 1771140789.4082448,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Backup: Pre-orchestration -- do you know what is wrong with the agent terminal and why it doesnt work?",
-    "success": true
-  },
-  {
-    "time": 1771140868.6636157,
-    "type": "AUTO_COMMIT",
-    "detail": "AI Checkpoint: Post-orchestration -- sanity passed",
-    "success": true
-  },
-  {
     "time": 1771141327.447606,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- Your suppose to be digging into the bugs of why agent terminal wasnt working , w",
@@ -597,6 +579,24 @@
     "time": 1772429507.4619339,
     "type": "AUTO_COMMIT",
     "detail": "AI Backup: Pre-orchestration -- Create a minimal valid test in staging/tests/test_logic.py (for example, a simpl",
+    "success": true
+  },
+  {
+    "time": 1772429565.5755641,
+    "type": "AUTO_COMMIT",
+    "detail": "AI Backup: Pre-orchestration -- Create staging/tests/test_logic.py with a valid Python test function and a heade",
+    "success": true
+  },
+  {
+    "time": 1772429594.0763896,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
+    "success": true
+  },
+  {
+    "time": 1772429660.2094805,
+    "type": "CIRCUIT_BREAKER",
+    "detail": "Reverted to last commit via git reset --hard HEAD",
     "success": true
   }
 ]

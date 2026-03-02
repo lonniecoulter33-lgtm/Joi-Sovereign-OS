@@ -5,5 +5,12 @@
     "source": "vision_direct",
     "ts": 1772428700.1671884,
     "ttl_sec": 1800
+  },
+  {
+    "category": "SCREEN",
+    "content": "Visual input active",
+    "source": "vision_direct",
+    "ts": 1772429697.1833847,
+    "ttl_sec": 1800
   }
 ]
