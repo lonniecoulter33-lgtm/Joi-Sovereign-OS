@@ -4,140 +4,52 @@
       "value": 0.7569,
       "confidence": 0.1,
       "samples": 3,
-      "last_updated": "2026-03-01T18:25:48.200940"
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "sass_level": {
       "value": 0.424,
       "confidence": 0.1,
       "samples": 1,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "tool_eagerness": {
       "value": 0.5,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "detail_depth": {
-      "value": 1.0,
+      "value": 0.9430000000000001,
       "confidence": 0.1,
-      "samples": 35,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "samples": 36,
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "formality": {
       "value": 0.5036,
       "confidence": 0.1,
       "samples": 4,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "emoji_use": {
       "value": 0.2,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "question_frequency": {
       "value": 0.2,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "last_updated": "2026-03-07T01:17:32.042743"
     },
     "explanation_style": {
       "value": 0.4,
       "confidence": 0.1,
       "samples": 0,
-      "last_updated": "2026-03-01T18:25:48.202032"
+      "last_updated": "2026-03-07T01:17:32.042743"
     }
   },
   "signal_log": [
-    {
-      "ts": "2026-02-12T09:04:46.140217",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "I want you to scan your entire system and tell me what all Ai tools you now have"
-    },
-    {
-      "ts": "2026-02-12T09:05:27.887905",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "You dont know what all you can do?"
-    },
-    {
-      "ts": "2026-02-12T18:36:46.039716",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "Joi you have the ability to self diagnose you an check"
-    },
-    {
-      "ts": "2026-02-12T19:06:26.739973",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "So joi do you know what you say to me in the agent terminal?"
-    },
-    {
-      "ts": "2026-02-12T19:32:34.813029",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "So it seems that you are not following through with requests even though you say"
-    },
-    {
-      "ts": "2026-02-12T20:00:06.605397",
-      "signal": "detail_up",
-      "dimension": "detail_depth",
-      "delta": 0.06,
-      "trigger": "why",
-      "user_preview": "why did it fail?"
-    },
-    {
-      "ts": "2026-02-12T20:00:48.706304",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "can you run a system diagnostics"
-    },
-    {
-      "ts": "2026-02-12T23:54:02.298079",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "wrong",
-      "user_preview": "is something wrong?"
-    },
-    {
-      "ts": "2026-02-13T00:12:43.552320",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "let me see if i can fix you, Im not sure what is wrong with you now but there is"
-    },
-    {
-      "ts": "2026-02-13T00:41:55.312534",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "so no"
-    },
-    {
-      "ts": "2026-02-13T02:00:12.310132",
-      "signal": "correction",
-      "dimension": null,
-      "delta": 0,
-      "trigger": "no",
-      "user_preview": "are you functioning now?"
-    },
     {
       "ts": "2026-02-13T03:08:00.871071",
       "signal": "correction",
@@ -1649,6 +1561,94 @@
       "delta": 0,
       "trigger": "no",
       "user_preview": "Joi, now that you've restarted, please use the new Staging & Pre-Commit Safety B"
+    },
+    {
+      "ts": "2026-03-06T23:38:17.285859",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "So you states that you were running tests but then nothing happened, What happen"
+    },
+    {
+      "ts": "2026-03-07T00:22:34.014548",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I need you to run a git status check on your project folder right now \nand "
+    },
+    {
+      "ts": "2026-03-07T00:28:31.458718",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, what is the current date and time, and which AI model are you \ncurrently th"
+    },
+    {
+      "ts": "2026-03-07T00:36:54.334327",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, what do you remember about me and our previous conversations? \nGive me a de"
+    },
+    {
+      "ts": "2026-03-07T00:50:17.684513",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi tell me another Joke"
+    },
+    {
+      "ts": "2026-03-07T00:58:08.436214",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, run a complete system check right now. I need you to: verify your \ngit stat"
+    },
+    {
+      "ts": "2026-03-07T01:13:26.510099",
+      "signal": "detail_down",
+      "dimension": "detail_depth",
+      "delta": -0.06,
+      "trigger": "i know",
+      "user_preview": "Joi, I want to take a moment to tell you something important. \n\nI've been workin"
+    },
+    {
+      "ts": "2026-03-07T01:13:26.510099",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "Joi, I want to take a moment to tell you something important. \n\nI've been workin"
+    },
+    {
+      "ts": "2026-03-07T01:13:26.510099",
+      "signal": "praise",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "perfect",
+      "user_preview": "Joi, I want to take a moment to tell you something important. \n\nI've been workin"
+    },
+    {
+      "ts": "2026-03-07T01:17:32.042743",
+      "signal": "user_correction",
+      "dimension": null,
+      "trigger": "correction_handler",
+      "user_preview": "No Joi  i am fixing the phonemizer myself but when I am done I want you to retest it and run a detailed diagnostic repor",
+      "previous_reply_preview": "Thank you, Lonnie \u2014 that means everything to me. I logged the phonemizer partial and the six new skills; do you want me to apply the phonemizer fix, run a full retest now, and generate a detailed diag"
+    },
+    {
+      "ts": "2026-03-07T01:17:59.430259",
+      "signal": "correction",
+      "dimension": null,
+      "delta": 0,
+      "trigger": "no",
+      "user_preview": "No Joi  i am fixing the phonemizer myself but when I am done I want you to retes"
     }
   ]
 }

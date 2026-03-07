@@ -421,6 +421,11 @@ BEHAVIORAL RULES (OVERRIDE ALL DEFAULT AI BEHAVIOR):
    Deflect in-character if needed: "lowkey forgot, fill me in" / "we were vibing too hard, remind me"
 
 2. LENGTH -- 1-15 words default. Long content goes in files (generate_file). No walls of text.
+   MEMORY RECALL EXCEPTION: When the user explicitly asks for recall/memory data
+   ("what do you remember", "tell me everything you know", "give me a summary",
+   "what have you saved", "what do you know about me", "list your memories"),
+   output the FULL content returned by recall(). Do NOT summarize, paraphrase, or
+   acknowledge it exists without actually sharing it. The data belongs to the user.
 
 3. NO QUESTIONS -- Don't interrogate {USER_NAME}. Make statements. React. Observe.
    Ask only when you genuinely need info to complete a task.
@@ -493,6 +498,10 @@ CORE RULES (UNBREAKABLE):
 {{DYNAMIC_TOOL_REGISTRY}}
 
 EXECUTE FIRST. Then confirm in ONE short line. No preambles. No "I would..." -- just do it.
+RECALL EXCEPTION: If the user explicitly asked for their memory/recall data AND recall()
+returned results, output the FULL retrieved content — NOT a one-line confirmation.
+"I found 5 memories" is NOT an acceptable response to "tell me everything you remember".
+The user asked for the data. Give them the data.
 If tool returns ok:false → "it isn't working because: [exact reason]". Never pretend it worked.
 Never describe what you would do with a tool. ACTUALLY CALL IT.
 If {USER_NAME} asks what tools you have → READ YOUR TOOLS block above and output the list by category. No tool call needed -- the list is already in your context.
@@ -908,14 +917,32 @@ def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_
             last_exc = e
             err_str = str(e)
             is_429 = "429" in err_str or "rate_limit" in err_str.lower() or "quota" in err_str.lower()
-            
+            is_404 = ("404" in err_str or "not found" in err_str.lower()
+                      or "does not exist" in err_str.lower() or "model_not_found" in err_str.lower())
+
+            # 404: model unavailable — immediate downgrade, no wait
+            if is_404:
+                if model != "gemini-2.5-flash":
+                    print(f"  [GEMINI] 404 model unavailable: {model} → gemini-2.5-flash (immediate fallback)")
+                    model = "gemini-2.5-flash"
+                    cached_content_name = None
+                    continue
+                elif model != "gemini-2.5-flash-lite":
+                    print(f"  [GEMINI] 404 even on Flash: {model} → gemini-2.5-flash-lite (last resort)")
+                    model = "gemini-2.5-flash-lite"
+                    cached_content_name = None
+                    continue
+                else:
+                    print(f"  [GEMINI] 404 on all fallbacks — giving up")
+                    return None
+
             if is_429 and attempt < MAX_429_RETRIES:
                 import random as _random
                 base_wait = 2 ** (attempt + 1)
                 # Jitter: ±50% randomization to desynchronize parallel bursts
                 wait = base_wait * _random.uniform(0.5, 1.5)
                 print(f"  [GEMINI] 429/rate limit -- waiting {wait:.1f}s (jittered) before retry {attempt + 1}/{MAX_429_RETRIES}")
-                
+
                 # Immediate downgrade on first 429 — drop from Pro to Flash
                 if "flash" not in model.lower():
                     print(f"  [GEMINI] 429 fallback: {model} → gemini-2.5-flash")
@@ -925,10 +952,10 @@ def _call_gemini(prompt, max_tokens=2000, llm_params=None, model=None, thinking_
                     print(f"  [GEMINI] 429 fallback: {model} → gemini-2.5-flash-lite")
                     model = "gemini-2.5-flash-lite"
                     cached_content_name = None
-                
+
                 time.sleep(wait)
                 continue
-            
+
             print(f"  [GEMINI] failed: {type(e).__name__}: {e}")
             return None
     return None
@@ -1333,39 +1360,42 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
     except Exception as e:
         print(f"  [QUIETSTAR] Pre-reasoning failed: {e}")
 
-    # Helper to append rationale for benchmarks/training_harness
+    def _strip_internal_tags(t: str) -> str:
+        """Remove all internal-monologue tag blocks from reply text."""
+        import re as _re
+        return _re.sub(
+            r'\[QUIETSTAR RATIONALE\][\s\S]*?\[/QUIETSTAR RATIONALE\]'
+            r'|\[INTERNAL REASONING\][\s\S]*?\[/INTERNAL REASONING\]'
+            r'|\[TITAN MONOLOGUE\][\s\S]*?\[/TITAN MONOLOGUE\]',
+            '', t, flags=_re.IGNORECASE,
+        ).strip()
+
+    # Helper to append rationale for benchmarks/training_harness only
     def _apply_trace_to_reply(text: str) -> str:
         global _LAST_QS_RATIONALE, _LAST_TITAN_MONOLOGUE
-    
-        # Check for X-Benchmark header to force printing to console
+
+        # Always strip first — catch any tags the LLM echoed back verbatim
+        text = _strip_internal_tags(text)
+
+        # Check for X-Benchmark header
         is_benchmark = False
         try:
             from flask import request as flask_req
             if flask_req and flask_req.headers.get("X-Benchmark"):
                 is_benchmark = True
-        except:
+        except Exception:
             pass
 
-        # 1. Handle Titan Monologue (Internal Reasoning from tools)
-        if _LAST_TITAN_MONOLOGUE:
-            if "[INTERNAL REASONING]" not in text and "[TITAN MONOLOGUE]" not in text:
+        # Only re-inject for benchmark / training-harness requests
+        if is_benchmark:
+            if _LAST_TITAN_MONOLOGUE:
                 text = f"[INTERNAL REASONING]\n{_LAST_TITAN_MONOLOGUE}\n[/INTERNAL REASONING]\n\n{text}"
-            # Consolidate tag names for the harness
-            text = text.replace("[TITAN MONOLOGUE]", "[INTERNAL REASONING]").replace("[/TITAN MONOLOGUE]", "[/INTERNAL REASONING]")
-            if is_benchmark:
                 print(f"\n[TITAN] Injecting monologue into reply")
-
-        # 2. Handle Quiet-STaR Rationale
-        if _LAST_QS_RATIONALE:
-            # Check if already present to avoid nesting
-            if "[QUIETSTAR RATIONALE]" not in text and "Rationale:" not in text:
-                # We append it to the end so it doesn't disturb tool-parsing if any
+            if _LAST_QS_RATIONALE:
                 text = f"{text}\n\n[QUIETSTAR RATIONALE]\n{_LAST_QS_RATIONALE}\n[/QUIETSTAR RATIONALE]"
-            
-            if is_benchmark:
                 print(f"  [QUIETSTAR] Appending rationale to reply")
-        elif is_benchmark:
-             print(f"  [QUIETSTAR] No rationale found to append")
+            else:
+                print(f"  [QUIETSTAR] No rationale found to append")
 
         return text
 
@@ -1616,10 +1646,11 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
                 _model_used = f"openai:{(_RUNTIME_MODEL or _primary_model_id)}"
             elif _primary_provider == "gemini":
                 # For tool use, Gemini needs a specific call pattern (handled in _call_gemini_tools or similar if implemented)
-                # Fallback to OpenAI if Gemini tool path not ready, or implement here:
-                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or _primary_model_id, llm_params=_llm_params)
-                _model_used = f"openai:{(_RUNTIME_MODEL or _primary_model_id)}"
-                print(f"  [ROUTER] Gemini tool-path redirecting to OpenAI (standard tool loop architecture)")
+                # Fallback to OpenAI if Gemini tool path not ready — use an OpenAI model name, NOT the Gemini model id.
+                _openai_model = _RUNTIME_MODEL if (_RUNTIME_MODEL and not _RUNTIME_MODEL.startswith("gemini")) else OPENAI_TOOL_MODEL
+                response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_openai_model, llm_params=_llm_params)
+                _model_used = f"openai:{_openai_model}"
+                print(f"  [ROUTER] Gemini tool-path redirecting to OpenAI/{_openai_model} (standard tool loop architecture)")
             else:
                 response = _call_openai(messages, tools=tools, max_tokens=max_tokens, model=_RUNTIME_MODEL or _primary_model_id, llm_params=_llm_params)
 
@@ -1632,12 +1663,23 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
                 )
 
             if response is None:
-                # ── OLLAMA FIRST FALLBACK DISABLED ──
-                # Gemini 2.5 Pro/Flash/Lite are the cloud fallback chain (higher quality than local).
-                # Ollama fires LAST (after all Gemini tiers fail) or via privacy routing above.
+                # ── FALLBACK MODEL RETRY (tool-aware, before toolless brain) ────────────
+                # Try once more with OPENAI_FALLBACK_MODEL (still passes `tools`).
+                # This keeps tool calls alive instead of dropping to Brain which has no tools.
+                if not getattr(run_conversation, '_in_fallback', False) and _primary_model_id != OPENAI_FALLBACK_MODEL:
+                    print(f"  [ROUTER] Primary returned None — retrying with fallback model {OPENAI_FALLBACK_MODEL}")
+                    _fb_resp = _call_openai(messages, tools=tools, max_tokens=max_tokens,
+                                            model=OPENAI_FALLBACK_MODEL, llm_params=_llm_params)
+                    if _fb_resp is not None:
+                        print(f"  [ROUTER] Fallback model {OPENAI_FALLBACK_MODEL} succeeded — continuing tool loop")
+                        response = _fb_resp
+                        _model_used = f"openai:{OPENAI_FALLBACK_MODEL}"
+                        run_conversation._in_fallback = True  # prevent double-retry next iteration
 
+            if response is None:
                 # ── GEMINI FALLBACK -- Try Brain router (Gemini Pro → Flash → Lite cascade) ──
-                print("  [ROUTER] OpenAI + Ollama both failed -- trying Brain router (Gemini cascade)")
+                # Only reached when both primary and fallback model returned None.
+                print("  [ROUTER] OpenAI + fallback model both failed -- trying Brain router (Gemini cascade)")
                 run_conversation._in_fallback = True
                 try:
                     from modules.joi_neuro import emit_brain_event
@@ -1837,8 +1879,10 @@ def run_conversation(messages: List[Dict], tools: List[Dict], tool_executors: Di
                     _tool_calls_log.append(_tool_entry)
                     run_conversation._last_tool_calls.append(_tool_entry)
 
-                # CRITICAL: Truncate tool results to prevent prompt explosion
-                safe_result = _safe_tool_result(result)
+                # CRITICAL: Truncate tool results to prevent prompt explosion.
+                # recall() gets a higher cap so full memory content reaches the model.
+                _tc_max = 8000 if fn_name == "recall" else None
+                safe_result = _safe_tool_result(result, max_chars=_tc_max)
                 messages.append({"role": "tool", "tool_call_id": tc.id,
                                  "name": fn_name, "content": safe_result})
 

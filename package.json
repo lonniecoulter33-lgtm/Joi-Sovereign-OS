@@ -3,7 +3,13 @@
   "version": "3.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "jest --forceExit"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"],
+    "roots": ["<rootDir>/src", "<rootDir>/tests"]
   },
   "devDependencies": {
     "electron": "^40.1.0",

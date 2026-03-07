@@ -2759,6 +2759,326 @@
         "source": "chat_loop",
         "task_type": "conversation"
       }
+    },
+    {
+      "ts": 1772868154.0022244,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868154.059839,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868154.1270642,
+      "tool": "joicode_run_bash",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868154.2637224,
+      "tool": "joicode_run_bash",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868154.4072573,
+      "tool": "joicode_run_bash",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868154.4512732,
+      "tool": "joicode_run_bash",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868511.5674014,
+      "tool": "get_current_provider",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772868511.696718,
+      "tool": "get_current_provider",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772869014.4295366,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "memory"
+      }
+    },
+    {
+      "ts": 1772869014.516966,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "memory"
+      }
+    },
+    {
+      "ts": 1772869014.6116118,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "memory"
+      }
+    },
+    {
+      "ts": 1772869014.6622822,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "memory"
+      }
+    },
+    {
+      "ts": 1772869775.3520796,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772869775.4136333,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772869866.5269663,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772869866.6159093,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772869915.2688625,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "research"
+      }
+    },
+    {
+      "ts": 1772869915.4192395,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "research"
+      }
+    },
+    {
+      "ts": 1772870288.575726,
+      "tool": "git_manager",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.6269195,
+      "tool": "git_manager",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.7054024,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.7970188,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.8398979,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.9042685,
+      "tool": "get_capability_report",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.93871,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870288.9714363,
+      "tool": "recall",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870289.0083504,
+      "tool": "fs_read",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772870289.0585961,
+      "tool": "fs_read",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "conversation"
+      }
+    },
+    {
+      "ts": 1772871206.6706092,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_admin"
+      }
+    },
+    {
+      "ts": 1772871206.7539537,
+      "tool": "internal_monologue",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_admin"
+      }
+    },
+    {
+      "ts": 1772871479.4442198,
+      "tool": "remember",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_admin"
+      }
+    },
+    {
+      "ts": 1772871479.535409,
+      "tool": "remember",
+      "success": true,
+      "outcome": "success",
+      "context": {
+        "source": "chat_loop",
+        "task_type": "system_admin"
+      }
     }
   ],
   "tool_stats": {
@@ -2773,8 +3093,8 @@
       "failures": 0
     },
     "recall": {
-      "calls": 15,
-      "successes": 15,
+      "calls": 21,
+      "successes": 21,
       "failures": 0
     },
     "list_known_faces": {
@@ -2793,8 +3113,8 @@
       "failures": 0
     },
     "remember": {
-      "calls": 10,
-      "successes": 10,
+      "calls": 12,
+      "successes": 12,
       "failures": 0
     },
     "acquire_capability": {
@@ -2808,8 +3128,8 @@
       "failures": 1
     },
     "internal_monologue": {
-      "calls": 59,
-      "successes": 59,
+      "calls": 71,
+      "successes": 71,
       "failures": 0
     },
     "monitor_ai_research": {
@@ -2818,8 +3138,8 @@
       "failures": 0
     },
     "fs_read": {
-      "calls": 8,
-      "successes": 8,
+      "calls": 10,
+      "successes": 10,
       "failures": 0
     },
     "orchestrate_task": {
@@ -2848,8 +3168,8 @@
       "failures": 2
     },
     "get_current_provider": {
-      "calls": 2,
-      "successes": 2,
+      "calls": 4,
+      "successes": 4,
       "failures": 0
     },
     "get_orchestrator_status": {
@@ -2893,8 +3213,8 @@
       "failures": 0
     },
     "get_capability_report": {
-      "calls": 9,
-      "successes": 9,
+      "calls": 11,
+      "successes": 11,
       "failures": 0
     },
     "check_claude_code_status": {
@@ -2998,6 +3318,16 @@
       "failures": 2
     },
     "list_proposals": {
+      "calls": 2,
+      "successes": 2,
+      "failures": 0
+    },
+    "joicode_run_bash": {
+      "calls": 4,
+      "successes": 4,
+      "failures": 0
+    },
+    "git_manager": {
       "calls": 2,
       "successes": 2,
       "failures": 0
@@ -3250,10 +3580,10 @@
       "avg_response_ms": 3774
     },
     "brain:Gemini gemini-2.5-flash": {
-      "calls": 44,
+      "calls": 46,
       "task_types": {
         "conversation": {
-          "count": 33,
+          "count": 35,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -3278,7 +3608,7 @@
           "verified_fail": 0
         }
       },
-      "avg_response_ms": 5011,
+      "avg_response_ms": 5044,
       "tier": 1
     },
     "brain:Gemini gemini-2.5-flash-lite": {
@@ -3336,7 +3666,7 @@
       "tier": 2
     },
     "openai:gpt-5-mini": {
-      "calls": 30,
+      "calls": 41,
       "task_types": {
         "capability_query": {
           "count": 1,
@@ -3344,7 +3674,7 @@
           "verified_fail": 0
         },
         "conversation": {
-          "count": 25,
+          "count": 32,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -3354,7 +3684,7 @@
           "verified_fail": 0
         },
         "memory": {
-          "count": 1,
+          "count": 2,
           "verified_ok": 0,
           "verified_fail": 0
         },
@@ -3362,9 +3692,19 @@
           "count": 1,
           "verified_ok": 0,
           "verified_fail": 0
+        },
+        "research": {
+          "count": 1,
+          "verified_ok": 0,
+          "verified_fail": 0
+        },
+        "system_admin": {
+          "count": 2,
+          "verified_ok": 0,
+          "verified_fail": 0
         }
       },
-      "avg_response_ms": 24109
+      "avg_response_ms": 26106
     },
     "brain:OpenAI gpt-5": {
       "calls": 8,
@@ -3386,6 +3726,18 @@
         }
       },
       "avg_response_ms": 75211,
+      "tier": 1
+    },
+    "brain:OpenAI gpt-5-mini": {
+      "calls": 1,
+      "task_types": {
+        "conversation": {
+          "count": 1,
+          "verified_ok": 0,
+          "verified_fail": 0
+        }
+      },
+      "avg_response_ms": 30278,
       "tier": 1
     }
   }

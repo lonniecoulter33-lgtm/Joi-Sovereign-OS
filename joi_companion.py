@@ -826,18 +826,24 @@ def chat():
             from modules.joi_orchestrator import orchestrate_task as _orch_start, _current_session
             _msg_lower = user_message.lower()
             _orch_triggers = [
-                "build", "create a tool", "create a module", "create a new",
+                # Specific coding verbs — unambiguous intent
+                "create a tool", "create a module", "create a new",
                 "add a feature", "implement", "write code", "write a function",
                 "fix the code", "fix this bug", "refactor", "deploy",
                 "agent terminal", "start orchestration", "orchestrate",
-                "work on", "handle this", "take care of",
+                # "build" only when followed by a target, not bare ("build on that idea")
+                "build me ", "build the ", "build a ", "build an ",
             ]
             # Check if there's already an active session
             _has_active = (_current_session and
                           _current_session.get("phase") not in ("COMPLETE", "FAILED", None))
             _is_coding_task = any(t in _msg_lower for t in _orch_triggers)
-            # Don't trigger for simple questions about these topics
-            _is_question = _msg_lower.startswith(("what", "how", "why", "when", "can you explain", "tell me"))
+            # Don't trigger for questions or polite conversational requests
+            _is_question = _msg_lower.startswith((
+                "what", "how", "why", "when", "can you explain", "tell me",
+                "can you", "could you", "would you", "do you", "please",
+                "i need help", "i need you to explain",
+            ))
 
             if _is_coding_task and not _has_active and not _is_question:
                 save_message("user", user_message)

@@ -155,13 +155,14 @@ def get_thinking_budget(model_id: str, level: str) -> int:
 
 # Gemini model roles — Paid Tier 1 routing
 GEMINI_MODELS = {
-    "primary":   "gemini-2.5-pro",         # T1: Best quality, 2M context (PAID)
-    "large":     "gemini-2.5-pro",         # T1: Alias for large-context routing
+    # NOTE: gemini-2.5-pro gives 404 on Paid Tier 1 (Mar 2026) — routing to Flash until Pro confirmed.
+    "primary":   "gemini-2.5-flash",       # T1: Best confirmed-working Gemini (1M context)
+    "large":     "gemini-2.5-flash",       # T1: Large-context (Pro disabled — 404 on current tier)
     "thinking":  "gemini-2.0-flash-thinking",# T2: Debugging, structured reasoning
-    "standard":  "gemini-2.5-flash",       # T3: Fast, high quality, 1M context
-    "general":   "gemini-2.5-flash",       # T3: Backward-compat alias
-    "fallback":  "gemini-2.5-flash",       # T3: Fallback (Flash is free-tier-safe too)
-    "emergency": "gemini-2.5-flash-lite",  # T4: Rate-limit last resort only
+    "standard":  "gemini-2.5-flash",       # T2: Fast, high quality, 1M context
+    "general":   "gemini-2.5-flash",       # T2: Backward-compat alias
+    "fallback":  "gemini-2.5-flash",       # T2: Fallback
+    "emergency": "gemini-2.5-flash-lite",  # T3: Rate-limit last resort only
 }
 
 OPENAI_MODELS = {
@@ -200,8 +201,9 @@ AGENT_MODEL_MAP = {
         "fallback": ("openai", "o4-mini"),
     },
     "coder_agent": {
-        "model":    ("openai", "gpt-5"),
-        "fallback": ("openai", "gpt-5-mini"),
+        # gpt-5 took 33s per subtask — gpt-5-mini is 8-10x faster at Tier 2 (10M TPM)
+        "model":    ("openai", "gpt-5-mini"),
+        "fallback": ("openai", "gpt-5-nano"),
     },
     "validator_agent": {
         "model":    ("openai", "o4-mini"),
@@ -253,15 +255,17 @@ TASK_MODEL_ROUTING = {
         "fallback": ("openai", "o4-mini"),
     },
     "coding": {
-        "primary":  ("openai", "gpt-5"),         # Up from gpt-4o — paid tier allows best
-        "fallback": ("openai", "gpt-5-mini"),
+        # gpt-5-mini: 10M TPM on Tier 2, 8-10x faster than gpt-5 for code tasks
+        "primary":  ("openai", "gpt-5-mini"),
+        "fallback": ("openai", "gpt-5-nano"),
     },
     "validation": {
         "primary":  ("openai", "o4-mini"),
         "fallback": ("openai", "o3-mini"),
     },
     "chat": {
-        "primary":  ("gemini", "gemini-2.5-pro"),     # Paid: use Pro for all chat
+        # gemini-2.5-pro → 404 on current Paid Tier 1 (confirmed Mar 2026) — using Flash
+        "primary":  ("gemini", "gemini-2.5-flash"),
         "fallback": ("gemini", "gemini-2.5-flash"),
     },
     "debugging": {                                    # NEW: dedicated debugging route
@@ -269,7 +273,8 @@ TASK_MODEL_ROUTING = {
         "fallback": ("openai", "o4-mini"),
     },
     "large_context": {                                # NEW: 1M-token read tasks
-        "primary":  ("gemini", "gemini-2.5-pro"),
+        # gemini-2.5-pro → 404 on current Paid Tier 1 (confirmed Mar 2026) — using Flash
+        "primary":  ("gemini", "gemini-2.5-flash"),
         "fallback": ("openai", "gpt-4.1"),
     },
     "exploration": {

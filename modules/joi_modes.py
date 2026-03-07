@@ -137,6 +137,12 @@ _LONG_TRIGGERS = [
     "brainstorm", "troubleshoot", "help me with", "help me understand",
     "feedback", "critique", "review this", "what do you think",
     "step by step", "break down", "expand on", "elaborate",
+    # Memory/recall explicit data requests — always need full output
+    "what do you remember", "what do you know about", "tell me everything",
+    "everything you know", "everything you remember", "give me a detailed",
+    "what have you saved", "list everything", "show me everything",
+    "full summary", "all memories", "recall everything", "what do you have",
+    "what have we talked about", "what have i told you",
 ]
 
 
@@ -169,11 +175,15 @@ _VERBOSITY_HINTS = {
         "Reply in 1-2 sentences MAX. No trailing questions. Quick and direct. "
         "If it's a task, confirm and DO IT -- don't explain what you'll do. "
         "Action > words. One-liners preferred.\n"
+        "EXCEPTION: If the user asked for recall/memory data, output the FULL "
+        "content of recall() results regardless of this length hint.\n"
     ),
     "medium": (
         "\n[MODE HINT -- REPLY LENGTH: MEDIUM]\n"
         "Reply in 2-3 sentences. Natural and concise. "
         "Say what matters, skip the filler. No unnecessary preamble.\n"
+        "EXCEPTION: If the user asked for recall/memory data, output the FULL "
+        "content of recall() results regardless of this length hint.\n"
     ),
     "long": (
         "\n[MODE HINT -- REPLY LENGTH: LONG]\n"

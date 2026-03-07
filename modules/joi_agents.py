@@ -728,11 +728,48 @@ RULES:
 """
 
 
+def _classify_coding_complexity(subtask: Dict) -> str:
+    """
+    Classify subtask coding complexity for model routing.
+    Returns 'simple', 'standard', or 'complex'.
+    No LLM call — pure keyword heuristic.
+    """
+    desc = (subtask.get("description", "") + " " + subtask.get("acceptance_criteria", "")).lower()
+    files = subtask.get("files", [])
+
+    # Complex: multi-file, architecture, design, refactor
+    complex_signals = [
+        "architect", "design", "refactor", "multi-file", "restructure",
+        "redesign", "overhaul", "rewrite", "complex", "algorithm",
+        "concurrent", "thread", "async", "middleware", "framework",
+        "integration", "pipeline", "orchestrat", "authentication",
+    ]
+    if any(s in desc for s in complex_signals) or len(files) > 2:
+        return "complex"
+
+    # Simple: boilerplate, scaffold, rename, add import, config
+    simple_signals = [
+        "scaffold", "boilerplate", "rename", "add import", "add constant",
+        "add comment", "update docstring", "update version", "bump",
+        "typo", "whitespace", "format", "add line", "remove line",
+        "simple", "trivial", "placeholder", "stub",
+    ]
+    if any(s in desc for s in simple_signals):
+        return "simple"
+
+    return "standard"
+
+
 def call_coder(subtask: Dict[str, Any], file_content: str,
                joi_ctx: str = "", error_feedback: Optional[str] = None) -> Dict[str, Any]:
     """
     Call the Brain to generate surgical edits (config: coder_agent).
     Returns parsed JSON with changes[] or error dict.
+
+    Fix 4: Routes by coding complexity:
+      simple   → task_type="quick"    (cheaper/faster model for boilerplate)
+      standard → task_type="coding"   (current default)
+      complex  → task_type="planning" (more capable model for architecture)
     """
     file_path = subtask.get("files", ["unknown"])[0] if subtask.get("files") else "unknown"
 
@@ -759,14 +796,23 @@ CURRENT FILE CONTENT:
 
 Generate your changes as strict JSON. No markdown, no explanation outside the JSON."""
 
-    # Agent Terminal: use Dynamic Model Router (coding -> Qwen 2.5 Coder / o3 / GPT-4o)
+    # Fix 4: Route by coding complexity
+    complexity = _classify_coding_complexity(subtask)
+    _complexity_task_map = {
+        "simple":   "quick",    # → cheaper/faster model for boilerplate
+        "standard": "coding",   # → standard coding model (default)
+        "complex":  "planning", # → more capable model for architecture
+    }
+    _routed_task_type = _complexity_task_map.get(complexity, "coding")
+
+    # Agent Terminal: use Dynamic Model Router
     result = None
     text = None
     model_used = "unknown"
     try:
         from modules.joi_llm import route_and_call_for_agent
         text, model_used = route_and_call_for_agent(
-            task_type="coding",
+            task_type=_routed_task_type,
             messages=[{"role": "user", "content": prompt}],
             system_prompt=CODER_SYSTEM_PROMPT,
             max_tokens=3000,

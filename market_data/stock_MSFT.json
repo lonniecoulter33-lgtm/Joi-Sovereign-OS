@@ -1,11 +1,11 @@
 {
   "symbol": "MSFT",
-  "price": 392.74,
-  "change": -8.98,
-  "change_percent": -2.2354,
+  "price": 408.96,
+  "change": -1.72,
+  "change_percent": -0.4188,
   "volume": 0,
   "market_cap": 0,
-  "timestamp": 1772430007.4066412,
-  "datetime": "2026-03-01T22:40:07.406641",
+  "timestamp": 1772871581.431204,
+  "datetime": "2026-03-07T01:19:41.431204",
   "provider": "finnhub"
 }

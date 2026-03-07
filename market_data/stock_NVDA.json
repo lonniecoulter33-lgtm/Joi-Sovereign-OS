@@ -1,11 +1,11 @@
 {
   "symbol": "NVDA",
-  "price": 177.19,
-  "change": -7.7,
-  "change_percent": -4.1646,
+  "price": 177.82,
+  "change": -5.52,
+  "change_percent": -3.0108,
   "volume": 0,
   "market_cap": 0,
-  "timestamp": 1772430012.292851,
-  "datetime": "2026-03-01T22:40:12.292850",
+  "timestamp": 1772871584.4102573,
+  "datetime": "2026-03-07T01:19:44.410257",
   "provider": "finnhub"
 }

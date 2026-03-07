@@ -323,6 +323,77 @@ HARD_CAP = 128   # OpenAI API hard limit
 TARGET_MAX = 125  # Max safe tools to send without hitting limit
 GATE_THRESHOLD = 50  # start filtering once registry exceeds this count
 
+# NOTE: select_tools_for_subtask() is defined below but coder agents don't use tools.
+# Tool selection only applies to the main chat path (run_conversation in joi_llm.py).
+# ORCHESTRATOR_TOOL_CAP removed — it was a premature cap that doesn't match architecture.
+
+# Keyword → group mappings used by select_tools_for_subtask
+_SUBTASK_KEYWORD_GROUPS: Dict[str, List[str]] = {
+    # coding / file writing
+    "code": ["code_edit", "filesystem"],
+    "edit": ["code_edit", "filesystem"],
+    "write": ["code_edit", "filesystem"],
+    "create": ["code_edit", "filesystem"],
+    "fix": ["code_edit", "filesystem", "diagnostics"],
+    "bug": ["code_edit", "filesystem", "diagnostics"],
+    "refactor": ["code_edit", "filesystem"],
+    "function": ["code_edit"],
+    "module": ["code_edit", "filesystem"],
+    "class": ["code_edit"],
+    "import": ["code_edit"],
+    "syntax": ["code_edit", "diagnostics"],
+    "python": ["code_edit", "filesystem"],
+    "javascript": ["code_edit", "filesystem"],
+    "html": ["code_edit", "filesystem"],
+    "css": ["code_edit", "filesystem"],
+    # running / testing
+    "test": ["code_edit", "diagnostics"],
+    "run": ["code_edit"],
+    "execute": ["code_edit"],
+    "install": ["app_factory"],
+    "npm": ["app_factory"],
+    "pip": ["app_factory"],
+    # validation / diagnostics
+    "diagnose": ["diagnostics"],
+    "diagnostic": ["diagnostics"],
+    "repair": ["diagnostics"],
+    "validate": ["diagnostics"],
+    # git / version control
+    "git": ["git_agency", "watchdog"],
+    "commit": ["git_agency"],
+    "push": ["git_agency"],
+    # file system
+    "file": ["filesystem"],
+    "folder": ["filesystem"],
+    "directory": ["filesystem"],
+    "read": ["filesystem"],
+    "save": ["filesystem"],
+    "tree": ["filesystem"],
+    # web / search
+    "search": ["search"],
+    "web": ["search", "browser"],
+    "fetch": ["search"],
+    "url": ["browser"],
+    # build / scaffold
+    "scaffold": ["app_factory"],
+    "build": ["app_factory"],
+    "package": ["app_factory"],
+    # watchdog
+    "revert": ["watchdog"],
+    "rollback": ["watchdog"],
+    "checkpoint": ["watchdog"],
+}
+
+# Core tools always included in orchestrator subtask context
+_ORCHESTRATOR_CORE_TOOLS: set = {
+    "orchestrate_task", "get_orchestrator_status",
+    "joicode_run_bash", "run_system_diagnostic",
+    "fs_read", "fs_list", "fs_search", "project_tree",
+    "code_edit", "code_read_section",
+    "remember", "recall",
+    "validate_python_file",
+}
+
 
 def _get_tool_name(tool_def: dict) -> str:
     """Extract name from OpenAI tool definition."""
@@ -450,6 +521,55 @@ def get_group_for_tool(tool_name: str) -> Optional[str]:
     return _TOOL_TO_GROUP.get(tool_name)
 
 
+def select_tools_for_subtask(
+    all_tools: List[Dict],
+    subtask_description: str = "",
+    extra_tool_names: Optional[List[str]] = None,
+) -> List[Dict]:
+    """
+    Semantic tool filter for orchestrator subtask execution.
+
+    NOTE: Coder agents don't use tools — they output pure JSON via route_and_call_for_agent().
+    This function is available for future non-Layer-1 paths that do use tools in subtask context.
+
+    Strategy:
+      1. Always include _ORCHESTRATOR_CORE_TOOLS
+      2. Keyword-match subtask description to additional groups
+      3. Include any explicitly requested extra_tool_names
+    """
+    tool_lookup: Dict[str, Dict] = {_get_tool_name(t): t for t in all_tools if _get_tool_name(t)}
+
+    # Start with core set
+    selected_names: Set[str] = set(_ORCHESTRATOR_CORE_TOOLS)
+
+    # Keyword-match subtask description to extra groups
+    desc_lower = subtask_description.lower()
+    matched_groups: Set[str] = set()
+    for keyword, groups in _SUBTASK_KEYWORD_GROUPS.items():
+        if keyword in desc_lower:
+            matched_groups.update(groups)
+
+    for gname in matched_groups:
+        gdata = TOOL_GROUPS.get(gname, {})
+        selected_names.update(gdata.get("tools", set()))
+
+    # Always include priority-1 group tools (they're tiny and always relevant)
+    for gname, gdata in TOOL_GROUPS.items():
+        if gdata.get("priority") == 1:
+            selected_names.update(gdata.get("tools", set()))
+
+    # Include explicitly requested tools
+    if extra_tool_names:
+        selected_names.update(extra_tool_names)
+
+    # Build ordered list (preserving registry order)
+    selected = [t for t in all_tools if _get_tool_name(t) in selected_names]
+
+    print(f"  [SUBTASK-TOOLS] {len(selected)}/{len(all_tools)} tools for subtask"
+          f" | groups: {', '.join(sorted(matched_groups)) or 'core-only'}")
+    return selected
+
+
 def get_expanded_tools(
     all_tools: List[Dict],
     missing_tool_name: str,
@@ -477,3 +597,38 @@ def get_expanded_tools(
 
     return select_tools(all_tools, user_text=user_text,
                         classification=classification, extra_groups=extra)
+
+
+def build_tool_hint_suffix(all_tools: List[Dict], primary_tools: List[Dict]) -> str:
+    """
+    Build a system-prompt hint listing 'available but not primary' tools
+    as compressed name + one-liner entries. This does NOT reduce the tools
+    array sent to the API — it provides a compressed hint for tools that
+    were filtered out, so the LLM knows they exist and can ask for them.
+
+    Architecture note: The main chat path calls select_tools() from joi_llm.py
+    (Layer 1 — cannot modify). This function is infrastructure for future
+    non-Layer-1 paths that build their own system prompts.
+
+    Returns empty string if no tools were filtered out.
+    """
+    primary_names = {_get_tool_name(t) for t in primary_tools}
+    all_names = {_get_tool_name(t) for t in all_tools}
+    hidden_names = all_names - primary_names
+
+    if not hidden_names:
+        return ""
+
+    hints = []
+    for t in all_tools:
+        name = _get_tool_name(t)
+        if name in hidden_names:
+            desc = t.get("function", {}).get("description", "")
+            # One-liner: first sentence only, max 80 chars
+            one_liner = desc.split(".")[0].strip()[:80]
+            hints.append(f"  \u2022 {name}: {one_liner}")
+
+    if not hints:
+        return ""
+
+    return "\nAdditional tools available on request:\n" + "\n".join(hints[:20])

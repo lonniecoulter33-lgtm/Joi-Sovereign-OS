@@ -1,11 +1,11 @@
 {
   "symbol": "GOOGL",
-  "price": 311.76,
-  "change": 4.38,
-  "change_percent": 1.4249,
+  "price": 298.52,
+  "change": -2.36,
+  "change_percent": -0.7844,
   "volume": 0,
   "market_cap": 0,
-  "timestamp": 1772430008.640705,
-  "datetime": "2026-03-01T22:40:08.640705",
+  "timestamp": 1772871582.1995676,
+  "datetime": "2026-03-07T01:19:42.199567",
   "provider": "finnhub"
 }

@@ -1,11 +1,11 @@
 {
   "symbol": "META",
-  "price": 648.18,
-  "change": -8.83,
-  "change_percent": -1.344,
+  "price": 644.86,
+  "change": -15.71,
+  "change_percent": -2.3782,
   "volume": 0,
   "market_cap": 0,
-  "timestamp": 1772430013.7368183,
-  "datetime": "2026-03-01T22:40:13.736818",
+  "timestamp": 1772871585.0431237,
+  "datetime": "2026-03-07T01:19:45.043123",
   "provider": "finnhub"
 }

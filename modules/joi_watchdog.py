@@ -177,6 +177,18 @@ def _git_revert_hard() -> bool:
         if result["ok"]:
             _circuit_broken = True
             _log_event("CIRCUIT_BREAKER", "Reverted to last commit via git reset --hard HEAD")
+            # Point A — record intervention so coder agent knows why file was reverted
+            try:
+                from modules.joi_watchdog_feedback import record_intervention
+                record_intervention(
+                    action="rollback",
+                    reason="circuit_breaker",
+                    affected_files=[],
+                    error_details="git reset --hard HEAD executed by circuit breaker",
+                    suggestion="Break change into smaller targeted edits. One logical change per subtask.",
+                )
+            except Exception:
+                pass
             return True
         else:
             _log_event("REVERT_FAIL", result["stderr"], success=False)
@@ -294,6 +306,19 @@ def safe_edit(edit_fn, *args, **kwargs) -> Dict[str, Any]:
         # Step 4: CIRCUIT BREAKER -- Revert!
         _log_event("SANITY_FAILED", f"Sanity check failed -- reverting to {checkpoint_hash}",
                     success=False)
+
+        # Point B — record intervention before reverting
+        try:
+            from modules.joi_watchdog_feedback import record_intervention
+            record_intervention(
+                action="rollback",
+                reason="sanity_failed",
+                affected_files=list(kwargs.get("target_files", [])),
+                error_details=str(sanity.get("error", sanity.get("stdout", "")))[:500],
+                suggestion="The edit broke module imports or syntax. Check the specific error above.",
+            )
+        except Exception:
+            pass
 
         reverted = _git_revert_hard()
 
@@ -479,6 +504,20 @@ def safe_edit_incremental(
         _log_event("SANITY_FAILED",
                    f"Incremental restore insufficient -- falling back to git reset --hard",
                    success=False)
+
+        # Point C — record intervention for incremental restore failure
+        try:
+            from modules.joi_watchdog_feedback import record_intervention
+            record_intervention(
+                action="rollback",
+                reason="incremental_restore_failed",
+                affected_files=list(snapshots.keys()) if snapshots else [],
+                error_details=str(error_detail)[:500],
+                suggestion="Incremental restore failed to fix sanity. Reduce change scope to one file at a time.",
+            )
+        except Exception:
+            pass
+
         _git_revert_hard()
 
         try:
@@ -598,6 +637,19 @@ def post_orchestrator_sanity(modified_files: Optional[List[str]] = None) -> Dict
                     "detail": detail,
                     "mode": "incremental",
                 }
+        # Point D — record post-orchestration sanity failure
+        try:
+            from modules.joi_watchdog_feedback import record_intervention
+            record_intervention(
+                action="rollback",
+                reason="post_orchestration_sanity",
+                affected_files=modified_files or [],
+                error_details=str(detail)[:500],
+                suggestion="Post-orchestration sanity failed. Check for import errors or syntax issues in applied files.",
+            )
+        except Exception:
+            pass
+
         # Fallback to nuclear
         _git_revert_hard()
         return {

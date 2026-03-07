@@ -1,11 +1,11 @@
 {
   "symbol": "AAPL",
-  "price": 264.18,
-  "change": -8.77,
-  "change_percent": -3.213,
+  "price": 257.46,
+  "change": -2.83,
+  "change_percent": -1.0872,
   "volume": 0,
   "market_cap": 0,
-  "timestamp": 1772430006.2445579,
-  "datetime": "2026-03-01T22:40:06.244557",
+  "timestamp": 1772871580.6223586,
+  "datetime": "2026-03-07T01:19:40.622358",
   "provider": "finnhub"
 }

@@ -1,0 +1,50 @@
+{
+    "playbooks": [
+        {
+            "id": "db_lock_recovery",
+            "name": "SQLite Database Lock Recovery",
+            "condition": "database is locked",
+            "steps": [
+                "Identify locked database file from error message.",
+                "Attempt to close any dangling connections in the current process.",
+                "If persistent, wait 2 seconds and retry operation once.",
+                "Log incident to reinforcement_graph."
+            ],
+            "automatic": true
+        },
+        {
+            "id": "api_timeout_recovery",
+            "name": "External API Timeout Recovery",
+            "condition": "timeout",
+            "steps": [
+                "Exponential backoff (1s, 2s, 4s).",
+                "Switch to fallback model if original provider (OpenAI/Gemini) remains unresponsive.",
+                "Alert user via Inner State if latency exceeds 30s."
+            ],
+            "automatic": true
+        },
+        {
+            "id": "circular_import_recovery",
+            "name": "Circular Import Resolution",
+            "condition": "circular import",
+            "steps": [
+                "Identify the import cycle.",
+                "Move necessary import inside a function scope (local import) if safe.",
+                "Re-trigger smoke test."
+            ],
+            "automatic": false
+        },
+        {
+            "id": "memory_corruption_recovery",
+            "name": "Memory Cache Corruption Recovery",
+            "condition": "memory corruption",
+            "steps": [
+                "Wipe local .cache or temporary memory JSON files.",
+                "Re-init memory from the most recent stable SQLite backup.",
+                "Trigger full Memory Compression cycle."
+            ],
+            "automatic": true
+        }
+    ],
+    "recovery_history": []
+}

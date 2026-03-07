@@ -73,18 +73,14 @@ def _summarize_with_fast_llm(messages: List[Dict[str, Any]]) -> Optional[str]:
 Keep the summary under 400 words. Use clear bullets or short paragraphs."""
 
     try:
-        from modules.joi_llm import client, OPENAI_TOOL_MODEL
-        if client:
-            resp = client.chat.completions.create(
-                model=OPENAI_TOOL_MODEL,
-                messages=[
-                    {"role": "system", "content": "You are a concise summarizer. Output only the summary, no preamble."},
-                    {"role": "user", "content": f"{prompt}\n\n---\n{transcript}"},
-                ],
-                max_tokens=600,
-            )
-            if resp.choices and resp.choices[0].message.content:
-                return resp.choices[0].message.content.strip()
+        from modules.joi_llm import _call_openai, OPENAI_TOOL_MODEL
+        llm_messages = [
+            {"role": "system", "content": "You are a concise summarizer. Output only the summary, no preamble."},
+            {"role": "user", "content": f"{prompt}\n\n---\n{transcript}"},
+        ]
+        resp = _call_openai(llm_messages, tools=None, max_tokens=600, model=OPENAI_TOOL_MODEL)
+        if resp and resp.choices and resp.choices[0].message.content:
+            return resp.choices[0].message.content.strip()
     except Exception as e:
         print(f"  [COMPRESSOR] Fast LLM summarize failed: {e}")
     # Fallback: minimal extract

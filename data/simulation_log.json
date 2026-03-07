@@ -1,0 +1,24 @@
+[
+  {
+    "proposal_id": "unknown",
+    "target_file": "",
+    "simulation_required": false,
+    "simulation_ran": false,
+    "elapsed_sec": 0.0,
+    "risk_level": "critical",
+    "recommendation": "reject",
+    "reason_required": "",
+    "tests_run": [],
+    "test_results": {},
+    "confidence_before": 0.0,
+    "confidence_after": 0.0,
+    "confidence_delta": 0.0,
+    "latency_delta_ms": 0.0,
+    "projected_error_rate": 0.0,
+    "drift_impact": [],
+    "errors": [
+      "Validation failed: Missing required proposal keys: {'diff_summary', 'proposal_id', 'target_file'}"
+    ],
+    "simulated_at": "2026-03-01T11:31:23.381079+00:00"
+  }
+]

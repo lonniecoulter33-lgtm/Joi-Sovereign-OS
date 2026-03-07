@@ -36,7 +36,7 @@ DATA_DIR.mkdir(exist_ok=True)
 STATE_PATH = DATA_DIR / "orchestrator_state.json"
 
 # ── Constants ────────────────────────────────────────────────────────────────
-MAX_RETRIES = 3
+MAX_RETRIES = 8  # raised from 3; Fix 2 (watchdog feedback) makes each retry smarter
 HEARTBEAT_INTERVAL = 300 # seconds
 AUTO_APPROVE_THRESHOLD = 3  # auto-approve plan if <= N subtasks
 MAX_RECOVERY_ATTEMPTS = 2   # self-healing: up to 2 retries with analyzed revised task (3 total runs)
@@ -215,6 +215,34 @@ def _analyze_failure_and_propose_retry(project_root: str) -> Optional[str]:
 
     failure_summary = "\n".join(failure_lines[-25:]) if failure_lines else "No detailed errors captured."
 
+    # ── Watchdog Post-Mortem ──────────────────────────────────────────────────
+    # If the circuit breaker fired, inject a post-mortem note so the recovery
+    # doesn't replay the same "God Command" that caused the revert.
+    watchdog_postmortem = ""
+    try:
+        from modules.joi_watchdog import _circuit_broken, _activity_log
+        if _circuit_broken:
+            # Find the most recent CIRCUIT_BREAKER or SANITY_FAILED log entry
+            recent_cb = next(
+                (e for e in reversed(_activity_log)
+                 if e.get("type") in ("CIRCUIT_BREAKER", "SANITY_FAILED", "REVERT_FAIL")),
+                None
+            )
+            cb_detail = recent_cb.get("detail", "") if recent_cb else ""
+            cb_time = recent_cb.get("timestamp", "") if recent_cb else ""
+            watchdog_postmortem = (
+                "\n\n⚠️  WATCHDOG POST-MORTEM: The previous orchestration run triggered "
+                "the circuit breaker (git reset --hard HEAD was executed). "
+                f"Detail: {cb_detail[:300]} (at {cb_time})\n"
+                "CRITICAL CONSTRAINT: Do NOT repeat the same approach. "
+                "The change that caused the circuit break must be broken into smaller, "
+                "targeted edits — one logical change per subtask. "
+                "Avoid 'God Commands' that rewrite multiple files at once.\n"
+            )
+    except Exception:
+        pass
+    # ─────────────────────────────────────────────────────────────────────────
+
     prompt = f"""You are helping an automated coding pipeline (Agent Terminal). It can work on its own codebase (Joi) or on separate apps/projects.
 
 ORIGINAL REQUEST:
@@ -225,7 +253,7 @@ PROJECT CONTEXT: {project_root}
 WHAT HAPPENED:
 The pipeline ran but some steps failed. Here is the failure information:
 
-{failure_summary}
+{failure_summary}{watchdog_postmortem}
 
 TASK:
 Propose a SINGLE revised task description that might succeed. For example:
@@ -712,6 +740,12 @@ def _run_coder_loop(st: Dict, project_root: str, joi_ctx: Any) -> bool:
     Run the coder attempt/validation loop.
     Uses streaming run_command() for test commands (real-time output).
     Already-done check is delegated to the coder agent (no keyword heuristic).
+
+    Fix 2: Injects watchdog feedback into the coder prompt so the LLM knows
+            why a file was previously reverted and can make a smarter edit.
+    Fix 3: Adapts file read size by subtask profile (file_operation/code_review
+            get 40KB limit; complex tasks get full 100KB).
+    Fix 6: Soft token budget metering — warns at 80%, pauses (not fails) at 100%.
     """
     from modules.joi_agents import call_coder, preview_changes, preview_new_file
     from modules.joi_code_executor import run_command as _run_cmd
@@ -721,12 +755,20 @@ def _run_coder_loop(st: Dict, project_root: str, joi_ctx: Any) -> bool:
     if target_path and not Path(target_path).is_absolute():
         target_path = str(Path(project_root) / target_path)
 
+    # Fix 3: classify subtask profile to choose read limit
+    _profile_name = "code_generation"
+    try:
+        from modules.joi_context_profiles import classify_subtask
+        _profile_name = classify_subtask(st.get("description", ""))
+    except Exception:
+        pass
+    _read_limit = 40960 if _profile_name in ("file_operation", "code_review") else 102400
+
     is_new_file = bool(target_path and not Path(target_path).exists())
-    # Read up to 100KB (increased from 50KB)
     if target_path and not is_new_file:
         try:
             raw = Path(target_path).read_bytes()
-            file_content = raw[:102400].decode("utf-8", errors="ignore")
+            file_content = raw[:_read_limit].decode("utf-8", errors="ignore")
         except Exception:
             file_content = ""
     else:
@@ -734,10 +776,88 @@ def _run_coder_loop(st: Dict, project_root: str, joi_ctx: Any) -> bool:
 
     _broadcast({"type": "reading_files", "files": [target_path] if target_path else []})
 
+    # Fix 2: Load watchdog feedback for this target file
+    _wf_feedback: List[Dict] = []
+    _wf_retry_count: int = 0
+    if target_path:
+        try:
+            from modules.joi_watchdog_feedback import (
+                get_feedback_for_files, get_retry_count_for_file,
+                format_feedback_for_prompt, acknowledge_feedback,
+            )
+            _wf_feedback = get_feedback_for_files([target_path])
+            _wf_retry_count = get_retry_count_for_file(target_path)
+        except Exception:
+            pass
+
+    # Fix 2: Escalation gate — too many watchdog failures → human review
+    if _wf_retry_count >= 3:
+        _broadcast({
+            "type": "human_intervention_required",
+            "message": (
+                f"[WATCHDOG] File {Path(target_path).name if target_path else 'unknown'} "
+                f"has failed {_wf_retry_count} watchdog checks. "
+                "Escalating to human review — not retrying automatically."
+            ),
+        })
+        return False
+
+    # Fix 6: Soft token budget
+    _budget_available = False
+    _budget = None
+    try:
+        from modules.joi_token_meter import TaskBudget
+        _budget = TaskBudget(str(st.get("id", "unknown")), "default")
+        _budget_available = True
+    except Exception:
+        pass
+
     error_feedback = None
+
     for attempt in range(MAX_RETRIES):
+        # Fix 2: Build enhanced feedback with watchdog context
+        _wf_text = ""
+        try:
+            from modules.joi_watchdog_feedback import format_feedback_for_prompt
+            _wf_text = format_feedback_for_prompt(_wf_feedback)
+        except Exception:
+            pass
+        _enhanced_feedback = "\n\n".join(filter(None, [error_feedback, _wf_text])) or None
+
         _broadcast({"type": "agent_thinking", "agent": "CODER", "message": f"Attempt {attempt+1}/{MAX_RETRIES}..."})
-        coder_result = call_coder(st, file_content, joi_ctx, error_feedback)
+        coder_result = call_coder(st, file_content, joi_ctx, _enhanced_feedback)
+
+        # Fix 6: Soft budget metering
+        if _budget_available and _budget is not None:
+            try:
+                _charge = _budget.charge(
+                    task_id=str(st.get("id", "unknown")),
+                    prompt_text=str(file_content) + str(_enhanced_feedback or ""),
+                    response_text=str(coder_result) if coder_result else "",
+                )
+                if _charge.get("warning"):
+                    _broadcast({
+                        "type": "budget_warning",
+                        "message": (
+                            f"[BUDGET] Subtask #{st.get('id')} at "
+                            f"{_charge['percent_used']:.0f}% of token budget"
+                        ),
+                    })
+                if _charge.get("paused"):
+                    _broadcast({
+                        "type": "budget_paused",
+                        "message": (
+                            f"[BUDGET] Subtask #{st.get('id')} reached budget limit. "
+                            "Progress saved. Pausing for review — reply to continue with more budget."
+                        ),
+                        "completed_so_far": [
+                            s for s in (_current_session or {}).get("subtasks", [])
+                            if s.get("status") == "applied"
+                        ],
+                    })
+                    break  # Soft pause — not permanent failure
+            except Exception:
+                pass
 
         # Explicit error propagation — no bare-except swallowing
         if coder_result is None:
@@ -754,6 +874,13 @@ def _run_coder_loop(st: Dict, project_root: str, joi_ctx: Any) -> bool:
         if coder_result.get("already_done"):
             _broadcast({"type": "info", "message": f"Coder reports subtask #{st.get('id')} already done"})
             st["changes"] = []
+            # Acknowledge watchdog feedback on success
+            try:
+                from modules.joi_watchdog_feedback import acknowledge_feedback
+                if target_path:
+                    acknowledge_feedback([target_path])
+            except Exception:
+                pass
             return True
 
         changes = coder_result.get("changes", [])
@@ -780,18 +907,47 @@ def _run_coder_loop(st: Dict, project_root: str, joi_ctx: Any) -> bool:
 
         st["changes"] = changes
         st["preview"] = {"diff": preview.get("diff"), "modified": preview.get("modified")}
+
+        # Fix 2: Acknowledge watchdog feedback on success so warnings don't accumulate
+        try:
+            from modules.joi_watchdog_feedback import acknowledge_feedback
+            if target_path:
+                acknowledge_feedback([target_path])
+        except Exception:
+            pass
+
         return True
 
+    # All iterations exhausted — watchdog feedback channel will escalate further
+    # if this file keeps failing across sessions (see escalation gate above).
+    _broadcast({
+        "type": "human_intervention_required",
+        "message": (
+            f"[GUARDRAIL] Subtask #{st.get('id')} exhausted all {MAX_RETRIES} attempts. "
+            "Human review required — task paused, not looping further."
+        ),
+    })
     return False
 
 
 def _post_orchestration_sanity(subtasks: List[Dict]):
-    """Run post-orchestration sanity checks."""
+    """Run post-orchestration sanity checks.
+    Passes modified_files so watchdog uses incremental restore instead of nuclear
+    git reset --hard HEAD (which would revert ALL subtasks, including successful ones).
+    """
     try:
         from modules.joi_watchdog import post_orchestrator_sanity
-        sanity = post_orchestrator_sanity()
+        # Collect files from successfully applied subtasks so watchdog can do
+        # targeted restore instead of nuking everything with git reset --hard HEAD
+        applied_files = []
+        for st in subtasks:
+            if st.get("status") == "applied" and st.get("files"):
+                applied_files.extend(st["files"])
+        sanity = post_orchestrator_sanity(modified_files=applied_files if applied_files else None)
         if not sanity.get("ok"):
-            _broadcast({"type": "error", "message": f"[WATCHDOG] Sanity check failed: {sanity.get('message')}"})
+            detail = sanity.get("detail", sanity.get("message", ""))
+            mode = sanity.get("mode", "nuclear")
+            _broadcast({"type": "error", "message": f"[WATCHDOG] Sanity check failed ({mode}): {detail}"})
             for st in subtasks:
                 if st.get("status") == "applied": st["status"] = "failed"
     except Exception as e:
@@ -1331,14 +1487,15 @@ def compile_orchestrator_block() -> str:
         "  - Any task involving coding, editing files, multi-step changes\n"
         "  - Lonnie says 'handle this', 'work on this', 'take care of it', 'deploy'\n"
         "\n"
-        "ACTION MAPPING:\n"
-        "  User asks for coding task -> orchestrate_task(task_description='<what they asked>')\n"
-        "  User asks status of task  -> get_orchestrator_status()\n"
-        "  User says cancel/stop     -> cancel_orchestration()\n"
+        "TOOL CALL RULES (MANDATORY -- do NOT describe tool calls as text, always invoke them):\n"
+        "  Coding/build/fix task requested  -> INVOKE THE orchestrate_task TOOL\n"
+        "  Task status check requested      -> INVOKE THE get_orchestrator_status TOOL\n"
+        "  Cancel or stop requested         -> INVOKE THE cancel_orchestration TOOL\n"
         "\n"
+        "CRITICAL: Never write orchestrate_task(...) as text in your reply. Always use the tool call API.\n"
         "The JOI CODE tab shows real-time progress. Lonnie can see diffs and approve changes.\n"
-        "Self-healing: if a run fails, the pipeline analyzes the failure and retries with a revised approach (up to 2 retries).\n"
-        "For separate apps/projects (not Joi's code): use orchestrate_task(task_description='...', project_path='C:\\\\path\\\\to\\\\project').\n"
+        "Self-healing: if a run fails, the pipeline analyzes the failure and retries (up to 2 retries).\n"
+        "For separate apps/projects: set project_path in the orchestrate_task tool call.\n"
     )
     block += MODEL_KNOWLEDGE_BLOCK
 
